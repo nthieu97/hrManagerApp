@@ -65,16 +65,17 @@ a.logo__links {
   height: 36px;
   border-radius: 5px;
 }
+.search-bar span {
+  margin-top: 8px;
+  margin-left: 10px;
+}
 .search-bar input[type="text"] {
   padding: 1em;
   outline: none;
   border-radius: 5px;
   border: 2px solid transparent;
 }
-.search-bar i {
-  margin-top: 8px;
-  margin-left: 10px;
-}
+
 .tools {
   display: flex;
   align-items: center;
@@ -94,6 +95,11 @@ a.logo__links {
 .tools_newtask a {
   display: flex;
   align-items: center;
+}
+.tools_newtask__list a{
+  display: block;
+  padding: 1em;
+  color: #302f3f;
 }
 a.user__links img {
   width: 3em;
@@ -139,7 +145,7 @@ a.side-bar__link {
   align-items: center;
 }
 a.side-bar__link span {
-  margin-left: 1.2em;
+  margin: 0 0.5em;
 }
 .sidebar__footer {
   text-align: center;

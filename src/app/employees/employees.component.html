@@ -1,147 +1,84 @@
-<div class="row list-top-margin">
-  <div class="col-12">
-    <div class="list-between" style="padding-top: 10px">
-      <div class="row d-flex justify-content-between align-items-center">
-        <div class="col-4 d-flex justify-content-center">
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb" style="padding: 0; margin: 0">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">
-                list nhân viên
-              </li>
-            </ol>
-          </nav>
-        </div>
-        <div class="col-4 d-flex justify-content-center">
-          <div class="box11">
-            <div class="container-2">
-              <span class="icon"><i class="fa fa-search"></i></span>
-              <input type="search" id="search" placeholder="Search nhan viên" />
-            </div>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" style="padding: 0; margin: 0">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">list nhân viên</li>
+  </ol>
+</nav>
+<div class="employees">
+  <h2 class="mt-2">Nhân viên :</h2>
+  <hr />
+  <div class="employees__tools">
+    <div class="employees__filter d-flex justify-content-between">
+      <div class="search mr-2">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"
+              ><span class="material-icons">search</span></span
+            >
           </div>
+          <input
+            type="text"
+            (keyup.enter)="handleSearch($event)"
+            class="form-control"
+            placeholder="search"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
         </div>
-        <div class="col-4 d-flex justify-content-center">
-          <div class="list-nhan-vien-btn">
-            <button class="nhan-vien-btn">
-              <a href="#" class="btn-link"> thêm mới </a>
-            </button>
-            <button class="nhan-vien-btn">
-              <a href="#" class="btn-link">
-                <i class="fas fa-filter"></i>
-                Lọc
-              </a>
-            </button>
+      </div>
+      <select
+        style="width: 7em"
+        class="custom-select mr-2"
+        id="inputGroupSelect01"
+      >
+        <option selected>Team</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+      <select style="width: 7em" class="custom-select" id="inputGroupSelect01">
+        <option selected>Position</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+    </div>
+    <div class="employees__sort">
+      <div class="sort_by d-flex">
+        <span class="mx-1">Sort by:</span>
+        <select class="custom-select">
+          <option selected>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="employees__list">
+      <div class="eployee__item" *ngFor="let employee of employees">
+        <div class="card">
+          <img
+            [src]="employee.image"
+            class="card-img-top employee__img"
+            alt="employee"
+          />
+          <div class="card-body">
+            <h5 class="card-title text-center">{{ employee.name }}</h5>
+            <p class="card-text text-center">Mã NV: {{ employee.username }}</p>
+            <p class="card-text text-center">
+              Chức vụ: {{ employee.position }}
+            </p>
+            <p class="card-text text-center">Team: {{ employee.department }}</p>
+            <a
+              [routerLink]="['/', 'employee', employee.id]"
+              class="btn btn-success btn-block"
+              >Chi tiết</a
+            >
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-12" style="padding-top: 30px">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">STT</th>
-          <th scope="col">Mã nhân viên</th>
-          <th scope="col">Tên nhân viên</th>
-          <th scope="col">Ảnh</th>
-          <th scope="col">SĐT</th>
-          <th scope="col">email</th>
-          <th scope="col">status</th>
-          <th scope="col">Edit</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>#123</td>
-          <td>nguyễn bá hưng</td>
-          <td>img</td>
-          <td>0338757424</td>
-          <td>hungnbph08143</td>
-          <td>
-            <div style="margin-left: 10px" class="switch">
-              <input
-                name="act"
-                data-primary='[{"id":"3"}]'
-                id="cmn-toggle-act"
-                class="cmn-toggle cmn-toggle-round editable"
-                style="flex: inherit"
-                type="checkbox"
-              />
-
-              <label for="cmn-toggle-act"></label>
-            </div>
-          </td>
-          <td>
-            <a href="#" style="color: #6bae2d; font-size: 15px">
-              <i class="far fa-edit"></i>
-            </a>
-            <a href="#" style="color: #6bae2d; font-size: 15px">
-              <i class="fas fa-trash-alt"></i>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">1</th>
-          <td>#123</td>
-          <td>nguyễn bá hưng</td>
-          <td>img</td>
-          <td>0338757424</td>
-          <td>hungnbph08143</td>
-          <td>
-            <div style="margin-left: 10px" class="switch">
-              <input
-                name="act"
-                data-primary='[{"id":"3"}]'
-                id="cmn-toggle-act-2"
-                class="cmn-toggle cmn-toggle-round editable"
-                style="flex: inherit"
-                type="checkbox"
-              />
-
-              <label for="cmn-toggle-act-2"></label>
-            </div>
-          </td>
-          <td>
-            <a href="#" style="color: #6bae2d; font-size: 15px">
-              <i class="far fa-edit"></i>
-            </a>
-            <a href="#" style="color: #6bae2d; font-size: 15px">
-              <i class="fas fa-trash-alt"></i>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">1</th>
-          <td>#123</td>
-          <td>nguyễn bá hưng</td>
-          <td>img</td>
-          <td>0338757424</td>
-          <td>hungnbph08143</td>
-          <td>
-            <div style="margin-left: 10px" class="switch">
-              <input
-                name="act"
-                data-primary='[{"id":"3"}]'
-                id="cmn-toggle-act-3"
-                class="cmn-toggle cmn-toggle-round editable"
-                style="flex: inherit"
-                type="checkbox"
-              />
-
-              <label for="cmn-toggle-act-3"></label>
-            </div>
-          </td>
-          <td>
-            <a href="#" style="color: #6bae2d; font-size: 15px">
-              <i class="far fa-edit"></i>
-            </a>
-            <a href="#" style="color: #6bae2d; font-size: 15px">
-              <i class="fas fa-trash-alt"></i>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </div>

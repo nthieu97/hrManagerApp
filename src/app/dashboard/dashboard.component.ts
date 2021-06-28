@@ -9,12 +9,12 @@ export class DashboardComponent {
   single: any[];
 
   // options
-  gradient: boolean = false;
-  showLegend: boolean = false;
+  gradient = false;
+  showLegend = false;
   label = true;
-  isDoughnut: boolean = true;
-  legendPosition: string = 'below';
-  view = [, 300];
+  isDoughnut = true;
+  legendPosition = 'below';
+  view = [, 350];
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
