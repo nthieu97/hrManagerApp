@@ -1,0 +1,60 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Scan</li>
+  </ol>
+</nav>
+<div class="scanner">
+  <div class="row">
+    <div class="col">
+      <div class="scan_camera">
+        <h3 class="text-center">QR Code Camera</h3>
+        <zxing-scanner
+          [enable]="activeScan"
+          [(device)]="currentDevice"
+          (scanSuccess)="onCodeResult($event)"
+          (camerasFound)="onCamerasFound($event)"
+          (camerasNotFound)="handleNotFoundCamera($event)"
+        ></zxing-scanner>
+        <div class="input-group mt-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01"
+              >Choose Camera</label
+            >
+          </div>
+          <select
+            class="custom-select"
+            id="inputGroupSelect01"
+            (change)="onDeviceSelectChange($event.target.value)"
+          >
+            <option value="" [selected]="!currentDevice">
+              No Device Selected
+            </option>
+            <option
+              *ngFor="let device of availableDevices"
+              [value]="device.deviceId"
+              [selected]="
+                currentDevice && device.deviceId === currentDevice.deviceId
+              "
+            >
+              {{ device.label }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="scan__info">
+        <div class="card" style="width: 18rem">
+          <img class="card-img-top" src="..." alt="Card image cap" />
+          <div class="card-body">
+            <p class="card-text">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

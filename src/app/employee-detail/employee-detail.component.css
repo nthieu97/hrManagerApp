@@ -1,0 +1,135 @@
+.content__main-header h3 {
+  padding: 5px 20px;
+  font-size: 13px;
+  color: #fff;
+}
+
+.breadcrumb {
+  margin: 0;
+  padding: 4px 12px;
+  /* background: var(--primary-color); */
+}
+
+.breadcrumb > li > a {
+  color: var(--dark-color);
+}
+
+.breadcrumb-item .active {
+  color: var(--dark-color);
+}
+
+/* end header of content */
+
+/* Sidebar of content */
+
+.content__main-sidebar {
+  background-color: #fff;
+  margin: 1em;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+
+.content__main-info {
+  width: 100%;
+  background-color: #fff;
+  margin: 1em 1em 1em 0.5em;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+
+.content__main-content {
+  display: flex;
+}
+
+.card {
+  padding: 20px 40px;
+  border: none;
+}
+
+.card-body {
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+
+.card-body span {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.card .card-img-top {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.card-qr img {
+  width: 100%;
+  margin-top: 1em;
+}
+
+/* end sidebar  */
+
+/* main content */
+
+.content__main-info-header-list {
+  margin: 1em;
+}
+
+.content__main-info-header-item {
+  display: inline-block;
+  list-style: none;
+  padding-right: 10px;
+}
+
+.content__main-info-header-link {
+  text-decoration: none;
+  color: #000;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 3px 5px;
+}
+
+.content__main-info-header-link:hover {
+  background-color: var(--primary-color);
+  text-decoration: none;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.content__main-info-header-link-active {
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.content__main-info-content {
+  margin: 1em;
+}
+
+.content__main-info-table {
+  display: flex;
+  margin-top: 1em;
+}
+
+.content__main-info-table-list {
+  width: 80%;
+}
+
+.content__main-info-table-item {
+  list-style: none;
+  margin-bottom: 1em;
+}
+
+.content__main-info-table-item input,
+select {
+  margin-top: 2px;
+}
+
+.content__main-info-table-item span {
+  background-color: var(--primary-color);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+/* end main content */

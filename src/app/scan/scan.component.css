@@ -1,0 +1,9 @@
+.scanner {
+  padding: 1em;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+.scan_camera {
+  padding: 3em;
+}

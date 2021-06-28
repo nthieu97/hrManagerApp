@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+@import "material-icons/iconfont/material-icons.css";
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow-x: hidden;
+}
+.material-icons {
+  font-family: "Material Icons" !important;
+}
+:root {
+  --primary-color: #6bae2d;
+  --secondary-color: #464763;
+  --dark-color: #302f3f;
+  --text-sm: 12px;
+  --text-md: 16px;
+  --text-lg: 21px;
+  --box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%), 0 2px 8px 2px rgb(0 0 0 / 4%);
+}

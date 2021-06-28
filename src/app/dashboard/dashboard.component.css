@@ -1,0 +1,318 @@
+.task-list {
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  padding: 0.5em;
+  border-radius: 10px;
+}
+.task-list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+
+  border-bottom: 1px solid var(--secondary-color);
+}
+img.task-list__img {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+}
+.task-list__link {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: -3em;
+}
+.task-list__body thead {
+  color: var(--primary-color);
+}
+.task-list__header a {
+  color: var(--secondary-color);
+}
+a.task-list__approve {
+  color: var(--primary-color);
+}
+a.task-list__decline {
+  color: rgb(231, 66, 66);
+}
+a.task-list__watch {
+  color: var(--dark-color);
+}
+/*End Dashboard my-task */
+/* dashboard-sumary */
+.sumary {
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  border-radius: 10px;
+  padding: 1em;
+}
+.sumary__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 1em 0;
+}
+.sumary__item span {
+  font-size: 2em;
+  display: block;
+  text-align: center;
+}
+.sumary__content {
+  width: 10em;
+}
+p.sumary__count {
+  font-size: 1.7em;
+  margin: 0;
+  color: var(--primary-color);
+}
+p.sumary__desc {
+  font-size: var(--text-md);
+  margin: 0;
+}
+/* end dashboard-sumary */
+/* aniversary */
+.aniversary {
+  background-color: var(--primary-color);
+  display: flex;
+  padding: 1em;
+  margin-top: 2em;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+img.aniversary__img {
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+}
+.aniversary__content {
+  margin: 0 0.5em;
+}
+.aniversary__content p {
+  color: whitesmoke;
+}
+p.aniversary__user {
+  font-size: var(--text-lg);
+  margin: 0;
+}
+.aniversary__more a {
+  color: whitesmoke;
+  align-self: flex-end;
+  display: block;
+  margin-left: 3em;
+}
+/*end aniversary */
+/* absent */
+.absent {
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  border-radius: 10px;
+  margin-top: 2em;
+  padding: 1em;
+}
+.absent__head-container {
+  display: flex;
+  justify-content: space-between;
+}
+a.absent__link {
+  font-size: var(--text-lg);
+  color: var(--dark-color);
+  text-decoration: none;
+}
+a.absent__link:hover {
+  text-decoration: underline;
+}
+.absent__header p {
+  font-size: var(--text-sm);
+  color: var(--secondary-color);
+}
+.absent__more {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.absent__more a {
+  color: #3a3948;
+}
+.absent__more span {
+  font-size: var(--text-sm);
+  color: grey;
+}
+.absent__item {
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
+}
+img.absent__img {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  margin-left: 1em;
+}
+.absent__info p {
+  font-size: var(--text-sm);
+}
+p.absent__username {
+  margin-bottom: 1em;
+}
+p.absent__time {
+  margin-left: 4em;
+  font-size: var(--text-sm);
+}
+/* end absent */
+/* remote-work */
+.remote-work {
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  border-radius: 10px;
+  margin-top: 2em;
+  padding: 1em;
+}
+.remote-work__header {
+  display: flex;
+  justify-content: space-between;
+}
+.remote-work__header__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.remote-work__header__left a {
+  text-decoration: none;
+  color: var(--dark-color);
+  font-size: var(--text-lg);
+}
+.remote-work__header__left span {
+  font-size: var(--text-sm);
+  color: grey;
+}
+.remote-work__header__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.remote-work__header__right span {
+  font-size: var(--text-sm);
+  color: grey;
+}
+.remote-work__header__right a {
+  color: #302f3f;
+}
+.remote-work__item {
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
+  margin-top: 0.5em;
+}
+img.remote-work__img {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  margin-left: 1em;
+}
+.remote-work__info p {
+  font-size: var(--text-sm);
+}
+p.remote-work__username {
+  margin-bottom: 1em;
+}
+p.remote-work__time {
+  margin-left: 4em;
+  font-size: var(--text-sm);
+}
+/* end-remote-work */
+/* calendar */
+.calendar {
+  padding: 1em;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  margin-top: 2em;
+}
+.calendar__header {
+  display: flex;
+  justify-content: space-between;
+}
+.calendar__header a {
+  color: var(--dark-color);
+  text-decoration: none;
+}
+a.calendar__link {
+  font-size: var(--text-lg);
+}
+.calendar__body {
+  margin-top: 1em;
+}
+.calendar__time {
+  display: flex;
+  justify-content: space-between;
+}
+.calendar__item {
+  text-align: center;
+}
+.calendar__date {
+  text-align: center;
+  background-color: whitesmoke;
+  border-radius: 50%;
+  color: var(--dark-color);
+  width: 4em;
+  height: 4em;
+  padding: 0 0.5em;
+
+  box-shadow: var(--box-shadow);
+}
+.calendar__select {
+  background-color: var(--primary-color);
+  color: white;
+}
+.calendar__select.calendar__date span {
+  color: whitesmoke;
+}
+.calendar__date span {
+  color: darkgrey;
+  font-size: var(--text-sm);
+}
+.calendar__date p {
+  font-size: var(--text-lg);
+}
+.calendar__work__item {
+  padding: 0 1em;
+  display: flex;
+  justify-content: space-between;
+  border-left: 3px solid var(--primary-color);
+  margin: 1em 0;
+}
+.calendar__work__item a {
+  color: #302f3f;
+}
+.calendar__work__desc p {
+  margin: 0;
+}
+.calendar__work__desc p.title {
+  font-weight: bolder;
+}
+.calendar__work__desc p.time {
+  font-size: var(--text-sm);
+  color: #9897aa;
+}
+/* calendend ar */
+/* team-chart */
+.team-chart {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  margin-top: 2em;
+  padding: 1em;
+}
+.team-chart__header {
+  text-align: center;
+}
+.team-chart__header p {
+  font-size: var(--text-lg);
+}
+.team-chart__body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/*end- team-chart */
