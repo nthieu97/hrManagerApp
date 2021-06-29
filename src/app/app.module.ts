@@ -14,6 +14,9 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BsModule } from './bs/bs.module';
 import { EmployeesComponent } from './employees/employees.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AttendanceComponent } from './attendance/attendance.component';
+import { AtendanceAnalyticsComponent } from './atendance-analytics/atendance-analytics.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,8 @@ import { EmployeesComponent } from './employees/employees.component';
     EmployeeDetailComponent,
     ScanComponent,
     EmployeesComponent,
+    AttendanceComponent,
+    AtendanceAnalyticsComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +40,7 @@ import { EmployeesComponent } from './employees/employees.component';
     BrowserAnimationsModule,
     NgxChartsModule,
     BsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

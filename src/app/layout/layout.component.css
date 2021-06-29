@@ -25,6 +25,9 @@ header {
 .content {
   grid-area: content;
 }
+span.material-icons {
+  padding-right: 0.5em;
+}
 
 .app-container {
   width: 100%;
@@ -96,7 +99,7 @@ a.logo__links {
   display: flex;
   align-items: center;
 }
-.tools_newtask__list a{
+.tools_newtask__list a {
   display: block;
   padding: 1em;
   color: #302f3f;
@@ -123,29 +126,37 @@ a.user__links span {
   justify-content: space-between;
   flex-direction: column;
 }
-.sidebar__item {
-  border-bottom: 1px solid var(--secondary-color);
-  padding: 1.2em;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
 
-.sidebar__item:hover {
-  background-color: #3a3948;
-}
-.sidebar__item:hover a.side-bar__link {
-  color: whitesmoke;
+a.sidebar__active {
+  background-color: var(--primary-color);
 }
 a.side-bar__link {
   text-decoration: none;
-  color: #9897aa;
+  color: whitesmoke;
   font-size: var(--text-md);
   display: flex;
   align-items: center;
+  padding: 1.2em;
+  cursor: pointer;
+}
+a.dropdown__link {
+  padding: 0.5em;
+  text-decoration: none;
+  display: flex;
+  color: rgb(228, 222, 222);
+  padding-left: 3em;
+}
+a.dropdown__link:hover {
+  color: white;
+}
+.sidebar__dropdown {
+  background-color: #252431;
 }
 a.side-bar__link span {
   margin: 0 0.5em;
+}
+li.dropdow__item {
+  width: 100%;
 }
 .sidebar__footer {
   text-align: center;
