@@ -1,1 +1,7 @@
-GET http://localhost:8000/api/user
+
+GET http://localhost:8000/api/lichchamcong
+Content-Type: application/json
+{
+    "id":1
+}
+

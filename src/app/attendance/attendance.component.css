@@ -1,0 +1,9 @@
+.container__attendace {
+  padding: 1em;
+}
+.calendar {
+  padding: 1em;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}

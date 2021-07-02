@@ -11,12 +11,14 @@
   </div>
   <div class="content__main-content">
     <div class="content__main-sidebar">
-      <div class="card" style="width: 18rem">
+      <div class="card" #screen style="width: 18rem">
         <img
           class="card-img-top"
           src="https://media.istockphoto.com/photos/portrait-of-handsome-latino-african-man-picture-id1007763808?k=6&m=1007763808&s=612x612&w=0&h=Js1VDBulbaNw_CF7fghP_nhUPCC-DQTqb7Wym1CdTOI="
           alt="Card image cap"
+          crossorigin="anonymous"
         />
+        <!-- <canvas #canvasImg width="500" height="500"></canvas> -->
         <div class="card-body">
           <h3 class="card-text">Staff name</h3>
           <span class="card-text-position">Position</span>
@@ -24,11 +26,15 @@
           <span class="card-text-department">Department</span>
         </div>
         <div class="card-qr">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"
-            alt=""
-          />
+          <ngx-kjua [text]="'hello'" render="canvas"></ngx-kjua>
         </div>
+      </div>
+      <button class="btn btn-block btn-success" (click)="downloadCard()">
+        Download Employee Card
+      </button>
+      <div hidden id="download">
+        <img #canvas />
+        <a #downLoadLink></a>
       </div>
     </div>
     <div class="content__main-info">
