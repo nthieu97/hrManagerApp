@@ -33,12 +33,9 @@ export class AttendanceComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     height: 550,
     initialView: 'dayGridMonth',
-    dateClick: this.handleDateClick.bind(this), // bind is important!
+    // dateClick: this.handleDateClick.bind(this), // bind is important!
     events: this.arr,
   };
-  handleDateClick(arg) {
-    alert('date click! ' + arg.dateStr);
-  }
 
   ngOnInit(): void {}
 }
