@@ -20,7 +20,8 @@ import { AttendanceComponent } from './attendance/attendance.component';
 import { AtendanceAnalyticsComponent } from './atendance-analytics/atendance-analytics.component';
 import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction';
+import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component'; // a plugin!
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -39,6 +40,7 @@ FullCalendarModule.registerPlugins([
     EmployeesComponent,
     AttendanceComponent,
     AtendanceAnalyticsComponent,
+    EmployeeDashboardComponent,
   ],
   imports: [
     BrowserModule,
