@@ -17,6 +17,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { AtendanceAnalyticsComponent } from './atendance-analytics/atendance-analytics.component';
+import { PositionsComponent } from './positions/positions.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,8 @@ import { AtendanceAnalyticsComponent } from './atendance-analytics/atendance-ana
     EmployeesComponent,
     AttendanceComponent,
     AtendanceAnalyticsComponent,
+
+    PositionsComponent,
   ],
   imports: [
     BrowserModule,

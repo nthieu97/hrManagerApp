@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="position">
+    <h3  class="text-center">Danh sách chức vụ <span class="material-icons-outlined">
+      add_circle_outline
+    </span></h3>
+    <div class="row">
+      <!-- <div class="col-6">
+        <form>
+          <div class="form-group">
+            <input class="form-control" type="text" placeholder="Position" ng-model="position.name">
+            <button  class="btn btn-success">Add</button>
+          </div>
+
+        </form>
+      </div>
+      <div class="col-6"> -->
+
+        <Table class="table">
+
+          <thead>
+            <th>#</th>
+            <th>Name</th>
+            <th>Action</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let position of positions">
+              <td>{{position.id}}</td>
+              <td>{{position.name}}</td>
+              <td>
+                <button class="btn btn-primary">Edit</button>
+                <button class="btn btn-danger">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </div>
+    </div>
+  </div>
+
+<!-- </div> -->

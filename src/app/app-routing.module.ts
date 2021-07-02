@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { ScanComponent } from './scan/scan.component';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { AtendanceAnalyticsComponent } from './atendance-analytics/atendance-analytics.component';
-
+import {PositionsComponent} from './positions/positions.component'
 const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -32,6 +32,10 @@ const routes: Routes = [
         path: 'attendanceAnalytics',
         component: AtendanceAnalyticsComponent,
       },
+      {
+        path: 'positions',
+        component: PositionsComponent
+      }
     ],
   },
 ];
