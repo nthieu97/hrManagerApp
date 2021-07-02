@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { ScanComponent } from './scan/scan.component';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { AtendanceAnalyticsComponent } from './atendance-analytics/atendance-analytics.component';
+import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'employee/:id', component: EmployeeDetailComponent },
       { path: 'employee', component: EmployeesComponent },
+      { path: 'employee/dashboard', component: EmployeeDashboardComponent },
       { path: 'scan', component: ScanComponent },
       { path: 'attendance', component: AttendanceComponent },
 
