@@ -1,8 +1,14 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" style="padding: 0; margin: 0">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Positions</li>
+  </ol>
+</nav>
 <div class="container">
   <div class="position">
-    <h3  class="text-center">Danh sách chức vụ <span class="material-icons-outlined">
+    <h3  class="text-center">Position List<a [routerLink]="['/','position-add-form']"><span class="material-icons-outlined">
       add_circle_outline
-    </span></h3>
+    </span></a> </h3>
     <div class="row">
       <!-- <div class="col-6">
         <form>
@@ -27,7 +33,7 @@
               <td>{{position.id}}</td>
               <td>{{position.name}}</td>
               <td>
-                <button class="btn btn-primary">Edit</button>
+                <button class="btn btn-primary" [routerLink]="['/','position-edit-form']">Edit</button>
                 <button class="btn btn-danger">Delete</button>
               </td>
             </tr>

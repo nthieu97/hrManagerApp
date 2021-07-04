@@ -8,7 +8,10 @@ import { LoginComponent } from './login/login.component';
 import { ScanComponent } from './scan/scan.component';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { AtendanceAnalyticsComponent } from './atendance-analytics/atendance-analytics.component';
-import {PositionsComponent} from './positions/positions.component'
+import { PositionsComponent } from './positions/positions.component';
+import { PositionAddFormComponent } from './position-add-form/position-add-form.component';
+import { PositionEditFormComponent } from './position-edit-form/position-edit-form.component';
+import { SalariesComponent } from './salaries/salaries.component';
 const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -35,6 +38,18 @@ const routes: Routes = [
       {
         path: 'positions',
         component: PositionsComponent
+      },
+      {
+        path: 'position-add-form',
+        component:PositionAddFormComponent
+      },
+      {
+        path: 'position-edit-form',
+        component:PositionEditFormComponent
+      },
+      {
+        path: 'salaries',
+        component:SalariesComponent
       }
     ],
   },

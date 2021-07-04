@@ -18,6 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { AtendanceAnalyticsComponent } from './atendance-analytics/atendance-analytics.component';
 import { PositionsComponent } from './positions/positions.component';
+import { PositionAddFormComponent } from './position-add-form/position-add-form.component';
+import { PositionEditFormComponent } from './position-edit-form/position-edit-form.component';
+import { SalariesComponent } from './salaries/salaries.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,10 @@ import { PositionsComponent } from './positions/positions.component';
     AtendanceAnalyticsComponent,
 
     PositionsComponent,
+      PositionAddFormComponent,
+      PositionEditFormComponent,
+      SalariesComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -95,6 +95,16 @@
         >
       </div>
       <div class="sidebar__item">
+        <a
+          [routerLink]="['/', 'salaries']"
+          class="side-bar__link"
+          routerLinkActive="sidebar__active"
+          ><span class="material-icons">
+          request_quote
+          </span> Salaries</a
+        >
+      </div>
+      <div class="sidebar__item">
         <a class="side-bar__link dropdown" (click)="toggleDropdown()"
           ><span class="material-icons">qr_code</span> Attendance
           <span class="material-icons">{{
