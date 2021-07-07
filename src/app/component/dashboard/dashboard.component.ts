@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/model/user.model';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +23,8 @@ export class DashboardComponent implements OnInit {
     { name: 'designner', value: 2 },
     { name: 'BA', value: 1 },
   ];
-  constructor() {}
+  isAdmin: false;
+  constructor(private authService: AuthService) {}
   ngOnInit(): void {}
   onSelect(data): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));

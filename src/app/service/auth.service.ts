@@ -11,6 +11,7 @@ import { User } from '../model/user.model';
 })
 export class AuthService {
   constructor(private http: HttpClient) {}
+
   user = new BehaviorSubject<User>(null);
   login(email, password): Observable<loginResponse> {
     return this.http
@@ -18,7 +19,6 @@ export class AuthService {
       .pipe(
         tap((data: loginResponse) => {
           this.user.next(data.user);
-          console.log(this.user.value);
         })
       );
   }
