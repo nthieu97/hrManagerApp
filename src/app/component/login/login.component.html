@@ -1,0 +1,35 @@
+<div class="login-background">
+  <div class="login-page">
+    <div class="form">
+      <h1 class="text-center mb-5">HR Manager</h1>
+      <!-- <form>
+        <input type="text" placeholder="email" />
+        <input
+          type="password"
+          placeholder="password"
+          name="password"
+          ngModel
+          required
+        />
+        <input type="text" placeholder="email address" />
+        <button>create</button>
+      </form> -->
+      <form
+        class="login-form"
+        #loginForm="ngForm"
+        class="register-form"
+        (ngSubmit)="onSubmit(loginForm.value)"
+      >
+        <input type="text" placeholder="email" ngModel name="email" />
+        <input
+          type="password"
+          placeholder="password"
+          name="password"
+          ngModel
+          required
+        />
+        <button type="submit">login</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,19 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   single: any[];
 
   // options
-  gradient = false;
-  showLegend = false;
-  label = true;
-  isDoughnut = true;
-  legendPosition = 'below';
   view = [, 350];
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
@@ -27,7 +22,7 @@ export class DashboardComponent {
     { name: 'BA', value: 1 },
   ];
   constructor() {}
-
+  ngOnInit(): void {}
   onSelect(data): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));
   }
