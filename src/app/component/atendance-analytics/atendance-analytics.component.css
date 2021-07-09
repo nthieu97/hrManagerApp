@@ -1,0 +1,22 @@
+.attendance-container {
+  padding: 1em;
+}
+.attendace__analytic {
+  background-color: whitesmoke;
+  height: 38em;
+  box-shadow: var(--box-shadow);
+  border-radius: 10px;
+}
+.month-sumary {
+  background-color: white;
+  height: 18.5em;
+  box-shadow: var(--box-shadow);
+  border-radius: 10px;
+}
+.employee-sumary {
+  margin-top: 1em;
+  background-color: white;
+  height: 18.5em;
+  box-shadow: var(--box-shadow);
+  border-radius: 10px;
+}

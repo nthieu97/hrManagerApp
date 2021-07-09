@@ -5,30 +5,33 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutComponent } from './layout/layout.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { LoginComponent } from './login/login.component';
-import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { LoginComponent } from './component/login/login.component';
+import { EmployeeDetailComponent } from './component/employee-detail/employee-detail.component';
 import { FormsModule } from '@angular/forms';
-import { ScanComponent } from './scan/scan.component';
+import { ScanComponent } from './component/scan/scan.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { BsModule } from './bs/bs.module';
-import { EmployeesComponent } from './employees/employees.component';
+import { BsModule } from './bs module/bs.module';
+import { NgxKjuaModule } from 'ngx-kjua';
+import { EmployeesComponent } from './component/employees/employees.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AttendanceComponent } from './attendance/attendance.component';
-import { AtendanceAnalyticsComponent } from './atendance-analytics/atendance-analytics.component';
-import { PositionsComponent } from './positions/positions.component';
-import { PositionAddFormComponent } from './position-add-form/position-add-form.component';
-import { PositionEditFormComponent } from './position-edit-form/position-edit-form.component';
-import { SalariesComponent } from './salaries/salaries.component';
-
+import { AttendanceComponent } from './component/attendance/attendance.component';
+import { AtendanceAnalyticsComponent } from './component/atendance-analytics/atendance-analytics.component';
+import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction';
+FullCalendarModule.registerPlugins([
+  // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin,
+]);
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
     DashboardComponent,
     LoginComponent,
-
     EmployeeDetailComponent,
     ScanComponent,
     EmployeesComponent,
@@ -46,11 +49,13 @@ import { SalariesComponent } from './salaries/salaries.component';
     CommonModule,
     ZXingScannerModule,
     FormsModule,
+    NgxKjuaModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NgxChartsModule,
     BsModule,
     HttpClientModule,
+    FullCalendarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,56 @@
+<div class="attendance-container">
+  <div class="row">
+    <div class="col-8">
+      <div class="attendace__analytic">
+        <h3 class="text-center">Thống kê đi làm nhân viên</h3>
+        <ngx-charts-bar-vertical-stacked
+          [view]="[800, 550]"
+          [scheme]="colorScheme"
+          [results]="multi"
+          [gradient]="false"
+          [xAxis]="true"
+          [yAxis]="true"
+          [legend]="false"
+          [barPadding]="10"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [animations]="true"
+          (select)="onSelect($event)"
+        >
+        </ngx-charts-bar-vertical-stacked>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="month-sumary">
+        <h4 class="text-center">Điểm danh hôm nay</h4>
+        <ngx-charts-pie-chart
+          [view]="[390, 190]"
+          [scheme]="colorScheme"
+          [results]="single"
+          [gradient]="true"
+          [legend]="true"
+          [legendPosition]="'below'"
+          [labels]="false"
+          [doughnut]="true"
+          (select)="onSelect($event)"
+        >
+        </ngx-charts-pie-chart>
+      </div>
+      <div class="employee-sumary">
+        <h4 class="text-center">nghỉ quá số buổi</h4>
+        <ngx-charts-pie-chart
+          [view]="[390, 190]"
+          [scheme]="'forest'"
+          [results]="emplyee"
+          [gradient]="true"
+          [legend]="false"
+          [legendPosition]="'below'"
+          [labels]="false"
+          [doughnut]="true"
+          (select)="onSelect($event)"
+        >
+        </ngx-charts-pie-chart>
+      </div>
+    </div>
+  </div>
+</div>

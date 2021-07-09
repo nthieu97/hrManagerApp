@@ -1,24 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
-import { EmployeesComponent } from './employees/employees.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { EmployeeDetailComponent } from './component/employee-detail/employee-detail.component';
+import { EmployeesComponent } from './component/employees/employees.component';
 import { LayoutComponent } from './/layout/layout.component';
-import { LoginComponent } from './login/login.component';
-import { ScanComponent } from './scan/scan.component';
-import { AttendanceComponent } from './attendance/attendance.component';
-import { AtendanceAnalyticsComponent } from './atendance-analytics/atendance-analytics.component';
-import { PositionsComponent } from './positions/positions.component';
-import { PositionAddFormComponent } from './position-add-form/position-add-form.component';
-import { PositionEditFormComponent } from './position-edit-form/position-edit-form.component';
-import { SalariesComponent } from './salaries/salaries.component';
-const routes: Routes = [
-  // { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+import { LoginComponent } from './component/login/login.component';
+import { ScanComponent } from './component/scan/scan.component';
+import { AttendanceComponent } from './component/attendance/attendance.component';
+import { AtendanceAnalyticsComponent } from './component/atendance-analytics/atendance-analytics.component';
+import { AuthGuard } from './guard/auth.guard';
 
+const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
+    canActivateChild: [AuthGuard],
     children: [
       {
         path: '',
@@ -28,6 +24,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'employee/:id', component: EmployeeDetailComponent },
       { path: 'employee', component: EmployeesComponent },
+
       { path: 'scan', component: ScanComponent },
       { path: 'attendance', component: AttendanceComponent },
 
@@ -53,6 +50,7 @@ const routes: Routes = [
       }
     ],
   },
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
