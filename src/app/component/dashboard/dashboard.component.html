@@ -4,7 +4,7 @@
     <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
   </ol>
 </nav>
-<div class="dashboard">
+<div class="dashboard" *ngIf="isAdmin">
   <div class="row">
     <!-- task-list -->
     <div class="col-8">
@@ -326,4 +326,7 @@
       </div>
     </div>
   </div>
+</div>
+<div class="dashboard__employee" *ngIf="!isAdmin">
+  nhan vien dashboard
 </div>
