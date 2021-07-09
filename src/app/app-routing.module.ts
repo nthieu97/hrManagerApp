@@ -32,6 +32,22 @@ const routes: Routes = [
         path: 'attendanceAnalytics',
         component: AtendanceAnalyticsComponent,
       },
+      {
+        path: 'positions',
+        component: PositionsComponent
+      },
+      {
+        path: 'position-add-form',
+        component:PositionAddFormComponent
+      },
+      {
+        path: 'position-edit-form',
+        component:PositionEditFormComponent
+      },
+      {
+        path: 'salaries',
+        component:SalariesComponent
+      }
     ],
   },
   { path: 'login', component: LoginComponent },

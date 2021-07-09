@@ -21,7 +21,6 @@ import { AtendanceAnalyticsComponent } from './component/atendance-analytics/ate
 import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction';
-
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
   dayGridPlugin,
@@ -38,6 +37,12 @@ FullCalendarModule.registerPlugins([
     EmployeesComponent,
     AttendanceComponent,
     AtendanceAnalyticsComponent,
+
+    PositionsComponent,
+      PositionAddFormComponent,
+      PositionEditFormComponent,
+      SalariesComponent,
+
   ],
   imports: [
     BrowserModule,
