@@ -23,9 +23,11 @@ export class DashboardComponent implements OnInit {
     { name: 'designner', value: 2 },
     { name: 'BA', value: 1 },
   ];
-  isAdmin: false;
+  isAdmin: boolean;
   constructor(private authService: AuthService) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isAdmin = this.authService.isAdmin();
+  }
   onSelect(data): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));
   }

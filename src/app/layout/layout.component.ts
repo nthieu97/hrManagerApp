@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../model/user.model';
 import { AuthService } from '../service/auth.service';
 
 @Component({
@@ -10,7 +11,12 @@ import { AuthService } from '../service/auth.service';
 export class LayoutComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
   dropdown = false;
-  ngOnInit(): void {}
+  isAdmin;
+  user: User;
+  ngOnInit(): void {
+    this.isAdmin = this.authService.isAdmin();
+    this.user = this.authService.getCurrentUser();
+  }
   toggleDropdown(): void {
     this.dropdown = !this.dropdown;
   }

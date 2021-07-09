@@ -22,10 +22,10 @@ export class AuthGuard implements CanActivateChild {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.authService.checkLogin()) {
-      return true;
+    if (!this.authService.isAuthenticated()) {
+      this.route.navigate(['login']);
+      return false;
     }
-    this.route.navigate(['login']);
-    return false;
+    return true;
   }
 }
