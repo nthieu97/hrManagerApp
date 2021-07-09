@@ -4,6 +4,7 @@
   border-radius: 1rem;
   text-align: center;
   margin-top: 1rem;
+  box-shadow: var(--box-shadow);
 }
 .salaries img {
   width: 60px;

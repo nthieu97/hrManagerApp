@@ -11,20 +11,22 @@
       <thead>
         <th>#</th>
         <th>Name</th>
-        <th>image</th>
+        <th>Image</th>
         <th>Position</th>
         <th>Salary</th>
         <th>Action</th>
       </thead>
       <tbody>
         <tr *ngFor="let salary of salaries">
-          <td>{{salary.id}}</td>
-          <td>{{salary.name}}</td>
-          <td><img [src]="salary.image" alt=""></td>
-          <td>{{salary.position}}</td>
-          <td>{{salary.salary}}</td>
+          <td>{{ salary.id }}</td>
+          <td>{{ salary.name }}</td>
+          <td><img [src]="salary.image" alt="" /></td>
+          <td>{{ salary.position }}</td>
+          <td>{{ salary.salary }}</td>
           <td>
-            <button class="btn btn-primary" [routerLink]="['/','']">Detail</button>
+            <button class="btn btn-primary" [routerLink]="['/', '']">
+              Detail
+            </button>
           </td>
         </tr>
       </tbody>
