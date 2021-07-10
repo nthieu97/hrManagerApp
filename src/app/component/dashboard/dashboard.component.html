@@ -5,6 +5,49 @@
   </ol>
 </nav>
 <div class="dashboard" *ngIf="isAdmin">
+  <div class="row sumary__list mb-4">
+    <div class="col-3">
+      <div class="sumary__item">
+        <span class="material-icons green">people</span>
+
+        <div class="sumary__content">
+          <p class="sumary__count">21</p>
+          <p class="sumary__desc">tổng số nhân viên</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="sumary__item">
+        <span class="material-icons green">group_work</span>
+
+        <div class="sumary__content">
+          <p class="sumary__count">4</p>
+          <p class="sumary__desc">tổng số Team</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="sumary__item">
+        <span class="material-icons green">group_add</span>
+
+        <div class="sumary__content">
+          <p class="sumary__count">19</p>
+          <p class="sumary__desc">nhân viên có mặt</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="sumary__item">
+        <span class="material-icons green">group_off</span>
+
+        <div class="sumary__content">
+          <p class="sumary__count">2</p>
+          <p class="sumary__desc">nhân viên vắng mặt</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr />
   <div class="row">
     <!-- task-list -->
     <div class="col-8">
@@ -201,34 +244,6 @@
     </div>
     <!-- end task list -->
     <div class="col-4">
-      <!-- sumary -->
-      <div class="sumary">
-        <div class="sumary__item">
-          <span class="material-icons">people</span>
-
-          <div class="sumary__content">
-            <p class="sumary__count">19</p>
-            <p class="sumary__desc">tổng số nhân viên</p>
-          </div>
-        </div>
-        <div class="sumary__item">
-          <span class="material-icons">groups</span>
-
-          <div class="sumary__content">
-            <p class="sumary__count">4</p>
-            <p class="sumary__desc">tổng số team</p>
-          </div>
-        </div>
-        <div class="sumary__item">
-          <span class="material-icons">task</span>
-
-          <div class="sumary__content">
-            <p class="sumary__count">3</p>
-            <p class="sumary__desc">tổng số công việc</p>
-          </div>
-        </div>
-      </div>
-      <!-- end-sumary -->
       <!-- aniversary -->
       <!-- <div class="aniversary">
         <img
@@ -327,6 +342,4 @@
     </div>
   </div>
 </div>
-<div class="dashboard__employee" *ngIf="!isAdmin">
-  nhan vien dashboard
-</div>
+<div class="dashboard__employee" *ngIf="!isAdmin">nhan vien dashboard</div>

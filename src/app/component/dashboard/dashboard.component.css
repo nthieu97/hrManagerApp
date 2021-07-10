@@ -39,20 +39,22 @@ a.task-list__watch {
 }
 /*End Dashboard my-task */
 /* dashboard-sumary */
-.sumary {
+span.material-icons.green {
+  color: var(--primary-color);
+}
+.sumary__item {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 1em 0;
   background-color: white;
   box-shadow: var(--box-shadow);
   border-radius: 10px;
   padding: 1em;
 }
-.sumary__item {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  margin: 1em 0;
-}
 .sumary__item span {
-  font-size: 2em;
+  font-size: 4em;
   display: block;
   text-align: center;
 }

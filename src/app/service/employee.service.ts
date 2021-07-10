@@ -12,4 +12,13 @@ export class EmployeeService {
   getAllEmployee(): Observable<any> {
     return this.http.get(this.URL_API);
   }
+  getUserById(id: string): Observable<any> {
+    return this.http.get(this.URL_API + '/detail/' + id);
+  }
+  deleteEmployee(id: string): Observable<any> {
+    return this.http.delete(this.URL_API + '/delete/' + id);
+  }
+  getAllDepartmentPositions(): Observable<any> {
+    return this.http.get(this.URL_API + 'getlist');
+  }
 }

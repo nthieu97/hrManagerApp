@@ -28,17 +28,13 @@
             (click)="$event.preventDefault()"
             ><span class="material-icons">people</span> Add Employee</a
           >
-          <a ngbDropdownItem href="#" (click)="$event.preventDefault()"
-            ><span class="material-icons">task</span> Add Task</a
-          >
-          <a ngbDropdownItem href="#" (click)="$event.preventDefault()"
-            >Add permisson</a
+
+          <a ngbDropdownItem href="#" (click)="$event.preventDefault()">
+            <span class="material-icons">verified</span> Add permisson</a
           >
         </div>
       </div>
-      <div class="tools_notification">
-        <a href="#"> <span class="material-icons">notifications</span></a>
-      </div>
+
       <div class="tools_user" ngbDropdown>
         <a
           class="user__links"
@@ -91,9 +87,7 @@
           [routerLink]="['/', 'positions']"
           class="side-bar__link"
           routerLinkActive="sidebar__active"
-          ><span class="material-icons">
-            radar
-          </span> Positions</a
+          ><span class="material-icons"> radar </span> Positions</a
         >
       </div>
       <div class="sidebar__item">
@@ -101,9 +95,7 @@
           [routerLink]="['/', 'salaries']"
           class="side-bar__link"
           routerLinkActive="sidebar__active"
-          ><span class="material-icons">
-          request_quote
-          </span> Salaries</a
+          ><span class="material-icons"> request_quote </span> Salaries</a
         >
       </div>
       <div class="sidebar__item">
