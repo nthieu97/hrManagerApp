@@ -38,20 +38,20 @@ const routes: Routes = [
       },
       {
         path: 'positions',
-        component: PositionsComponent
+        component: PositionsComponent,
       },
       {
         path: 'position-add-form',
-        component:PositionAddFormComponent
+        component: PositionAddFormComponent,
       },
       {
         path: 'position-edit-form',
-        component:PositionEditFormComponent
+        component: PositionEditFormComponent,
       },
       {
         path: 'salaries',
-        component:SalariesComponent
-      }
+        component: SalariesComponent,
+      },
     ],
   },
   { path: 'login', component: LoginComponent },

@@ -55,22 +55,43 @@
       </div>
     </div> -->
   </div>
-  <div class="row">
+  <div class="spinner text-center mt-5" *ngIf="loading">
+    <div class="spinner-grow text-success" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary mx-3" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <div class="row" *ngIf="!loading">
     <div class="employees__list">
       <div class="eployee__item" *ngFor="let employee of employees">
         <div class="card">
           <img
-            [src]="employee.image"
+            [src]="
+              employee.avatar
+                ? employee.avatar
+                : 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'
+            "
             class="card-img-top employee__img"
             alt="employee"
           />
           <div class="card-body">
-            <h5 class="card-title text-center">{{ employee.name }}</h5>
-            <p class="card-text text-center">Mã NV: {{ employee.username }}</p>
+            <h5 class="card-title text-center">
+              {{ employee.full_name ? employee.full_name : "User Test" }}
+            </h5>
             <p class="card-text text-center">
-              Chức vụ: {{ employee.position }}
+              Mã NV: {{ employee.user_account }}
             </p>
-            <p class="card-text text-center">Team: {{ employee.department }}</p>
+            <p class="card-text text-center">
+              Chức vụ: {{ employee.name_position }}
+            </p>
+            <p class="card-text text-center">
+              Team: {{ employee.name_department }}
+            </p>
             <a
               [routerLink]="['/', 'employee', employee.id]"
               class="btn btn-success btn-block"

@@ -13,7 +13,7 @@ export class EmployeeService {
     return this.http.get(this.URL_API);
   }
   getUserById(id: string): Observable<any> {
-    return this.http.get(this.URL_API + '/detail/' + id);
+    return this.http.get(this.URL_API + '/getdetail/' + id);
   }
   deleteEmployee(id: string): Observable<any> {
     return this.http.delete(this.URL_API + '/delete/' + id);

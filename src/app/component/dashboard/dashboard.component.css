@@ -9,7 +9,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 1em;
-
   border-bottom: 1px solid var(--secondary-color);
 }
 img.task-list__img {
@@ -39,8 +38,17 @@ a.task-list__watch {
 }
 /*End Dashboard my-task */
 /* dashboard-sumary */
-span.material-icons.green {
-  color: var(--primary-color);
+.sumary__item.people {
+  background-color: #a10e9e;
+}
+.sumary__item.group_work {
+  background-color: #7469ef;
+}
+.sumary__item.group_add {
+  background-color: #1131ba;
+}
+.sumary__item.group_off {
+  background-color: #6b8750;
 }
 .sumary__item {
   display: flex;
@@ -48,7 +56,7 @@ span.material-icons.green {
   align-items: center;
   justify-content: space-evenly;
   margin: 1em 0;
-  background-color: white;
+  color: whitesmoke;
   box-shadow: var(--box-shadow);
   border-radius: 10px;
   padding: 1em;
@@ -64,7 +72,6 @@ span.material-icons.green {
 p.sumary__count {
   font-size: 1.7em;
   margin: 0;
-  color: var(--primary-color);
 }
 p.sumary__desc {
   font-size: var(--text-md);
@@ -107,7 +114,7 @@ p.aniversary__user {
   background-color: white;
   box-shadow: var(--box-shadow);
   border-radius: 10px;
-  margin-top: 2em;
+
   padding: 1em;
 }
 .absent__head-container {

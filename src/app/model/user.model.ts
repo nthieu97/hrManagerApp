@@ -10,3 +10,25 @@ export interface User {
   updated_at: string;
   deleted_at?: any;
 }
+export interface UserResponse {
+  status: boolean;
+  message: string;
+  data: Data[];
+  meta: Meta;
+}
+
+export interface Meta {
+  total: number;
+  perPage: number;
+  currentPage: number;
+}
+
+export interface Data {
+  id: number;
+  full_name?: string;
+  email: string;
+  name_department: string;
+  name_position: string;
+  avatar?: any;
+  user_account: string;
+}

@@ -5,7 +5,9 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as html2canvas from 'html2canvas';
+import { EmployeeService } from 'src/app/service/employee.service';
 // declare let html2canvas: any;
 @Component({
   selector: 'app-employee-detail',
@@ -13,11 +15,22 @@ import * as html2canvas from 'html2canvas';
   styleUrls: ['./employee-detail.component.css'],
 })
 export class EmployeeDetailComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private employeeService: EmployeeService,
+    private atr: ActivatedRoute
+  ) {}
+  userInfo;
   @ViewChild('screen', { static: false }) screen: ElementRef;
   @ViewChild('canvas') canvas: ElementRef;
   @ViewChild('downLoadLink') downloadLink: ElementRef;
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.atr.params.subscribe((params) => {
+      const id = params.id;
+      this.employeeService.getUserById(id).subscribe((res) => {
+        this.userInfo = res.data;
+      });
+    });
+  }
   downloadCard(): void {
     html2canvas(this.screen.nativeElement).then((canvas) => {
       this.canvas.nativeElement.src = canvas.toDataURL();

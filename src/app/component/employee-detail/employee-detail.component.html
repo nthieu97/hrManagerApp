@@ -20,13 +20,21 @@
         />
         <!-- <canvas #canvasImg width="500" height="500"></canvas> -->
         <div class="card-body">
-          <h3 class="card-text">Staff name</h3>
-          <span class="card-text-position">Position</span>
+          <h3 class="card-text">{{ userInfo?.userinfo?.full_name }}</h3>
+          <span class="card-text-position">{{
+            userInfo?.phongban_userinfo?.name
+          }}</span>
           <span>/</span>
-          <span class="card-text-department">Department</span>
+          <span class="card-text-department">{{
+            userInfo?.chucvu_userinfo?.name
+          }}</span>
         </div>
         <div class="card-qr">
-          <ngx-kjua [text]="'hello'" render="canvas"></ngx-kjua>
+          <ngx-kjua
+            *ngIf="userInfo?.userinfo"
+            [text]="userInfo?.userinfo?.code_QR"
+            render="canvas"
+          ></ngx-kjua>
         </div>
       </div>
       <button class="btn btn-block btn-success" (click)="downloadCard()">

@@ -15,7 +15,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BsModule } from './bs module/bs.module';
 import { NgxKjuaModule } from 'ngx-kjua';
 import { EmployeesComponent } from './component/employees/employees.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AttendanceComponent } from './component/attendance/attendance.component';
 import { AtendanceAnalyticsComponent } from './component/atendance-analytics/atendance-analytics.component';
 import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
@@ -25,6 +25,7 @@ import { PositionAddFormComponent } from './component/position-add-form/position
 import { PositionEditFormComponent } from './component/position-edit-form/position-edit-form.component';
 import { PositionsComponent } from './component/positions/positions.component';
 import { SalariesComponent } from './component/salaries/salaries.component';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
   dayGridPlugin,
@@ -43,10 +44,9 @@ FullCalendarModule.registerPlugins([
     AtendanceAnalyticsComponent,
 
     PositionsComponent,
-      PositionAddFormComponent,
-      PositionEditFormComponent,
-      SalariesComponent,
-
+    PositionAddFormComponent,
+    PositionEditFormComponent,
+    SalariesComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +61,9 @@ FullCalendarModule.registerPlugins([
     HttpClientModule,
     FullCalendarModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
