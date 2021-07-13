@@ -11,7 +11,6 @@ import { AtendanceAnalyticsComponent } from './component/atendance-analytics/ate
 import { AuthGuard } from './guard/auth.guard';
 import { PositionAddFormComponent } from './component/position-add-form/position-add-form.component';
 import { PositionsComponent } from './component/positions/positions.component';
-import { PositionEditFormComponent } from './component/position-edit-form/position-edit-form.component';
 import { SalariesComponent } from './component/salaries/salaries.component';
 
 const routes: Routes = [
@@ -41,12 +40,12 @@ const routes: Routes = [
         component: PositionsComponent,
       },
       {
-        path: 'position-add-form',
+        path: 'position-add',
         component: PositionAddFormComponent,
       },
       {
-        path: 'position-edit-form',
-        component: PositionEditFormComponent,
+        path: 'position-edit/:id',
+        component: PositionAddFormComponent,
       },
       {
         path: 'salaries',

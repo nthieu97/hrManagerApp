@@ -1,39 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { PossitionService } from 'src/app/service/possition.service';
 
 @Component({
   selector: 'app-positions',
   templateUrl: './positions.component.html',
-  styleUrls: ['./positions.component.css']
+  styleUrls: ['./positions.component.css'],
 })
 export class PositionsComponent implements OnInit {
-
-  constructor() { }
-  data: any[] = [
-    {
-      id: 1,
-      name: 'Leader',
-    },
-    {
-      id: 2,
-      name: 'Employee',
-    },
-    {
-      id: 3,
-      name: 'Leader',
-    },
-  ];
-  positions: any = [];
-
-
+  constructor(
+    private positionService: PossitionService,
+    private router: Router
+  ) {}
+  positions;
   ngOnInit(): void {
-    this.positions = this.data
+    this.positionService.getAllPosition().subscribe((data) => {
+      this.positions = data.data;
+    });
   }
-
-  //   addPosition() {
-  // const  result = {
-  //     name:this.positions.name
-  // }
-  //   this.positions.push(result)
-  //   }
-
+  handleDelete(id: string, index): void {
+    this.positionService.deletePosition(id).subscribe(() => {
+      this.positions.splice(index, 1);
+    });
+  }
 }
