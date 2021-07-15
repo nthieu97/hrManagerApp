@@ -9,10 +9,10 @@
 }
 .my-custom-scrollbar {
   position: relative;
-  height: 25em;
+  min-height: 25em;
   overflow: auto;
 }
 .table-wrapper-scroll-y {
   display: block;
-  margin-top: 6em;
+  margin-top: 5.5em;
 }

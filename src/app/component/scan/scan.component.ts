@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { AttendanceService } from 'src/app/service/attendance.service';
 
 @Component({
   selector: 'app-scan',
@@ -7,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./scan.component.css'],
 })
 export class ScanComponent implements OnInit {
-  constructor() {}
+  constructor(private attendanceService: AttendanceService) {}
   // tslint:disable-next-line: member-ordering
   availableDevices: MediaDeviceInfo[];
   currentDevice: MediaDeviceInfo = null;
@@ -27,6 +28,13 @@ export class ScanComponent implements OnInit {
 
   onCodeResult(resultString: string): void {
     this.qrResultString = resultString;
+    console.log(resultString);
+
+    this.attendanceService
+      .handleAttendance(this.qrResultString)
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
   handleNotFoundCamera(event: Event): void {
     console.log(event);

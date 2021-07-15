@@ -3,6 +3,9 @@
   box-shadow: var(--box-shadow);
   padding: 0.5em;
   border-radius: 10px;
+  height: 429px;
+  overflow: auto;
+  padding-right: 1em;
 }
 .task-list__header {
   display: flex;
@@ -21,6 +24,7 @@ img.task-list__img {
   justify-content: space-evenly;
   margin-left: -3em;
 }
+
 .task-list__body thead {
   color: var(--primary-color);
 }
@@ -35,6 +39,8 @@ a.task-list__decline {
 }
 a.task-list__watch {
   color: var(--dark-color);
+}
+.my-custom-scrollbar {
 }
 /*End Dashboard my-task */
 /* dashboard-sumary */
@@ -114,7 +120,7 @@ p.aniversary__user {
   background-color: white;
   box-shadow: var(--box-shadow);
   border-radius: 10px;
-
+  margin-top: 2em;
   padding: 1em;
 }
 .absent__head-container {
@@ -174,6 +180,8 @@ p.absent__time {
   border-radius: 10px;
   margin-top: 2em;
   padding: 1em;
+  min-height: 289px;
+  overflow: auto;
 }
 .remote-work__header {
   display: flex;
@@ -228,6 +236,13 @@ p.remote-work__time {
   font-size: var(--text-sm);
 }
 /* end-remote-work */
+.attendace__analytic {
+  background-color: white;
+  height: 38em;
+  box-shadow: var(--box-shadow);
+  border-radius: 10px;
+  margin-top: 2em;
+}
 /* calendar */
 .calendar {
   padding: 1em;
@@ -308,7 +323,7 @@ a.calendar__link {
   background-color: white;
   border-radius: 10px;
   box-shadow: var(--box-shadow);
-  margin-top: 2em;
+
   padding: 1em;
 }
 .team-chart__header {

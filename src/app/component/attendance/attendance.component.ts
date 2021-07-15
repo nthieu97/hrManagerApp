@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
+import { AttendanceService } from 'src/app/service/attendance.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-attendance',
@@ -7,35 +9,33 @@ import { CalendarOptions } from '@fullcalendar/angular'; // useful for typecheck
   styleUrls: ['./attendance.component.css'],
 })
 export class AttendanceComponent implements OnInit {
-  constructor() {}
-  arr: any[] = [
-    {
-      date: '2021-06-27',
-      display: 'background',
-      color: 'green',
-    },
-    {
-      date: '2021-06-30',
-      display: 'background',
-      color: 'red',
-    },
-    {
-      date: '2021-06-29',
-      display: 'background',
-      color: 'green',
-    },
-    {
-      date: '2021-06-28',
-      display: 'background',
-      color: 'red',
-    },
-  ];
-  calendarOptions: CalendarOptions = {
-    height: 550,
-    initialView: 'dayGridMonth',
-    // dateClick: this.handleDateClick.bind(this), // bind is important!
-    events: this.arr,
-  };
-
-  ngOnInit(): void {}
+  constructor(
+    private attendanceService: AttendanceService,
+    private authService: AuthService
+  ) {}
+  loading = false;
+  attendanceData;
+  page = 1;
+  pageSize;
+  collectionSize = 5;
+  idUser;
+  ngOnInit(): void {
+    this.idUser = this.authService.getIdUserAuthenticated();
+    this.attendanceService.getAllAttendance().subscribe((data) => {
+      this.attendanceData = data.data;
+      this.page = data.meta.currentPage;
+      this.collectionSize = data.meta.total;
+      this.pageSize = data.meta.perPage;
+      console.log(data);
+    });
+  }
+  handlePaginate(event) {
+    this.loading = true;
+    this.attendanceService
+      .paginateAttendance(String(event))
+      .subscribe((data) => {
+        this.attendanceData = data.data;
+        this.loading = false;
+      });
+  }
 }

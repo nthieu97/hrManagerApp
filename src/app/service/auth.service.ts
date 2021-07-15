@@ -19,6 +19,9 @@ export class AuthService {
   getCurrentUser(): User {
     return this.user.value;
   }
+  getIdUserAuthenticated() {
+    return this.user.value.id;
+  }
   login(email, password): Observable<loginResponse> {
     return this.http
       .post(environment.baseURL + 'login', { email, password })

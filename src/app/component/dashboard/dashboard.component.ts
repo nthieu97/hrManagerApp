@@ -9,9 +9,91 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class DashboardComponent implements OnInit {
   single: any[];
+  multi = [
+    {
+      name: 'thu hai',
+      series: [
+        {
+          name: 'di lam',
+          value: 22,
+        },
+        {
+          name: 'ko di lam',
+          value: 1,
+        },
+      ],
+    },
 
+    {
+      name: 'thu ba',
+      series: [
+        {
+          name: 'di lam',
+          value: 21,
+        },
+        {
+          name: 'ko di lam',
+          value: 2,
+        },
+      ],
+    },
+
+    {
+      name: 'thu tu ',
+      series: [
+        {
+          name: 'di lam',
+          value: 20,
+        },
+        {
+          name: 'ko di lam',
+          value: 3,
+        },
+      ],
+    },
+    {
+      name: 'thu nam',
+      series: [
+        {
+          name: 'di lam',
+          value: 17,
+        },
+        {
+          name: 'ko di lam',
+          value: 6,
+        },
+      ],
+    },
+    {
+      name: 'thu sau',
+      series: [
+        {
+          name: 'di lam',
+          value: 23,
+        },
+        {
+          name: 'ko di lam',
+          value: 0,
+        },
+      ],
+    },
+    {
+      name: 'thu bay',
+      series: [
+        {
+          name: 'di lam',
+          value: 23,
+        },
+        {
+          name: 'ko di lam',
+          value: 0,
+        },
+      ],
+    },
+  ];
   // options
-  view = [, 350];
+  view = [396, 350];
+  viewAttendance = [800, 550];
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };

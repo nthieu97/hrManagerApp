@@ -3,12 +3,24 @@ import { CommonModule } from '@angular/common';
 import {
   NgbAlertModule,
   NgbDropdownModule,
+  NgbPaginationModule,
   NgbToastModule,
 } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, NgbDropdownModule, NgbAlertModule, NgbToastModule],
-  exports: [NgbDropdownModule, NgbAlertModule, NgbToastModule],
+  imports: [
+    CommonModule,
+    NgbDropdownModule,
+    NgbAlertModule,
+    NgbToastModule,
+    NgbPaginationModule,
+  ],
+  exports: [
+    NgbDropdownModule,
+    NgbAlertModule,
+    NgbToastModule,
+    NgbPaginationModule,
+  ],
 })
 export class BsModule {}
