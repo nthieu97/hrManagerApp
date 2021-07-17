@@ -16,7 +16,7 @@ export class DepartmentService {
     return this.http.post(this.API_URL + '/update/' + id, { name });
   }
   deleteDepartment(id: string): Observable<any> {
-    return this.http.delete(this.API_URL + '/delete/' + id);
+     return this.http.post(this.API_URL + '/delete/' + id, {});
   }
   getDepartment(id: string): Observable<any> {
     return this.http.get(this.API_URL + '/getdetail/' + id);

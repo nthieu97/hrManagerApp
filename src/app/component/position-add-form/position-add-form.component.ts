@@ -3,18 +3,23 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { responePosition } from 'src/app/model/position.model';
 import { PossitionService } from 'src/app/service/possition.service';
 
+
+export class Position {
+  public namePosition: string;
+}
 @Component({
   selector: 'app-position-add-form',
   templateUrl: './position-add-form.component.html',
   styleUrls: ['./position-add-form.component.css'],
 })
 export class PositionAddFormComponent implements OnInit {
+  model = new Position
   constructor(
     private atr: ActivatedRoute,
     private positionService: PossitionService,
     private router: Router
   ) {}
-  namePosition: string;
+
   idPosition: string;
   ngOnInit(): void {
     this.atr.params.subscribe((params) => {
@@ -23,14 +28,16 @@ export class PositionAddFormComponent implements OnInit {
         this.positionService
           .getPosition(this.idPosition)
           .subscribe((data: responePosition) => {
-            this.namePosition = data.data.name;
+            this.model.namePosition = data.data.name;
+            console.log(this.model.namePosition);
+
           });
       }
     });
   }
   handleSubmit(value): void {
     const name = value.name;
-    if (this.idPosition) {
+    if (this.idPosition && name !== '') {
       this.positionService
         .updatePosition(this.idPosition, name)
         .subscribe(() => {
@@ -41,5 +48,9 @@ export class PositionAddFormComponent implements OnInit {
     this.positionService.createPosition(name).subscribe(() => {
       this.router.navigate(['/', 'positions']);
     });
+    if (name == '') {
+      console.log("error");
+    }
   }
+
 }

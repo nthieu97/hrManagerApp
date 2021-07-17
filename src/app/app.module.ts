@@ -8,7 +8,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { LoginComponent } from './component/login/login.component';
 import { EmployeeDetailComponent } from './component/employee-detail/employee-detail.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { ScanComponent } from './component/scan/scan.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -26,6 +26,9 @@ import { PositionEditFormComponent } from './component/position-edit-form/positi
 import { PositionsComponent } from './component/positions/positions.component';
 import { SalariesComponent } from './component/salaries/salaries.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { DepartmentComponent } from './component/department/department.component';
+import { DepartmentFormComponent } from './component/department-form/department-form.component';
+import { EmployeeFormComponent } from './component/employee-form/employee-form.component';
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
   dayGridPlugin,
@@ -47,6 +50,9 @@ FullCalendarModule.registerPlugins([
     PositionAddFormComponent,
     PositionEditFormComponent,
     SalariesComponent,
+    DepartmentComponent,
+    DepartmentFormComponent,
+    EmployeeFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +66,7 @@ FullCalendarModule.registerPlugins([
     BsModule,
     HttpClientModule,
     FullCalendarModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

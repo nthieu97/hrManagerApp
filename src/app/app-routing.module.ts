@@ -12,7 +12,9 @@ import { AuthGuard } from './guard/auth.guard';
 import { PositionAddFormComponent } from './component/position-add-form/position-add-form.component';
 import { PositionsComponent } from './component/positions/positions.component';
 import { SalariesComponent } from './component/salaries/salaries.component';
-
+import { DepartmentComponent } from './component/department/department.component';
+import { DepartmentFormComponent } from './component/department-form/department-form.component';
+import { EmployeeFormComponent } from './component/employee-form/employee-form.component';
 const routes: Routes = [
   {
     path: '',
@@ -51,6 +53,22 @@ const routes: Routes = [
         path: 'salaries',
         component: SalariesComponent,
       },
+      {
+        path: 'departments',
+        component:DepartmentComponent
+      },
+      {
+        path: 'department-form',
+        component:DepartmentFormComponent
+      },
+      {
+        path: 'department-edit/:id',
+        component:DepartmentFormComponent
+      },
+      {
+        path: 'employee-form',
+        component:EmployeeFormComponent
+      }
     ],
   },
   { path: 'login', component: LoginComponent },

@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PossitionService {
   constructor(private http: HttpClient) {}
-  URL_API = environment.baseURL + 'phongban';
+  URL_API = environment.baseURL + 'chucvu';
   createPosition(name: string): Observable<any> {
     return this.http.post(this.URL_API + '/create', {
       name,

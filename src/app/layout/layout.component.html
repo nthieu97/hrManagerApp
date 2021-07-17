@@ -23,7 +23,7 @@
         >
           <a
             ngbDropdownItem
-            href="#"
+            [routerLink]="['/','employee-form']"
             *ngIf="isAdmin"
             (click)="$event.preventDefault()"
             ><span class="material-icons">people</span> Add Employee</a
@@ -88,6 +88,14 @@
           class="side-bar__link"
           routerLinkActive="sidebar__active"
           ><span class="material-icons"> radar </span> Positions</a
+        >
+      </div>
+      <div class="sidebar__item">
+        <a
+          [routerLink]="['/', 'departments']"
+          class="side-bar__link"
+          routerLinkActive="sidebar__active"
+          ><span class="material-icons"> business</span> Departments</a
         >
       </div>
       <div class="sidebar__item">
