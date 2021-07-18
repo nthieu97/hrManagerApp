@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 import { BehaviorSubject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+
 import { AttendanceService } from 'src/app/service/attendance.service';
 
 @Component({
@@ -9,7 +12,7 @@ import { AttendanceService } from 'src/app/service/attendance.service';
 })
 export class ScanComponent implements OnInit {
   constructor(private attendanceService: AttendanceService) {}
-  // tslint:disable-next-line: member-ordering
+  @ViewChild('scanner') scanner: ZXingScannerComponent;
   availableDevices: MediaDeviceInfo[];
   currentDevice: MediaDeviceInfo = null;
 
@@ -28,10 +31,12 @@ export class ScanComponent implements OnInit {
 
   onCodeResult(resultString: string): void {
     this.qrResultString = resultString;
+
     console.log(resultString);
 
     this.attendanceService
       .handleAttendance(this.qrResultString)
+      .pipe(debounceTime(100))
       .subscribe((data) => {
         console.log(data);
       });

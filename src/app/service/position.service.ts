@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class PossitionService {
+export class PositionService {
   constructor(private http: HttpClient) {}
   URL_API = environment.baseURL + 'chucvu';
   createPosition(name: string): Observable<any> {

@@ -4,15 +4,15 @@
     <li class="breadcrumb-item active" aria-current="page">Positions</li>
   </ol>
 </nav>
-<div class="container">
-  <div class="position">
-    <h3 class="text-center">
-      Position List<a [routerLink]="['/', 'position-add']"
-        ><span class="material-icons-outlined"> add_circle_outline </span></a
-      >
-    </h3>
-    <div class="row">
-      <!-- <div class="col-6">
+
+<div class="position">
+  <h3 class="text-center">
+    Position List<a [routerLink]="['/', 'position-add']"
+      ><span class="material-icons-outlined"> add_circle_outline </span></a
+    >
+  </h3>
+  <div class="row">
+    <!-- <div class="col-6">
         <form>
           <div class="form-group">
             <input class="form-control" type="text" placeholder="Position" ng-model="position.name">
@@ -23,34 +23,33 @@
       </div>
       <div class="col-6"> -->
 
-      <Table class="table">
-        <thead>
-          <th>#</th>
-          <th>Name</th>
-          <th>Action</th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let position of positions; index as i">
-            <td>{{ position.id }}</td>
-            <td>{{ position.name }}</td>
-            <td>
-              <a
-                class="btn btn-primary"
-                [routerLink]="['/', 'position-edit', position.id]"
-              >
-                Edit
-              </a>
-              <button
-                class="btn btn-danger"
-                (click)="handleDelete(position.id, i)"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </Table>
-    </div>
+    <Table class="table">
+      <thead>
+        <th>#</th>
+        <th>Name</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let position of positions; index as i">
+          <td>{{ position.id }}</td>
+          <td>{{ position.name }}</td>
+          <td>
+            <a
+              class="btn btn-primary"
+              [routerLink]="['/', 'position-edit', position.id]"
+            >
+              Edit
+            </a>
+            <button
+              class="btn btn-danger"
+              (click)="handleDelete(position.id, i)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </Table>
   </div>
 </div>
 

@@ -4,32 +4,31 @@
     <li class="breadcrumb-item active" aria-current="page">Salaries</li>
   </ol>
 </nav>
-<div class="container">
-  <div class="salaries">
-    <h3>Salaries List</h3>
-    <Table class="table">
-      <thead>
-        <th>#</th>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Position</th>
-        <th>Salary</th>
-        <th>Action</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let salary of salaries">
-          <td>{{ salary.id }}</td>
-          <td>{{ salary.name }}</td>
-          <td><img [src]="salary.image" alt="" /></td>
-          <td>{{ salary.position }}</td>
-          <td>{{ salary.salary }}</td>
-          <td>
-            <button class="btn btn-primary" [routerLink]="['/', '']">
-              Detail
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </Table>
-  </div>
+
+<div class="salaries">
+  <h3>Salaries List</h3>
+  <Table class="table">
+    <thead>
+      <th>#</th>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Position</th>
+      <th>Salary</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let salary of salaries">
+        <td>{{ salary.id }}</td>
+        <td>{{ salary.name }}</td>
+        <td><img [src]="salary.image" alt="" /></td>
+        <td>{{ salary.position }}</td>
+        <td>{{ salary.salary }}</td>
+        <td>
+          <button class="btn btn-primary" [routerLink]="['/', '']">
+            Detail
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </Table>
 </div>

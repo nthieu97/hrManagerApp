@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { PossitionService } from 'src/app/service/possition.service';
+import { PositionService } from 'src/app/service/position.service';
 
 @Component({
   selector: 'app-positions',
@@ -10,7 +10,7 @@ import { PossitionService } from 'src/app/service/possition.service';
 })
 export class PositionsComponent implements OnInit {
   constructor(
-    private positionService: PossitionService,
+    private positionService: PositionService,
     private router: Router
   ) {}
   positions;

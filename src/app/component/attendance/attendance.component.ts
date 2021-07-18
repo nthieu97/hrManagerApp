@@ -29,6 +29,7 @@ export class AttendanceComponent implements OnInit {
       console.log(data);
     });
   }
+  // tslint:disable-next-line: typedef
   handlePaginate(event) {
     this.loading = true;
     this.attendanceService

@@ -16,3 +16,8 @@
   display: block;
   margin-top: 5.5em;
 }
+.loading {
+  background: black;
+  width: 497px;
+  height: 372px;
+}

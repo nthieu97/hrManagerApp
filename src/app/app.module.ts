@@ -22,7 +22,6 @@ import { FullCalendarModule } from '@fullcalendar/angular'; // must go before pl
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction';
 import { PositionAddFormComponent } from './component/position-add-form/position-add-form.component';
-import { PositionEditFormComponent } from './component/position-edit-form/position-edit-form.component';
 import { PositionsComponent } from './component/positions/positions.component';
 import { SalariesComponent } from './component/salaries/salaries.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
@@ -45,7 +44,7 @@ FullCalendarModule.registerPlugins([
 
     PositionsComponent,
     PositionAddFormComponent,
-    PositionEditFormComponent,
+
     SalariesComponent,
   ],
   imports: [

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { responePosition } from 'src/app/model/position.model';
-import { PossitionService } from 'src/app/service/possition.service';
+import { PositionService } from 'src/app/service/position.service';
 
 @Component({
   selector: 'app-position-add-form',
@@ -11,7 +11,7 @@ import { PossitionService } from 'src/app/service/possition.service';
 export class PositionAddFormComponent implements OnInit {
   constructor(
     private atr: ActivatedRoute,
-    private positionService: PossitionService,
+    private positionService: PositionService,
     private router: Router
   ) {}
   namePosition: string;

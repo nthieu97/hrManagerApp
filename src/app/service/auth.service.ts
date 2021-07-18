@@ -19,6 +19,7 @@ export class AuthService {
   getCurrentUser(): User {
     return this.user.value;
   }
+  // tslint:disable-next-line: typedef
   getIdUserAuthenticated() {
     return this.user.value.id;
   }
