@@ -25,4 +25,8 @@ export class EmployeeService {
     return this.http.post<Employee>(this.URL_API+'/create',object)
   }
 
+   getListUser(): Observable<any> {
+    return this.http.get(this.URL_API +'/getListUser');
+  }
+
 }

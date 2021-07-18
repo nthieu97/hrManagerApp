@@ -1,0 +1,35 @@
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" style="padding: 0; margin: 0">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item " aria-current="page"><a [routerLink]="['/', 'time-off-add']"></a></li>
+    <li class="breadcrumb-item active" aria-current="page">Add</li>
+  </ol>
+</nav>
+<div class="time-off-add">
+  <h3 class="text-center">Lịch xin nghỉ</h3>
+  <form action=""  (submit)="submitForm($event)" [formGroup]="TimeOffForm">
+      <div class="form-group">
+        <label for="">Ngày bắt đầu</label>
+        <input class="form-control" type="date" formControlName="time_start" id="">
+      </div>
+      <div class="form-group">
+        <label for="">Ngày kết thúc</label>
+        <input class="form-control" type="date" formControlName="time_end" id="">
+      </div>
+      <div class="form-group">
+        <label for="">Lý do</label>
+       <textarea class="form-control"  formControlName="note" id="" cols="30" rows="5"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="">Chế độ nghỉ</label>
+        <input class="ml-2" type="checkbox" [(ngModel)] = "check"  formControlName="mode_leave" id="">
+      </div>
+      <div class="form-group" *ngIf="check" [disabled]>
+        <label for="">Số ngày nghỉ có lương</label>
+        <input class="form-control" type="number"  formControlName="number_day" id="">
+        <span >Ban còn 10 ngày nghi có luương</span>
+      </div>
+      <button  class="btn btn-primary">Submit</button>
+  </form>
+</div>

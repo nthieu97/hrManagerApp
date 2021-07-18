@@ -107,6 +107,26 @@
         >
       </div>
       <div class="sidebar__item">
+        <a
+          [routerLink]="['/', 'time-off']"
+          class="side-bar__link"
+          routerLinkActive="sidebar__active"
+          ><span class="material-icons">
+            pending_actions
+          </span> Time off</a
+        >
+      </div>
+      <div class="sidebar__item">
+        <a
+          [routerLink]="['/', 'update-ot']"
+          class="side-bar__link"
+          routerLinkActive="sidebar__active"
+          ><span class="material-icons">
+            nights_stay
+          </span> Update OT</a
+        >
+      </div>
+      <div class="sidebar__item">
         <a class="side-bar__link dropdown" (click)="toggleDropdown()"
           ><span class="material-icons">qr_code</span> Attendance
           <span class="material-icons">{{

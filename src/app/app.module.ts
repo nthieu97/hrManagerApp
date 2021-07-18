@@ -29,6 +29,9 @@ import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { DepartmentComponent } from './component/department/department.component';
 import { DepartmentFormComponent } from './component/department-form/department-form.component';
 import { EmployeeFormComponent } from './component/employee-form/employee-form.component';
+import { TimeOffComponent } from './component/time-off/time-off.component';
+import { TimeOffAddComponent } from './component/time-off-add/time-off-add.component';
+import { UpdateOtComponent } from './component/update-ot/update-ot.component';
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
   dayGridPlugin,
@@ -53,6 +56,10 @@ FullCalendarModule.registerPlugins([
     DepartmentComponent,
     DepartmentFormComponent,
     EmployeeFormComponent,
+    TimeOffComponent,
+    TimeOffAddComponent,
+    UpdateOtComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -66,7 +73,8 @@ FullCalendarModule.registerPlugins([
     BsModule,
     HttpClientModule,
     FullCalendarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
