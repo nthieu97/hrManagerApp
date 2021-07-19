@@ -35,11 +35,10 @@ export class ScanComponent implements OnInit {
 
   onCodeResult(resultString: string): void {
     this.qrResultString = resultString;
-    console.log(resultString);
 
     this.attendanceService
       .handleAttendance(this.qrResultString)
-      .pipe(debounceTime(100))
+      .pipe(debounceTime(1000))
       .subscribe(
         (data: ScanResponse) => {
           this.toastService.show(data.message, {

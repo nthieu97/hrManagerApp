@@ -17,8 +17,8 @@
           (camerasFound)="onCamerasFound($event)"
           [previewFitMode]="true"
           (camerasNotFound)="handleNotFoundCamera($event)"
-          delayBetweenScanSuccess="5000"
-          timeBetweenScans="1000"
+          [delayBetweenScanSuccess]="5000"
+          [timeBetweenScans]="1000"
         ></zxing-scanner>
 
         <div class="input-group mt-3">
@@ -66,7 +66,15 @@
               <td>{{ scan?.get_user_name.user_account }}</td>
               <td>{{ scan?.time_of_check_in }}</td>
               <td>{{ scan?.time_of_check_out }}</td>
-              <td><span class="text-success">Success</span></td>
+              <td>
+                <span
+                  [ngClass]="{
+                    'text-success': scan?.status == 1,
+                    'text-danger': scan?.status != 1
+                  }"
+                  >{{ scan?.status == 1 ? "Thanh cong" : "That bai" }}</span
+                >
+              </td>
             </tr>
           </tbody>
         </table>
