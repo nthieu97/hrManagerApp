@@ -127,6 +127,16 @@
         >
       </div>
       <div class="sidebar__item">
+        <a
+          [routerLink]="['/', 'prize-fine-money']"
+          class="side-bar__link"
+          routerLinkActive="sidebar__active"
+          ><span class="material-icons">
+            military_tech
+          </span> Prize-Fine-Money</a
+        >
+      </div>
+      <div class="sidebar__item">
         <a class="side-bar__link dropdown" (click)="toggleDropdown()"
           ><span class="material-icons">qr_code</span> Attendance
           <span class="material-icons">{{

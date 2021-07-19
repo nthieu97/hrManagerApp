@@ -1,0 +1,10 @@
+.prize-fine-money {
+  margin-top: 1rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 30px 20px;
+  box-shadow: var(--box-shadow);
+}
+.prize-fine-money span {
+  margin-right: 15px;
+}

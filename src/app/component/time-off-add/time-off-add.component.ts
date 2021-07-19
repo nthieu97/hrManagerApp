@@ -43,7 +43,11 @@ export class TimeOffAddComponent implements OnInit {
   submitForm(event) {
     event.preventDefault();
     this.timeoffservice.createTimeOff(this.TimeOffForm.value).subscribe(data => {
+      console.log(data);
+
+
        this.router.navigate(['/','time-off'])
     })
+     console.log(this.TimeOffForm.value);
   }
 }

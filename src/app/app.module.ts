@@ -32,6 +32,8 @@ import { EmployeeFormComponent } from './component/employee-form/employee-form.c
 import { TimeOffComponent } from './component/time-off/time-off.component';
 import { TimeOffAddComponent } from './component/time-off-add/time-off-add.component';
 import { UpdateOtComponent } from './component/update-ot/update-ot.component';
+import { PrizeFineMoneyComponent } from './component/prize-fine-money/prize-fine-money.component';
+import { PrizeFineFormComponent } from './component/prize-fine-form/prize-fine-form.component';
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
   dayGridPlugin,
@@ -59,6 +61,8 @@ FullCalendarModule.registerPlugins([
     TimeOffComponent,
     TimeOffAddComponent,
     UpdateOtComponent,
+    PrizeFineMoneyComponent,
+    PrizeFineFormComponent,
 
   ],
   imports: [
