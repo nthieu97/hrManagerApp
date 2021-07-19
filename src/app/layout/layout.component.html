@@ -23,7 +23,7 @@
         >
           <a
             ngbDropdownItem
-            href="#"
+            [routerLink]="['/','employee-form']"
             *ngIf="isAdmin"
             (click)="$event.preventDefault()"
             ><span class="material-icons">people</span> Add Employee</a
@@ -92,10 +92,48 @@
       </div>
       <div class="sidebar__item">
         <a
+          [routerLink]="['/', 'departments']"
+          class="side-bar__link"
+          routerLinkActive="sidebar__active"
+          ><span class="material-icons"> business</span> Departments</a
+        >
+      </div>
+      <div class="sidebar__item">
+        <a
           [routerLink]="['/', 'salaries']"
           class="side-bar__link"
           routerLinkActive="sidebar__active"
           ><span class="material-icons"> request_quote </span> Salaries</a
+        >
+      </div>
+      <div class="sidebar__item">
+        <a
+          [routerLink]="['/', 'time-off']"
+          class="side-bar__link"
+          routerLinkActive="sidebar__active"
+          ><span class="material-icons">
+            pending_actions
+          </span> Time off</a
+        >
+      </div>
+      <div class="sidebar__item">
+        <a
+          [routerLink]="['/', 'update-ot']"
+          class="side-bar__link"
+          routerLinkActive="sidebar__active"
+          ><span class="material-icons">
+            nights_stay
+          </span> Update OT</a
+        >
+      </div>
+      <div class="sidebar__item">
+        <a
+          [routerLink]="['/', 'prize-fine-money']"
+          class="side-bar__link"
+          routerLinkActive="sidebar__active"
+          ><span class="material-icons">
+            military_tech
+          </span> Prize-Fine-Money</a
         >
       </div>
       <div class="sidebar__item">

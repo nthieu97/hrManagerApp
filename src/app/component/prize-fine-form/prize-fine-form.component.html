@@ -1,0 +1,41 @@
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" style="padding: 0; margin: 0">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Add Prize-Fine-Money</li>
+  </ol>
+</nav>
+<div class="prize-fine-money">
+  <h3 class="text-center">Add Prize-Fine-Money</h3>
+
+  <form  (ngSubmit)="submitForm($event)" [formGroup]="prizeForm">
+    <div class="check text-center">
+      <span>Prize : <input name="thuong" *ngIf="!checkFine" [disable] [(ngModel)]="checkPrize"  formControlName="thuong" [value]="" type="checkbox"></span>
+      <span>Fine : <input name="phat" *ngIf="!checkPrize" [disable] [(ngModel)]="checkFine" formControlName="phat" [value]="" type="checkbox"></span>
+    </div>
+    <div class="form-group" *ngIf="checkPrize || checkFine" [disabled]>
+      <label for="">User Name</label>
+      <select formControlName="user_id" class="form-control">
+          <option value="" selected disabled>--Choose position--</option>
+        <option [value]="employee.id" *ngFor="let employee of employees;index as i">
+          {{employee.full_name}}
+        </option>
+      </select>
+    </div>
+      <div class="form-group" *ngIf="checkPrize || checkFine" [disabled]>
+        <label for="">Name</label>
+        <input type="text" class="form-control" placeholder="Name" formControlName="name">
+      </div>
+    <div class="form-group" *ngIf="checkPrize || checkFine" [disabled]>
+      <label for="">Prize-Fine Money</label>
+      <input
+      type="number"
+      class="form-control"
+       placeholder="Prize money"
+       formControlName="prize_fine_money"
+       >
+    </div>
+
+    <button *ngIf="checkPrize || checkFine" [disabled] class="btn btn-primary" type="submit">Submit</button>
+  </form>
+</div>

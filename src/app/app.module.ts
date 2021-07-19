@@ -8,7 +8,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { LoginComponent } from './component/login/login.component';
 import { EmployeeDetailComponent } from './component/employee-detail/employee-detail.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ScanComponent } from './component/scan/scan.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -26,6 +26,14 @@ import { PositionsComponent } from './component/positions/positions.component';
 import { SalariesComponent } from './component/salaries/salaries.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ToastComponent } from './component/toast/toast.component';
+import { DepartmentComponent } from './component/department/department.component';
+import { DepartmentFormComponent } from './component/department-form/department-form.component';
+import { EmployeeFormComponent } from './component/employee-form/employee-form.component';
+import { TimeOffComponent } from './component/time-off/time-off.component';
+import { TimeOffAddComponent } from './component/time-off-add/time-off-add.component';
+import { UpdateOtComponent } from './component/update-ot/update-ot.component';
+import { PrizeFineMoneyComponent } from './component/prize-fine-money/prize-fine-money.component';
+import { PrizeFineFormComponent } from './component/prize-fine-form/prize-fine-form.component';
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
   dayGridPlugin,
@@ -47,7 +55,15 @@ FullCalendarModule.registerPlugins([
     PositionAddFormComponent,
 
     SalariesComponent,
-      ToastComponent,
+    ToastComponent,
+    DepartmentComponent,
+    DepartmentFormComponent,
+    EmployeeFormComponent,
+    TimeOffComponent,
+    TimeOffAddComponent,
+    UpdateOtComponent,
+    PrizeFineMoneyComponent,
+    PrizeFineFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +77,7 @@ FullCalendarModule.registerPlugins([
     BsModule,
     HttpClientModule,
     FullCalendarModule,
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

@@ -19,8 +19,13 @@
           class="form-control"
           placeholder="Position name"
           name="name"
-          [(ngModel)]="namePosition"
+          [(ngModel)]="model.namePosition"
+          #name="ngModel"
+           [ngClass]="{ 'is-invalid': formPosition.submitted && name.invalid }" required
         />
+        <div class="invalid-feedback" *ngIf="formPosition.submitted && name.invalid">
+          <p *ngIf="name.errors.required">Name is required</p>
+        </div>
       </div>
       <button class="btn btn-success">
         {{ idPosition ? "Edit " : "Add " }}

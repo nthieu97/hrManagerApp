@@ -1,0 +1,66 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" style="padding: 0; margin: 0">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Add Employee</li>
+  </ol>
+</nav>
+
+  <div class="addEmployee">
+    <h3 class="text-center">Add Employee</h3>
+    <form action="" (submit)="submitForm($event)" [formGroup]="employeeForm">
+      <div class="form-group">
+        <label for="">Full name</label>
+        <input type="text" formControlName="name" id="" class="form-control" >
+      </div>
+      <div class="form-group">
+        <label for="">Email</label>
+        <input type="email" formControlName="email" id="" class="form-control" >
+      </div>
+      <div class="form-group">
+        <label for="">Gender</label>
+        <div class="gender">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+            <label class="form-check-label" for="flexRadioDefault1">
+              Male
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
+            <label class="form-check-label" for="flexRadioDefault2">
+              Female
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="">Position</label>
+        <select class="form-control"  formControlName="positionId">
+          <option value="" disabled>--Choose position--</option>
+          <option *ngFor="let position of positions" [value]="position?.id">{{position?.name}}</option>
+        </select>
+      </div>
+      <div class="form-group" >
+        <label for="">Department</label>
+        <select class="form-control" formControlName="departmentId">
+          <option value="" disabled>--Choose department--</option>
+          <option *ngFor="let department of departments" [value]="department?.id">{{department?.name}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="">Address</label>
+        <input class="form-control" type="text" formControlName="address" id="">
+      </div>
+      <div class="form-group">
+        <label for="">People ID</label>
+        <input class="form-control" type="number" formControlName="peopleID" id="">
+      </div>
+      <div class="form-group">
+        <label for="">License date</label>
+        <input class="form-control" type="date" name="" id="">
+      </div>
+      <button  class="btn btn-success">Add</button>
+    </form>
+  </div>
+
