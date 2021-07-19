@@ -25,6 +25,7 @@ import { PositionAddFormComponent } from './component/position-add-form/position
 import { PositionsComponent } from './component/positions/positions.component';
 import { SalariesComponent } from './component/salaries/salaries.component';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { ToastComponent } from './component/toast/toast.component';
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
   dayGridPlugin,
@@ -46,6 +47,7 @@ FullCalendarModule.registerPlugins([
     PositionAddFormComponent,
 
     SalariesComponent,
+      ToastComponent,
   ],
   imports: [
     BrowserModule,

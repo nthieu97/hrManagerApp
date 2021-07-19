@@ -15,11 +15,12 @@
           [(device)]="currentDevice"
           (scanSuccess)="onCodeResult($event)"
           (camerasFound)="onCamerasFound($event)"
+          [previewFitMode]="true"
           (camerasNotFound)="handleNotFoundCamera($event)"
           delayBetweenScanSuccess="5000"
           timeBetweenScans="1000"
         ></zxing-scanner>
-        <div *ngIf="!activeScan" class="loading"></div>
+
         <div class="input-group mt-3">
           <div class="input-group-prepend">
             <label class="input-group-text" for="inputGroupSelect01"
@@ -60,18 +61,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr scope="row">
-              <td>1</td>
-              <td>Nguyễn Trung Hiếu</td>
-              <td>8AM:03</td>
-              <td>No</td>
-              <td><span class="text-success">Success</span></td>
-            </tr>
-            <tr scope="row">
-              <td>1</td>
-              <td>Nguyễn Trung Hiếu</td>
-              <td>8AM:03</td>
-              <td>No</td>
+            <tr scope="row" *ngFor="let scan of scanResponseData">
+              <td>{{ scan?.id }}</td>
+              <td>{{ scan?.get_user_name.user_account }}</td>
+              <td>{{ scan?.time_of_check_in }}</td>
+              <td>{{ scan?.time_of_check_out }}</td>
               <td><span class="text-success">Success</span></td>
             </tr>
           </tbody>

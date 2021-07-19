@@ -102,4 +102,19 @@
       </div>
     </div>
   </div>
+  <div class="row d-flex justify-content-center">
+    <button
+      (click)="handleLoadmore()"
+      *ngIf="!loading"
+      class="btn btn-lg btn-success"
+    >
+      Load more
+      <span
+        *ngIf="loadingExpand"
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+      ></span>
+    </button>
+  </div>
 </div>

@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
 export class EmployeeService {
   constructor(private http: HttpClient) {}
   URL_API = environment.baseURL + 'user';
-  getAllEmployee(): Observable<any> {
-    return this.http.get(this.URL_API);
+  getAllEmployee(page?: string): Observable<any> {
+    return this.http.get(this.URL_API, { params: { page } });
   }
   getUserById(id: string): Observable<any> {
     return this.http.get(this.URL_API + '/getdetail/' + id);

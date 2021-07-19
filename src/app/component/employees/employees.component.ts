@@ -11,15 +11,28 @@ export class EmployeesComponent implements OnInit, OnDestroy {
   constructor(private employeeService: EmployeeService) {}
   loading = true;
   employees: Data[];
+  loadingExpand = false;
+  loadmore = 2;
   handleSearch(event): void {
     console.log(event.target.value);
   }
-
   ngOnInit(): void {
     this.employeeService.getAllEmployee().subscribe((data: UserResponse) => {
       this.employees = data.data;
       this.loading = false;
     });
+  }
+  handleLoadmore(): void {
+    const page = String(this.loadmore);
+    this.loadingExpand = true;
+    console.log(page);
+    this.employeeService
+      .getAllEmployee(page)
+      .subscribe((data: UserResponse) => {
+        this.loadingExpand = false;
+        this.employees.push(...data.data);
+        this.loadmore += 1;
+      });
   }
   ngOnDestroy(): void {}
 }
