@@ -14,9 +14,33 @@ export class PositionsComponent implements OnInit {
     private router: Router
   ) {}
   positions;
+  loading = false;
+  attendanceData;
+  page = 1;
+  pageSize;
+  collectionSize = 5;
+
   ngOnInit(): void {
+    this.search();
     this.positionService.getAllPosition().subscribe((data) => {
       this.positions = data.data;
+      this.page = data.meta.currentPage;
+      this.collectionSize = data.meta.total;
+      this.pageSize = data.meta.perPage;
+    });
+  }
+  keyword: string = '';
+  search() {
+    this.positionService.getAllPosi(this.keyword).subscribe((data) => {
+      this.attendanceData = data.data;
+      console.log(data);
+    });
+  }
+  handlePaginate(event) {
+    this.loading = true;
+    this.positionService.paginateAttendance(String(event)).subscribe((data) => {
+      this.attendanceData = data.data;
+      this.loading = false;
     });
   }
   handleDelete(id: string, index): void {
