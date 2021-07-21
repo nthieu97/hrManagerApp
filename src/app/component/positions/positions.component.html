@@ -1,4 +1,3 @@
-<input type="text" class="form-control" [(ngModel)]="keyword" (keyup.enter)="search()" placeholder="Tìm kiếm...">
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -11,17 +10,16 @@
       </span></a>
   </h3>
   <div class="row">
-    <!-- <div class="col-6">
-        <form>
-          <div class="form-group">
-            <input class="form-control" type="text" placeholder="Position" ng-model="position.name">
-            <button  class="btn btn-success">Add</button>
-          </div>
-
-        </form>
-      </div>
-      <div class="col-6"> -->
-
+    <div class="search mb-2">
+      <input type="text" [(ngModel)]="keyword" (keyup.enter)="search()" class="searchTerm" placeholder="Tìm kiếm...">
+      <button type="submit" class="searchButton">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+          viewBox="0 0 16 16">
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+        </svg>
+      </button>
+    </div>
     <Table class="table">
       <thead>
         <th>#</th>

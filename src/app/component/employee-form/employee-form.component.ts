@@ -41,8 +41,9 @@ export class EmployeeFormComponent implements OnInit {
       this.positions = data.data;
     });
   }
+  keyword: string = '';
   getDepartment() {
-    this.departmentService.getAllDepartment().subscribe((data) => {
+    this.departmentService.getAllDepartment(this.keyword).subscribe((data) => {
       console.log(data.data);
       this.departments = data.data;
     });

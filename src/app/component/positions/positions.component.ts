@@ -21,19 +21,20 @@ export class PositionsComponent implements OnInit {
   collectionSize = 5;
 
   ngOnInit(): void {
-    this.search();
     this.positionService.getAllPosition().subscribe((data) => {
+      console.log(data);
       this.positions = data.data;
       this.page = data.meta.currentPage;
       this.collectionSize = data.meta.total;
       this.pageSize = data.meta.perPage;
     });
+    this.search();
   }
   keyword: string = '';
   search() {
     this.positionService.getAllPosi(this.keyword).subscribe((data) => {
       this.positions = data.data;
-      console.log(data);
+      console.log(this.keyword);
     });
   }
   handlePaginate(event) {
