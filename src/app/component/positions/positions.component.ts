@@ -32,7 +32,7 @@ export class PositionsComponent implements OnInit {
   keyword: string = '';
   search() {
     this.positionService.getAllPosi(this.keyword).subscribe((data) => {
-      this.attendanceData = data.data;
+      this.positions = data.data;
       console.log(data);
     });
   }
