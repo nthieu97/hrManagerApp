@@ -34,6 +34,8 @@ import { TimeOffAddComponent } from './component/time-off-add/time-off-add.compo
 import { UpdateOtComponent } from './component/update-ot/update-ot.component';
 import { PrizeFineMoneyComponent } from './component/prize-fine-money/prize-fine-money.component';
 import { PrizeFineFormComponent } from './component/prize-fine-form/prize-fine-form.component';
+import { ChangePasswordComponent } from './component/change-password/change-password.component';
+
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
   dayGridPlugin,
@@ -64,6 +66,8 @@ FullCalendarModule.registerPlugins([
     UpdateOtComponent,
     PrizeFineMoneyComponent,
     PrizeFineFormComponent,
+    ChangePasswordComponent,
+
   ],
   imports: [
     BrowserModule,

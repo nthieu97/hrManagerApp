@@ -54,9 +54,11 @@
           aria-labelledby="navbarDropdown2"
           class="tools_newtask__list"
         >
+
           <a ngbDropdownItem href="#" (click)="$event.preventDefault()"
             >Detail</a
           >
+          <a ngbDropdownItem [routerLink]="['/','change-password']">Change Password</a>
           <a ngbDropdownItem (click)="logOut()">Log out</a>
         </div>
       </div>

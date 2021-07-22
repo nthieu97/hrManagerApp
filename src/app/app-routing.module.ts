@@ -20,6 +20,7 @@ import { TimeOffAddComponent } from './component/time-off-add/time-off-add.compo
 import { UpdateOtComponent } from './component/update-ot/update-ot.component';
 import { PrizeFineMoneyComponent } from './component/prize-fine-money/prize-fine-money.component';
 import { PrizeFineFormComponent } from './component/prize-fine-form/prize-fine-form.component';
+import { ChangePasswordComponent } from './component/change-password/change-password.component';
 const routes: Routes = [
   {
     path: '',
@@ -83,6 +84,10 @@ const routes: Routes = [
         component:TimeOffAddComponent
       },
       {
+        path: 'time-off-edit/:id',
+        component:TimeOffAddComponent
+      },
+      {
         path: 'update-ot',
         component:UpdateOtComponent
       },
@@ -93,10 +98,15 @@ const routes: Routes = [
       {
         path: 'prize-fine-add',
         component:PrizeFineFormComponent
+      },
+      {
+        path: 'prize-fine-edit/:id',
+        component:PrizeFineFormComponent
       }
     ],
   },
   { path: 'login', component: LoginComponent },
+  {path:'change-password',component:ChangePasswordComponent}
 ];
 
 @NgModule({

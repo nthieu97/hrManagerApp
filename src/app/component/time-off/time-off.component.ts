@@ -18,5 +18,13 @@ export class TimeOffComponent implements OnInit {
       console.log(data);
     })
   }
+  handleDelete(id:string, index):void {
+    this.timeOffService.deleteTimeOff(id).subscribe(() => {
+      console.log(id);
+      this.timeOff.splice(index,1)
+    })
+  }
+
+
 
 }

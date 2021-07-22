@@ -28,4 +28,8 @@ export class EmployeeService {
   getListUser(): Observable<any> {
     return this.http.get(this.URL_API + '/getListUser');
   }
+
+  getAllUser(): Observable<any>{
+    return this.http.get(this.URL_API + '/listAll')
+  }
 }

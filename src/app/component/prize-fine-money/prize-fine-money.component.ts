@@ -7,13 +7,15 @@ import {PrizeFineMoneyService} from "src/app/service/prize-fine-money.service"
   styleUrls: ['./prize-fine-money.component.css']
 })
 export class PrizeFineMoneyComponent implements OnInit {
-  list_prize_fine = []
+  list_prize_fine:any
   constructor(private prizeFineMoneyService: PrizeFineMoneyService,
-  private router:Router
+    private router: Router,
+
   ) { }
 
   ngOnInit(): void {
-    this.getAllPrizeFine()
+    this.getAllPrizeFine();
+
   }
   getAllPrizeFine() {
     this.prizeFineMoneyService.getAllPrize().subscribe((data) => {
@@ -21,4 +23,12 @@ export class PrizeFineMoneyComponent implements OnInit {
       this.list_prize_fine = data.data
     })
   }
+  handleDelete(id:string, index) :void{
+    this.prizeFineMoneyService.deletePrizeFine(id).subscribe(() => {
+        // console.log(id);
+      this.list_prize_fine.splice(index, 1)
+
+      })
+  }
+
 }

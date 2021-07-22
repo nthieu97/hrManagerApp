@@ -6,6 +6,7 @@
 </nav>
 <div class="prize-fine-money">
   <h3 class="text-center">List Prize-Fine-Money <a [routerLink]="['/', 'prize-fine-add']"><span class="material-icons-outlined"> add_circle_outline </span></a></h3>
+
   <table class="table">
     <thead>
         <th>#</th>
@@ -13,7 +14,7 @@
         <th>Prize-Fine Name</th>
         <th>Prize</th>
         <th>Fine</th>
-
+        <th>Action</th>
     </thead>
     <tbody>
       <tr *ngFor="let prize of list_prize_fine; index as i">
@@ -22,6 +23,10 @@
         <td>{{prize.name}}</td>
         <td>{{prize.prize_money}}</td>
         <td>{{prize.fine_money}}</td>
+        <td>
+          <a [routerLink]="['/','prize-fine-edit',prize.id]"  class="btn btn-primary">Edit</a>
+           <button class="btn btn-danger" (click)="handleDelete(prize.id, i)">Delete</button>
+        </td>
       </tr>
     </tbody>
   </table>

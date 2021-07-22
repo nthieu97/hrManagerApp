@@ -15,9 +15,9 @@
         <th>Note</th>
         <th>Status</th>
         <th>Mode leave</th>
-        <th>Số ngày nghỉ</th>
+        <th>Số ngày xin nghỉ</th>
         <th>Số ngày nghỉ có lương</th>
-        <th>Action</th>
+        <th></th>
       </thead>
       <tbody>
         <tr *ngFor="let time of timeOff; index as i">
@@ -28,11 +28,14 @@
           <td>{{time.note}}</td>
           <td>{{time.status == 1 ? 'Đã duyệt' : 'Chưa phê duyệt'}}</td>
           <td>{{time.mode_leave == 1 ? 'Nghỉ có lương' : 'Nghỉ không lương'}}</td>
-          <td></td>
-          <td></td>
-          <td>
-            <a  href="" class="btn btn-primary">Edit</a>
-            <button  class="btn btn-danger">Delete</button>
+          <td>{{time.number_day_leave}} ngày</td>
+          <td>{{time.number_mode_leave}} ngày</td>
+          <td *ngIf="time.status !== 1">
+            <a [routerLink]="['/','time-off-edit',time.id]" class="btn btn-primary">Edit</a>
+            <button class="btn btn-danger" (click)="handleDelete(time.id, i)">Delete</button>
+          </td>
+          <td *ngIf="time.status == 1">
+            <span class="btn btn-success">Acepted</span>
           </td>
         </tr>
       </tbody>

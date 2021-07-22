@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { id } from '@swimlane/ngx-charts';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -21,4 +22,16 @@ export class PrizeFineMoneyService {
   createFine(object:any): Observable<any> {
     return this.http.post(this.URL_API + "/create/",object)
   }
+  deletePrizeFine(id: string): Observable<any> {
+    return this.http.post(this.URL_API + '/delete/'+id,{})
+  }
+  updatePrizeFine(object:any): Observable<any>{
+    return this.http.post(this.URL_API + '/update/'+id,{object})
+  }
+
+  getDetailPrizeFine(id: string): Observable<any> {
+    return this.http.get(this.URL_API + '/getdetail/'+id,{})
+  }
+
+
 }
