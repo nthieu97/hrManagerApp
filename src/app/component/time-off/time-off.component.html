@@ -5,36 +5,47 @@
   </ol>
 </nav>
 <div class="time-off">
-  <h3 class="text-center">Time off <a [routerLink]="['/', 'time-off-add']"><span class="material-icons-outlined"> add_circle_outline </span></a></h3>
+  <h3 class="text-center">Time off <a [routerLink]="['/', 'time-off-add']"><span class="material-icons-outlined">
+        add_circle_outline </span></a></h3>
+  <div class="search mb-2">
+    <input type="text" [(ngModel)]="keyword" (keyup.enter)="search()" class="searchTerm" placeholder="Tìm kiếm...">
+    <button type="submit" class="searchButton">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+        viewBox="0 0 16 16">
+        <path
+          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+      </svg>
+    </button>
+  </div>
   <table class="table">
-      <thead>
+    <thead>
 
-        <th>Full Name</th>
-        <th>Time start</th>
-        <th>Time end</th>
-        <th>Note</th>
-        <th>Status</th>
-        <th>Mode leave</th>
-        <th>Số ngày nghỉ</th>
-        <th>Số ngày nghỉ có lương</th>
-        <th>Action</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let time of timeOff; index as i">
+      <th>Full Name</th>
+      <th>Time start</th>
+      <th>Time end</th>
+      <th>Note</th>
+      <th>Status</th>
+      <th>Mode leave</th>
+      <th>Số ngày nghỉ</th>
+      <th>Số ngày nghỉ có lương</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let time of timeOff; index as i">
 
-          <td>{{time.full_name}}</td>
-          <td>{{time.time_start}}</td>
-          <td>{{time.time_end}}</td>
-          <td>{{time.note}}</td>
-          <td>{{time.status == 1 ? 'Đã duyệt' : 'Chưa phê duyệt'}}</td>
-          <td>{{time.mode_leave == 1 ? 'Nghỉ có lương' : 'Nghỉ không lương'}}</td>
-          <td></td>
-          <td></td>
-          <td>
-            <a  href="" class="btn btn-primary">Edit</a>
-            <button  class="btn btn-danger">Delete</button>
-          </td>
-        </tr>
-      </tbody>
+        <td>{{time.full_name}}</td>
+        <td>{{time.time_start}}</td>
+        <td>{{time.time_end}}</td>
+        <td>{{time.note}}</td>
+        <td>{{time.status == 1 ? 'Đã duyệt' : 'Chưa phê duyệt'}}</td>
+        <td>{{time.mode_leave == 1 ? 'Nghỉ có lương' : 'Nghỉ không lương'}}</td>
+        <td></td>
+        <td></td>
+        <td>
+          <a href="" class="btn btn-primary">Edit</a>
+          <button class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>

@@ -16,12 +16,15 @@ export class DepartmentService {
     return this.http.post(this.API_URL + '/update/' + id, { name });
   }
   deleteDepartment(id: string): Observable<any> {
-     return this.http.post(this.API_URL + '/delete/' + id, {});
+    return this.http.post(this.API_URL + '/delete/' + id, {});
   }
   getDepartment(id: string): Observable<any> {
     return this.http.get(this.API_URL + '/getdetail/' + id);
   }
-  getAllDepartment(): Observable<any> {
+  getAllDepartment(keyword: any): Observable<any> {
+    if (keyword.length > 0) {
+      return this.http.get(this.API_URL + '?keyword=' + keyword);
+    }
     return this.http.get(this.API_URL);
   }
 }
