@@ -20,11 +20,13 @@ import { TimeOffAddComponent } from './component/time-off-add/time-off-add.compo
 import { UpdateOtComponent } from './component/update-ot/update-ot.component';
 import { PrizeFineMoneyComponent } from './component/prize-fine-money/prize-fine-money.component';
 import { PrizeFineFormComponent } from './component/prize-fine-form/prize-fine-form.component';
+import { AdminGuard } from './guard/admin.guard';
+
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    canActivateChild: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -32,27 +34,34 @@ const routes: Routes = [
         pathMatch: 'full',
       },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'employee/:id', component: EmployeeDetailComponent },
+      {
+        path: 'employee/:id',
+        component: EmployeeDetailComponent,
+        canActivate: [AdminGuard],
+      },
       { path: 'employee', component: EmployeesComponent },
 
-      { path: 'scan', component: ScanComponent },
       { path: 'attendance', component: AttendanceComponent },
 
       {
         path: 'attendanceAnalytics',
         component: AtendanceAnalyticsComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'positions',
         component: PositionsComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'position-add',
         component: PositionAddFormComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'position-edit/:id',
         component: PositionAddFormComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'salaries',
@@ -60,43 +69,50 @@ const routes: Routes = [
       },
       {
         path: 'departments',
-        component:DepartmentComponent
+        component: DepartmentComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'department-form',
-        component:DepartmentFormComponent
+        component: DepartmentFormComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'department-edit/:id',
-        component:DepartmentFormComponent
+        component: DepartmentFormComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'employee-form',
-        component:EmployeeFormComponent
+        component: EmployeeFormComponent,
       },
       {
         path: 'time-off',
-        component:TimeOffComponent
+        component: TimeOffComponent,
       },
       {
         path: 'time-off-add',
-        component:TimeOffAddComponent
+        component: TimeOffAddComponent,
       },
       {
         path: 'update-ot',
-        component:UpdateOtComponent
+        component: UpdateOtComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'prize-fine-money',
-        component:PrizeFineMoneyComponent
+        component: PrizeFineMoneyComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'prize-fine-add',
-        component:PrizeFineFormComponent
-      }
+        component: PrizeFineFormComponent,
+        canActivate: [AdminGuard],
+      },
     ],
   },
   { path: 'login', component: LoginComponent },
+  { path: 'scan', component: ScanComponent },
 ];
 
 @NgModule({

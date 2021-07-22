@@ -21,13 +21,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
   onSubmit(value): void {
     this.loading = true;
-    this.authService
-      .login(value.email, value.password)
-      .subscribe((data: loginResponse) => {
+    this.authService.login(value.email, value.password).subscribe(
+      (data: loginResponse) => {
         this.toast.show(`Xin chao ${data.user.user_account}`, {
           classname: 'bg-success text-light',
           delay: 3000,
         });
-      });
+      },
+      (err) => {
+        this.loading = false;
+        this.toast.show('Sai Tài khoản hoặc mật khẩu , Xin vui lòng thử lại', {
+          classname: 'bg-danger text-light',
+          delay: 3000,
+        });
+      }
+    );
   }
 }

@@ -29,13 +29,24 @@ export class AuthService {
       .pipe(
         tap((data: loginResponse) => {
           this.saveUserData(data);
-          this.router.navigate(['/']);
+          if (this.isAttendanceRole()) {
+            this.router.navigate(['/', 'scan']);
+          } else {
+            this.router.navigate(['/']);
+          }
         })
       );
   }
   isAdmin(): boolean {
     const role_id = this.user.value.role_id;
     if (role_id === 1 || role_id === 2) {
+      return true;
+    }
+    return false;
+  }
+  isAttendanceRole(): boolean {
+    const role_id = this.user.value.role_id;
+    if (role_id === 5) {
       return true;
     }
     return false;
@@ -47,7 +58,7 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
     this.user.next(user);
   }
-  isAuthenticated(): boolean {
+  checkTokenExpired(): boolean {
     const helper = new JwtHelperService();
     const token = localStorage.getItem('token');
     if (!helper.isTokenExpired(token)) {

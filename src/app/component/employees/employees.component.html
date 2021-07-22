@@ -93,6 +93,7 @@
               Team: {{ employee.name_department }}
             </p>
             <a
+              *ngIf="isAdmin"
               [routerLink]="['/', 'employee', employee.id]"
               class="btn btn-success btn-block"
               >Chi tiết</a

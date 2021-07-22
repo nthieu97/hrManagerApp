@@ -23,7 +23,7 @@
         >
           <a
             ngbDropdownItem
-            [routerLink]="['/','employee-form']"
+            [routerLink]="['/', 'employee-form']"
             *ngIf="isAdmin"
             (click)="$event.preventDefault()"
             ><span class="material-icons">people</span> Add Employee</a
@@ -82,7 +82,7 @@
           ><span class="material-icons">people</span> Employee</a
         >
       </div>
-      <div class="sidebar__item">
+      <div class="sidebar__item" *ngIf="isAdmin">
         <a
           [routerLink]="['/', 'positions']"
           class="side-bar__link"
@@ -90,7 +90,7 @@
           ><span class="material-icons"> radar </span> Positions</a
         >
       </div>
-      <div class="sidebar__item">
+      <div class="sidebar__item" *ngIf="isAdmin">
         <a
           [routerLink]="['/', 'departments']"
           class="side-bar__link"
@@ -111,29 +111,24 @@
           [routerLink]="['/', 'time-off']"
           class="side-bar__link"
           routerLinkActive="sidebar__active"
-          ><span class="material-icons">
-            pending_actions
-          </span> Time off</a
+          ><span class="material-icons"> pending_actions </span> Time off</a
         >
       </div>
-      <div class="sidebar__item">
+      <div class="sidebar__item" *ngIf="isAdmin">
         <a
           [routerLink]="['/', 'update-ot']"
           class="side-bar__link"
           routerLinkActive="sidebar__active"
-          ><span class="material-icons">
-            nights_stay
-          </span> Update OT</a
+          ><span class="material-icons"> nights_stay </span> Update OT</a
         >
       </div>
-      <div class="sidebar__item">
+      <div class="sidebar__item" *ngIf="isAdmin">
         <a
           [routerLink]="['/', 'prize-fine-money']"
           class="side-bar__link"
           routerLinkActive="sidebar__active"
-          ><span class="material-icons">
-            military_tech
-          </span> Prize-Fine-Money</a
+          ><span class="material-icons"> military_tech </span>
+          Prize-Fine-Money</a
         >
       </div>
       <div class="sidebar__item">
