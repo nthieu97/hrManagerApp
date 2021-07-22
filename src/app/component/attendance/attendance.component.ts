@@ -21,11 +21,16 @@ export class AttendanceComponent implements OnInit {
   idUser;
   ngOnInit(): void {
     this.idUser = this.authService.getIdUserAuthenticated();
-    this.attendanceService.getAllAttendance().subscribe((data) => {
+    this.search();
+  }
+  keyword: string = '';
+  search() {
+    this.attendanceService.getAllAttendance(this.keyword).subscribe((data) => {
       this.attendanceData = data.data;
       this.page = data.meta.currentPage;
       this.collectionSize = data.meta.total;
       this.pageSize = data.meta.perPage;
+      console.log(this.keyword);
       console.log(data);
     });
   }
