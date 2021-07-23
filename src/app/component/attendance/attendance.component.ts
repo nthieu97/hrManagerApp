@@ -21,7 +21,9 @@ export class AttendanceComponent implements OnInit {
   idUser;
   ngOnInit(): void {
     this.idUser = this.authService.getIdUserAuthenticated();
-    this.attendanceService.getAllAttendance().subscribe((data) => {
+    this.attendanceService.getListByUser().subscribe((data) => {
+      // console.log(data.data.user_id);
+
       this.attendanceData = data.data;
       this.page = data.meta.currentPage;
       this.collectionSize = data.meta.total;

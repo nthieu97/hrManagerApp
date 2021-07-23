@@ -13,7 +13,7 @@ export class TimeOffComponent implements OnInit {
 
   timeOff;
   ngOnInit(): void {
-    this.timeOffService.getAllTimeOff().subscribe((data) => {
+    this.timeOffService.getAllByUser().subscribe((data) => {
       this.timeOff = data.data
       console.log(data);
     })

@@ -24,4 +24,16 @@ export class AttendanceService {
   paginateAttendance(page: string): Observable<any> {
     return this.http.get(this.URL_API, { params: { page } });
   }
+
+  getListByUser(): Observable<any> {
+    return this.http.get(this.URL_API + '/getListByUser/',{})
+  }
+
+  getListOT(): Observable<any> {
+    return this.http.get(this.URL_API +'/getListOt/',{})
+  }
+
+  getDetailOT(id: string): Observable<any> {
+    return this.http.get(this.URL_API + '/getdetail/' +id)
+  }
 }

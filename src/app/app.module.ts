@@ -35,6 +35,9 @@ import { UpdateOtComponent } from './component/update-ot/update-ot.component';
 import { PrizeFineMoneyComponent } from './component/prize-fine-money/prize-fine-money.component';
 import { PrizeFineFormComponent } from './component/prize-fine-form/prize-fine-form.component';
 import { ChangePasswordComponent } from './component/change-password/change-password.component';
+import { TimeOffListComponent } from './component/time-off-list/time-off-list.component';
+import { ListOtComponent } from './component/list-ot/list-ot.component';
+
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -67,6 +70,9 @@ FullCalendarModule.registerPlugins([
     PrizeFineMoneyComponent,
     PrizeFineFormComponent,
     ChangePasswordComponent,
+    TimeOffListComponent,
+    ListOtComponent,
+
 
   ],
   imports: [

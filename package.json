@@ -36,6 +36,7 @@
     "material-icons": "^0.7.3",
     "ngx-kjua": "^1.12.3",
     "rxjs": "~6.6.0",
+    "sweetalert2": "^11.0.19",
     "tslib": "^2.0.0",
     "xlsx": "^0.17.0",
     "zone.js": "~0.11.3"

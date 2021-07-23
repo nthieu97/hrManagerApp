@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmployeeService } from 'src/app/service/employee.service';
 @Component({
   selector: 'app-update-ot',
@@ -7,21 +8,24 @@ import { EmployeeService } from 'src/app/service/employee.service';
 })
 export class UpdateOtComponent implements OnInit {
   listEmployee = [];
-  constructor(private employeeService:EmployeeService) { }
+  idOT;
+  constructor(private employeeService: EmployeeService,
+  private router:Router) { }
 
   ngOnInit(): void {
-    this.getAllEmployee()
+    // this.getAllEmployee()
+
   }
 
   handleSubmit(envent) {
 
   }
 
-  getAllEmployee() {
-    this.employeeService.getListUser().subscribe((data) => {
-      this.listEmployee = data.data
-console.log(data)
-    })
-  }
+//   getAllEmployee() {
+//     this.employeeService.getListUser().subscribe((data) => {
+//       this.listEmployee = data.data
+// console.log(data)
+//     })
+//   }
 
 }

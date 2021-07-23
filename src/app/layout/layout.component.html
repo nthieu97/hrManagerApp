@@ -110,7 +110,7 @@
       </div>
       <div class="sidebar__item">
         <a
-          [routerLink]="['/', 'time-off']"
+          [routerLink]="['/', 'my-time-off']"
           class="side-bar__link"
           routerLinkActive="sidebar__active"
           ><span class="material-icons">
@@ -120,12 +120,12 @@
       </div>
       <div class="sidebar__item">
         <a
-          [routerLink]="['/', 'update-ot']"
+          [routerLink]="['/', 'time-off-list']"
           class="side-bar__link"
           routerLinkActive="sidebar__active"
           ><span class="material-icons">
-            nights_stay
-          </span> Update OT</a
+            pending_actions
+          </span>List Time off</a
         >
       </div>
       <div class="sidebar__item">
@@ -138,6 +138,26 @@
           </span> Prize-Fine-Money</a
         >
       </div>
+
+  <div class="sidebar__item">
+    <a class="side-bar__link dropdown" (click)="toggleDropdownOT()">
+      <span class="material-icons">
+        nights_stay
+      </span>OverTime
+      <span class="material-icons">{{
+        !dropOT ? "expand_more" : "expand_less"
+        }}</span></a>
+    <ul class="sidebar__dropdown" *ngIf="dropOT">
+      <li class="dropdow__item">
+        <a [routerLink]="['/', 'list-ot']" routerLinkActive="sidebar__active" class="dropdown__link">
+        <span class="material-icons">
+          list_alt
+        </span>List OT</a>
+      </li>
+    </ul>
+  </div>
+
+
       <div class="sidebar__item">
         <a class="side-bar__link dropdown" (click)="toggleDropdown()"
           ><span class="material-icons">qr_code</span> Attendance

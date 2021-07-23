@@ -7,3 +7,6 @@
   border-radius: 10px;
   box-shadow: var(--box-shadow);
 }
+th {
+  color: var(--primary-color);
+}

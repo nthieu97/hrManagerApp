@@ -21,6 +21,9 @@ import { UpdateOtComponent } from './component/update-ot/update-ot.component';
 import { PrizeFineMoneyComponent } from './component/prize-fine-money/prize-fine-money.component';
 import { PrizeFineFormComponent } from './component/prize-fine-form/prize-fine-form.component';
 import { ChangePasswordComponent } from './component/change-password/change-password.component';
+import { TimeOffListComponent } from './component/time-off-list/time-off-list.component';
+import { ListOtComponent } from './component/list-ot/list-ot.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -76,7 +79,7 @@ const routes: Routes = [
         component:EmployeeFormComponent
       },
       {
-        path: 'time-off',
+        path: 'my-time-off',
         component:TimeOffComponent
       },
       {
@@ -88,8 +91,16 @@ const routes: Routes = [
         component:TimeOffAddComponent
       },
       {
-        path: 'update-ot',
+        path: 'time-off-list',
+        component:TimeOffListComponent
+      },
+      {
+        path: 'update-ot/:id',
         component:UpdateOtComponent
+      },
+      {
+        path: 'list-ot',
+        component:ListOtComponent
       },
       {
         path: 'prize-fine-money',
