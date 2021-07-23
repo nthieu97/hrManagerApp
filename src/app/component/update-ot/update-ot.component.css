@@ -1,0 +1,7 @@
+.addForm {
+  background-color: #ffffff;
+  box-shadow: var(--box-shadow);
+  padding: 30px 20px;
+  border-radius: 1rem;
+  margin-top: 1rem;
+}

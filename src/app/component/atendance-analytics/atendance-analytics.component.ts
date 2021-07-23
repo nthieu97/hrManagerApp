@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AttendanceService } from 'src/app/service/attendance.service';
 
 @Component({
   selector: 'app-atendance-analytics',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./atendance-analytics.component.css'],
 })
 export class AtendanceAnalyticsComponent implements OnInit {
-  constructor() {}
+  listAllAtten=[]
+  constructor(private attenService:AttendanceService) {}
   // tslint:disable-next-line: variable-name
   multi = [
     {
@@ -121,9 +123,16 @@ export class AtendanceAnalyticsComponent implements OnInit {
   colorScheme = {
     domain: ['#5AA454', '#C7B42C', '#AAAAAA'],
   };
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.attenService.getAllAttendance().subscribe((data) => {
+      console.log(data);
+      this.listAllAtten = data.data
+    })
+  }
   // tslint:disable-next-line: typedef
   onSelect(event) {
     console.log(event);
   }
+
+
 }

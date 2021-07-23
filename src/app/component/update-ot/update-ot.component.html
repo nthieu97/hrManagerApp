@@ -8,21 +8,30 @@
     </li>
   </ol>
 </nav>
-<div class="container">
+
   <div class="addForm">
     <h3 class="text-center">Update OT</h3>
     <form #formDepartment="ngForm" (ngSubmit)="handleSubmit($event)">
-
       <!-- <div class="form-group">
-        <select class="form-control" >
-        <option value="" selected disabled>--Choose position--</option>
-        <option multiple *ngFor="let list of listEmployee" [value]="list.id">{{list.userinfo.full_name}}</option>
+        <select class="form-control select" multiple>
+        <option value="" selected disabled>--Choose user--</option>
+        <option *ngFor="let list of listEmployee;index as i" [value]="i+1">{{list.user_account}}</option>
         </select>
-      </div> -->
 
+      </div> -->
+      <ng-multiselect-dropdown
+        [placeholder]="'--Chooses User--'"
+        [settings]="dropdownSettings"
+        [data]="dropdownList"
+        [(ngModel)]="selectedItems"
+        (onSelect)="onItemSelect($event)"
+        (onSelectAll)="onSelectAll($event)"
+        name="listUsers"
+      >
+      </ng-multiselect-dropdown>
       <button class="btn btn-success">
       Update
       </button>
     </form>
   </div>
-</div>
+

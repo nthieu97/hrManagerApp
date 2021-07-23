@@ -95,7 +95,7 @@ const routes: Routes = [
         component:TimeOffListComponent
       },
       {
-        path: 'update-ot/:id',
+        path: 'update-ot',
         component:UpdateOtComponent
       },
       {

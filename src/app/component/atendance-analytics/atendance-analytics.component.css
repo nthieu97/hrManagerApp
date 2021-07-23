@@ -20,3 +20,14 @@
   box-shadow: var(--box-shadow);
   border-radius: 10px;
 }
+.list-attendence {
+  margin-top: 1rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+}
+th {
+  color: var(--primary-color);
+}
