@@ -12,12 +12,13 @@
   <div class="addForm">
     <h3 class="text-center">Update OT</h3>
     <form #formDepartment="ngForm" (ngSubmit)="handleSubmit($event)">
-      <div class="form-group">
+
+      <!-- <div class="form-group">
         <select class="form-control" >
         <option value="" selected disabled>--Choose position--</option>
         <option multiple *ngFor="let list of listEmployee" [value]="list.id">{{list.userinfo.full_name}}</option>
         </select>
-      </div>
+      </div> -->
 
       <button class="btn btn-success">
       Update
