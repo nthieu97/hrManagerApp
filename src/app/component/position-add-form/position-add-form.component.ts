@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { responePosition } from 'src/app/model/position.model';
+import { ResponePosition } from 'src/app/model/position.model';
 import { PositionService } from 'src/app/service/position.service';
 
 export class Position {
@@ -26,7 +26,7 @@ export class PositionAddFormComponent implements OnInit {
       if (this.idPosition) {
         this.positionService
           .getPosition(this.idPosition)
-          .subscribe((data: responePosition) => {
+          .subscribe((data: ResponePosition) => {
             this.model.namePosition = data.data.name;
             console.log(this.model.namePosition);
           });

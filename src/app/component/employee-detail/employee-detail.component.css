@@ -34,6 +34,7 @@
 
 .content__main-content {
   display: flex;
+  align-items: stretch;
 }
 
 .card {
@@ -65,5 +66,43 @@
 }
 
 /* end sidebar  */
+
+.tab-control {
+  display: inline-block;
+  border-bottom: 2px solid transparent;
+  font-size: var(--text-md);
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.tabs {
+  padding: 1em;
+}
+.tab-control:hover {
+  color: var(--primary-color);
+}
+
+.tab-panel {
+  display: none;
+}
+
+/* Magic style */
+input[type="radio"]:checked + .tab-control {
+  font-weight: 600;
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+#tab-1:checked ~ .tab-content > #tab-panel-1 {
+  display: block;
+}
+
+#tab-2:checked ~ .tab-content > #tab-panel-2 {
+  display: block;
+}
+
+#tab-3:checked ~ .tab-content > #tab-panel-3 {
+  display: block;
+}
 
 /* main content */

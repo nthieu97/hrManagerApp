@@ -28,6 +28,7 @@ const routes: Routes = [
     component: LayoutComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: 'scan', component: ScanComponent },
       {
         path: '',
         redirectTo: 'dashboard',
@@ -89,6 +90,7 @@ const routes: Routes = [
       {
         path: 'time-off',
         component: TimeOffComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: 'time-off-add',
@@ -112,7 +114,6 @@ const routes: Routes = [
     ],
   },
   { path: 'login', component: LoginComponent },
-  { path: 'scan', component: ScanComponent },
 ];
 
 @NgModule({

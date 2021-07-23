@@ -1,19 +1,33 @@
-export interface responePosition {
+export interface ResponeAllPosition {
   status: boolean;
   message: string;
-  data: DataPositionDetail;
+  data: Position[];
 }
 
-export interface DataPositionDetail {
+export interface Position {
   id: number;
   name: string;
   created_at?: any;
   updated_at?: any;
   deleted_at?: any;
-  phongban: Phongban[];
 }
 
-export interface Phongban {
+export interface ResponePosition {
+  status: boolean;
+  message: string;
+  data: Data;
+}
+
+export interface Data {
+  id: number;
+  name: string;
+  created_at?: any;
+  updated_at?: any;
+  deleted_at?: any;
+  chucvu: Employee[];
+}
+
+export interface Employee {
   id: number;
   user_account: string;
   role_id: number;
@@ -21,7 +35,7 @@ export interface Phongban {
   department_id: number;
   email: string;
   email_verified_at?: any;
-  created_at: string;
-  updated_at: string;
+  created_at?: string;
+  updated_at?: string;
   deleted_at?: any;
 }

@@ -18,9 +18,6 @@ export class EmployeeService {
   deleteEmployee(id: string): Observable<any> {
     return this.http.delete(this.URL_API + '/delete/' + id);
   }
-  getAllDepartmentPositions(): Observable<any> {
-    return this.http.get(this.URL_API + 'getlist');
-  }
   store(object: Employee): Observable<Employee> {
     return this.http.post<Employee>(this.URL_API + '/create', object);
   }

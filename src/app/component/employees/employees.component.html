@@ -30,28 +30,36 @@
         style="width: 7em"
         class="custom-select mr-2"
         id="inputGroupSelect01"
+        (change)="handleFilterDepartment($event.target.value)"
       >
-        <option selected>Team</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option selected disabled>Phòng ban</option>
+
+        <option *ngFor="let department of departments" [value]="department?.id">
+          {{ department?.name }}
+        </option>
       </select>
-      <select style="width: 7em" class="custom-select" id="inputGroupSelect01">
-        <option selected>Position</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+      <select
+        style="width: 7em"
+        class="custom-select"
+        (change)="handleFilterPosition($event.target.value)"
+        id="inputGroupSelect01"
+      >
+        <option selected disabled>Vị Trí</option>
+
+        <option *ngFor="let position of positions" [value]="position?.id">
+          {{ position?.name }}
+        </option>
       </select>
     </div>
-    <!-- <div class="employees__sort">
+    <!-- <div class="employees__view">
       <div class="sort_by d-flex">
-        <span class="mx-1">Sort by:</span>
-        <select class="custom-select">
-          <option selected>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
+        <span class="mx-2">View by:</span>
+        <span class="material-icons">table_rows</span>
+        <label class="switch"
+          ><input type="checkbox" />
+          <div></div>
+        </label>
+        <span class="material-icons">recent_actors</span>
       </div>
     </div> -->
   </div>
@@ -92,18 +100,20 @@
             <p class="card-text text-center">
               Team: {{ employee.name_department }}
             </p>
+
             <a
               *ngIf="isAdmin"
               [routerLink]="['/', 'employee', employee.id]"
               class="btn btn-success btn-block"
               >Chi tiết</a
             >
+            <a *ngIf="isAdmin" class="btn btn-dark btn-block">Sửa</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row d-flex justify-content-center">
+  <div class="row d-flex justify-content-center" *ngIf="loadMoreButton">
     <button
       (click)="handleLoadmore()"
       *ngIf="!loading"

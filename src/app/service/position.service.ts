@@ -27,13 +27,4 @@ export class PositionService {
   getAllPosition(): Observable<any> {
     return this.http.get(this.URL_API);
   }
-  getAllPosi(keyword: any): Observable<any> {
-    if (keyword.length > 0) {
-      return this.http.get(this.URL_API + '?keyword=' + keyword);
-    }
-    return this.http.get(this.URL_API);
-  }
-  paginateAttendance(page: string): Observable<any> {
-    return this.http.get(this.URL_API, { params: { page } });
-  }
 }

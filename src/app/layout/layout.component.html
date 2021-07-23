@@ -106,7 +106,7 @@
           ><span class="material-icons"> request_quote </span> Salaries</a
         >
       </div>
-      <div class="sidebar__item">
+      <div class="sidebar__item" *ngIf="isAdmin">
         <a
           [routerLink]="['/', 'time-off']"
           class="side-bar__link"

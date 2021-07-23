@@ -34,27 +34,27 @@ export class EmployeeFormComponent implements OnInit {
 
     this.getPosition(), this.getDepartment();
   }
-  createForm() {}
-  getPosition() {
+
+  getPosition(): void {
     this.positionService.getAllPosition().subscribe((data) => {
       console.log(data.data);
       this.positions = data.data;
     });
   }
-  keyword: string = '';
-  getDepartment() {
-    this.departmentService.getAllDepartment(this.keyword).subscribe((data) => {
+
+  getDepartment(): void {
+    this.departmentService.getAllDepartment().subscribe((data) => {
       console.log(data.data);
       this.departments = data.data;
     });
   }
 
+  // tslint:disable-next-line: typedef
   get f() {
     return this.employeeForm.controls;
   }
 
-  submitForm($event) {
-    event.preventDefault();
+  submitForm(): void {
     this.employeeService.store(this.employeeForm.value).subscribe((data) => {
       console.log(this.employeeForm.value, data);
     });

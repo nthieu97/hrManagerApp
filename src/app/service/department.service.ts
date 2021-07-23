@@ -21,10 +21,7 @@ export class DepartmentService {
   getDepartment(id: string): Observable<any> {
     return this.http.get(this.API_URL + '/getdetail/' + id);
   }
-  getAllDepartment(keyword: any): Observable<any> {
-    if (keyword.length > 0) {
-      return this.http.get(this.API_URL + '?keyword=' + keyword);
-    }
+  getAllDepartment(): Observable<any> {
     return this.http.get(this.API_URL);
   }
 }
