@@ -111,13 +111,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin();
     this.username = this.authService.getCurrentUser().user_account;
-    const dt = new Date();
-
-    const month = dt.getMonth() + 1;
-    const year = dt.getFullYear();
-
-    const daysInMonth = new Date(year, month, 0).getDate();
-    console.log(daysInMonth);
   }
   onSelect(data): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));

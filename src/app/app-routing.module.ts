@@ -21,6 +21,7 @@ import { UpdateOtComponent } from './component/update-ot/update-ot.component';
 import { PrizeFineMoneyComponent } from './component/prize-fine-money/prize-fine-money.component';
 import { PrizeFineFormComponent } from './component/prize-fine-form/prize-fine-form.component';
 import { AdminGuard } from './guard/admin.guard';
+import { ScanGuard } from './guard/scan.guard';
 
 const routes: Routes = [
   {
@@ -28,7 +29,7 @@ const routes: Routes = [
     component: LayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'scan', component: ScanComponent },
+      { path: 'scan', component: ScanComponent, canActivate: [ScanGuard] },
       {
         path: '',
         redirectTo: 'dashboard',
