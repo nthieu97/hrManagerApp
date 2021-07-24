@@ -11,14 +11,7 @@
 
   <div class="addForm">
     <h3 class="text-center">Update OT</h3>
-    <form #formDepartment="ngForm" (ngSubmit)="handleSubmit($event)">
-      <!-- <div class="form-group">
-        <select class="form-control select" multiple>
-        <option value="" selected disabled>--Choose user--</option>
-        <option *ngFor="let list of listEmployee;index as i" [value]="i+1">{{list.user_account}}</option>
-        </select>
-
-      </div> -->
+    <form [formGroup]="formOT" (ngSubmit)="handleSubmit($event)">
       <ng-multiselect-dropdown
         [placeholder]="'--Chooses User--'"
         [settings]="dropdownSettings"
@@ -26,9 +19,14 @@
         [(ngModel)]="selectedItems"
         (onSelect)="onItemSelect($event)"
         (onSelectAll)="onSelectAll($event)"
-        name="listUsers"
+        formControlName="listUsers"
       >
       </ng-multiselect-dropdown>
+      <div *ngIf="f.listUsers.invalid && (f.listUsers.dirty || f.listUsers.touched)" class="alert alert-danger">
+        <div *ngIf="f.listUsers.errors?.required">
+          List user is required.
+        </div>
+      </div>
       <button class="btn btn-success">
       Update
       </button>

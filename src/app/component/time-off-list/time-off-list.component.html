@@ -22,11 +22,11 @@
       <tr *ngFor="let time of listTimeOff ; index as i">
         <td>{{i+1}}</td>
         <td>{{time.full_name}}</td>
-        <td>{{time.time_start}}</td>
-        <td>{{time.time_end}}</td>
+        <td>{{time.time_start | date: 'dd/MM/yyyy'}}</td>
+        <td>{{time.time_end | date: 'dd/MM/yyyy'}}</td>
         <td>{{time.note}}</td>
-        <td>{{time.status}}</td>
-        <td>{{time.mode_leave}}</td>
+        <td>{{time.status == 1 ? 'Đã duyệt' : 'Chưa phê duyệt'}}</td>
+        <td>{{time.mode_leave == 1 ? 'Nghỉ có lương' : 'Nghỉ không lương'}}</td>
         <td>{{time.number_day_leave}} ngày</td>
         <td>{{time.number_mode_leave}} ngày</td>
       </tr>

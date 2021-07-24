@@ -5,7 +5,7 @@
   </ol>
 </nav>
 <div class="list-ot">
-  <h3 class="text-center">List OT</h3>
+  <h3 class="text-center">List Overtime</h3>
   <table class="table">
     <thead>
       <th>#</th>
@@ -14,7 +14,7 @@
       <th>Time_of_check_in</th>
       <th>Time_of_check_out</th>
       <th>Status</th>
-      <th>Action</th>
+
     </thead>
     <tbody>
       <tr *ngFor="let ot of listOT ; index as i">
@@ -25,9 +25,7 @@
         <td>{{ot.time_of_check_out}}</td>
         <td *ngIf="ot.status == 1"><span class="text-success">OT</span></td>
         <td *ngIf="ot.status !== 1"><span class="text-danger">Not OT</span></td>
-        <td>
-          <a class="btn btn-primary" [routerLink]="['/','update-ot',ot.id]">Edit</a>
-        </td>
+
       </tr>
     </tbody>
   </table>

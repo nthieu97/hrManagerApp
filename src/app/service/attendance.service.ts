@@ -36,4 +36,8 @@ export class AttendanceService {
   getDetailOT(id: string): Observable<any> {
     return this.http.get(this.URL_API + '/getdetail/' +id)
   }
+
+  updateOT(object: any): Observable<any>{
+    return this.http.post(this.URL_API + '/update_OT/', { object })
+  }
 }

@@ -2,25 +2,26 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
     <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item " aria-current="page"><a [routerLink]="['/', 'time-off']">Time Off</a></li>
+    <li class="breadcrumb-item " aria-current="page"><a [routerLink]="['/', 'my-time-off']">Time Off</a></li>
     <li class="breadcrumb-item active" aria-current="page">{{idTimeOff ? 'edit' : 'add'}}</li>
   </ol>
 </nav>
 <div class="time-off-add">
-  <h3 class="text-center">{{idTimeOff ? 'Sửa lịch nghỉ' :'Lịch xin nghỉ'}}</h3>
+  <h3 class="text-center">{{idTimeOff ? 'Edit Time Off' :'Add Time Off'}}</h3>
   <form action=""  (submit)="submitForm($event)" [formGroup]="TimeOffForm">
       <div class="form-group" >
-        <label for="">Ngày bắt đầu</label>
-        <input class="form-control" type="date"   formControlName="time_start" id="">
+        <label for="">Time Start</label> <span class="text-danger" *ngIf="idTimeOff"> ( {{this.TimeOffForm.value.time_start |date:'yyyy/MM/dd'}} )</span>
+        <input class="form-control" type="date"  formControlName="time_start" id="">
       </div>
       <div *ngIf="f.time_start.invalid && (f.time_start.dirty || f.time_start.touched)" class="alert alert-danger">
         <div *ngIf="f.time_start.errors?.required">
           Time start is required.
         </div>
       </div>
+
       <div class="form-group">
-        <label for="">Ngày kết thúc</label>
-        <input class="form-control" type="date" formControlName="time_end" id="">
+        <label for="">Time End</label> <span class="text-danger" *ngIf="idTimeOff"> ( {{this.TimeOffForm.value.time_end |date:'yyyy/MM/dd'}} )</span>
+        <input class="form-control" type="date"  formControlName="time_end" id="">
       </div>
       <div *ngIf="f.time_end.invalid && (f.time_end.dirty || f.time_end.touched)" class="alert alert-danger">
         <div *ngIf="f.time_end.errors?.required">
@@ -28,7 +29,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="">Lý do</label>
+        <label for="">Note</label>
        <textarea class="form-control"  formControlName="note" id="" cols="30" rows="5"></textarea>
       </div>
       <div *ngIf="f.note.invalid && (f.note.dirty || f.note.touched)" class="alert alert-danger">
@@ -37,11 +38,11 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="">Chế độ nghỉ</label>
+        <label for="">Paid Leave</label>
         <input class="ml-2" type="checkbox" [(ngModel)] = "check"  formControlName="mode_leave" id="">
       </div>
       <div class="form-group" *ngIf="check" [disabled]>
-        <label for="">Số ngày nghỉ có lương (Còn {{total_day - total_day_off}} ngày)</label>
+        <label for="">Number of paid leave days (Remaining {{total_day - total_day_off}} Days)</label>
         <input class="form-control" type="number"  formControlName="number_day" id="">
       </div>
       <button  class="btn btn-primary">{{idTimeOff ? 'Edit' : 'Add'}}</button>

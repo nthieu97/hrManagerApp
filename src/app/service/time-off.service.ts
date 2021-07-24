@@ -21,8 +21,8 @@ export class TimeOffService {
    deleteTimeOff(id: string): Observable<any> {
     return this.http.post(this.API_URL + '/delete/' + id, {});
    }
-  updateTimeOff(id: string): Observable<any>{
-    return this.http.post(this.API_URL + '/update_leave/'+id,{})
+  updateTimeOff(id: string, object:any): Observable<any>{
+    return this.http.post(this.API_URL + '/update_leave/'+id,{object})
   }
   getTotalDay(): Observable<any> {
     return this.http.get(this.API_URL +'/total_day/',{})

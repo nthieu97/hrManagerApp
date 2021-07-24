@@ -30,27 +30,38 @@ export class ChangePasswordComponent implements OnInit {
 
     })
 
+
   }
    get f() {
       return this.ChangePass.controls
     }
-  submitForm(event) {
-    event.preventDefault();
-        this.employessService.ChangePassword(this.ChangePass.value).subscribe(data => {
-          console.log(data);
-          this.authService.logOut()
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Change Password Successfully',
-      showConfirmButton: false,
-      timer: 1500
-    })
-      this.router.navigate(['/', 'login'])
-    })
+  submitForm(value) {
+    this.employessService.ChangePassword(this.ChangePass.value).subscribe(() => {
+      console.log(this.ChangePass.value.new_password);
+      if (this.ChangePass.value.new_password == this.ChangePass.value.comfig_password) {
+               Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Change Password Successfully',
+            showConfirmButton: false,
+            timer: 1500
+               })
+          this.router.navigate(['/', 'login'])
+       this.authService.logOut()
+      } else {
+
+        console.log("Mật khẩu không khớp");
+              Swal.fire({
+                icon: 'error',
+                title: '',
+                text: 'Password incorrect',
+                footer: ''
+              })
+
+      }
+
+      })
 
 
-
-    //  console.log(this.TimeOffForm.value);
   }
 }

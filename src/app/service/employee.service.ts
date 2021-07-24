@@ -35,4 +35,7 @@ export class EmployeeService {
    ChangePassword(object: any): Observable<any> {
     return this.http.post(this.URL_API + '/changepassword', object)
   }
+
+
+
 }

@@ -18,6 +18,8 @@ export class TimeOffAddComponent implements OnInit {
   idTimeOff: string
   total_day: any
   total_day_off: any;
+
+
  constructor(
     private timeoffservice: TimeOffService,
    private router: Router,
@@ -26,21 +28,20 @@ export class TimeOffAddComponent implements OnInit {
    this.TimeOffForm = this.createForm();
    this.getTotalDay()
   }
+
+
   getTotalDay() {
     this.timeoffservice.getTotalDay().subscribe((data) => {
-      console.log(data.data);
       this.total_day = data.data.total_day
       this.total_day_off=data.data.total_day_off
     })
-     console.log(this.total_day_off);
+
   }
   ngOnInit(): void {
     this.atr.params.subscribe((params) => {
       this.idTimeOff = params.id
-      // console.log(this.idTimeOff);
       if (this.idTimeOff) {
         this.timeoffservice.getDetailTimeOff(this.idTimeOff).subscribe((data) => {
-          console.log(data);
           this.TimeOffForm.setValue({
             time_start: data.data.time_start,
             time_end: data.data.time_end,
@@ -71,8 +72,13 @@ export class TimeOffAddComponent implements OnInit {
   }
   submitForm(event) {
     event.preventDefault();
+    if (this.idTimeOff) {
+      this.timeoffservice.updateTimeOff(this.idTimeOff,this.TimeOffForm.value).subscribe(() => {
+         this.router.navigate(['/','my-time-off'])
+      })
+    }
     this.timeoffservice.createTimeOff(this.TimeOffForm.value).subscribe(data => {
-       this.router.navigate(['/','time-off'])
+       this.router.navigate(['/','my-time-off'])
     })
     //  console.log(this.TimeOffForm.value);
   }

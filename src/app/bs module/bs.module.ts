@@ -5,6 +5,7 @@ import {
   NgbDropdownModule,
   NgbPaginationModule,
   NgbToastModule,
+
 } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -15,12 +16,14 @@ import {
     NgbAlertModule,
     NgbToastModule,
     NgbPaginationModule,
+
   ],
   exports: [
     NgbDropdownModule,
     NgbAlertModule,
     NgbToastModule,
     NgbPaginationModule,
+
   ],
 })
 export class BsModule {}

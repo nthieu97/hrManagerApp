@@ -26,7 +26,7 @@ export class DepartmentComponent implements OnInit {
   handleDelete(id: string, index): void {
     this.departmentService.deleteDepartment(id).subscribe(() => {
       console.log(id);
-      this.departments.splice(index,1)
+      this.departments.splice(index, 1)
     })
   }
 

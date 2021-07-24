@@ -23,6 +23,7 @@ import { PrizeFineFormComponent } from './component/prize-fine-form/prize-fine-f
 import { ChangePasswordComponent } from './component/change-password/change-password.component';
 import { TimeOffListComponent } from './component/time-off-list/time-off-list.component';
 import { ListOtComponent } from './component/list-ot/list-ot.component';
+import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -117,7 +118,8 @@ const routes: Routes = [
     ],
   },
   { path: 'login', component: LoginComponent },
-  {path:'change-password',component:ChangePasswordComponent}
+  { path: 'change-password', component: ChangePasswordComponent },
+  {path:'forgot-password',component:ForgotPasswordComponent}
 ];
 
 @NgModule({
