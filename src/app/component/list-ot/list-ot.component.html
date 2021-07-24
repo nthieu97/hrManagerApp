@@ -1,0 +1,32 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" style="padding: 0; margin: 0">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">List OT</li>
+  </ol>
+</nav>
+<div class="list-ot">
+  <h3 class="text-center">List Overtime</h3>
+  <table class="table">
+    <thead>
+      <th>#</th>
+      <th>Full Name</th>
+      <th>Date_of_work</th>
+      <th>Time_of_check_in</th>
+      <th>Time_of_check_out</th>
+      <th>Status</th>
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let ot of listOT ; index as i">
+        <td>{{i+1}}</td>
+        <td>{{ot.full_name}}</td>
+        <td>{{ot.date_of_work}}</td>
+        <td>{{ot.time_of_check_in}}</td>
+        <td>{{ot.time_of_check_out}}</td>
+        <td *ngIf="ot.status == 1"><span class="text-success">OT</span></td>
+        <td *ngIf="ot.status !== 1"><span class="text-danger">Not OT</span></td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

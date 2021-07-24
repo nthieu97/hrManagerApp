@@ -7,3 +7,10 @@ export interface loginResponse {
   expires_in: number;
   user: User;
 }
+
+
+export interface changePassword {
+  current_password: string,
+  new_password: string,
+  comfig_password:string
+}

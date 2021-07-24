@@ -57,6 +57,9 @@
           <a ngbDropdownItem href="#" (click)="$event.preventDefault()"
             >Detail</a
           >
+          <a ngbDropdownItem [routerLink]="['/', 'change-password']"
+            >Change Password</a
+          >
           <a ngbDropdownItem (click)="logOut()">Log out</a>
         </div>
       </div>
@@ -106,9 +109,9 @@
           ><span class="material-icons"> request_quote </span> Salaries</a
         >
       </div>
-      <div class="sidebar__item" *ngIf="isAdmin">
+      <!-- <div class="sidebar__item">
         <a
-          [routerLink]="['/', 'time-off']"
+          [routerLink]="['/', 'my-time-off']"
           class="side-bar__link"
           routerLinkActive="sidebar__active"
           ><span class="material-icons"> pending_actions </span> Time off</a
@@ -116,11 +119,43 @@
       </div>
       <div class="sidebar__item" *ngIf="isAdmin">
         <a
-          [routerLink]="['/', 'update-ot']"
+          [routerLink]="['/', 'time-off-list']"
           class="side-bar__link"
           routerLinkActive="sidebar__active"
-          ><span class="material-icons"> nights_stay </span> Update OT</a
+          ><span class="material-icons">
+            pending_actions
+          </span>List Time off</a
         >
+      </div> -->
+      <div class="sidebar__item">
+        <a class="side-bar__link dropdown" (click)="toggleDropdownTime()">
+          <span class="material-icons"> alarm_on </span>Time Off
+          <span class="material-icons">{{
+            !dropTime ? "expand_more" : "expand_less"
+          }}</span></a
+        >
+        <ul class="sidebar__dropdown" *ngIf="dropTime">
+          <li class="dropdow__item">
+            <a
+              [routerLink]="['/', 'my-time-off']"
+              routerLinkActive="sidebar__active"
+              class="dropdown__link"
+            >
+              <span class="material-icons"> insert_emoticon </span>My Time
+              Off</a
+            >
+          </li>
+          <li class="dropdow__item">
+            <a
+              [routerLink]="['/', 'time-off-list']"
+              routerLinkActive="sidebar__active"
+              class="dropdown__link"
+            >
+              <span class="material-icons"> pending_actions </span>List Time
+              Off</a
+            >
+          </li>
+        </ul>
       </div>
       <div class="sidebar__item" *ngIf="isAdmin">
         <a
@@ -131,6 +166,36 @@
           Prize-Fine-Money</a
         >
       </div>
+
+      <div class="sidebar__item">
+        <a class="side-bar__link dropdown" (click)="toggleDropdownOT()">
+          <span class="material-icons"> nights_stay </span>OverTime
+          <span class="material-icons">{{
+            !dropOT ? "expand_more" : "expand_less"
+          }}</span></a
+        >
+        <ul class="sidebar__dropdown" *ngIf="dropOT">
+          <li class="dropdow__item">
+            <a
+              [routerLink]="['/', 'list-ot']"
+              routerLinkActive="sidebar__active"
+              class="dropdown__link"
+            >
+              <span class="material-icons"> list_alt </span>List OT</a
+            >
+          </li>
+          <li class="dropdow__item">
+            <a
+              [routerLink]="['/', 'update-ot']"
+              routerLinkActive="sidebar__active"
+              class="dropdown__link"
+            >
+              <span class="material-icons"> upgrade </span>Update OT</a
+            >
+          </li>
+        </ul>
+      </div>
+
       <div class="sidebar__item">
         <a class="side-bar__link dropdown" (click)="toggleDropdown()"
           ><span class="material-icons">qr_code</span> Attendance

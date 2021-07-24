@@ -22,6 +22,10 @@ import { PrizeFineMoneyComponent } from './component/prize-fine-money/prize-fine
 import { PrizeFineFormComponent } from './component/prize-fine-form/prize-fine-form.component';
 import { AdminGuard } from './guard/admin.guard';
 import { ScanGuard } from './guard/scan.guard';
+import { ChangePasswordComponent } from './component/change-password/change-password.component';
+import { TimeOffListComponent } from './component/time-off-list/time-off-list.component';
+import { ListOtComponent } from './component/list-ot/list-ot.component';
+import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -98,9 +102,21 @@ const routes: Routes = [
         component: TimeOffAddComponent,
       },
       {
+        path: 'time-off-edit/:id',
+        component: TimeOffAddComponent,
+      },
+      {
+        path: 'time-off-list',
+        component: TimeOffListComponent,
+      },
+      {
         path: 'update-ot',
         component: UpdateOtComponent,
         canActivate: [AdminGuard],
+      },
+      {
+        path: 'list-ot',
+        component: ListOtComponent,
       },
       {
         path: 'prize-fine-money',
@@ -115,6 +131,8 @@ const routes: Routes = [
     ],
   },
   { path: 'login', component: LoginComponent },
+  { path: 'change-password', component: ChangePasswordComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
 ];
 
 @NgModule({

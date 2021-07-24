@@ -19,13 +19,14 @@ export class AttendanceComponent implements OnInit {
   pageSize;
   collectionSize = 5;
   idUser;
+  keyword = '';
   ngOnInit(): void {
     this.idUser = this.authService.getIdUserAuthenticated();
     this.search();
   }
-  keyword: string = '';
+  // tslint:disable-next-line: typedef
   search() {
-    this.attendanceService.getAllAttendance(this.keyword).subscribe((data) => {
+    this.attendanceService.getAllAttendance().subscribe((data) => {
       this.attendanceData = data.data;
       this.page = data.meta.currentPage;
       this.collectionSize = data.meta.total;

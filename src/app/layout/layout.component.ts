@@ -11,6 +11,8 @@ import { AuthService } from '../service/auth.service';
 export class LayoutComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
   dropdown = false;
+  dropOT = false;
+  dropTime = false
   isAdmin;
   user: User;
   ngOnInit(): void {
@@ -19,6 +21,12 @@ export class LayoutComponent implements OnInit {
   }
   toggleDropdown(): void {
     this.dropdown = !this.dropdown;
+  }
+  toggleDropdownOT(): void {
+    this.dropOT = !this.dropOT
+  }
+  toggleDropdownTime(): void {
+    this.dropTime = !this.dropTime
   }
   logOut(): void {
     this.authService.logOut();

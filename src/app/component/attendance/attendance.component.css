@@ -50,3 +50,6 @@ table th {
   cursor: pointer;
   font-size: 20px;
 }
+th {
+  color: var(--primary-color);
+}

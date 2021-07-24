@@ -1,0 +1,10 @@
+.list-ot {
+  margin-top: 1rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 30px 20px;
+  text-align: center;
+}
+th {
+  color: var(--primary-color);
+}

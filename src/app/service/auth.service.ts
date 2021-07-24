@@ -37,6 +37,7 @@ export class AuthService {
         })
       );
   }
+
   isAdmin(): boolean {
     const role_id = this.user.value.role_id;
     if (role_id === 1 || role_id === 2) {

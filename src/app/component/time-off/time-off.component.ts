@@ -11,14 +11,15 @@ export class TimeOffComponent implements OnInit {
 
   timeOff;
   ngOnInit(): void {
-    this.search();
-  }
-  keyword: string = '';
-  search() {
-    this.timeOffService.getAllTimeOff(this.keyword).subscribe((data) => {
+    this.timeOffService.getAllByUser().subscribe((data) => {
       this.timeOff = data.data;
-      console.log(this.keyword);
       console.log(data);
+    });
+  }
+  handleDelete(id: string, index): void {
+    this.timeOffService.deleteTimeOff(id).subscribe(() => {
+      console.log(id);
+      this.timeOff.splice(index, 1);
     });
   }
 }

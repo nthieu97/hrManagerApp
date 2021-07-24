@@ -1,27 +1,25 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" style="padding: 0; margin: 0">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">My Attendences</li>
+  </ol>
+</nav>
 <div class="container__attendace">
   <div class="row">
     <div class="col">
       <div class="calendar">
-        <div class="search mb-2">
-          <input type="text" [(ngModel)]="keyword" (keyup.enter)="search()" class="searchTerm"
-            placeholder="Tìm kiếm...">
-          <button type="submit" class="searchButton">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
-              viewBox="0 0 16 16">
-              <path
-                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-            </svg>
-          </button>
-        </div>
-        <table class="table">
-          <thead>
-            <th scope="col">id attendance</th>
-            <th scope="col">full name</th>
-            <th scope="col">id nhan vien</th>
-            <th scope="col">check in</th>
-            <th scope="col">check out</th>
-            <th scope="col">date</th>
-            <th scope="col">status</th>
+        <h3 class="text-center">My Attendences</h3>
+        <table class="table text-center">
+          <thead class="thead-white">
+            <tr>
+              <th scope="col">id attendance</th>
+              <th scope="col">full name</th>
+              <th scope="col">id nhan vien</th>
+              <th scope="col">check in</th>
+              <th scope="col">check out</th>
+              <th scope="col">date</th>
+              <th scope="col">status</th>
+            </tr>
           </thead>
           <tbody>
             <tr *ngFor="let attendance of attendanceData">
@@ -31,19 +29,24 @@
               <td>{{ attendance.time_of_check_in }}</td>
               <td>{{ attendance.time_of_check_out }}</td>
               <td>{{ attendance.date_of_work }}</td>
-              <td>{{ attendance.status === 0 ? "Đã check in" : "Đã check out" }}</td>
+              <td *ngIf="attendance.status == 1">
+                <span class="text-success">Work</span>
+              </td>
+              <td *ngIf="attendance.status !== 1">
+                <span class="text-danger">Off</span>
+              </td>
             </tr>
           </tbody>
         </table>
-        <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page"
+        <!-- <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page"
           [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
-          (pageChange)="handlePaginate($event)"></ngb-pagination>
+          (pageChange)="handlePaginate($event)"></ngb-pagination> -->
         <div class="d-flex">
-          <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
+          <!-- <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
             <div class="spinner-grow text-success" role="status">
               <span class="sr-only">Loading...</span>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

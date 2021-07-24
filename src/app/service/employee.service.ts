@@ -25,4 +25,14 @@ export class EmployeeService {
   getListUser(): Observable<any> {
     return this.http.get(this.URL_API + '/getListUser');
   }
+
+  getAllUser(): Observable<any>{
+    return this.http.get(this.URL_API + '/listAll')
+  }
+   ChangePassword(object: any): Observable<any> {
+    return this.http.post(this.URL_API + '/changepassword', object)
+  }
+
+
+
 }

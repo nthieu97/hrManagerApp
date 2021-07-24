@@ -8,22 +8,29 @@ import { environment } from 'src/environments/environment';
 export class TimeOffService {
   constructor(private http: HttpClient) {}
   API_URL = environment.baseURL + 'lichxinnghi';
-  getAllTimeOff(keyword: any): Observable<any> {
-    if (keyword.length > 0) {
-      return this.http.get(this.API_URL + '?keyword=' + keyword);
-    }
+  getAllTimeOff(): Observable<any> {
+    // if (keyword.length > 0) {
+    //   return this.http.get(this.API_URL + '?keyword=' + keyword);
+    // }
     return this.http.get(this.API_URL);
   }
   createTimeOff(object: any): Observable<any> {
     return this.http.post<any>(this.API_URL + '/create/', object);
   }
   getDetailTimeOff(id: string): Observable<any> {
-    return this.http.get(this.API_URL + '/getdetail/' + id);
+    return this.http.get(this.API_URL + '/getdetail/' + id, {});
   }
   deleteTimeOff(id: string): Observable<any> {
     return this.http.post(this.API_URL + '/delete/' + id, {});
   }
-  updatePosition(id: string): Observable<any> {
-    return this.http.post(this.API_URL + '/update/' + id, {});
+  updateTimeOff(id: string, object: any): Observable<any> {
+    return this.http.post(this.API_URL + '/update_leave/' + id, { object });
+  }
+  getTotalDay(): Observable<any> {
+    return this.http.get(this.API_URL + '/total_day/', {});
+  }
+
+  getAllByUser(): Observable<any> {
+    return this.http.get(this.API_URL + '/getAllByUser/', {});
   }
 }
