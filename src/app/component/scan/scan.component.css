@@ -24,3 +24,8 @@
   left: 62px;
   position: absolute;
 }
+.card {
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  padding: 1em;
+}

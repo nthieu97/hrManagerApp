@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Employee } from 'src/app/model/employee.model';
+import { Employee, EmployeeRequestBody } from 'src/app/model/employee.model';
 @Injectable({
   providedIn: 'root',
 })
@@ -18,7 +18,7 @@ export class EmployeeService {
   deleteEmployee(id: string): Observable<any> {
     return this.http.delete(this.URL_API + '/delete/' + id);
   }
-  store(object: Employee): Observable<Employee> {
+  store(object: EmployeeRequestBody): Observable<Employee> {
     return this.http.post<Employee>(this.URL_API + '/create', object);
   }
 
@@ -26,13 +26,10 @@ export class EmployeeService {
     return this.http.get(this.URL_API + '/getListUser');
   }
 
-  getAllUser(): Observable<any>{
-    return this.http.get(this.URL_API + '/listAll')
+  getAllUser(): Observable<any> {
+    return this.http.get(this.URL_API + '/listAll');
   }
-   ChangePassword(object: any): Observable<any> {
-    return this.http.post(this.URL_API + '/changepassword', object)
+  ChangePassword(object: any): Observable<any> {
+    return this.http.post(this.URL_API + '/changepassword', object);
   }
-
-
-
 }

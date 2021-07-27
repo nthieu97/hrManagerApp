@@ -19,7 +19,7 @@ export class ScanComponent implements OnInit {
   ) {}
   availableDevices: MediaDeviceInfo[];
   currentDevice: MediaDeviceInfo = null;
-
+  userResponse: ScanData;
   hasDevices: boolean;
   hasPermission: boolean;
   activeScan = true;
@@ -27,7 +27,7 @@ export class ScanComponent implements OnInit {
   torchEnabled = false;
   torchAvailable$ = new BehaviorSubject<boolean>(false);
   tryHarder = false;
-  scanResponseData: ScanData[] = [];
+
   onCamerasFound(devices: MediaDeviceInfo[]): void {
     this.availableDevices = devices;
     this.hasDevices = Boolean(devices && devices.length);
@@ -36,24 +36,21 @@ export class ScanComponent implements OnInit {
   onCodeResult(resultString: string): void {
     this.qrResultString = resultString;
 
-    this.attendanceService
-      .handleAttendance(this.qrResultString)
-      .pipe(debounceTime(1000))
-      .subscribe(
-        (data: ScanResponse) => {
-          this.toastService.show(data.message, {
-            classname: 'bg-success text-light',
-            delay: 3000,
-          });
-          this.scanResponseData.push(data.data);
-        },
-        (err: any) => {
-          this.toastService.show(err.message, {
-            classname: 'bg-danger text-light',
-            delay: 3000,
-          });
-        }
-      );
+    this.attendanceService.handleAttendance(this.qrResultString).subscribe(
+      (data: ScanResponse) => {
+        this.toastService.show(data.message, {
+          classname: 'bg-success text-light',
+          delay: 3000,
+        });
+        this.userResponse = data.data;
+      },
+      (err: any) => {
+        this.toastService.show(err.message, {
+          classname: 'bg-danger text-light',
+          delay: 3000,
+        });
+      }
+    );
   }
   handleNotFoundCamera(event: Event): void {
     this.toastService.show(

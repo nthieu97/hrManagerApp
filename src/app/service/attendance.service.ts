@@ -11,7 +11,7 @@ export class AttendanceService {
   constructor(private http: HttpClient) {}
   URL_API = environment.baseURL + 'lichchamcong';
   handleAttendance(qrcode: string): Observable<any> {
-    return this.http.post(environment.baseURL + 'diemdanh', {
+    return this.http.post(this.URL_API + '/diemdanh', {
       code_QR: qrcode,
     });
   }

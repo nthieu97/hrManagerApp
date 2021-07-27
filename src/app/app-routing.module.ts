@@ -93,6 +93,10 @@ const routes: Routes = [
         component: EmployeeFormComponent,
       },
       {
+        path: 'my-time-off',
+        component: TimeOffComponent,
+      },
+      {
         path: 'time-off',
         component: TimeOffComponent,
         canActivate: [AdminGuard],

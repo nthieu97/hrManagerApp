@@ -37,8 +37,8 @@ import { PrizeFineFormComponent } from './component/prize-fine-form/prize-fine-f
 import { ChangePasswordComponent } from './component/change-password/change-password.component';
 import { TimeOffListComponent } from './component/time-off-list/time-off-list.component';
 import { ListOtComponent } from './component/list-ot/list-ot.component';
-import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
-import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component'
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -56,10 +56,8 @@ FullCalendarModule.registerPlugins([
     EmployeesComponent,
     AttendanceComponent,
     AtendanceAnalyticsComponent,
-
     PositionsComponent,
     PositionAddFormComponent,
-
     SalariesComponent,
     ToastComponent,
     DepartmentComponent,
@@ -74,8 +72,6 @@ FullCalendarModule.registerPlugins([
     TimeOffListComponent,
     ListOtComponent,
     ForgotPasswordComponent,
-
-
   ],
   imports: [
     BrowserModule,
@@ -90,7 +86,7 @@ FullCalendarModule.registerPlugins([
     HttpClientModule,
     FullCalendarModule,
     ReactiveFormsModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

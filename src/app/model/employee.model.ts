@@ -23,3 +23,15 @@ export interface Employee {
   positionId: string;
   deparmentId: string;
 }
+
+export interface EmployeeRequestBody {
+  user_account: string;
+  full_name: string;
+  email: string;
+  department_id: number;
+  position_id: number;
+  role_id: number;
+  phone: number;
+  avatar?: FormData;
+  basic_salary: number;
+}

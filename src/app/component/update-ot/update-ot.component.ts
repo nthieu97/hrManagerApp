@@ -6,68 +6,55 @@ import { AttendanceService } from 'src/app/service/attendance.service';
 @Component({
   selector: 'app-update-ot',
   templateUrl: './update-ot.component.html',
-  styleUrls: ['./update-ot.component.css']
+  styleUrls: ['./update-ot.component.css'],
 })
 export class UpdateOtComponent implements OnInit {
-dropdownSettings:IDropdownSettings={} ;
+  dropdownSettings: IDropdownSettings = {};
   selectedItems = [];
   dropdownList = [];
   formOT: FormGroup;
-  listItem = []
-  constructor(private employeeService: EmployeeService,private attenService:AttendanceService)
-  {
+  listItem = [];
+  constructor(
+    private employeeService: EmployeeService,
+    private attenService: AttendanceService
+  ) {
     this.formOT = this.createForm();
   }
 
   ngOnInit(): void {
     this.employeeService.getAllUser().subscribe((data) => {
       console.log(data.data);
-      this.dropdownList = data.data
+      this.dropdownList = data.data;
     });
     this.selectedItems = [];
 
-     this.dropdownSettings = {
+    this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
       textField: 'user_account',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
-      allowSearchFilter: true
+      allowSearchFilter: true,
     };
-
   }
 
-  createForm() {
+  createForm(): FormGroup {
     return new FormGroup({
-        listUsers:new FormControl('',Validators.required)
-      })
+      listUsers: new FormControl('', Validators.required),
+    });
   }
-  get f() {
-    return this.formOT.controls
-  }
-
-  onItemSelect(item: any) {
-    console.log(item);
-    this.listItem.push(item)
-    console.log(this.listItem);
-
-  }
-  onSelectAll(items: any) {
-    console.log(items);
-    this.listItem.push(items)
-    console.log(this.listItem);
-
+  get f(): any {
+    return this.formOT.controls;
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    this.attenService.updateOT(this.listItem).subscribe((data) => {
-        console.log(data.user_id);
-
-      })
+  onItemSelect(item: any): void {
+    this.listItem.push(item);
   }
-
-
-
+  onSelectAll(items: any): void {
+    this.listItem.push(items);
+  }
+  handleSubmit() {
+    this.attenService.updateOT(this.listItem).subscribe((data) => {});
+  }
 }

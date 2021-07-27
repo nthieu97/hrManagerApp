@@ -6,12 +6,12 @@
     </div>
 
     <div class="tools">
-      <div class="tools__scan" *ngIf="isAdmin">
+      <!-- <div class="tools__scan" *ngIf="isAdmin">
         <a [routerLink]="['/', 'scan']"
           ><span class="material-icons">qr_code_scanner</span> Scan
           Attendance</a
         >
-      </div>
+      </div> -->
       <div class="tools_newtask" ngbDropdown>
         <a tabindex="0" ngbDropdownToggle id="navbarDropdown1" role="button">
           <span class="material-icons">add</span>
@@ -29,7 +29,11 @@
             ><span class="material-icons">people</span> Add Employee</a
           >
 
-          <a ngbDropdownItem href="#" (click)="$event.preventDefault()">
+          <a
+            ngbDropdownItem
+            [routerLink]="['/', 'time-off-add']"
+            (click)="$event.preventDefault()"
+          >
             <span class="material-icons">verified</span> Add permisson</a
           >
         </div>

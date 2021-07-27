@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { EmployeeService } from 'src/app/service/employee.service';
 import { DepartmentService } from 'src/app/service/department.service';
 import { PositionService } from 'src/app/service/position.service';
+import { EmployeeRequestBody } from 'src/app/model/employee.model';
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
@@ -13,50 +19,79 @@ import { PositionService } from 'src/app/service/position.service';
 export class EmployeeFormComponent implements OnInit {
   positions = [];
   departments = [];
-  employeeForm: FormGroup;
+  newEmployeeForm!: FormGroup;
   constructor(
     private router: Router,
     private employeeService: EmployeeService,
     private positionService: PositionService,
-    private departmentService: DepartmentService
+    private departmentService: DepartmentService,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.employeeForm = new FormGroup({
-      name: new FormControl(),
-      address: new FormControl(),
-      positionId: new FormControl(),
-      departmentId: new FormControl(),
-      peopleID: new FormControl(),
-      gender: new FormControl(),
-      email: new FormControl(),
+    this.newEmployeeForm = this.fb.group({
+      user_account: [
+        '',
+        [Validators.required, Validators.max(15), Validators.min(6)],
+      ],
+      email: ['', [Validators.required, Validators.email]],
+      department: ['', [Validators.required]],
+      position: ['', [Validators.required]],
+      role_id: [3, [Validators.required]],
+      address: ['', [Validators.required]],
+      full_name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(11),
+          Validators.maxLength(99),
+        ],
+      ],
+      phone: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(9),
+          Validators.maxLength(12),
+        ],
+      ],
+      avatar: [''],
+      basic_salary: [7000000, [Validators.required]],
     });
-
-    this.getPosition(), this.getDepartment();
+    this.getDepartment();
+    this.getPosition();
   }
 
   getPosition(): void {
     this.positionService.getAllPosition().subscribe((data) => {
-      console.log(data.data);
       this.positions = data.data;
     });
   }
 
   getDepartment(): void {
     this.departmentService.getAllDepartment().subscribe((data) => {
-      console.log(data.data);
       this.departments = data.data;
     });
   }
-
-  // tslint:disable-next-line: typedef
-  get f() {
-    return this.employeeForm.controls;
-  }
-
   submitForm(): void {
-    this.employeeService.store(this.employeeForm.value).subscribe((data) => {
-      console.log(this.employeeForm.value, data);
-    });
+    const formValue = this.newEmployeeForm.value;
+    const requestBody: EmployeeRequestBody = {
+      user_account: formValue.user_account,
+      full_name: formValue.full_name,
+      email: formValue.email,
+      department_id: Number(formValue.department),
+      position_id: Number(formValue.position),
+      role_id: formValue.role_id,
+      phone: formValue.phone,
+      basic_salary: formValue.basic_salary,
+    };
+    this.employeeService.store(requestBody).subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (err) => {
+        console.log(err.message);
+      }
+    );
   }
 }
