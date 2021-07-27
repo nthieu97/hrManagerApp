@@ -1,0 +1,44 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb" style="padding: 0; margin: 0">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Salaries</li>
+    </ol>
+  </nav>
+  
+  <div class="sala-detail">
+    <h3>Salaries Detail</h3>
+    <Table class="table">
+      <thead>
+        <th>#</th>
+        <th>Total gross salary</th>
+        <th>Total salary leave</th>
+        <th>Total net salary</th>
+        <th>Status</th>
+        <th>Date</th>
+        <th>Total days work</th>
+        <th>Total days off</th>
+        <th>Total day mode</th>
+        <th>Total money fine</th>
+        <th>Total money prize</th>
+        <!-- <th>Action</th> -->
+      </thead>
+      <tbody >
+        <tr >
+          <td>{{salaryDetail.id }}</td>
+          <td>{{salaryDetail.total_gross_salary|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
+          <td>{{salaryDetail.total_salary_leave|currency:'VND':'symbol':'1.0-0':'vi-VN'}}</td>
+          <td>{{salaryDetail.total_net_salary|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
+          <td>{{salaryDetail.status == 0 ? "Chưa trả" : "Đã trả"}}</td>
+          <td>{{salaryDetail.date}}</td>
+          <td>{{salaryDetail.total_day_to_work}}</td>
+          <td>{{salaryDetail.total_day_leave}}</td>
+          <td>{{salaryDetail.total_day_mode}}</td>
+          <td>{{salaryDetail.total_money_fine|currency:'VND':'symbol':'1.0-0':'vi-VN'}}</td>
+          <td>{{salaryDetail.total_money_prize|currency:'VND':'symbol':'1.0-0':'vi-VN'}}</td>
+          <td>
+          
+          </td>
+        </tr>
+      </tbody>
+    </Table>
+  </div>

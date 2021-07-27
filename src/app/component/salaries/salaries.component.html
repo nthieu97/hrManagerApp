@@ -10,21 +10,25 @@
   <Table class="table">
     <thead>
       <th>#</th>
-      <th>Name</th>
-      <th>Image</th>
-      <th>Position</th>
-      <th>Salary</th>
-      <th>Action</th>
+      <th>Full name</th>
+      <th>Total gross salary</th>
+      <th>Total salary leave</th>
+      <th>Total net salary</th>
+      <th>Status</th>
+      <th>Date</th>
+      <th *ngIf="isAdmin">Action</th>
     </thead>
     <tbody>
       <tr *ngFor="let salary of salaries">
         <td>{{ salary.id }}</td>
-        <td>{{ salary.name }}</td>
-        <td><img [src]="salary.image" alt="" /></td>
-        <td>{{ salary.position }}</td>
-        <td>{{ salary.salary }}</td>
-        <td>
-          <button class="btn btn-primary" [routerLink]="['/', '']">
+        <td>{{salary.full_name}}</td>
+        <td>{{ salary.total_gross_salary|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
+        <td>{{ salary.total_salary_leave|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
+        <td>{{ salary.total_net_salary |currency:'VND':'symbol':'1.0-0':'vi-VN'}}</td>
+        <td>{{salary.status == 0 ? "Chưa trả" : "Đã trả"}}</td>
+        <td>{{salary.date}}</td>
+        <td *ngIf="isAdmin">
+          <button class="btn btn-primary" [routerLink]="['/salaryDetail/'+ salary.id]">
             Detail
           </button>
         </td>
@@ -32,3 +36,8 @@
     </tbody>
   </Table>
 </div>
+
+<!-- --paginate -->
+<!-- <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="pageIndex"
+[maxSize]="49" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
+(pageChange)="pageChange($event)"></ngb-pagination> -->

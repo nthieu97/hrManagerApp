@@ -102,13 +102,33 @@
         >
       </div>
       <div class="sidebar__item">
-        <a
-          [routerLink]="['/', 'salaries']"
-          class="side-bar__link"
-          routerLinkActive="sidebar__active"
-          ><span class="material-icons"> request_quote </span> Salaries</a
+        <a class="side-bar__link dropdown" (click)="toggleDropdownSalaries()"
+          ><span class="material-icons"> request_quote </span>  Salaries
+          <span class="material-icons">{{
+            !dropdown ? "expand_more" : "expand_less"
+          }}</span></a
         >
-      </div>
+        <ul class="sidebar__dropdown" *ngIf="dropdownSalaries">
+          <li class="dropdow__item">
+            <a
+              [routerLink]="['/', 'mySalaries']"
+              routerLinkActive="sidebar__active"
+              class="dropdown__link"
+            >
+              <span class="material-icons">money_off</span> My Salaries</a
+            >
+          </li>
+          <li class="dropdow__item" *ngIf="isAdmin">
+            <a
+              [routerLink]="['/', 'salaries']"
+              class="dropdown__link"
+              routerLinkActive="sidebar__active"
+              ><span class="material-icons">view_list</span>Salaries Employee</a
+            >
+          </li>
+        </ul>
+      </div> 
+     
       <!-- <div class="sidebar__item">
         <a
           [routerLink]="['/', 'my-time-off']"

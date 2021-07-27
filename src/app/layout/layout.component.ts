@@ -11,6 +11,7 @@ import { AuthService } from '../service/auth.service';
 export class LayoutComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
   dropdown = false;
+  dropdownSalaries=false;
   dropOT = false;
   dropTime = false
   isAdmin;
@@ -27,6 +28,9 @@ export class LayoutComponent implements OnInit {
   }
   toggleDropdownTime(): void {
     this.dropTime = !this.dropTime
+  }
+  toggleDropdownSalaries(): void {
+    this.dropdownSalaries = !this.dropdownSalaries
   }
   logOut(): void {
     this.authService.logOut();

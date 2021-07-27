@@ -1,0 +1,19 @@
+.salary-us{
+    padding: 30px 20px;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    text-align: center;
+    margin-top: 1rem;
+    box-shadow: var(--box-shadow);
+  }
+  .salaries img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  table {
+    margin: 20px 0;
+  }
+  table th {
+    color: var(--primary-color);
+}

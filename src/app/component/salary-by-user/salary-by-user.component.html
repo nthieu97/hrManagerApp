@@ -1,0 +1,34 @@
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb" style="padding: 0; margin: 0">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Salaries</li>
+    </ol>
+  </nav>
+  
+  <div class="salary-us">
+    <h3>Salaries User</h3>
+    <Table class="table">
+      <thead>
+        <th>#</th>
+        <th>Full name</th>
+        <th>Total salary</th>
+        <th>Total salary leave</th>
+        <th>Salary minus tax</th>
+        <th>Status</th>
+        <th>Date</th>
+        
+      </thead>
+      <tbody>
+        <tr *ngFor="let salaUs of salaUser">
+          <td>{{salaUs.id }}</td>
+          <td>{{salaUs.full_name}}</td>
+          <td>{{salaUs.total_gross_salary|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
+          <td>{{salaUs.total_salary_leave|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
+          <td>{{salaUs.total_net_salary|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
+          <td>{{salaUs.status == 0 ? "Chưa trả" : "Đã trả"}}</td>
+          <td>{{salaUs.date}}</td>
+        </tr>
+      </tbody>
+    </Table>
+  </div>
