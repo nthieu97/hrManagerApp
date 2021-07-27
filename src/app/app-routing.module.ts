@@ -36,8 +36,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path:'mySalaries',
-        component:SalaryByUserComponent,
+        path: 'mySalaries',
+        component: SalaryByUserComponent,
       },
       { path: 'scan', component: ScanComponent, canActivate: [ScanGuard] },
       {
@@ -80,8 +80,8 @@ const routes: Routes = [
         component: SalariesComponent,
       },
       {
-        path : 'salaryDetail/:id',
-        component : SalaryDetailComponent,
+        path: 'salaryDetail/:id',
+        component: SalaryDetailComponent,
       },
       {
         path: 'departments',
