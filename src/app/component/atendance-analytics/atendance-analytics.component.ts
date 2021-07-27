@@ -8,6 +8,7 @@ import { AttendanceService } from 'src/app/service/attendance.service';
 })
 export class AtendanceAnalyticsComponent implements OnInit {
   listAllAtten = [];
+  
   constructor(private attenService: AttendanceService) {}
   // tslint:disable-next-line: variable-name
   multi = [
