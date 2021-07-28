@@ -88,7 +88,7 @@
                 userResponse ? userResponse.get_user_name.user_account : "User"
               }}
             </h3>
-            <div class="spinner-border ml-2" role="status">
+            <div class="spinner-border ml-2" *ngIf="loading" role="status">
               <span class="sr-only">Loading...</span>
             </div>
           </div>

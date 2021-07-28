@@ -19,12 +19,7 @@
       <span class="text-danger" *ngIf="idTimeOff">
         ( {{ this.TimeOffForm.value.time_start | date: "yyyy/MM/dd" }} )</span
       >
-      <input
-        class="form-control"
-        type="date"
-        formControlName="time_start"
-        id=""
-      />
+      <input class="form-control" type="date" formControlName="time_start" />
     </div>
     <div
       *ngIf="

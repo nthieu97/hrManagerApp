@@ -58,7 +58,7 @@
           aria-labelledby="navbarDropdown2"
           class="tools_newtask__list"
         >
-          <a ngbDropdownItem href="#" (click)="$event.preventDefault()"
+          <a ngbDropdownItem [routerLink]="['/', 'employee', user.id]"
             >Detail</a
           >
           <a ngbDropdownItem [routerLink]="['/', 'change-password']"
@@ -107,7 +107,7 @@
       </div>
       <div class="sidebar__item">
         <a class="side-bar__link dropdown" (click)="toggleDropdownSalaries()"
-          ><span class="material-icons"> request_quote </span>  Salaries
+          ><span class="material-icons"> request_quote </span> Salaries
           <span class="material-icons">{{
             !dropdown ? "expand_more" : "expand_less"
           }}</span></a
@@ -131,8 +131,8 @@
             >
           </li>
         </ul>
-      </div> 
-     
+      </div>
+
       <!-- <div class="sidebar__item">
         <a
           [routerLink]="['/', 'my-time-off']"

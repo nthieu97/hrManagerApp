@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  ConfirmListResponse,
+  ConfirmResponse,
+} from 'src/app/model/dashboard.model';
 import { User } from 'src/app/model/user.model';
 import { AuthService } from 'src/app/service/auth.service';
+import { DashboardService } from 'src/app/service/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -106,13 +111,33 @@ export class DashboardComponent implements OnInit {
     { name: 'BA', value: 1 },
   ];
   isAdmin: boolean;
-  username: string;
-  constructor(private authService: AuthService) {}
+  confirmList: ConfirmResponse[] = [];
+  constructor(
+    private authService: AuthService,
+    private dashboardService: DashboardService
+  ) {}
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin();
-    this.username = this.authService.getCurrentUser().user_account;
+    if (this.isAdmin) {
+      this.dashboardService
+        .showListConfirm()
+        .subscribe((data: ConfirmListResponse) => {
+          this.confirmList = data.data;
+          console.log(data);
+        });
+    }
   }
   onSelect(data): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));
+  }
+  handleAprove(id: string) {
+    this.dashboardService.acceptLeave(id).subscribe((data) => {
+      console.log(data);
+    });
+  }
+  handleReject(id: string) {
+    this.dashboardService.rejectLeave(id).subscribe((data) => {
+      console.log(data);
+    });
   }
 }

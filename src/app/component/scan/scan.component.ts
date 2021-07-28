@@ -21,6 +21,7 @@ export class ScanComponent implements OnInit {
   currentDevice: MediaDeviceInfo = null;
   userResponse: ScanData;
   hasDevices: boolean;
+  loading = false;
   hasPermission: boolean;
   activeScan = true;
   qrResultString: string;
@@ -35,9 +36,10 @@ export class ScanComponent implements OnInit {
 
   onCodeResult(resultString: string): void {
     this.qrResultString = resultString;
-
+    this.loading = true;
     this.attendanceService.handleAttendance(this.qrResultString).subscribe(
       (data: ScanResponse) => {
+        this.loading = true;
         this.toastService.show(data.message, {
           classname: 'bg-success text-light',
           delay: 3000,
@@ -45,6 +47,7 @@ export class ScanComponent implements OnInit {
         this.userResponse = data.data;
       },
       (err: any) => {
+        this.loading = true;
         this.toastService.show(err.message, {
           classname: 'bg-danger text-light',
           delay: 3000,

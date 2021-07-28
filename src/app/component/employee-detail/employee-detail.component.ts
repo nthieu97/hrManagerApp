@@ -28,7 +28,6 @@ export class EmployeeDetailComponent implements OnInit {
       const id = params.id;
       this.employeeService.getUserById(id).subscribe((res) => {
         this.userInfo = res.data;
-        console.log(res);
       });
     });
   }

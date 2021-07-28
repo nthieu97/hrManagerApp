@@ -12,7 +12,6 @@ export class TimeOffListComponent implements OnInit {
 
   ngOnInit(): void {
     this.timeOffService.getAllTimeOff().subscribe((data) => {
-      console.log(data);
       this.listTimeOff = data.data;
     });
   }

@@ -45,6 +45,13 @@ export class AuthService {
     }
     return false;
   }
+  isLeader(): boolean {
+    const role_id = this.user.value.role_id;
+    if (role_id === 4) {
+      return true;
+    }
+    return false;
+  }
   isAttendanceRole(): boolean {
     const role_id = this.user.value.role_id;
     if (role_id === 5) {

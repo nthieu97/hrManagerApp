@@ -24,6 +24,9 @@ img.task-list__img {
   justify-content: space-evenly;
   margin-left: -3em;
 }
+.task-list__link a {
+  cursor: pointer;
+}
 
 .task-list__body thead {
   color: var(--primary-color);
