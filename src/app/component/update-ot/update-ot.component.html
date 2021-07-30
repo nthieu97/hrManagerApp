@@ -17,7 +17,9 @@
       [data]="dropdownList"
       [(ngModel)]="selectedItems"
       (onSelect)="onItemSelect($event)"
+      (onDeSelect)="onDeSelect($event)"
       (onSelectAll)="onSelectAll($event)"
+      (onDeSelectAll)="onDeSelectAll($event)"
       formControlName="listUsers"
     >
     </ng-multiselect-dropdown>

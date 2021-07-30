@@ -142,6 +142,12 @@ const routes: Routes = [
         component: PrizeFineFormComponent,
         canActivate: [AdminGuard],
       },
+      {
+        path: 'prize-fine-edit/:id',
+        component: PrizeFineFormComponent,
+        canActivate: [AdminGuard],
+      },
+
     ],
   },
   { path: 'login', component: LoginComponent },

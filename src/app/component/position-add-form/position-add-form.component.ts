@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResponePosition } from 'src/app/model/position.model';
 import { PositionService } from 'src/app/service/position.service';
+import { ToastsService } from 'src/app/service/toasts.service';
 
 export class Position {
   public namePosition: string;
@@ -16,7 +17,8 @@ export class PositionAddFormComponent implements OnInit {
   constructor(
     private atr: ActivatedRoute,
     private positionService: PositionService,
-    private router: Router
+    private router: Router,
+    private toastService:ToastsService
   ) {}
 
   idPosition: string;
@@ -38,12 +40,32 @@ export class PositionAddFormComponent implements OnInit {
     if (this.idPosition && name !== '') {
       this.positionService
         .updatePosition(this.idPosition, name)
-        .subscribe(() => {
+        .subscribe((data) => {
+          this.toastService.show(data.message,{
+            classname:'bg-success text-light',
+            delay:3000
+          }),
+          (err:any)=>{
+            this.toastService.show(err.message,{
+              classname:'bg-danger text-light',
+              delay:3000
+            })
+          }
           this.router.navigate(['/', 'positions']);
         });
       return;
     }
-    this.positionService.createPosition(name).subscribe(() => {
+    this.positionService.createPosition(name).subscribe((data) => {
+      this.toastService.show('Thêm Chức Vụ Thành Công',{
+        classname:'bg-success text-light',
+        delay:3000
+      }),
+      (err:any)=>{
+        this.toastService.show('Không Thể Thêm Chức Vụ',{
+          classname:'bg-danger text-light',
+          delay:3000
+        })
+      }
       this.router.navigate(['/', 'positions']);
     });
     if (name === '') {

@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TimeOffService } from 'src/app/service/time-off.service';
 import { TimeOff } from 'src/app/model/timeOff.model';
 import { TimeOffResponse } from 'src/app/model/timeOff.model';
+import { ToastsService } from 'src/app/service/toasts.service';
 
 @Component({
   selector: 'app-time-off-add',
@@ -22,11 +23,12 @@ export class TimeOffAddComponent implements OnInit {
   idTimeOff: string;
   totalDay: number;
   totalDayOff: number;
-
+  today = new Date()
   constructor(
     private timeoffservice: TimeOffService,
     private router: Router,
-    private atr: ActivatedRoute
+    private atr: ActivatedRoute,
+    private toastService:ToastsService
   ) {}
 
   getTotalDay(): void {
@@ -80,13 +82,33 @@ export class TimeOffAddComponent implements OnInit {
     if (this.idTimeOff) {
       this.timeoffservice
         .updateTimeOff(this.idTimeOff, this.TimeOffForm.value)
-        .subscribe(() => {
+        .subscribe((data) => {
+          this.toastService.show(data.message,{
+            classname:'bg-success text-light',
+            delay:3000
+          }),
+          (err:any)=> {
+            this.toastService.show(err.message,{
+              classname:'bg-danger text-light',
+              delay:3000
+            })
+          }
           this.router.navigate(['/', 'my-time-off']);
         });
     }
     this.timeoffservice
       .createTimeOff(this.TimeOffForm.value)
       .subscribe((data) => {
+        this.toastService.show(data.message,{
+          classname:'bg-success text-light',
+          delay:3000
+        }),
+        (err:any)=> {
+          this.toastService.show(err.message,{
+            classname:'bg-danger text-light',
+            delay:3000
+          })
+        }
         this.router.navigate(['/', 'my-time-off']);
       });
   }
