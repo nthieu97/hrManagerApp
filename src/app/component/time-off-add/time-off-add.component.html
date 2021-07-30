@@ -16,10 +16,10 @@
   <form (ngSubmit)="submitForm()" [formGroup]="TimeOffForm">
     <div class="form-group">
       <label for="">Time Start</label>
-      <span class="text-danger" *ngIf="idTimeOff">
+      <!-- <span class="text-danger" *ngIf="idTimeOff">
         ( {{ this.TimeOffForm.value.time_start | date: "yyyy/MM/dd" }} )</span
-      >
-      <input class="form-control" type="date" formControlName="time_start" />
+      > -->
+      <input class="form-control" type="date" formControlName="time_start" min="{{today | date:'yyyy-MM-dd'}}"/>
     </div>
     <div
       *ngIf="
@@ -32,14 +32,15 @@
 
     <div class="form-group">
       <label for="">Time End</label>
-      <span class="text-danger" *ngIf="idTimeOff">
+      <!-- <span class="text-danger" *ngIf="idTimeOff">
         ( {{ this.TimeOffForm.value.time_end | date: "yyyy/MM/dd" }} )</span
-      >
+      > -->
       <input
         class="form-control"
         type="date"
         formControlName="time_end"
         id=""
+        min="{{today | date:'yyyy-MM-dd'}}"
       />
     </div>
     <div
@@ -64,7 +65,7 @@
     >
       <div *ngIf="f.note.errors?.required">Note is required.</div>
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="(totalDay - totalDayOff == 0)" disabled>
       <label for="">Paid Leave</label>
       <input
         class="ml-2"

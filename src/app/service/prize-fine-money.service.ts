@@ -27,7 +27,7 @@ export class PrizeFineMoneyService {
   deletePrizeFine(id: string): Observable<any> {
     return this.http.post(this.URL_API + '/delete/'+id,{})
   }
-  updatePrizeFine(object:any): Observable<any>{
+  updatePrizeFine(id:string,object:any): Observable<any>{
     return this.http.post(this.URL_API + '/update/'+id,{object})
   }
 
