@@ -22,4 +22,10 @@ export class DashboardService {
   rejectLeave(id: string): Observable<any> {
     return this.http.post(this.URL_API + 'comfig/' + id, {});
   }
+  totalUserTeam(): Observable<any> {
+    return this.http.get(this.URL_API + 'total_user_team_work_leave');
+  }
+  getSalaryByMonth(): Observable<any> {
+    return this.http.get(this.URL_API + 'luong_theo_thang');
+  }
 }

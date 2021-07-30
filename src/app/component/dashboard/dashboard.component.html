@@ -60,7 +60,7 @@
         <div class="task-list__body">
           <table class="table my-custom-scrollbar">
             <thead>
-              <tr>
+              <tr class="text-center">
                 <th scope="col">#</th>
                 <th scope="col">Employee Name</th>
                 <th scope="col">Image</th>
@@ -69,7 +69,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let confirm of confirmList">
+              <tr
+                class="text-center"
+                *ngFor="let confirm of confirmList; let i = index"
+              >
                 <th scope="row">{{ confirm.id }}</th>
                 <td>{{ confirm?.full_name }}</td>
                 <td>
@@ -85,26 +88,37 @@
                 </td>
                 <td>{{ confirm.note }}</td>
                 <td>
-                  <div class="task-list__link">
+                  <div class="task-list__link tex-center">
                     <a
-                      (click)="handleAprove(confirm.id)"
+                      (click)="handleAprove(confirm.id, i)"
                       class="task-list__approve"
                       ><span class="material-icons">done</span>
                     </a>
                     <a
-                      (click)="handleReject(confirm.id)"
+                      (click)="handleReject(confirm.id, i)"
                       class="task-list__decline"
                       ><span class="material-icons">thumb_down_off_alt</span>
                     </a>
-                    <a href="" class="task-list__watch"
+                    <!-- <a href="" class="task-list__watch"
                       ><span class="material-icons">visibility</span>
-                    </a>
+                    </a> -->
                   </div>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
+        <div class="d-flex justify-content-center" *ngIf="loadListConfirm">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <p
+          *ngIf="confirmList.length === 0 && !this.loadListConfirm"
+          class="d-flex justify-content-center align-items-center"
+        >
+          Không có đơn nào
+        </p>
       </div>
       <!-- end-task-list -->
     </div>
@@ -218,21 +232,20 @@
       <!-- end-calendar -->
       <div class="attendace__analytic">
         <h3 class="text-center">Thống kê đi làm nhân viên</h3>
-        <ngx-charts-bar-vertical-stacked
-          [view]="viewAttendance"
+        <ngx-charts-line-chart
+          [view]="viewSalary"
           [scheme]="colorScheme"
-          [results]="multi"
-          [gradient]="false"
+          [legend]="false"
+          [showXAxisLabel]="'Lương'"
+          [showYAxisLabel]="'Tháng'"
           [xAxis]="true"
           [yAxis]="true"
-          [legend]="false"
-          [barPadding]="10"
-          [showXAxisLabel]="true"
-          [showYAxisLabel]="true"
-          [animations]="true"
-          (select)="onSelect($event)"
+          [xAxisLabel]="true"
+          [yAxisLabel]="true"
+          [timeline]="true"
+          [results]="multi"
         >
-        </ngx-charts-bar-vertical-stacked>
+        </ngx-charts-line-chart>
       </div>
     </div>
     <div class="col-4">

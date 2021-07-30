@@ -21,11 +21,11 @@ img.task-list__img {
 }
 .task-list__link {
   display: flex;
-  justify-content: space-evenly;
-  margin-left: -3em;
+  justify-content: center;
 }
 .task-list__link a {
   cursor: pointer;
+  margin: 0 1em;
 }
 
 .task-list__body thead {
@@ -43,8 +43,7 @@ a.task-list__decline {
 a.task-list__watch {
   color: var(--dark-color);
 }
-.my-custom-scrollbar {
-}
+
 /*End Dashboard my-task */
 /* dashboard-sumary */
 .sumary__item.people {

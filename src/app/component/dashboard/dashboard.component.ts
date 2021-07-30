@@ -6,6 +6,7 @@ import {
 import { User } from 'src/app/model/user.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { DashboardService } from 'src/app/service/dashboard.service';
+import { ToastsService } from 'src/app/service/toasts.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,91 +15,13 @@ import { DashboardService } from 'src/app/service/dashboard.service';
 })
 export class DashboardComponent implements OnInit {
   single: any[];
-  multi = [
-    {
-      name: 'thu hai',
-      series: [
-        {
-          name: 'di lam',
-          value: 22,
-        },
-        {
-          name: 'ko di lam',
-          value: 1,
-        },
-      ],
-    },
-
-    {
-      name: 'thu ba',
-      series: [
-        {
-          name: 'di lam',
-          value: 21,
-        },
-        {
-          name: 'ko di lam',
-          value: 2,
-        },
-      ],
-    },
-
-    {
-      name: 'thu tu ',
-      series: [
-        {
-          name: 'di lam',
-          value: 20,
-        },
-        {
-          name: 'ko di lam',
-          value: 3,
-        },
-      ],
-    },
-    {
-      name: 'thu nam',
-      series: [
-        {
-          name: 'di lam',
-          value: 17,
-        },
-        {
-          name: 'ko di lam',
-          value: 6,
-        },
-      ],
-    },
-    {
-      name: 'thu sau',
-      series: [
-        {
-          name: 'di lam',
-          value: 23,
-        },
-        {
-          name: 'ko di lam',
-          value: 0,
-        },
-      ],
-    },
-    {
-      name: 'thu bay',
-      series: [
-        {
-          name: 'di lam',
-          value: 23,
-        },
-        {
-          name: 'ko di lam',
-          value: 0,
-        },
-      ],
-    },
-  ];
+  multi = [];
+  xAxisLabel = 'Tháng';
+  yAxisLabel = 'Lương nhân viên ';
+  timeline = true;
   // options
-  view = [396, 350];
-  viewAttendance = [800, 550];
+  view = [300, 350];
+  viewSalary = [750, 550];
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
@@ -112,32 +35,52 @@ export class DashboardComponent implements OnInit {
   ];
   isAdmin: boolean;
   confirmList: ConfirmResponse[] = [];
+  loadListConfirm = false;
   constructor(
     private authService: AuthService,
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private toastService: ToastsService
   ) {}
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin();
     if (this.isAdmin) {
+      this.loadListConfirm = true;
       this.dashboardService
         .showListConfirm()
         .subscribe((data: ConfirmListResponse) => {
           this.confirmList = data.data;
-          console.log(data);
+          this.loadListConfirm = false;
         });
+      this.dashboardService.getSalaryByMonth().subscribe((data) => {
+        const luong = data.data.map((month) => {
+          const tungThang = month.series.map((serie) => {
+            return { name: serie.date, value: serie.luong };
+          });
+          return { name: month.name, series: tungThang };
+        });
+        this.multi = luong;
+      });
     }
   }
   onSelect(data): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));
   }
-  handleAprove(id: string) {
+  handleAprove(id: string, index): void {
     this.dashboardService.acceptLeave(id).subscribe((data) => {
-      console.log(data);
+      this.toastService.show(data.message, {
+        classname: 'bg-success text-light',
+        delay: 3000,
+      });
+      this.confirmList.splice(index, 1);
     });
   }
-  handleReject(id: string) {
+  handleReject(id: string, index): void {
     this.dashboardService.rejectLeave(id).subscribe((data) => {
-      console.log(data);
+      this.toastService.show(data.message, {
+        classname: 'bg-success text-light',
+        delay: 3000,
+      });
+      this.confirmList.splice(index, 1);
     });
   }
 }
