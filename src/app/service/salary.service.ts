@@ -19,4 +19,7 @@ export class SalaryService {
   getSalaryByUser():Observable<any> {
     return this.http.get(this.URL_API + '/getSalaryByUser' );
   }
+  paginateAttendance(page: string): Observable<any> {
+    return this.http.get(this.URL_API, { params: { page } });
+  }
 }
