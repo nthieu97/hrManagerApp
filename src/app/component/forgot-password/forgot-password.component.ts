@@ -9,8 +9,8 @@ import { ForgotPasswordService } from 'src/app/service/forgot-password.service';
 })
 export class ForgotPasswordComponent implements OnInit {
   ForgotPass: FormGroup;
-  email: string;
-  listUser;
+  email: any;
+
   constructor(private forgotService:ForgotPasswordService) { }
 
   ngOnInit(): void {
@@ -24,9 +24,13 @@ export class ForgotPasswordComponent implements OnInit {
   get f() {
   return this.ForgotPass.controls
   }
-  submitForm(value) {
+  submitForm(event) {
+   console.log(event);
+   
     this.forgotService.ForgotPassword(this.ForgotPass.value).subscribe((data) => {
-      console.log(data);
+      console.log(this.ForgotPass.value);
+      this.email = data
+      console.log(this.email);
     })
   }
 }

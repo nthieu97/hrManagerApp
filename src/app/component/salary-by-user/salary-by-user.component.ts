@@ -19,7 +19,7 @@ salaUser:any[]
     this.getSalaryUser();
   }
   getSalaryUser(){
-    this.salaryService.getSalaryByUser().subscribe(data=> {
+    this.salaryService.getMySalary().subscribe(data=> {
       this.salaUser = data.data;
     })
   }

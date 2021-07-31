@@ -7,16 +7,21 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class SalaryService {
+  
   constructor(private http: HttpClient) {}
   URL_API = environment.baseURL + 'luong';
   getAllSalary(): Observable<any> {
   
     return this.http.get(this.URL_API )
-  } 
+  }
+  paginateSalary(page: string) {
+    // throw new Error('Method not implemented.');
+    return this.http.get(this.URL_API,{params: {page}});
+  }
   getSalaryDetail(id: string): Observable<any> {
     return this.http.get(this.URL_API + '/getdetail/' + id);
   }
-  getSalaryByUser():Observable<any> {
+  getMySalary():Observable<any> {
     return this.http.get(this.URL_API + '/getSalaryByUser' );
   }
 }
