@@ -26,7 +26,7 @@ export class AttendanceComponent implements OnInit {
   }
   // tslint:disable-next-line: typedef
   search() {
-    this.attendanceService.getAllAttendance().subscribe((data) => {
+    this.attendanceService.getListByUser().subscribe((data) => {
       this.attendanceData = data.data;
       this.page = data.meta.currentPage;
       this.collectionSize = data.meta.total;
