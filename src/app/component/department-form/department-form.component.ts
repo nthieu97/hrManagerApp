@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResponseDepartment } from 'src/app/model/department.model';
 import { DepartmentService } from 'src/app/service/department.service';
+import { ToastsService } from 'src/app/service/toasts.service';
 
 export class Department {
   public nameDepartment: string;
@@ -16,7 +17,8 @@ export class DepartmentFormComponent implements OnInit {
   constructor(
     private departmentService: DepartmentService,
     private router: Router,
-    private atr: ActivatedRoute
+    private atr: ActivatedRoute,
+    private toastService:ToastsService
   ) {}
   nameDepartment: string;
   idDepartment: string;
@@ -42,12 +44,32 @@ export class DepartmentFormComponent implements OnInit {
     if (this.idDepartment && name !== '') {
       this.departmentService
         .updateDepartment(this.idDepartment, name)
-        .subscribe(() => {
+        .subscribe((data) => {
+          this.toastService.show(data.message,{
+            classname:'bg-success text-light',
+            delay:3000
+          }),
+          (err:any) => {
+            this.toastService.show(err.message,{
+              classname:'bg-danger text-light',
+              delay:3000
+            })
+          }
           this.router.navigate(['/', 'departments']);
         });
       return;
     }
-    this.departmentService.createDepartment(name).subscribe(() => {
+    this.departmentService.createDepartment(name).subscribe((data) => {
+      this.toastService.show('Thêm Phòng Ban Thành Công',{
+        classname:'bg-success text-light',
+        delay:3000
+      }),
+      (err:any) => {
+        this.toastService.show(err.message,{
+          classname:'bg-danger text-light',
+          delay:3000
+        })
+      }
       this.router.navigate(['/', 'departments']);
     });
 

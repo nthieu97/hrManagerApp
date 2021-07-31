@@ -3,6 +3,7 @@ import { EmployeeService } from 'src/app/service/employee.service';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AttendanceService } from 'src/app/service/attendance.service';
+import { ToastsService } from 'src/app/service/toasts.service';
 @Component({
   selector: 'app-update-ot',
   templateUrl: './update-ot.component.html',
@@ -16,7 +17,8 @@ export class UpdateOtComponent implements OnInit {
   listItem = [];
   constructor(
     private employeeService: EmployeeService,
-    private attenService: AttendanceService
+    private attenService: AttendanceService,
+    private toastService:ToastsService
   ) {
     this.formOT = this.createForm();
   }
@@ -49,12 +51,39 @@ export class UpdateOtComponent implements OnInit {
   }
 
   onItemSelect(item: any): void {
-    this.listItem.push(item);
+    this.listItem.push(item.id);
+    console.log(this.listItem);
+    
+  }
+  onDeSelect(item:any):void{
+    console.log(item, 'deselect');
+    this.listItem = this.listItem.filter(data =>
+      data !== item.id
+    )
+    console.log(this.listItem);
   }
   onSelectAll(items: any): void {
-    this.listItem.push(items);
+    this.listItem.push(items.id);
+    console.log(this.listItem);
+    
+  }
+  onDeSelectAll(items:any):void{
+    console.log(items);
+    this.listItem = []
+    console.log(this.listItem);
   }
   handleSubmit() {
-    this.attenService.updateOT(this.listItem).subscribe((data) => {});
+    this.attenService.updateOT(this.listItem).subscribe((data) => {
+      this.toastService.show(data.message,{
+        classname:'bg-success text-light',
+        delay:3000
+      }),
+      (err:any)=>{
+        this.toastService.show(err.message,{
+          classname:'bg-danger text-light',
+          delay:3000
+        })
+      }
+    });
   }
 }
