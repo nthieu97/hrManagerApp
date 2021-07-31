@@ -68,6 +68,16 @@ export class TimeOffAddComponent implements OnInit {
   showPaidLeave(): void {
     this.check = !this.check;
   }
+  disabledNumberDay(event){
+    var numberDay:any = document.getElementById('numberDay')
+    if(event.target.checked){
+      return true
+    }else{
+      numberDay.setAttribute("disabled", "");
+    }
+    console.log(numberDay);
+    
+  }
   createForm(): FormGroup {
     return new FormGroup({
       time_start: new FormControl('', [Validators.required]),

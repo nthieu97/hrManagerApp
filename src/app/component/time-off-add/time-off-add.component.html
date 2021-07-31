@@ -74,9 +74,10 @@
         formControlName="mode_leave"
         id=""
         (change)="showPaidLeave()"
+        (change)="disabledNumberDay($event)"
       />
     </div>
-    <div class="form-group" *ngIf="check" [disabled]>
+    <div class="form-group" *ngIf="check" disabled>
       <label for=""
         >Number of paid leave days (Remaining
         {{ totalDay - totalDayOff }} Days)</label
@@ -88,7 +89,7 @@
         id=""
       />
     </div>
-    <div class="form-group" *ngIf="!check && idTimeOff">
+    <div class="form-group" *ngIf="!check && idTimeOff" >
       <label for=""
         >Number of paid leave days (Remaining
         {{ totalDay - totalDayOff }} Days)</label
@@ -97,9 +98,10 @@
         class="form-control"
         type="number"
         formControlName="number_day"
-        id=""
+        id="numberDay"
       />
     </div>
+    
     
    
     <button class="btn btn-primary">{{ idTimeOff ? "Edit" : "Add" }}</button>
