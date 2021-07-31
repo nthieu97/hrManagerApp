@@ -25,15 +25,13 @@ export class PrizeFineMoneyService {
     return this.http.post(this.URL_API + '/create/', object);
   }
   deletePrizeFine(id: string): Observable<any> {
-    return this.http.post(this.URL_API + '/delete/'+id,{})
+    return this.http.post(this.URL_API + '/delete/' + id, {});
   }
-  updatePrizeFine(object:any): Observable<any>{
-    return this.http.post(this.URL_API + '/update/'+id,{object})
+  updatePrizeFine(object: any): Observable<any> {
+    return this.http.post(this.URL_API + '/update/' + id, { object });
   }
 
   getDetailPrizeFine(id: string): Observable<any> {
-    return this.http.get(this.URL_API + '/getdetail/'+id,{})
+    return this.http.get(this.URL_API + '/getdetail/' + id, {});
   }
-
-
 }

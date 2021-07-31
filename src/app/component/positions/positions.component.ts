@@ -20,10 +20,4 @@ export class PositionsComponent implements OnInit {
       this.positions = data.data;
     });
   }
-
-  // handleDelete(id: string, index): void {
-  //   this.positionService.deletePosition(id).subscribe(() => {
-  //     this.positions.splice(index, 1);
-  //   });
-  // }
 }

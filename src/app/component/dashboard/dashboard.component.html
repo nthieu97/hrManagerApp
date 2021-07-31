@@ -231,17 +231,17 @@
           </div> -->
       <!-- end-calendar -->
       <div class="attendace__analytic">
-        <h3 class="text-center">Thống kê đi làm nhân viên</h3>
+        <h3 class="text-center">Thống kê lương nhân viên các phòng ban</h3>
         <ngx-charts-line-chart
           [view]="viewSalary"
           [scheme]="colorScheme"
           [legend]="false"
-          [showXAxisLabel]="'Lương'"
-          [showYAxisLabel]="'Tháng'"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
           [xAxis]="true"
           [yAxis]="true"
-          [xAxisLabel]="true"
-          [yAxisLabel]="true"
+          [xAxisLabel]="'Tháng'"
+          [yAxisLabel]="'Lương'"
           [timeline]="true"
           [results]="multi"
         >

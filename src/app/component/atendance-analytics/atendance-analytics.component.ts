@@ -8,7 +8,7 @@ import { AttendanceService } from 'src/app/service/attendance.service';
 })
 export class AtendanceAnalyticsComponent implements OnInit {
   listAllAtten = [];
-  
+
   constructor(private attenService: AttendanceService) {}
   // tslint:disable-next-line: variable-name
   multi = [
@@ -129,9 +129,5 @@ export class AtendanceAnalyticsComponent implements OnInit {
       console.log(data);
       this.listAllAtten = data.data;
     });
-  }
-  // tslint:disable-next-line: typedef
-  onSelect(event) {
-    console.log(event);
   }
 }

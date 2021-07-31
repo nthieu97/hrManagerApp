@@ -15,23 +15,15 @@ export class AttendanceService {
       code_QR: qrcode,
     });
   }
+  getMyAttendance(page?: string): Observable<any> {
+    return this.http.get(this.URL_API + '/getListByUser', { params: { page } });
+  }
   getAttendanceDetailById(id: string): Observable<any> {
     return this.http.get(this.URL_API + '/getdetail/' + id);
   }
-  getAllAttendance(): Observable<any> {
-    // if (keyword.length > 0) {
-    //   return this.http.get(this.URL_API + '?keyword=' + keyword);
-    // }
-    return this.http.get(this.URL_API);
-  }
-  paginateAttendance(page: string): Observable<any> {
+  getAllAttendance(page?: string): Observable<any> {
     return this.http.get(this.URL_API, { params: { page } });
   }
-
-  getListByUser(): Observable<any> {
-    return this.http.get(this.URL_API + '/getListByUser/', {});
-  }
-
   getListOT(): Observable<any> {
     return this.http.get(this.URL_API + '/getListOt/', {});
   }

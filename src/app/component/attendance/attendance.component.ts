@@ -16,33 +16,22 @@ export class AttendanceComponent implements OnInit {
   loading = false;
   attendanceData;
   page = 1;
-  pageSize;
-  collectionSize = 5;
-  idUser;
-  keyword = '';
+  pageSize: number;
+  collectionSize: number;
   ngOnInit(): void {
-    this.idUser = this.authService.getIdUserAuthenticated();
-    this.search();
-  }
-  // tslint:disable-next-line: typedef
-  search() {
-    this.attendanceService.getAllAttendance().subscribe((data) => {
+    this.attendanceService.getMyAttendance().subscribe((data) => {
       this.attendanceData = data.data;
       this.page = data.meta.currentPage;
       this.collectionSize = data.meta.total;
       this.pageSize = data.meta.perPage;
-      console.log(this.keyword);
-      console.log(data);
     });
   }
-  // tslint:disable-next-line: typedef
-  handlePaginate(event) {
+  handlePaginate(event): void {
     this.loading = true;
-    this.attendanceService
-      .paginateAttendance(String(event))
-      .subscribe((data) => {
-        this.attendanceData = data.data;
-        this.loading = false;
-      });
+    const page = String(event);
+    this.attendanceService.getMyAttendance(page).subscribe((data) => {
+      this.loading = false;
+      this.attendanceData = data.data;
+    });
   }
 }
