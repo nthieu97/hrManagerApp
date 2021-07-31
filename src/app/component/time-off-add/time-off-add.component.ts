@@ -57,7 +57,7 @@ export class TimeOffAddComponent implements OnInit {
               time_end: data.data.time_end,
               note: data.data.note,
               mode_leave: data.data.mode_leave,
-              number_day: data.data.number_day_leave,
+              number_day: data.data.number_mode_leave,
             });
           });
       }
@@ -65,18 +65,16 @@ export class TimeOffAddComponent implements OnInit {
 
     this.getTotalDay();
   }
-  showPaidLeave(): void {
-    this.check = !this.check;
-  }
-  disabledNumberDay(event){
-    var numberDay:any = document.getElementById('numberDay')
-    if(event.target.checked){
-      return true
-    }else{
+  disabledNumberDay(event) {
+    var numberDay: any = document.getElementById('numberDay')
+    if (event.target.checked) {
+      numberDay.removeAttribute("disabled");
+    }
+    else {
       numberDay.setAttribute("disabled", "");
     }
     console.log(numberDay);
-    
+
   }
   createForm(): FormGroup {
     return new FormGroup({

@@ -77,24 +77,13 @@
         (change)="disabledNumberDay($event)"
       />
     </div>
-    <div class="form-group" *ngIf="check" disabled>
+    <div class="form-group" >
       <label for=""
         >Number of paid leave days (Remaining
         {{ totalDay - totalDayOff }} Days)</label
       >
       <input
-        class="form-control"
-        type="number"
-        formControlName="number_day"
-        id=""
-      />
-    </div>
-    <div class="form-group" *ngIf="!check && idTimeOff" >
-      <label for=""
-        >Number of paid leave days (Remaining
-        {{ totalDay - totalDayOff }} Days)</label
-      >
-      <input
+      disabled
         class="form-control"
         type="number"
         formControlName="number_day"
