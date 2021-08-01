@@ -19,7 +19,7 @@ export class PositionService {
     return this.http.post(this.URL_API + '/update/' + id, { name });
   }
   deletePosition(id: string): Observable<any> {
-    return this.http.post(this.URL_API + '/delete/' + id, {});
+    return this.http.delete(this.URL_API + '/delete/' + id, {});
   }
   getPosition(id: string): Observable<any> {
     return this.http.get(this.URL_API + '/getdetail/' + id);

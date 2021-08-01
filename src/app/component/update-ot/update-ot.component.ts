@@ -24,7 +24,7 @@ export class UpdateOtComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.employeeService.getAllUser().subscribe((data) => {
+    this.employeeService.getListUser().subscribe((data) => {
       console.log(data.data);
       this.dropdownList = data.data;
     });
@@ -63,8 +63,11 @@ export class UpdateOtComponent implements OnInit {
     console.log(this.listItem);
   }
   onSelectAll(items: any): void {
-    this.listItem.push(items.id);
+    for(let i =0; i<items.length;i++){
+      this.listItem.push(items[i])
+    }
     console.log(this.listItem);
+    
     
   }
   onDeSelectAll(items:any):void{

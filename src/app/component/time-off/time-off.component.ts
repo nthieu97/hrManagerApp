@@ -12,6 +12,9 @@ export class TimeOffComponent implements OnInit {
 
   timeOff;
   ngOnInit(): void {
+    this.getAllTimeOff()
+  }
+  getAllTimeOff(){
     this.timeOffService.getAllByUser().subscribe((data) => {
       this.timeOff = data.data;
       console.log(data);
@@ -31,6 +34,7 @@ export class TimeOffComponent implements OnInit {
             delay:3000
           })
         }
+        this.getAllTimeOff()
         // console.log(id);
         // this.timeOff.splice(index, 1);
       });

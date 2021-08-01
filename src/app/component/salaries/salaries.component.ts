@@ -7,14 +7,17 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./salaries.component.css'],
 })
 export class SalariesComponent implements OnInit {
-  salaries: any []
+  
   isAdmin: boolean;
-  pageIndex=1;
-  collectionSize = 49;
+  loading=false;
+  page=1;
+  collectionSize = 5;
   pageSize;
   pageDisplay:number = 10;
   keyword = '';
-  paginateSalary;
+  salaryData;
+  
+  // paginateSalary;
   // loading:false;
   constructor(private salaryService:SalaryService,
     private authService:AuthService
@@ -24,28 +27,29 @@ export class SalariesComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin();
     
-    this.getSalaries();
+    this.paginateSalary();
   }
-  getSalaries(){
-    // console.log(this.pageIndex);
-    // if(this.page == 1 ){
-    //   this.skip = 0;
-    // }else{
-    //   this.skip = (this.page )* this.limit;
-    // }
-    // var request = {
-    //   'limit' : this.limit,
-    //   'skip' :this.skip
-
-    // }
-    // console.log(request);
- 
-    this.salaryService.getAllSalary().subscribe(data =>{
+  
+  paginateSalary(){
+    this.salaryService.getAllSalary().subscribe((data) =>{
       // console.log(response);
-        this.salaries = data.data;
+        this.salaryData = data.data;
+        this.page = data.meta.currentPage;
+        this.collectionSize = data.meta.total;
+        this.pageSize = data.meta.perPage;
     });
   
   }
-  
+  handlePaginate(event){
+    this.loading = true;
+    this.salaryService
+      .paginateSalary(String(event))
+      .subscribe((data) => {
+        this.salaryData = data;
+        console.log(data);
+        this.loading = false;
+      });
+
+  }
 
 }

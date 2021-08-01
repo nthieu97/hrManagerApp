@@ -23,7 +23,9 @@ export class TimeOffAddComponent implements OnInit {
   idTimeOff: string;
   totalDay: number;
   totalDayOff: number;
-  today = new Date()
+  today  = new Date();
+  
+ 
   constructor(
     private timeoffservice: TimeOffService,
     private router: Router,
@@ -32,6 +34,7 @@ export class TimeOffAddComponent implements OnInit {
   ) {}
 
   getTotalDay(): void {
+    
     this.timeoffservice.getTotalDay().subscribe((data) => {
       this.totalDay = Number(data.data.total_day);
       this.totalDayOff = Number(
@@ -39,7 +42,9 @@ export class TimeOffAddComponent implements OnInit {
       );
     });
   }
+ 
   ngOnInit(): void {
+    this.today.setDate(this.today.getDate()+1)
     this.TimeOffForm = this.createForm();
     this.atr.params.subscribe((params) => {
       this.idTimeOff = params.id;
@@ -52,7 +57,7 @@ export class TimeOffAddComponent implements OnInit {
               time_end: data.data.time_end,
               note: data.data.note,
               mode_leave: data.data.mode_leave,
-              number_day: this.totalDay - this.totalDayOff,
+              number_day: data.data.number_mode_leave,
             });
           });
       }
@@ -60,8 +65,16 @@ export class TimeOffAddComponent implements OnInit {
 
     this.getTotalDay();
   }
-  showPaidLeave(): void {
-    this.check = !this.check;
+  disabledNumberDay(event) {
+    var numberDay: any = document.getElementById('numberDay')
+    if (event.target.checked) {
+      numberDay.removeAttribute("disabled");
+    }
+    else {
+      numberDay.setAttribute("disabled", "");
+    }
+    console.log(numberDay);
+
   }
   createForm(): FormGroup {
     return new FormGroup({
