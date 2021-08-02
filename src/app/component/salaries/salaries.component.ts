@@ -12,11 +12,10 @@ export class SalariesComponent implements OnInit {
   loading = false;
   salaryData;
   page = 1;
-  pageSize;
-  collectionSize = 5;
+  pageSize:any;
+  collectionSize:any ;
   idUser;
-  keyword = '';
-  // loading:false;
+  
   constructor(private salaryService:SalaryService,
     private authService:AuthService
     ) {}
@@ -30,19 +29,21 @@ export class SalariesComponent implements OnInit {
   getSalaries(){
   
     this.salaryService.getAllSalary().subscribe(data =>{
-      // console.log(response);
+      // console.log(data);
         this.salaryData = data.data;
         
         this.page = data.meta.currentPage;
         this.collectionSize = data.meta.total;
         this.pageSize = data.meta.perPage;
+        console.log(this.page);
+        
     });
   
   }
   handlePaginate(event) {
     this.loading = true;
     this.salaryService
-      .paginateAttendance(String(event))
+      .paginateSalary(String(event))
       .subscribe((data) => {
         this.salaryData = data.data;
         this.loading = false;
@@ -51,3 +52,4 @@ export class SalariesComponent implements OnInit {
   
 
 }
+

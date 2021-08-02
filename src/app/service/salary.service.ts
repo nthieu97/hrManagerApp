@@ -13,13 +13,14 @@ export class SalaryService {
   
     return this.http.get(this.URL_API )
   } 
+  paginateSalary(page: string): Observable<any> {
+    return this.http.get(this.URL_API, { params: { page } });
+  }
   getSalaryDetail(id: string): Observable<any> {
     return this.http.get(this.URL_API + '/getdetail/' + id);
   }
   getSalaryByUser():Observable<any> {
-    return this.http.get(this.URL_API + '/getSalaryByUser' );
+    return this.http.get(this.URL_API + '/getSalaryByUser/',{});
   }
-  paginateAttendance(page: string): Observable<any> {
-    return this.http.get(this.URL_API, { params: { page } });
-  }
+
 }

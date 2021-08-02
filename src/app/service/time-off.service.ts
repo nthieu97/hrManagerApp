@@ -29,7 +29,9 @@ export class TimeOffService {
   getTotalDay(): Observable<any> {
     return this.http.get(this.API_URL + '/total_day/', {});
   }
-
+  paginateTime(page:string): Observable<any>{
+    return this.http.get(this.API_URL,{params:{page}});
+  }
   getAllByUser(): Observable<any> {
     return this.http.get(this.API_URL + '/getAllByUser/', {});
   }
