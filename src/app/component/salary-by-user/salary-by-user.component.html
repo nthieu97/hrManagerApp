@@ -20,15 +20,28 @@
         
       </thead>
       <tbody>
-        <tr *ngFor="let salaUs of salaUser">
-          <td>{{salaUs.id }}</td>
-          <td>{{salaUs.full_name}}</td>
-          <td>{{salaUs.total_gross_salary|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
-          <td>{{salaUs.total_salary_leave|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
-          <td>{{salaUs.total_net_salary|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
-          <td>{{salaUs.status == 0 ? "Chưa trả" : "Đã trả"}}</td>
-          <td>{{salaUs.date}}</td>
+        <tr *ngFor="let salary of salaUserData ">
+          <td>{{salary.id }}</td>
+          <td>{{salary.full_name}}</td>
+          <td>{{salary.total_gross_salary|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
+          <td>{{salary.total_salary_leave|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
+          <td>{{salary.total_net_salary|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
+          <td>{{salary.status == 0 ? "Chưa trả" : "Đã trả"}}</td>
+          <td>{{salary.date}}</td>
         </tr>
       </tbody>
     </Table>
   </div>
+
+  <!-- --paginate -->
+  <ngb-pagination class="d-flex justify-content-end" [collectionSize]="70" [(page)]="page"
+  [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
+  (pageChange)="handlePaginate($event)"></ngb-pagination>
+          <div class="d-flex">
+            <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
+              <div class="spinner-grow text-success" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+          

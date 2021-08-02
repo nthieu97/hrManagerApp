@@ -16,7 +16,9 @@ export class PrizeFineMoneyService {
     }
     return this.http.get(this.URL_API);
   }
-
+  paginatePrize(page: string): Observable<any> {
+    return this.http.get(this.URL_API, { params: { page } });
+  }
   createPrize(object: any): Observable<any> {
     return this.http.post(this.URL_API + '/create/', object);
   }

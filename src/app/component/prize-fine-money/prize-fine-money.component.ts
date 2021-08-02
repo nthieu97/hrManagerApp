@@ -13,13 +13,19 @@ export class PrizeFineMoneyComponent implements OnInit {
   ) {}
   list_prize_fine = [];
   keyword = '';
-
+  loading = false;
+  page = 1;
+  pageSize:any;
+  collectionSize:any;
   ngOnInit(): void {
     this.search();
   }
   search() {
     this.prizeFineMoneyService.getAllPrize(this.keyword).subscribe((data) => {
       this.list_prize_fine = data.data;
+      this.page = data.meta.currentPage;
+      this.collectionSize = data.meta.total;
+      this.pageSize = data.meta.perPage;
       console.log(this.keyword);
     });
   }
@@ -28,5 +34,15 @@ export class PrizeFineMoneyComponent implements OnInit {
       // console.log(id);
       this.list_prize_fine.splice(index, 1);
     });
+  }
+  
+  handlePaginate(event) {
+    this.loading = true;
+    this.prizeFineMoneyService
+      .paginatePrize(String(event))
+      .subscribe((data) => {
+        this.list_prize_fine = data.data;
+        this.loading = false;
+      });
   }
 }

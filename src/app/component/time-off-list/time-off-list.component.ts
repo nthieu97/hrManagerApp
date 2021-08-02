@@ -8,11 +8,29 @@ import { TimeOffService } from 'src/app/service/time-off.service';
 })
 export class TimeOffListComponent implements OnInit {
   listTimeOff = [];
+  page = 1;
+  collectionSize:any;
+  pageSize: any ;
+  loading= false;
   constructor(private timeOffService: TimeOffService) {}
 
   ngOnInit(): void {
     this.timeOffService.getAllTimeOff().subscribe((data) => {
       this.listTimeOff = data.data;
+      this.page = data.meta.currentPage;
+      this.collectionSize = data.meta.total;
+      this.pageSize = data.meta.perPage;
     });
+  }
+  handlePaginate(event) {
+    this.loading = true;
+    this.timeOffService
+      .paginateTime(String(event))
+      .subscribe((data) => {
+        this.listTimeOff = data.data;
+        this.loading = false;
+      });
+    
+      
   }
 }

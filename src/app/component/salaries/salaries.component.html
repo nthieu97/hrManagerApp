@@ -21,30 +21,53 @@
     <tbody>
       <tr *ngFor="let salary of salaryData">
         <td>{{ salary.id }}</td>
-        <td>{{salary.full_name}}</td>
-        <td>{{ salary.total_gross_salary|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
-        <td>{{ salary.total_salary_leave|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
-        <td>{{ salary.total_net_salary |currency:'VND':'symbol':'1.0-0':'vi-VN'}}</td>
-        <td>{{salary.status == 0 ? "Chưa trả" : "Đã trả"}}</td>
-        <td>{{salary.date}}</td>
+        <td>{{ salary.full_name }}</td>
+        <td>
+          {{
+            salary.total_gross_salary | currency: "VND":"symbol":"1.0-0":"vi-VN"
+          }}
+        </td>
+        <td>
+          {{
+            salary.total_salary_leave | currency: "VND":"symbol":"1.0-0":"vi-VN"
+          }}
+        </td>
+        <td>
+          {{
+            salary.total_net_salary | currency: "VND":"symbol":"1.0-0":"vi-VN"
+          }}
+        </td>
+        <td>{{ salary.status == 0 ? "Chưa trả" : "Đã trả" }}</td>
+        <td>{{ salary.date }}</td>
         <td *ngIf="isAdmin">
-          <button class="btn btn-primary" [routerLink]="['/salaryDetail/'+ salary.id]">
+          <button
+            class="btn btn-primary"
+            [routerLink]="['/salaryDetail/' + salary.id]"
+          >
             Detail
           </button>
         </td>
       </tr>
     </tbody>
-  </Table>
-</div>
 
-<!-- --paginate -->
-<ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page"
-[maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
-(pageChange)="handlePaginate($event)"></ngb-pagination>
-<div class="d-flex">
-<div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
-  <div class="spinner-grow text-success" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
-</div>
+    <!-- --paginate -->
+    <ngb-pagination
+      class="d-flex justify-content-end"
+      [collectionSize]="collectionSize"
+      [(page)]="page"
+      [maxSize]="7"
+      [rotate]="true"
+      [ellipses]="false"
+      [boundaryLinks]="true"
+      [pageSize]="pageSize"
+      (pageChange)="handlePaginate($event)"
+    ></ngb-pagination>
+    <div class="d-flex">
+      <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
+        <div class="spinner-grow text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </Table>
 </div>
