@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 import {
   ConfirmListResponse,
   ConfirmResponse,
@@ -25,17 +26,13 @@ export class DashboardComponent implements OnInit {
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
-  data = [
-    {
-      name: 'developer',
-      value: 10,
-    },
-    { name: 'designner', value: 2 },
-    { name: 'BA', value: 1 },
-  ];
+  dataUserByDepartment = [];
   isAdmin: boolean;
   confirmList: ConfirmResponse[] = [];
   loadListConfirm = false;
+  totalUsers: number;
+  totalUserWorker: number;
+  departments: number;
   constructor(
     private authService: AuthService,
     private dashboardService: DashboardService,
@@ -59,6 +56,25 @@ export class DashboardComponent implements OnInit {
           return { name: month.name, series: tungThang };
         });
         this.multi = luong;
+      });
+      this.dashboardService.getTotalUserByDepartment().subscribe((data) => {
+        const department = data.data;
+        const userByDepartment = department.map((departmentInfo) => {
+          return {
+            name: departmentInfo.phongban_userinfo.name,
+            value: departmentInfo.total_user,
+          };
+        });
+        this.dataUserByDepartment = userByDepartment;
+      });
+      this.dashboardService.getTotalUser().subscribe((data) => {
+        this.totalUsers = data.data[0].so_luong_user;
+      });
+      this.dashboardService.getTotalUserWorker().subscribe((data) => {
+        this.totalUserWorker = data.data[0].nhan_vien_di_lam;
+      });
+      this.dashboardService.getAllDepartment().subscribe((data) => {
+        this.departments = data.data[0].so_luong_phong_ban;
       });
     }
   }

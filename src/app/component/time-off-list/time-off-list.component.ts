@@ -9,9 +9,9 @@ import { TimeOffService } from 'src/app/service/time-off.service';
 export class TimeOffListComponent implements OnInit {
   listTimeOff = [];
   page = 1;
-  collectionSize:any;
-  pageSize: any ;
-  loading= false;
+  collectionSize: any;
+  pageSize: any;
+  loading = false;
   constructor(private timeOffService: TimeOffService) {}
 
   ngOnInit(): void {
@@ -22,15 +22,11 @@ export class TimeOffListComponent implements OnInit {
       this.pageSize = data.meta.perPage;
     });
   }
-  handlePaginate(event) {
+  handlePaginate(event): void {
     this.loading = true;
-    this.timeOffService
-      .paginateTime(String(event))
-      .subscribe((data) => {
-        this.listTimeOff = data.data;
-        this.loading = false;
-      });
-    
-      
+    this.timeOffService.paginateTime(String(event)).subscribe((data) => {
+      this.listTimeOff = data.data;
+      this.loading = false;
+    });
   }
 }

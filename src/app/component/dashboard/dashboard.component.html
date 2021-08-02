@@ -11,7 +11,7 @@
         <span class="material-icons">people</span>
 
         <div class="sumary__content">
-          <p class="sumary__count">21</p>
+          <p class="sumary__count">{{ totalUsers }}</p>
           <p class="sumary__desc">tổng số nhân viên</p>
         </div>
       </div>
@@ -21,7 +21,7 @@
         <span class="material-icons">group_work</span>
 
         <div class="sumary__content">
-          <p class="sumary__count">4</p>
+          <p class="sumary__count">{{ departments }}</p>
           <p class="sumary__desc">tổng số Team</p>
         </div>
       </div>
@@ -31,7 +31,7 @@
         <span class="material-icons">group_add</span>
 
         <div class="sumary__content">
-          <p class="sumary__count">19</p>
+          <p class="sumary__count">{{ totalUserWorker }}</p>
           <p class="sumary__desc">nhân viên có mặt</p>
         </div>
       </div>
@@ -144,14 +144,14 @@
       <!-- absent -->
       <div class="team-chart">
         <div class="team-chart__header">
-          <p>Thành viên trong team</p>
+          <p>Số thành viên trong phòng ban</p>
         </div>
 
         <div class="team-chart__body">
           <ngx-charts-pie-chart
             [view]="view"
             [scheme]="colorScheme"
-            [results]="data"
+            [results]="dataUserByDepartment"
             [gradient]="false"
             [doughnut]="true"
             (select)="onSelect($event)"
@@ -163,73 +163,6 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <!-- calendar -->
-      <!-- <div class="calendar">
-            <div class="calendar__header">
-              <a href="" class="calendar__link">Lịch làm việc</a>
-              <a href=""><span class="material-icons">more_horiz</span> </a>
-            </div>
-            <div class="calendar__body">
-              <div class="calendar__time">
-                <div class="calendar__item">
-                  <div class="calendar__date calendar__select">
-                    <span>Aug</span>
-                    <p>15</p>
-                  </div>
-                  <div class="calendar__day">Mon</div>
-                </div>
-                <div class="calendar__item">
-                  <div class="calendar__date">
-                    <span>Aug</span>
-                    <p>16</p>
-                  </div>
-                  <div class="calendar__day">Tue</div>
-                </div>
-                <div class="calendar__item">
-                  <div class="calendar__date">
-                    <span>Aug</span>
-                    <p>17</p>
-                  </div>
-                  <div class="calendar__day">Wed</div>
-                </div>
-                <div class="calendar__item">
-                  <div class="calendar__date">
-                    <span>Aug</span>
-                    <p>18</p>
-                  </div>
-                  <div class="calendar__day">Thu</div>
-                </div>
-              </div>
-              <div class="calendar__work">
-                <div class="calendar__work__item">
-                  <div class="calendar__work__desc">
-                    <p class="title">Họp tìm phương án tuyển dụng</p>
-                    <p class="place">Phòng Meeting 1</p>
-                    <p class="time">10AM - 12PM</p>
-                  </div>
-                  <a href=""><i class="fas fa-ellipsis-h"></i></a>
-                </div>
-                <div class="calendar__work__item">
-                  <div class="calendar__work__desc">
-                    <p class="title">Họp tìm phương án tuyển dụng</p>
-                    <p class="place">Phòng Meeting 1</p>
-                    <p class="time">10AM - 12PM</p>
-                  </div>
-
-                  <a href=""><i class="fas fa-ellipsis-h"></i></a>
-                </div>
-                <div class="calendar__work__item">
-                  <div class="calendar__work__desc">
-                    <p class="title">Họp tìm phương án tuyển dụng</p>
-                    <p class="place">Phòng Meeting 1</p>
-                    <p class="time">10AM - 12PM</p>
-                  </div>
-                  <a href=""><i class="fas fa-ellipsis-h"></i></a>
-                </div>
-              </div>
-            </div>
-          </div> -->
-      <!-- end-calendar -->
       <div class="attendace__analytic">
         <h3 class="text-center">Thống kê lương nhân viên các phòng ban</h3>
         <ngx-charts-line-chart

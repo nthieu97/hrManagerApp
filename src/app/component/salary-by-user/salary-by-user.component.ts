@@ -18,27 +18,19 @@ export class SalaryByUserComponent implements OnInit {
     this.getSalaryUser();
   }
 
-  getSalaryUser() {
+  getSalaryUser(): void {
     this.salaryService.getSalaryByUser().subscribe((data) => {
       this.salaUserData = data.data;
-
-      // this.page = data.meta;
 
       this.page = data.meta.currentPage;
       this.collectionSize = data.meta.total;
       this.pageSize = data.meta.perPage;
-      // this.salaUser = data
-
-      console.log(this.page);
-      console.log(this.collectionSize);
-      console.log(this.pageSize);
-      console.log(data);
     });
   }
 
-  handlePaginate(event) {
+  handlePaginate(event): void {
     this.loading = true;
-    this.salaryService.paginateSalary(String(event)).subscribe((data) => {
+    this.salaryService.getSalaryByUser(String(event)).subscribe((data) => {
       this.salaUserData = data.data;
       this.loading = false;
     });

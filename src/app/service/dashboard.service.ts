@@ -28,4 +28,19 @@ export class DashboardService {
   getSalaryByMonth(): Observable<any> {
     return this.http.get(this.URL_API + 'luong_theo_thang');
   }
+  getTotalUserByDepartment(): Observable<any> {
+    return this.http.get(this.URL_API + 'total_user_in_phong_ban');
+  }
+  getTotalUser(): Observable<any> {
+    return this.http.get(this.URL_API + 'total_user');
+  }
+  getTotalPhongban(): Observable<any> {
+    return this.http.get(this.URL_API + 'total_phong_ban');
+  }
+  getTotalUserWorker(): Observable<any> {
+    return this.http.get(this.URL_API + 'total_user_work');
+  }
+  getAllDepartment(): Observable<any> {
+    return this.http.get(this.URL_API + 'total_phong_ban');
+  }
 }

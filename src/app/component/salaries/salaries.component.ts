@@ -25,7 +25,7 @@ export class SalariesComponent implements OnInit {
 
     this.getSalaries();
   }
-  getSalaries() {
+  getSalaries(): void {
     this.salaryService.getAllSalary().subscribe((data) => {
       // console.log(data);
       this.salaryData = data.data;
@@ -36,12 +36,11 @@ export class SalariesComponent implements OnInit {
       console.log(this.page);
     });
   }
-  handlePaginate(event) {
+  handlePaginate(event): void {
     this.loading = true;
-    this.salaryService.paginateSalary(String(event)).subscribe((data) => {
-      console.log(data);
-      // this.salaryData = data.data;
-      // this.loading = false;
+    this.salaryService.getAllSalary(String(event)).subscribe((data) => {
+      this.salaryData = data.data;
+      this.loading = false;
     });
   }
 }

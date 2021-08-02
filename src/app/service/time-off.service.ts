@@ -9,9 +9,6 @@ export class TimeOffService {
   constructor(private http: HttpClient) {}
   API_URL = environment.baseURL + 'lichxinnghi';
   getAllTimeOff(): Observable<any> {
-    // if (keyword.length > 0) {
-    //   return this.http.get(this.API_URL + '?keyword=' + keyword);
-    // }
     return this.http.get(this.API_URL);
   }
   createTimeOff(object: any): Observable<any> {
@@ -29,8 +26,8 @@ export class TimeOffService {
   getTotalDay(): Observable<any> {
     return this.http.get(this.API_URL + '/total_day/', {});
   }
-  paginateTime(page:string): Observable<any>{
-    return this.http.get(this.API_URL,{params:{page}});
+  paginateTime(page: string): Observable<any> {
+    return this.http.get(this.API_URL, { params: { page } });
   }
   getAllByUser(): Observable<any> {
     return this.http.get(this.API_URL + '/getAllByUser/', {});
