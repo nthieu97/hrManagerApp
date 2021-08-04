@@ -37,7 +37,6 @@ export class ChangePasswordComponent implements OnInit {
     }
   submitForm(value) {
     this.employessService.ChangePassword(this.ChangePass.value).subscribe(() => {
-      console.log(this.ChangePass.value.new_password);
       if (this.ChangePass.value.new_password == this.ChangePass.value.comfig_password) {
                Swal.fire({
             position: 'top-end',
