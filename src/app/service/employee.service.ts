@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -9,8 +9,8 @@ import { Employee, EmployeeRequestBody } from 'src/app/model/employee.model';
 export class EmployeeService {
   constructor(private http: HttpClient) {}
   URL_API = environment.baseURL + 'user';
-  getAllEmployee(page?: string): Observable<any> {
-    return this.http.get(this.URL_API, { params: { page } });
+  getAllEmployee(params?: HttpParams): Observable<any> {
+    return this.http.get(this.URL_API, { params });
   }
   getUserById(id: string): Observable<any> {
     return this.http.get(this.URL_API + '/getdetail/' + id);

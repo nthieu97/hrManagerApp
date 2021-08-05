@@ -124,9 +124,23 @@ export class AtendanceAnalyticsComponent implements OnInit {
   colorScheme = {
     domain: ['#5AA454', '#C7B42C', '#AAAAAA'],
   };
+  loading = false;
+  page = 1;
+  pageSize: number;
+  collectionSize: number;
   ngOnInit(): void {
     this.attenService.getAllAttendance().subscribe((data) => {
-      console.log(data);
+      this.listAllAtten = data.data;
+      this.page = data.meta.currentPage;
+      this.collectionSize = data.meta.total;
+      this.pageSize = data.meta.perPage;
+    });
+  }
+  handlePaginate(event): void {
+    this.loading = true;
+    const page = String(event);
+    this.attenService.getAllAttendance(page).subscribe((data) => {
+      this.loading = false;
       this.listAllAtten = data.data;
     });
   }

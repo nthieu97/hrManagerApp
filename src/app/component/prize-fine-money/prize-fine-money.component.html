@@ -63,16 +63,24 @@
       </tr>
     </tbody>
   </table>
-</div>
-
-<!-- paginate -->
-<ngb-pagination class="d-flex justify-content-end" [collectionSize]="120" [(page)]="page"
-[maxSize]="2" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
-(pageChange)="handlePaginate($event)"></ngb-pagination>
-<div class="d-flex">
-  <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
-    <div class="spinner-grow text-success" role="status">
-      <span class="sr-only">Loading...</span>
+  <ngb-pagination
+    class="d-flex justify-content-end"
+    [collectionSize]="120"
+    [(page)]="page"
+    [maxSize]="2"
+    [rotate]="true"
+    [ellipses]="false"
+    [boundaryLinks]="true"
+    [pageSize]="pageSize"
+    (pageChange)="handlePaginate($event)"
+  ></ngb-pagination>
+  <div class="d-flex">
+    <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
+      <div class="spinner-grow text-success" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- paginate -->

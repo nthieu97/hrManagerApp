@@ -17,7 +17,6 @@ export class ListOtComponent implements OnInit {
 
   ngOnInit(): void {
     this.attenService.getListOT().subscribe((data) => {
-      console.log(data);
       this.listOT = data.data;
       this.page = data.meta.currentPage;
       this.collectionSize = data.meta.total;

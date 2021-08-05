@@ -26,12 +26,14 @@ export class DashboardComponent implements OnInit {
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
+
   dataUserByDepartment = [];
   isAdmin: boolean;
   confirmList: ConfirmResponse[] = [];
   loadListConfirm = false;
   totalUsers: number;
   totalUserWorker: number;
+  totalUsersOff: number;
   departments: number;
   constructor(
     private authService: AuthService,
@@ -76,11 +78,12 @@ export class DashboardComponent implements OnInit {
       this.dashboardService.getAllDepartment().subscribe((data) => {
         this.departments = data.data[0].so_luong_phong_ban;
       });
+      this.dashboardService.getTotalUserOff().subscribe((data) => {
+        this.totalUsersOff = data.data[0].nhan_vien_nghi_lam;
+      });
     }
   }
-  onSelect(data): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
-  }
+
   handleAprove(id: string, index): void {
     this.dashboardService.acceptLeave(id).subscribe((data) => {
       this.toastService.show(data.message, {

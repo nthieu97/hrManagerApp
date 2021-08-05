@@ -4,7 +4,7 @@
 
 export const environment = {
   production: true,
-  baseURL: 'http://hrmanager.api.com/api/',
+  baseURL: 'http://localhost:8000/api/',
 };
 
 /*

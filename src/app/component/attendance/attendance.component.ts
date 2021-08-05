@@ -13,8 +13,8 @@ export class AttendanceComponent implements OnInit {
     private attendanceService: AttendanceService,
     private authService: AuthService
   ) {}
-  loading = false;
   attendanceData;
+  loading = false;
   page = 1;
   pageSize: number;
   collectionSize: number;

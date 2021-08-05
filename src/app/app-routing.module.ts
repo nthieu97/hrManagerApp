@@ -33,7 +33,7 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
       {
         path: 'mySalaries',
@@ -147,7 +147,6 @@ const routes: Routes = [
         component: PrizeFineFormComponent,
         canActivate: [AdminGuard],
       },
-
     ],
   },
   { path: 'login', component: LoginComponent },

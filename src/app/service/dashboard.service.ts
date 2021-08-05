@@ -40,6 +40,9 @@ export class DashboardService {
   getTotalUserWorker(): Observable<any> {
     return this.http.get(this.URL_API + 'total_user_work');
   }
+  getTotalUserOff(): Observable<any> {
+    return this.http.get(this.URL_API + 'total_user_off');
+  }
   getAllDepartment(): Observable<any> {
     return this.http.get(this.URL_API + 'total_phong_ban');
   }

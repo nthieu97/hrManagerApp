@@ -24,7 +24,7 @@
     >
     </ng-multiselect-dropdown>
     <div
-      *ngIf="f.listUsers.invalid && (f.listUsers.dirty || f.listUsers.touched)"
+      *ngIf="f.listUsers.touched && f.listUsers.invalid"
       class="alert alert-danger"
     >
       <div *ngIf="f.listUsers.errors?.required">List user is required.</div>

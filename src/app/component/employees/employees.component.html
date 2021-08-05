@@ -7,7 +7,7 @@
 <div class="employees">
   <h2 class="mt-2">Nhân viên :</h2>
   <hr />
-  <div class="employees__tools">
+  <div class="employees__tools" *ngIf="!loading">
     <div class="employees__filter d-flex justify-content-between">
       <div class="search mr-2">
         <div class="input-group mb-3">
@@ -20,7 +20,7 @@
             type="text"
             (keyup.enter)="handleSearch($event)"
             class="form-control"
-            placeholder="search"
+            placeholder="Enter name or email ..."
             aria-label="Username"
             aria-describedby="basic-addon1"
           />
@@ -50,6 +50,13 @@
           {{ position?.name }}
         </option>
       </select>
+      <div
+        *ngIf="loadFilter"
+        class="ml-2 spinner-border text-success"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
     <!-- <div class="employees__view">
       <div class="sort_by d-flex">
@@ -76,6 +83,9 @@
   </div>
   <div class="row" *ngIf="!loading">
     <div class="employees__list">
+      <div *ngIf="noUser" class="d-flex justify-content-center">
+        <p class="card-text text-center">{{ noUser }}</p>
+      </div>
       <div class="eployee__item" *ngFor="let employee of employees">
         <div class="card">
           <img
