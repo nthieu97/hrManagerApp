@@ -9,8 +9,8 @@ import { Employee, EmployeeRequestBody } from 'src/app/model/employee.model';
 export class EmployeeService {
   constructor(private http: HttpClient) {}
   URL_API = environment.baseURL + 'user';
-  getAllEmployee(params?: HttpParams): Observable<any> {
-    return this.http.get(this.URL_API, { params });
+  getAllEmployee(page?: string): Observable<any> {
+    return this.http.get(this.URL_API, { params: { page } });
   }
   getUserById(id: string): Observable<any> {
     return this.http.get(this.URL_API + '/getdetail/' + id);
@@ -18,8 +18,8 @@ export class EmployeeService {
   deleteEmployee(id: string): Observable<any> {
     return this.http.delete(this.URL_API + '/delete/' + id);
   }
-  store(object: EmployeeRequestBody): Observable<Employee> {
-    return this.http.post<Employee>(this.URL_API + '/create', object);
+  createEmployee(object: any): Observable<any> {
+    return this.http.post(this.URL_API + '/create/', object);
   }
 
   getListUser(): Observable<any> {
@@ -31,5 +31,8 @@ export class EmployeeService {
   }
   ChangePassword(object: any): Observable<any> {
     return this.http.post(this.URL_API + '/changepassword', object);
+  }
+  updateEmployee(id: string, object: any) {
+    return this.http.post(this.URL_API + '/update/' + id, object)
   }
 }

@@ -14,7 +14,10 @@ export class SalariesComponent implements OnInit {
   pageSize: any;
   collectionSize: any;
   idUser;
-
+  // toggle = true;
+  // status = "Enable";
+  payment:boolean=true;
+  status:boolean=true;
   constructor(
     private salaryService: SalaryService,
     private authService: AuthService
@@ -42,5 +45,9 @@ export class SalariesComponent implements OnInit {
       this.salaryData = data.data;
       this.loading = false;
     });
+  }
+  onclick(){
+    this.payment = !this.payment;
+    this.status = !this.status ;
   }
 }
