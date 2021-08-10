@@ -11,155 +11,146 @@
   </div>
   <div class="content__main-content">
     <div class="content__main-sidebar">
-      <div class="card" #screen style="width: 18rem">
-        <img
-          class="card-img-top"
-          src="https://media.istockphoto.com/photos/portrait-of-handsome-latino-african-man-picture-id1007763808?k=6&m=1007763808&s=612x612&w=0&h=Js1VDBulbaNw_CF7fghP_nhUPCC-DQTqb7Wym1CdTOI="
-          alt="Card image cap"
-          crossorigin="anonymous"
-        />
-        <!-- <canvas #canvasImg width="500" height="500"></canvas> -->
-        <div class="card-body">
-          <h3 class="card-text">{{ userInfo?.userinfo?.full_name }}</h3>
-          <span class="card-text-position">{{
-            userInfo?.phongban_userinfo?.name
-          }}</span>
-          <span>/</span>
-          <span class="card-text-department">{{
-            userInfo?.chucvu_userinfo?.name
-          }}</span>
+        <div class="card" #screen style="width: 18rem">
+            <img class="card-img-top" [src]="userInfo?.userinfo?.avatar" alt="Card image cap" crossorigin="anonymous" />
+            <!-- <canvas #canvasImg width="500" height="500"></canvas> -->
+            <div class="card-body">
+                <h3 class="card-text">{{ userInfo?.userinfo?.full_name }}</h3>
+                <span class="card-text-position">{{
+        userInfo?.phongban_userinfo?.name
+      }}</span>
+                <span>/</span>
+                <span class="card-text-department">{{
+        userInfo?.chucvu_userinfo?.name
+      }}</span>
+            </div>
+            <div class="card-qr">
+                <ngx-kjua *ngIf="userInfo?.userinfo" [text]="userInfo?.userinfo?.code_QR" render="canvas"></ngx-kjua>
+            </div>
         </div>
-        <div class="card-qr">
-          <ngx-kjua
-            *ngIf="userInfo?.userinfo"
-            [text]="userInfo?.userinfo?.code_QR"
-            render="canvas"
-          ></ngx-kjua>
+        <button class="btn btn-block btn-success" (click)="downloadCard()">
+    Download Employee Card
+  </button>
+        <div hidden id="download">
+            <img #canvas />
+            <a #downLoadLink></a>
         </div>
-      </div>
-      <button class="btn btn-block btn-success" (click)="downloadCard()">
-        Download Employee Card
-      </button>
-      <div hidden id="download">
-        <img #canvas />
-        <a #downLoadLink></a>
-      </div>
     </div>
     <div class="content__main-info">
-      <div class="tabs">
-        <input hidden type="radio" name="tab-css" id="tab-1" checked />
-        <label class="tab-control" for="tab-1">Thông tin vị trí</label>
-        <input hidden type="radio" name="tab-css" id="tab-2" />
-        <label class="tab-control" for="tab-2">Cá nhân</label>
-        <input hidden type="radio" name="tab-css" id="tab-3" />
-        <label class="tab-control" for="tab-3">Lợi ích</label>
+        <div class="tabs">
+            <input hidden type="radio" name="tab-css" id="tab-1" checked />
+            <label class="tab-control" for="tab-1">Thông tin vị trí</label>
+            <input hidden type="radio" name="tab-css" id="tab-2" />
+            <label class="tab-control" for="tab-2">Cá nhân</label>
+            <input hidden type="radio" name="tab-css" id="tab-3" />
+            <!-- <label class="tab-control" for="tab-3">Lợi ích</label> -->
 
-        <div class="tab-content">
-          <div id="tab-panel-1" class="tab-panel">
-            <table class="table table-striped table-hover">
-              <tbody>
-                <tr>
-                  <th>Tên đầy đủ</th>
-                  <td>{{ userInfo.full_name }}</td>
-                </tr>
-                <tr>
-                  <th>Mã Nhân viên</th>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th>Chức vụ</th>
-                  <td>Frontend Deverloper</td>
-                </tr>
-                <tr>
-                  <th>Phòng ban</th>
-                  <td>Phòng Deverloper</td>
-                </tr>
-                <tr>
-                  <th>Kiểu làm việc</th>
-                  <td>Offline</td>
-                </tr>
-                <tr>
-                  <th>HÌnh thức làm việc</th>
-                  <td>Full time</td>
-                </tr>
-                <tr>
-                  <th>Ngày vào công ty</th>
-                  <td>03-01-2021</td>
-                </tr>
-                <tr>
-                  <th>Thâm niên làm việc</th>
-                  <td>6 tháng</td>
-                </tr>
-                <tr>
-                  <th>Kiểu Lương</th>
-                  <td>Theo tháng</td>
-                </tr>
-                <tr>
-                  <th>Lương</th>
-                  <td>9.000.000 VNĐ</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div id="tab-panel-2" class="tab-panel">
-            <table class="table table-striped table-hover">
-              <tbody>
-                <tr>
-                  <th>Tên Đầy Đủ</th>
-                  <td>Nguyễn Trung Hiếu</td>
-                </tr>
-                <tr>
-                  <th>Giới tính</th>
-                  <td>Nam</td>
-                </tr>
-                <tr>
-                  <th>Ngày sinh</th>
-                  <td>04/11/1997</td>
-                </tr>
-                <tr>
-                  <th>Số Diện Thoại</th>
-                  <td>038-241-5397</td>
-                </tr>
-                <tr>
-                  <th>Email</th>
-                  <td>Hieu041197@gmail.com</td>
-                </tr>
-                <tr>
-                  <th>Quốc tịch</th>
-                  <td>Việt Nam</td>
-                </tr>
-                <tr>
-                  <th>Quê quán</th>
-                  <td>Vĩnh Phúc</td>
-                </tr>
+            <div class="tab-content">
+                <div id="tab-panel-1" class="tab-panel">
+                    <table class="table table-striped table-hover">
+                        <tbody>
+                            <tr>
+                                <th>Tên đầy đủ</th>
+                                <td>{{ userInfo.userinfo.full_name }}</td>
+                            </tr>
+                            <!-- <tr>
+                                <th>Mã Nhân viên</th>
+                                <td></td>
+                            </tr> -->
+                            <tr>
+                                <th>Chức vụ</th>
+                                <td>{{userInfo.chucvu_userinfo.name}}</td>
+                            </tr>
+                            <tr>
+                                <th>Phòng ban</th>
+                                <td>{{userInfo.phongban_userinfo.name}}</td>
+                            </tr>
+                            <tr>
+                                <th>Kiểu làm việc</th>
+                                <td>Offline</td>
+                            </tr>
+                            <tr>
+                                <th>HÌnh thức làm việc</th>
+                                <td>Full time</td>
+                            </tr>
+                            <tr>
+                                <th>Ngày vào công ty</th>
+                                <td>{{userInfo.userinfo.date_of_join}}</td>
+                            </tr>
+                            <!-- <tr>
+                                <th>Thâm niên làm việc</th>
+                                <td>6 tháng</td>
+                            </tr> -->
+                            <!-- <tr>
+                                <th>Kiểu Lương</th>
+                                <td>Theo tháng</td>
+                            </tr> -->
+                            <tr>
+                                <th>Lương</th>
+                                <td>{{userInfo.userinfo.basic_salary | currency: "VND"}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="tab-panel-2" class="tab-panel">
+                    <table class="table table-striped table-hover">
+                        <tbody>
+                            <!-- <tr>
+                                <th>Tên Đầy Đủ</th>
+                                <td>Nguyễn Trung Hiếu</td>
+                            </tr> -->
+                            <tr>
+                                <th>Giới tính</th>
+                                <td>{{userInfo.userinfo.sex}}</td>
+                            </tr>
+                            <!-- <tr>
+                                <th>Ngày sinh</th>
+                                <td>04/11/1997</td>
+                            </tr> -->
+                            <tr>
+                                <th>Số Diện Thoại</th>
+                                <td>{{userInfo.userinfo.phone}}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td>{{userInfo.email}}</td>
+                            </tr>
+                            <!-- <tr>
+                                <th>Quốc tịch</th>
+                                <td>Việt Nam</td>
+                            </tr> -->
+                            <!-- <tr>
+                                <th>Quê quán</th>
+                                <td>Vĩnh Phúc</td>
+                            </tr> -->
 
-                <tr>
-                  <th>Địa chỉ hiện tại</th>
-                  <td>6th Element, Tây Hồ, Hà Nội</td>
-                </tr>
-                <tr>
-                  <th>Tình trạng hôn nhân</th>
-                  <td>Chưa</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div id="tab-panel-3" class="tab-panel">
-            <table class="table table-striped table-hover">
-              <tbody>
-                <tr>
-                  <th>Tiền ăn Trưa</th>
-                  <td>400.000 VNĐ</td>
-                </tr>
-                <tr>
-                  <th>Tiền gửi xe</th>
-                  <td>200.000 VNĐ</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                            <tr>
+                                <th>Địa chỉ hiện tại</th>
+                                <td>{{userInfo.userinfo.address}}</td>
+                            </tr>
+                            <!-- <tr>
+                                <th>Tình trạng hôn nhân</th>
+                                <td>Chưa</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <div id="tab-panel-3" class="tab-panel">
+        <table class="table table-striped table-hover">
+          <tbody>
+            <tr>
+              <th>Tiền ăn Trưa</th>
+              <td>400.000 VNĐ</td>
+            </tr>
+            <tr>
+              <th>Tiền gửi xe</th>
+              <td>200.000 VNĐ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> -->
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 </div>
