@@ -14,6 +14,8 @@ export class SalariesComponent implements OnInit {
   pageSize: any;
   collectionSize: any;
   idUser;
+  payment= true;
+  status=true;
 
   constructor(
     private salaryService: SalaryService,
@@ -42,5 +44,10 @@ export class SalariesComponent implements OnInit {
       this.salaryData = data.data;
       this.loading = false;
     });
+  }
+  changePay(){
+    this.payment = !this.payment;
+  
+    this.status = !this.status ;
   }
 }

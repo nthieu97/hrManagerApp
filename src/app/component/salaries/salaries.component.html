@@ -37,7 +37,7 @@
             salary.total_net_salary | currency: "VND":"symbol":"1.0-0":"vi-VN"
           }}
         </td>
-        <td>{{ salary.status == 0 ? "Chưa trả" : "Đã trả" }}</td>
+        <td *ngIf="salary.status == 0 ">{{ status  ? "Chưa trả" : "Đã trả" }}</td>
         <td>{{ salary.date }}</td>
         <td *ngIf="isAdmin">
           <button
@@ -45,6 +45,14 @@
             [routerLink]="['/salaryDetail/' + salary.id]"
           >
             Detail
+          </button>
+        </td>
+        <td *ngIf="isAdmin">
+          <button *ngIf="salary.status == 0" (click)="changePay()"
+            class="btn btn-success"
+           
+          >
+            {{payment ? "Payment" : "Paymented"}}
           </button>
         </td>
       </tr>
