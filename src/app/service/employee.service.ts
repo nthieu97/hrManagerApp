@@ -9,8 +9,8 @@ import { Employee, EmployeeRequestBody } from 'src/app/model/employee.model';
 export class EmployeeService {
   constructor(private http: HttpClient) {}
   URL_API = environment.baseURL + 'user';
-  getAllEmployee(page?: string): Observable<any> {
-    return this.http.get(this.URL_API, { params: { page } });
+  getAllEmployee(params?: HttpParams): Observable<any> {
+    return this.http.get(this.URL_API, { params });
   }
   getUserById(id: string): Observable<any> {
     return this.http.get(this.URL_API + '/getdetail/' + id);
@@ -18,10 +18,12 @@ export class EmployeeService {
   deleteEmployee(id: string): Observable<any> {
     return this.http.delete(this.URL_API + '/delete/' + id);
   }
+  store(object: EmployeeRequestBody): Observable<Employee> {
+    return this.http.post<Employee>(this.URL_API + '/create', object);
+  }
   createEmployee(object: any): Observable<any> {
     return this.http.post(this.URL_API + '/create/', object);
   }
-
   getListUser(): Observable<any> {
     return this.http.get(this.URL_API + '/getListUser');
   }
@@ -32,7 +34,8 @@ export class EmployeeService {
   ChangePassword(object: any): Observable<any> {
     return this.http.post(this.URL_API + '/changepassword', object);
   }
+  // tslint:disable-next-line: typedef
   updateEmployee(id: string, object: any) {
-    return this.http.post(this.URL_API + '/update/' + id, object)
+    return this.http.post(this.URL_API + '/update/' + id, object);
   }
 }

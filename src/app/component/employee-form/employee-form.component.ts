@@ -4,6 +4,7 @@ import {
   FormControl,
   Validators,
   FormBuilder,
+  AbstractControl,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -19,13 +20,6 @@ import { ToastsService } from 'src/app/service/toasts.service';
   styleUrls: ['./employee-form.component.css'],
 })
 export class EmployeeFormComponent implements OnInit {
-  positions = [];
-  departments = [];
-  // newEmployeeForm!: FormGroup;
-  newEmployeeForm: FormGroup;
-  idEmployee: string;
-  file: any;
-  imageSrc: string
   constructor(
     private router: Router,
     private employeeService: EmployeeService,
@@ -33,9 +27,22 @@ export class EmployeeFormComponent implements OnInit {
     private departmentService: DepartmentService,
     private fb: FormBuilder,
     private atr: ActivatedRoute,
-    private toastService: ToastsService,
+    private toastService: ToastsService
+  ) {}
+  get f(): {
+    [key: string]: AbstractControl;
+  } {
+    return this.newEmployeeForm.controls;
+  }
+  positions = [];
+  departments = [];
+  // newEmployeeForm!: FormGroup;
+  newEmployeeForm: FormGroup;
+  idEmployee: string;
+  file: any;
+  imageSrc: string;
 
-  ) { }
+  avatar: any = '';
 
   ngOnInit(): void {
     this.newEmployeeForm = this.createForm();
@@ -58,14 +65,13 @@ export class EmployeeFormComponent implements OnInit {
             role_id: data.data.role_id,
             basic_salary: data.data.userinfo.basic_salary,
             date_of_join: data.data.userinfo.date_of_join,
-          })
-        })
+          });
+        });
       }
     });
 
     this.getDepartment();
     this.getPosition();
-
   }
 
   createForm(): FormGroup {
@@ -82,8 +88,7 @@ export class EmployeeFormComponent implements OnInit {
       date_of_join: new FormControl('', [Validators.required]),
       role_id: new FormControl('', [Validators.required]),
       basic_salary: new FormControl('', [Validators.required]),
-
-    })
+    });
   }
   getPosition(): void {
     this.positionService.getAllPosition().subscribe((data) => {
@@ -96,19 +101,14 @@ export class EmployeeFormComponent implements OnInit {
       this.departments = data.data;
     });
   }
-  get f() {
-    return this.newEmployeeForm.controls
-  }
-
-  avatar: any = "";
-  uploadImage(file: any) {
+  uploadImage(file: any): void {
     this.avatar = file.files[0];
-    console.log(this.avatar)
+    console.log(this.avatar);
   }
   submitForm(): void {
-    let formdata = new FormData;
-    if (this.avatar == "") {
-      formdata.append('avatar', this.avatar)
+    const formdata = new FormData();
+    if (this.avatar === '') {
+      formdata.append('avatar', this.avatar);
     } else {
       formdata.append('avatar', this.avatar, this.avatar.name);
     }
@@ -126,38 +126,38 @@ export class EmployeeFormComponent implements OnInit {
     formdata.append('phone', this.newEmployeeForm.value.phone);
 
     if (this.idEmployee) {
-      this.employeeService.updateEmployee(this.idEmployee, formdata).subscribe((data) => {
-        console.log(data);
-        this.toastService.show('Update successfully !', {
-          classname: 'bg-success text-light',
-          delay: 3000
-        }),
-          (err: any) => {
-            this.toastService.show('Update errors !', {
-              classname: 'bg-danger text-light',
-              delay: 3000
-            })
-          }
-      })
+      this.employeeService
+        .updateEmployee(this.idEmployee, formdata)
+        .subscribe((data) => {
+          console.log(data);
+          this.toastService.show('Update successfully !', {
+            classname: 'bg-success text-light',
+            delay: 3000,
+          }),
+            (_err) => {
+              this.toastService.show('Update errors !', {
+                classname: 'bg-danger text-light',
+                delay: 3000,
+              });
+            };
+        });
       this.router.navigate(['/', 'employee']);
     } else {
       this.employeeService.createEmployee(formdata).subscribe((data) => {
         console.log(data);
         this.toastService.show(data.message, {
           classname: 'bg-success text-light',
-          delay: 3000
+          delay: 3000,
         }),
+          // tslint:disable-next-line: no-unused-expression
           (err: any) => {
             this.toastService.show(err.message, {
               classname: 'bg-danger text-light',
-              delay: 3000
-            })
-          }
-
-      })
-      this.router.navigate(['/', 'employee'])
+              delay: 3000,
+            });
+          };
+      });
+      this.router.navigate(['/', 'employee']);
     }
-
-
   }
 }
