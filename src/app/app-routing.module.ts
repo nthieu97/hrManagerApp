@@ -103,6 +103,10 @@ const routes: Routes = [
         component: EmployeeFormComponent,
       },
       {
+        path:'employee-edit/:id',
+        component: EmployeeFormComponent,
+      },
+      {
         path: 'my-time-off',
         component: TimeOffComponent,
       },
