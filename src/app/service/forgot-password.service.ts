@@ -11,6 +11,6 @@ export class ForgotPasswordService {
   constructor(private http: HttpClient) { }
   API_URL = environment.baseURL + 'forget_password';
   ForgotPassword(object:any):Observable<any> {
-    return this.http.post(this.API_URL , {object});
+    return this.http.post(this.API_URL , object);
   }
 }

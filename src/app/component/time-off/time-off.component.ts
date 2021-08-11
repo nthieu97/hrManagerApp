@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TimeOffService } from 'src/app/service/time-off.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastsService } from 'src/app/service/toasts.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-time-off',
   templateUrl: './time-off.component.html',
@@ -21,24 +22,41 @@ export class TimeOffComponent implements OnInit {
     });
   }
   handleDelete(id: string, index): void {
-    let conf = confirm("you definitely want to delete")
-    if(conf){
-      this.timeOffService.deleteTimeOff(id).subscribe((data) => {
-        this.toastService.show(data.message,{
-          classname:'bg-success text-light',
-          delay:3000
-        }),
-        (err:any)=>{
-          this.toastService.show(err.message,{
-            classname:'bg-danger text-light',
-            delay:3000
-          })
-        }
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.timeOffService.deleteTimeOff(id).subscribe((data) => {
+          this.toastService.show(data.message, {
+            classname: 'bg-success text-light',
+            delay: 3000
+          }),
+            (err: any) => {
+              this.toastService.show(err.message, {
+                classname: 'bg-danger text-light',
+                delay: 3000
+              })
+            }
+        })
         this.getAllTimeOff()
-        // console.log(id);
-        // this.timeOff.splice(index, 1);
-      });
-    }
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+      }
+    })
     
   }
 }
