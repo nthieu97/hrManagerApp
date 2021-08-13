@@ -5,40 +5,73 @@
     </ol>
   </nav>
   
-  <div class="sala-detail">
-    <h3>Salaries Detail</h3>
-    <Table class="table">
-      <thead>
-        <th>#</th>
-        <th>Total gross salary</th>
-        <th>Total salary leave</th>
-        <th>Total net salary</th>
-        <th>Status</th>
-        <th>Date</th>
-        <th>Total days work</th>
-        <th>Total days off</th>
-        <th>Total day mode</th>
-        <th>Total money fine</th>
-        <th>Total money prize</th>
-        <!-- <th>Action</th> -->
-      </thead>
-      <tbody >
-        <tr >
-          <td>{{salaryDetail.id }}</td>
-          <td>{{salaryDetail.total_gross_salary|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
-          <td>{{salaryDetail.total_salary_leave|currency:'VND':'symbol':'1.0-0':'vi-VN'}}</td>
-          <td>{{salaryDetail.total_net_salary|currency:'VND':'symbol':'1.0-0':'vi-VN' }}</td>
-          <td>{{salaryDetail.status == 0 ? "Chưa trả" : "Đã trả"}}</td>
-          <td>{{salaryDetail.date}}</td>
-          <td>{{salaryDetail.total_day_to_work}}</td>
-          <td>{{salaryDetail.total_day_leave}}</td>
-          <td>{{salaryDetail.total_day_mode}}</td>
-          <td>{{salaryDetail.total_money_fine|currency:'VND':'symbol':'1.0-0':'vi-VN'}}</td>
-          <td>{{salaryDetail.total_money_prize|currency:'VND':'symbol':'1.0-0':'vi-VN'}}</td>
-          <td>
+ <div class="tab-content sala-detail">
+    <h3>Chi tiết lương nhân viên</h3>
+    <div id="tab-panel-1" class="tab-panel">
+      <table class="table table-striped table-hover">
+        <tbody>
+        
+          <tr >
+            <th>Tổng lương:</th>
+            <td>{{salaryDetail.total_gross_salary |currency: "VND":"symbol":"1.0-0":"vi-VN"}}</td>
+          </tr>
+          <tr>
+            <th>Tổng lương nghỉ phép:</th>
+            <td>{{salaryDetail.total_salary_leave | currency: "VND":"symbol":"1.0-0":"vi-VN"}}</td>
+          </tr>
+          <tr>
+            <th>Tổng lương ròng:</th>
+            <td>{{salaryDetail.total_net_salary | currency: "VND":"symbol":"1.0-0":"vi-VN"}}</td>
+          </tr>
+          <tr>
+            <th>Trạng thái:</th>
+            <td>{{salaryDetail.status == 0 ? "Chưa trả" : "Đã trả"}}</td>
+          </tr>
+          <tr>
+            <th>Ngày tháng:</th>
+            <td>{{salaryDetail.date}}</td>
+          </tr>
+          <tr>
+            <th>Tổng ngày làm việc:</th>
+            <td>{{salaryDetail.total_day_to_work}}</td>
+          </tr>
+          <tr>
+            <th>Tổng ngày nghỉ:</th>
+            <td>{{salaryDetail.total_day_to_work}}</td>
+          </tr>
+          <tr>
+            <th>Kiểu Lương</th>
+            <td>Theo tháng</td>
+          </tr>
+          <tr>
+            <th>Lương</th>
+            <td>9.000.000 VNĐ</td>
+          </tr>
+       
+        </tbody>
+      </table>
+    </div> 
+
+    <!-- <ng-template #content let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Chi tiết lương nhân viên </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="dateOfBirth">Date of birth</label>
+            
+          </div>
           
-          </td>
-        </tr>
-      </tbody>
-    </Table>
-  </div>
+        </form>
+      </div>
+     
+    </ng-template> -->
+    
+    
+    <!-- <pre>{{ closeResult }}</pre> -->
+
+    

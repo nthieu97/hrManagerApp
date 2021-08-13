@@ -2,7 +2,7 @@
     padding: 30px 20px;
     background-color: #ffffff;
     border-radius: 1rem;
-    text-align: center;
+    /* text-align: center; */
     margin-top: 1rem;
     box-shadow: var(--box-shadow);
   }

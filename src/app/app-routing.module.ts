@@ -29,6 +29,7 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
 import { SalaryByUserComponent } from './component/salary-by-user/salary-by-user.component';
 import { SalaryDetailComponent } from './component/salary-detail/salary-detail.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -83,6 +84,7 @@ const routes: Routes = [
         path: 'salaryDetail/:id',
         component: SalaryDetailComponent,
       },
+     
       {
         path: 'departments',
         component: DepartmentComponent,

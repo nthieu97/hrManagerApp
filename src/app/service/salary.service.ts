@@ -21,4 +21,7 @@ export class SalaryService {
       params: { page },
     });
   }
+  updateStatusSalary(id:string):Observable<any>{
+    return this.http.get(this.URL_API  + id);
+  }
 }
