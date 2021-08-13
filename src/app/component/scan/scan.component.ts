@@ -39,7 +39,7 @@ export class ScanComponent implements OnInit {
     this.loading = true;
     this.attendanceService.handleAttendance(this.qrResultString).subscribe(
       (data: ScanResponse) => {
-        this.loading = true;
+        this.loading = false;
         this.toastService.show(data.message, {
           classname: 'bg-success text-light',
           delay: 3000,
@@ -47,7 +47,7 @@ export class ScanComponent implements OnInit {
         this.userResponse = data.data;
       },
       (err: any) => {
-        this.loading = true;
+        this.loading = false;
         this.toastService.show(err.message, {
           classname: 'bg-danger text-light',
           delay: 3000,

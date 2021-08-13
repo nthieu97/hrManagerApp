@@ -7,60 +7,56 @@ import { AuthService } from 'src/app/service/auth.service';
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.css']
+  styleUrls: ['./change-password.component.css'],
 })
 export class ChangePasswordComponent implements OnInit {
   new_password: string;
-  comfig_password:string
+  comfig_password: string;
   constructor(
     private employessService: EmployeeService,
     private router: Router,
-    private authService:AuthService
-  ) { }
-  ChangePass: FormGroup
+    private authService: AuthService
+  ) {}
+  ChangePass: FormGroup;
   ngOnInit(): void {
-    this.ChangePass = this.createForm()
+    this.ChangePass = this.createForm();
   }
 
-  createForm() {
+  createForm(): FormGroup {
     return new FormGroup({
       current_password: new FormControl('', [Validators.required]),
       new_password: new FormControl('', [Validators.required]),
       comfig_password: new FormControl('', [Validators.required]),
-
-    })
-
-
+    });
   }
-   get f() {
-      return this.ChangePass.controls
-    }
-  submitForm(value) {
-    this.employessService.ChangePassword(this.ChangePass.value).subscribe(() => {
-      if (this.ChangePass.value.new_password == this.ChangePass.value.comfig_password) {
-               Swal.fire({
+  get f() {
+    return this.ChangePass.controls;
+  }
+  submitForm(value): void {
+    this.employessService
+      .ChangePassword(this.ChangePass.value)
+      .subscribe(() => {
+        if (
+          this.ChangePass.value.new_password ===
+          this.ChangePass.value.comfig_password
+        ) {
+          Swal.fire({
             position: 'top-end',
             icon: 'success',
             title: 'Change Password Successfully',
             showConfirmButton: false,
-            timer: 1500
-               })
-          this.router.navigate(['/', 'login'])
-       this.authService.logOut()
-      } else {
-
-        console.log("Mật khẩu không khớp");
-              Swal.fire({
-                icon: 'error',
-                title: '',
-                text: 'Password incorrect',
-                footer: ''
-              })
-
-      }
-
-      })
-
-
+            timer: 1500,
+          });
+          this.router.navigate(['/', 'login']);
+          this.authService.logOut();
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: '',
+            text: 'Password incorrect',
+            footer: '',
+          });
+        }
+      });
   }
 }

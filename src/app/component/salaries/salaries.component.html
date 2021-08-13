@@ -37,27 +37,27 @@
             salary.total_net_salary | currency: "VND":"symbol":"1.0-0":"vi-VN"
           }}
         </td>
-        <td *ngIf="salary.status == 0 " >{{ status ? "Chưa trả" : "Đã trả" }}</td>
-        
-        <td>{{ salary.date }}</td>
+        <td *ngIf="salary.status == 0">{{ status ? "Chưa trả" : "Đã trả" }}</td>
+
+        <td>{{ salary.date | date: "dd/MM/yyyy" }}</td>
         <td *ngIf="isAdmin">
-         
           <button
             class="btn btn-primary"
             [routerLink]="['/salaryDetail/' + salary.id]"
           >
             Detail
           </button>
-          </td>
+        </td>
 
-          <td *ngIf="isAdmin ">
-            <button *ngIf="salary.status == 0"  (click)="onclick()"
-            
-              class="btn btn-success"
-              [routerLink]="['/salaryPayment' + salary.id]"
-            >
-             {{payment?"Thanh toán":"Đã thanh toán"}}
-            </button>
+        <td *ngIf="isAdmin">
+          <button
+            *ngIf="salary.status == 0"
+            (click)="onclick()"
+            class="btn btn-success"
+            [routerLink]="['/salaryPayment' + salary.id]"
+          >
+            {{ payment ? "Thanh toán" : "Đã thanh toán" }}
+          </button>
         </td>
       </tr>
     </tbody>

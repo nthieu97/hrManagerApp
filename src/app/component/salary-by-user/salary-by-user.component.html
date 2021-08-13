@@ -37,7 +37,7 @@
           }}
         </td>
         <td>{{ salary.status == 0 ? "Chưa trả" : "Đã trả" }}</td>
-        <td>{{ salary.date }}</td>
+        <td>{{ salary.date | date: "dd/MM/yyyy" }}</td>
       </tr>
     </tbody>
   </Table>

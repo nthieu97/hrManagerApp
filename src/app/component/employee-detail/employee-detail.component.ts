@@ -27,12 +27,9 @@ export class EmployeeDetailComponent implements OnInit {
     this.atr.params.subscribe((params) => {
       const id = params.id;
       this.employeeService.getUserById(id).subscribe((res) => {
-        console.log(res);
-        
         this.userInfo = res.data;
       });
     });
-    
   }
   downloadCard(): void {
     html2canvas(this.screen.nativeElement).then((canvas) => {

@@ -19,7 +19,12 @@
       <!-- <span class="text-danger" *ngIf="idTimeOff">
         ( {{ this.TimeOffForm.value.time_start | date: "yyyy/MM/dd" }} )</span
       > -->
-      <input class="form-control" type="date" formControlName="time_start" min="{{today | date:'yyyy-MM-dd'}}"/>
+      <input
+        class="form-control"
+        type="date"
+        formControlName="time_start"
+        min="{{ today | date: 'dd-MM-yyy' }}"
+      />
     </div>
     <div
       *ngIf="
@@ -40,8 +45,7 @@
         type="date"
         formControlName="time_end"
         id=""
-      
-        min="{{today| date:'yyyy-MM-dd'}}"
+        min="{{ today | date: 'dd-MM-yyyy' }}"
       />
     </div>
     <div
@@ -66,7 +70,7 @@
     >
       <div *ngIf="f.note.errors?.required">Note is required.</div>
     </div>
-    <div class="form-group" *ngIf="(totalDay - totalDayOff !== 0)" >
+    <div class="form-group" *ngIf="totalDay - totalDayOff !== 0">
       <label for="">Paid Leave</label>
       <input
         class="ml-2"
@@ -77,22 +81,20 @@
         (change)="disabledNumberDay($event)"
       />
     </div>
-    <div class="form-group" >
+    <div class="form-group">
       <label for=""
         >Number of paid leave days (Remaining
         {{ totalDay - totalDayOff }} Days)</label
       >
       <input
-      disabled
+        disabled
         class="form-control"
         type="number"
         formControlName="number_day"
         id="numberDay"
       />
     </div>
-    
-    
-   
+
     <button class="btn btn-primary">{{ idTimeOff ? "Edit" : "Add" }}</button>
   </form>
 </div>
