@@ -3,6 +3,7 @@ import { SalaryService } from 'src/app/service/salary.service';
 import { AuthService } from 'src/app/service/auth.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
+import { ToastsService } from 'src/app/service/toasts.service';
 @Component({
   selector: 'app-salaries',
   templateUrl: './salaries.component.html',
@@ -12,21 +13,27 @@ export class SalariesComponent implements OnInit {
   isAdmin: boolean;
   loading = false;
   salaryData:any;
+  
   page = 1;
   pageSize: any;
   collectionSize: any;
-  id:any;
-  payment= true;
+  id:string;
+  payment=true;
   status=true;
   closeResult = '';
   
- 
+  salaryDetail:any=[];
+  totalWork:any=[];
+  totalLeave:any=[];
+  moneyFine:any=[];
+  moneyPrize:any=[];
+
   constructor(
     private salaryService: SalaryService,
     private authService: AuthService,
     private modalService: NgbModal,
     private route:ActivatedRoute,
-    
+    private toatService:ToastsService,
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +41,7 @@ export class SalariesComponent implements OnInit {
     this.id = this.route.snapshot.params['id']
     // this. getSalaryDetail();
     this.getSalaries();
+    // this.changePay();
   }
   getSalaries(): void {
     this.salaryService.getAllSalary().subscribe((data) => {
@@ -43,7 +51,7 @@ export class SalariesComponent implements OnInit {
       this.page = data.meta.currentPage;
       this.collectionSize = data.meta.total;
       this.pageSize = data.meta.perPage;
-      console.log(this.page);
+      // console.log(this.page);
     });
   }
   
@@ -54,28 +62,58 @@ export class SalariesComponent implements OnInit {
       this.loading = false;
     });
   }
-  // changePay(){
-  //   this.salaryService.payment(this.id) = !this.payment;
-  
-  //   this.status = !this.status ;
-  // }
 
-  // open(content) {
-  //   this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-  //     this.closeResult = `Closed with: ${result}`;
-  //   }, (reason) => {
-  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-  //   });
-  // }
 
-  // private getDismissReason(reason: any): string {
-  //   if (reason === ModalDismissReasons.ESC) {
-  //     return 'by pressing ESC';
-  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-  //     return 'by clicking on a backdrop';
-  //   } else {
-  //     return `with: ${reason}`;
-  //   }
-  // }
+  changePay(id):void{
+    this.salaryService.paymentSalary(id).subscribe((data) =>{
+      // console.log(data);
+      console.log(id);
+      this.id = data.id;
+      this.toatService.show(data.message,{
+        className:'bg-success text-success',
+        delay:3000
+      }),
+      (err:any) => {
+        this.toatService.show(err.message,{
+          className:'bg-danger text-light',
+          delay:3000
+        })
+      }
+      this.getSalaries();
+      // this.payment = !this.payment;
+      // this.status = !this.status;
+    });
+    
+    // this.status = !this.status ;
+  }
+
+
+
+  openDetail(contentDetail,id):void {
+    this.salaryService.getSalaryDetail(id).subscribe((data)=>{
+        // console.log(id);
+        // console.log(data);
+        this.salaryDetail = data.data.luong;
+        this.totalWork = data.data.tong_ngay_lam;
+        this.totalLeave=data.data.tong_ngay_xin_nghi;
+        this.moneyFine = data.data.get_fine_money;
+        this.moneyPrize = data.data.get_pize_money;
+    })
+    this.modalService.open(contentDetail, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
+  }
 }
 

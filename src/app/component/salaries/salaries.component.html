@@ -37,19 +37,19 @@
             salary.total_net_salary | currency: "VND":"symbol":"1.0-0":"vi-VN"
           }}
         </td>
-        <td >{{ salary.status ==0   ? "Chưa trả" : "Đã trả" }}</td>
+        <td >{{ salary.status == 0  ? "Chưa trả" : "Đã trả" }}</td>
         <td>{{ salary.date }}</td>
         <td *ngIf="isAdmin" class="d-flex ">
           <button
             class="btn btn-primary btn-block "
-            [routerLink]="['/salaryDetail/' + salary.id]"
-            (click)="open(content)" 
+            
+            (click)="openDetail(contentDetail,salary.id)" 
           >
             Detail
           </button>
-          <button  *ngIf="salary.status == 0" (click)="changePay()"
+          <button  *ngIf="salary.status == 0" (click)="changePay(salary.id)"
           class="btn btn-success ml-1"
-        
+          
         >
           {{payment ? "Payment" : "Paymented"}}
         </button>
@@ -82,6 +82,62 @@
 
 <!-- modal -->
 
+<ng-template #contentDetail let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Chi tiết lương nhân viên </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div id="tab-panel-1" class="tab-panel">
+      <table class="table table-striped table-hover">
+        <tbody>
+     <tr >
+        <th>Tổng lương:</th>
+        <td>{{ salaryDetail.total_gross_salary |currency: "VND":"symbol":"1.0-0":"vi-VN" }}</td>
+      </tr>
+      <tr>
+        <th>Tổng lương nghỉ phép:</th>
+        <td>{{ salaryDetail.total_salary_leave ? salaryDetail.total_salary_leave : 0 | currency: "VND":"symbol":"1.0-0":"vi-VN"}}</td>
+      </tr>
+      <tr>
+        <th>Tổng lương ròng:</th>
+        <td>{{salaryDetail.total_net_salary | currency: "VND":"symbol":"1.0-0":"vi-VN"}}</td>
+      </tr>
+      <tr>
+        <th>Trạng thái:</th>
+        <td>{{salaryDetail.status == 0 ? "Chưa trả" : "Đã trả"}}</td>
+      </tr>
+      <tr>
+        <th>Ngày tháng:</th>
+        <td>{{salaryDetail.date}}</td>
+      </tr>
+      <tr>
+        <th>Tổng ngày làm việc:</th>
+        <td>{{totalWork.total_day_to_work}} ngày</td>
+      </tr>
+      <tr>
+        <th>Tổng ngày nghỉ:</th>
+        <td>{{totalLeave.total_day_leave ? totalLeave.total_day_leave:0}} ngày</td>
+      </tr>
+      <tr>
+        <th>Chế độ tổng ngày:</th>
+        <td>{{totalLeave.total_day_mode ? totalLeave.total_day_mode:0 }} ngày</td>
+      </tr>
+      <tr>
+        <th>Tiền tốt:</th>
+        <td>{{moneyFine.total_money_fine ? moneyFine.total_money_fine : 0 | currency: "VND":"symbol":"1.0-0":"vi-VN"}}</td>
+      </tr>
+      <tr>
+        <th>Tiền thưởng:</th>
+        <td>{{moneyPrize.total_money_prize?moneyPrize.total_money_prize:0 |currency:"VND":"symbol":"1.0-0":"vi-VN"}}</td>
+      </tr>
+      </tbody>
+      </table>
+  </div>
+ </div>
 
+</ng-template> 
 
 <!-- <pre>{{ closeResult }}</pre> -->

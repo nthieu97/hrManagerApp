@@ -21,7 +21,7 @@ export class SalaryService {
       params: { page },
     });
   }
-  updateStatusSalary(id:string):Observable<any>{
-    return this.http.get(this.URL_API  + id);
+  paymentSalary(id: string): Observable<any> {
+    return this.http.post(this.URL_API  + '/tra_luong/'+ id,{});
   }
 }
