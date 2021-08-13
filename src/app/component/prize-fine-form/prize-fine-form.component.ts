@@ -41,18 +41,17 @@ export class PrizeFineFormComponent implements OnInit {
         this.prizrFineService
           .getDetailPrizeFine(this.prizeFineId)
           .subscribe((data) => {
-            console.log(data);
             if (data.data.prize_money) {
               this.prizeFineForm.patchValue({
+                type: true,
                 note: data.data.name,
                 user_id: data.data.user_id,
-                type: true,
                 money: data.data.prize_money,
               });
             } else {
               this.prizeFineForm.patchValue({
-                note: data.data.name,
                 type: false,
+                note: data.data.name,
                 user_id: data.data.user_id,
                 money: data.data.fine_money,
               });
@@ -99,9 +98,16 @@ export class PrizeFineFormComponent implements OnInit {
     }
     return body;
   }
+  changePrizeFine(event): void {
+    console.log(event.target);
+
+    // this.isPrize = !this.isPrize;
+  }
   submitForm(): void {
     if (this.prizeFineId) {
       const body = this.checkPrizeFine();
+      console.log(body);
+
       this.prizrFineService.updatePrizeFine(this.prizeFineId, body).subscribe(
         (_) => {
           this.router.navigate(['/', 'prize-fine-money']);
@@ -119,6 +125,7 @@ export class PrizeFineFormComponent implements OnInit {
       );
     } else {
       const body = this.checkPrizeFine();
+      console.log(body);
 
       this.prizrFineService.createPrize(body).subscribe(
         (data) => {
