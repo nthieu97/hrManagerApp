@@ -16,8 +16,8 @@ export class SalariesComponent implements OnInit {
   idUser;
   // toggle = true;
   // status = "Enable";
-  payment:boolean=true;
-  status:boolean=true;
+  payment = true;
+  status = true;
   constructor(
     private salaryService: SalaryService,
     private authService: AuthService
@@ -46,8 +46,8 @@ export class SalariesComponent implements OnInit {
       this.loading = false;
     });
   }
-  onclick(){
+  onclick() {
     this.payment = !this.payment;
-    this.status = !this.status ;
+    this.status = !this.status;
   }
 }

@@ -78,7 +78,7 @@ export class PrizeFineFormComponent implements OnInit {
   } {
     return this.prizeFineForm.controls;
   }
-  checkPrizeFine(): Object {
+  checkPrizeFine(): object {
     const type = this.prizeFineForm.value.type;
     let body = {};
     if (type) {

@@ -24,8 +24,8 @@ export class AttendanceService {
   getAllAttendance(page?: string): Observable<any> {
     return this.http.get(this.URL_API, { params: { page } });
   }
-  getListOT(): Observable<any> {
-    return this.http.get(this.URL_API + '/getListOt/', {});
+  getListOT(page?: string): Observable<any> {
+    return this.http.get(this.URL_API + '/getListOt/', { params: { page } });
   }
 
   getDetailOT(id: string): Observable<any> {

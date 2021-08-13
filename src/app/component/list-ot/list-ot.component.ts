@@ -10,8 +10,8 @@ export class ListOtComponent implements OnInit {
   listOT = [];
   loading = false;
   page = 1;
-  pageSize = 10;
-  collectionSize = 49;
+  pageSize;
+  collectionSize;
 
   constructor(private attenService: AttendanceService) {}
 
@@ -23,11 +23,11 @@ export class ListOtComponent implements OnInit {
       this.pageSize = data.meta.perPage;
     });
   }
-  handlePaginate(event) {
+  handlePaginate(event): void {
     this.loading = true;
-    // this.attenService.paginateAttendance(String(event)).subscribe((data) => {
-    //   this.listOT = data.data;
-    //   this.loading = false;
-    // });
+    this.attenService.getListOT(String(event)).subscribe((data) => {
+      this.listOT = data.data;
+      this.loading = false;
+    });
   }
 }

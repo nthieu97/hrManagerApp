@@ -60,7 +60,7 @@
               <tbody>
                 <tr>
                   <th>Tên đầy đủ</th>
-                  <td>{{ userInfo.userinfo.full_name }}</td>
+                  <td>{{ userInfo?.userinfo?.full_name }}</td>
                 </tr>
                 <!-- <tr>
                                 <th>Mã Nhân viên</th>
@@ -68,11 +68,11 @@
                             </tr> -->
                 <tr>
                   <th>Chức vụ</th>
-                  <td>{{ userInfo.chucvu_userinfo.name }}</td>
+                  <td>{{ userInfo?.chucvu_userinfo?.name }}</td>
                 </tr>
                 <tr>
                   <th>Phòng ban</th>
-                  <td>{{ userInfo.phongban_userinfo.name }}</td>
+                  <td>{{ userInfo?.phongban_userinfo?.name }}</td>
                 </tr>
                 <tr>
                   <th>Kiểu làm việc</th>
@@ -84,7 +84,7 @@
                 </tr>
                 <tr>
                   <th>Ngày vào công ty</th>
-                  <td>{{ userInfo.userinfo.date_of_join }}</td>
+                  <td>{{ userInfo?.userinfo?.date_of_join }}</td>
                 </tr>
                 <!-- <tr>
                                 <th>Thâm niên làm việc</th>
@@ -98,7 +98,7 @@
                   <th>Lương</th>
                   <td>
                     {{
-                      userInfo.userinfo.basic_salary
+                      userInfo?.userinfo?.basic_salary
                         | currency: "VND":"symbol":"1.0-0":"vi-VN"
                     }}
                   </td>
@@ -115,7 +115,7 @@
                             </tr> -->
                 <tr>
                   <th>Giới tính</th>
-                  <td>{{ userInfo.userinfo.sex }}</td>
+                  <td>{{ userInfo?.userinfo?.sex }}</td>
                 </tr>
                 <!-- <tr>
                                 <th>Ngày sinh</th>
@@ -123,16 +123,16 @@
                             </tr> -->
                 <tr>
                   <th>Số Diện Thoại</th>
-                  <td>{{ userInfo.userinfo.phone }}</td>
+                  <td>{{ userInfo?.userinfo?.phone }}</td>
                 </tr>
                 <tr>
                   <th>Email</th>
-                  <td>{{ userInfo.email }}</td>
+                  <td>{{ userInfo?.email }}</td>
                 </tr>
 
                 <tr>
                   <th>Địa chỉ hiện tại</th>
-                  <td>{{ userInfo.userinfo.address }}</td>
+                  <td>{{ userInfo?.userinfo?.address }}</td>
                 </tr>
               </tbody>
             </table>
