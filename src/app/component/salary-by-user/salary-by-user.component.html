@@ -6,16 +6,16 @@
 </nav>
 
 <div class="salary-us">
-  <h3>Salaries User</h3>
+  <h3>Lương của tài khoản </h3>
   <Table class="table">
     <thead>
       <th>#</th>
-      <th>Full name</th>
-      <th>Total salary</th>
-      <th>Total salary leave</th>
-      <th>Salary minus tax</th>
-      <th>Status</th>
-      <th>Date</th>
+      <th>Họ tên</th>
+      <th>Tổng lương </th>
+      <th>Tổng lương nghỉ phép</th>
+      <th>Lương trừ thuế</th>
+      <th>Trạng thái</th>
+      <th>Ngày tháng</th>
     </thead>
     <tbody>
       <tr *ngFor="let salary of salaUserData">
@@ -28,7 +28,7 @@
         </td>
         <td>
           {{
-            salary.total_salary_leave | currency: "VND":"symbol":"1.0-0":"vi-VN"
+            salary.total_salary_leave ? salary.total_salary_leave : 0  | currency: "VND":"symbol":"1.0-0":"vi-VN"
           }}
         </td>
         <td>

@@ -21,4 +21,7 @@ export class SalaryService {
       params: { page },
     });
   }
+  paymentSalary(id: string): Observable<any> {
+    return this.http.post(this.URL_API  + '/tra_luong/'+ id,{});
+  }
 }

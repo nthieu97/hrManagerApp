@@ -30,6 +30,7 @@ import { SalaryByUserComponent } from './component/salary-by-user/salary-by-user
 import { SalaryDetailComponent } from './component/salary-detail/salary-detail.component';
 import { LoginGuard } from './guard/login.guard';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -84,6 +85,7 @@ const routes: Routes = [
         path: 'salaryDetail/:id',
         component: SalaryDetailComponent,
       },
+     
       {
         path: 'departments',
         component: DepartmentComponent,

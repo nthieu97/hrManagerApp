@@ -43,6 +43,7 @@ import { SalaryByUserComponent } from './component/salary-by-user/salary-by-user
 import { registerLocaleData } from '@angular/common';
 import localeVi from '@angular/common/locales/vi';
 import { SalaryDetailComponent } from './component/salary-detail/salary-detail.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localeVi, 'vi-VN');
@@ -80,6 +81,7 @@ FullCalendarModule.registerPlugins([
     ForgotPasswordComponent,
     SalaryByUserComponent,
     SalaryDetailComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -95,6 +97,7 @@ FullCalendarModule.registerPlugins([
     FullCalendarModule,
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot(),
+    NgbModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
