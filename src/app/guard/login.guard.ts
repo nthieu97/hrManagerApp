@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  CanActivateChild,
+  CanActivate,
   Router,
   RouterStateSnapshot,
   UrlTree,
@@ -12,9 +12,9 @@ import { AuthService } from '../service/auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivateChild {
+export class LoginGuard implements CanActivate {
   constructor(private authService: AuthService, private route: Router) {}
-  canActivateChild(
+  canActivate(
     router: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ):
@@ -23,12 +23,9 @@ export class AuthGuard implements CanActivateChild {
     | boolean
     | UrlTree {
     if (!this.authService.checkTokenExpired()) {
-      this.route.navigate(['login']);
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      return false;
+      return true;
     }
-
-    return true;
+    this.route.navigate(['/', 'dashboard']);
+    return false;
   }
 }

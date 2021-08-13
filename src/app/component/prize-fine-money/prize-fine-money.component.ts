@@ -12,18 +12,18 @@ export class PrizeFineMoneyComponent implements OnInit {
   constructor(
     private prizeFineMoneyService: PrizeFineMoneyService,
     private router: Router,
-    private toastService:ToastsService
+    private toastService: ToastsService
   ) {}
   list_prize_fine = [];
   keyword = '';
   loading = false;
   page = 1;
-  pageSize:any;
-  collectionSize:any;
+  pageSize: any;
+  collectionSize: any;
   ngOnInit(): void {
     this.search();
   }
-  search() {
+  search(): void {
     this.prizeFineMoneyService.getAllPrize(this.keyword).subscribe((data) => {
       this.list_prize_fine = data.data;
       this.page = data.meta.currentPage;
@@ -37,42 +37,43 @@ export class PrizeFineMoneyComponent implements OnInit {
       const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
           confirmButton: 'btn btn-success',
-          cancelButton: 'btn btn-danger'
+          cancelButton: 'btn btn-danger',
         },
-        buttonsStyling: false
-      })
-      swalWithBootstrapButtons.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.prizeFineMoneyService.deletePrizeFine(id).subscribe((data) => {
-            this.toastService.show(data.message, {
-              classname: 'bg-success text-light',
-              delay: 3000
-            }),
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: 'Bạn có muốn xóa ?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'CÓ',
+          cancelButtonText: 'Không',
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            this.prizeFineMoneyService.deletePrizeFine(id).subscribe(
+              (data) => {
+                this.toastService.show(data.message, {
+                  classname: 'bg-success text-light',
+                  delay: 3000,
+                });
+              },
               (err: any) => {
                 this.toastService.show(err.message, {
                   classname: 'bg-danger text-light',
-                  delay: 3000
-                })
+                  delay: 3000,
+                });
               }
-          })
-          this.search()
-        } else if (
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-        }
-      })
+            );
+            this.search();
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+          }
+        });
     });
   }
-  
-  handlePaginate(event) {
+
+  handlePaginate(event): void {
     this.loading = true;
     this.prizeFineMoneyService
       .paginatePrize(String(event))

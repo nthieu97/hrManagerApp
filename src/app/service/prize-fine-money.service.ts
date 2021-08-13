@@ -30,7 +30,7 @@ export class PrizeFineMoneyService {
     return this.http.delete(this.URL_API + '/delete/' + id, {});
   }
   updatePrizeFine(id: string, object: any): Observable<any> {
-    return this.http.post(this.URL_API + '/update/' + id, { object });
+    return this.http.post(this.URL_API + '/update/' + id, object);
   }
 
   getDetailPrizeFine(id: string): Observable<any> {

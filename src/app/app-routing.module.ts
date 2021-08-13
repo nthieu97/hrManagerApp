@@ -28,6 +28,7 @@ import { ListOtComponent } from './component/list-ot/list-ot.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { SalaryByUserComponent } from './component/salary-by-user/salary-by-user.component';
 import { SalaryDetailComponent } from './component/salary-detail/salary-detail.component';
+import { LoginGuard } from './guard/login.guard';
 
 const routes: Routes = [
   {
@@ -103,7 +104,7 @@ const routes: Routes = [
         component: EmployeeFormComponent,
       },
       {
-        path:'employee-edit/:id',
+        path: 'employee-edit/:id',
         component: EmployeeFormComponent,
       },
       {
@@ -153,7 +154,7 @@ const routes: Routes = [
       },
     ],
   },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'change-password', component: ChangePasswordComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
 ];

@@ -151,4 +151,8 @@ export class EmployeesComponent implements OnInit {
       this.loadingExpand = false;
     });
   }
+  refreshFilteredEmployees(): void {
+    this.userParams = new HttpParams();
+    this.updateUserList();
+  }
 }

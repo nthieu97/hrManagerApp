@@ -1,60 +1,81 @@
-
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
     <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item"><a [routerLink]="['/','prize-fine-money']">Prize-Fine-Money</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{prizeFineId ? "edit-prize-fine-money" : "add-prize-fine-money"}}</li>
+    <li class="breadcrumb-item">
+      <a [routerLink]="['/', 'prize-fine-money']">Prize-Fine-Money</a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      {{ prizeFineId ? "Sửa thưởng-phạt" : "Thêm mới thưởng-phạt" }}
+    </li>
   </ol>
 </nav>
 <div class="prize-fine-money">
-  <h3 class="text-center">{{prizeFineId ? "Edit-Prize-Fine-Money" : "Add-Prize-Fine-Money"}}</h3>
+  <h3 class="text-center">
+    {{ prizeFineId ? "Sửa thưởng-phạt" : "Thêm mới thưởng-phạt" }}
+  </h3>
 
-  <form  (ngSubmit)="submitForm($event)" [formGroup]="prizeForm">
-    <div class="check text-center" >
-      <span>Prize : <input name="thuong" *ngIf="!checkFine" [disable] [(ngModel)]="checkPrize"  formControlName="thuong" [value]="" type="checkbox"></span>
-      <span>Fine : <input name="phat" *ngIf="!checkPrize" [disable] [(ngModel)]="checkFine" formControlName="phat" [value]="" type="checkbox"></span>
+  <form (ngSubmit)="submitForm()" [formGroup]="prizeFineForm">
+    <div class="form-group">
+      <label for="">Kiểu </label>
+      <select formControlName="type" class="form-control">
+        <option class="form-control" [value]="true">Thường</option>
+        <option class="form-control" [value]="false">Phạt</option>
+      </select>
     </div>
-    <div *ngIf="checkPrize || checkFine" [disabled] >
-    <div class="form-group" >
-      <label for="">User Name</label>
+    <div class="form-group">
+      <label for="">mã nhân viên</label>
       <select formControlName="user_id" class="form-control">
-          <option value="" selected disabled>--Choose position--</option>
-        <option [value]="employee.id" *ngFor="let employee of employees;index as i">
-          {{employee.user_account}}
+        <option value="" selected disabled>--Chọn mã nhân viên--</option>
+        <option
+          [value]="employee.id"
+          *ngFor="let employee of employees; index as i"
+        >
+          {{ employee.user_account }}
         </option>
       </select>
-          <div *ngIf="f.user_id.invalid && (f.user_id.dirty || f.user_id.touched)" class="alert alert-danger">
-            <div *ngIf="f.user_id.errors?.required">
-              Full name is required.
-            </div>
-          </div>
+      <div
+        *ngIf="f.user_id.invalid && (f.user_id.dirty || f.user_id.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="f.user_id.errors?.required">Full name is required.</div>
+      </div>
     </div>
 
-      <div class="form-group" >
-        <label for="">Name</label>
-        <input type="text" class="form-control" placeholder="Name" formControlName="name">
-      </div>
-      <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)" class="alert alert-danger">
-        <div *ngIf="f.name.errors?.required">
-          Name is required.
-        </div>
-      </div>
-    <div class="form-group" >
-      <label for="">Prize-Fine Money</label>
+    <div class="form-group">
+      <label for="">Ghi chú</label>
       <input
-      type="number"
-      class="form-control"
-       placeholder="Prize money"
-       formControlName="prize_fine_money"
-       >
+        type="text"
+        class="form-control"
+        placeholder="Nhập ghi chú"
+        formControlName="note"
+      />
     </div>
-      <div *ngIf="f.prize_fine_money.invalid && (f.prize_fine_money.dirty || f.prize_fine_money.touched)" class="alert alert-danger">
-        <div *ngIf="f.prize_fine_money.errors?.required">
-          Prize_fine_money is required.
-        </div>
+    <div
+      *ngIf="f.note.invalid && (f.note.dirty || f.note.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="f.note.errors?.required">
+        Phần ghi chú không được để trống.
       </div>
-
-    <button  class="btn btn-primary" type="submit">{{prizeFineId ? 'Edit' : 'Add'}}</button>
     </div>
+    <div class="form-group">
+      <label for="">Số tiền</label>
+      <input
+        type="number"
+        class="form-control"
+        placeholder="Nhập số tiền"
+        formControlName="money"
+      />
+    </div>
+    <div
+      *ngIf="f.money.invalid && (f.money.dirty || f.money.touched)"
+      class="alert alert-danger"
+    >
+      <div *ngIf="f.money.errors?.required">Số tiền không được bỏ trống</div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">
+      {{ prizeFineId ? "Edit" : "Add" }}
+    </button>
   </form>
 </div>

@@ -1,100 +1,135 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">list nhân viên</li>
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">list nhân viên</li>
   </ol>
 </nav>
 <div class="employees">
   <h2 class="mt-2">Nhân viên :</h2>
   <hr />
   <div class="employees__tools">
-      <div class="employees__filter d-flex justify-content-between">
-          <div class="search mr-2">
-              <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                      <span class="input-group-text" id="basic-addon1"><span class="material-icons">search</span></span>
-                  </div>
-                  <input type="text" (keyup.enter)="handleSearch($event)" class="form-control" placeholder="search" aria-label="Username" aria-describedby="basic-addon1" />
-              </div>
+    <div
+      class="
+        employees__filter
+        d-flex
+        justify-content-between
+        align-items-center
+      "
+    >
+      <div class="search mr-2">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"
+              ><span class="material-icons">search</span></span
+            >
           </div>
-          <select style="width: 7em" class="custom-select mr-2" id="inputGroupSelect01" (change)="handleFilterDepartment($event.target.value)">
-      <option selected disabled>Phòng ban</option>
-
-      <option *ngFor="let department of departments" [value]="department?.id">
-        {{ department?.name }}
-      </option>
-    </select>
-          <select style="width: 7em" class="custom-select" (change)="handleFilterPosition($event.target.value)" id="inputGroupSelect01">
-      <option selected disabled>Vị Trí</option>
-
-      <option *ngFor="let position of positions" [value]="position?.id">
-        {{ position?.name }}
-      </option>
-    </select>
+          <input
+            type="text"
+            (keyup.enter)="handleSearch($event)"
+            class="form-control"
+            placeholder="search"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+          />
+        </div>
       </div>
-      <!-- <div class="employees__view">
-    <div class="sort_by d-flex">
-      <span class="mx-2">View by:</span>
-      <span class="material-icons">table_rows</span>
-      <label class="switch"
-        ><input type="checkbox" />
-        <div></div>
-      </label>
-      <span class="material-icons">recent_actors</span>
+      <select
+        style="width: 7em"
+        class="custom-select mr-2"
+        id="inputGroupSelect01"
+        (change)="handleFilterDepartment($event.target.value)"
+      >
+        <option selected disabled>Phòng ban</option>
+
+        <option *ngFor="let department of departments" [value]="department?.id">
+          {{ department?.name }}
+        </option>
+      </select>
+      <select
+        style="width: 7em"
+        class="custom-select"
+        (change)="handleFilterPosition($event.target.value)"
+        id="inputGroupSelect01"
+      >
+        <option selected disabled>Vị Trí</option>
+
+        <option *ngFor="let position of positions" [value]="position?.id">
+          {{ position?.name }}
+        </option>
+      </select>
+      <button class="btn btn-success ml-2" (click)="refreshFilteredEmployees()">
+        Refresh
+      </button>
     </div>
-  </div> -->
   </div>
   <div class="spinner text-center mt-5" *ngIf="loading">
-      <div class="spinner-grow text-success" role="status">
-          <span class="sr-only">Loading...</span>
-      </div>
-      <div class="spinner-grow text-secondary mx-3" role="status">
-          <span class="sr-only">Loading...</span>
-      </div>
-      <div class="spinner-grow text-secondary" role="status">
-          <span class="sr-only">Loading...</span>
-      </div>
+    <div class="spinner-grow text-success" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary mx-3" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div class="spinner-grow text-secondary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
   </div>
   <div class="row" *ngIf="!loading">
-      <div class="employees__list">
-          <div class="eployee__item" *ngFor="let employee of employees">
-              <div class="card">
-                  <img [src]="
-            employee.avatar
-              ? employee.avatar
-              : 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'
-          " class="card-img-top employee__img" alt="employee" />
-                  <div class="card-body">
-                      <h5 class="card-title text-center">
-                          {{ employee.full_name ? employee.full_name : "User Test" }}
-                      </h5>
-                      <p class="card-text text-center">
-                          Mã NV: {{ employee.user_account }}
-                      </p>
-                      <p class="card-text text-center">
-                          Chức vụ: {{ employee.name_position }}
-                      </p>
-                      <p class="card-text text-center">
-                          Team: {{ employee.name_department }}
-                      </p>
+    <div class="employees__list">
+      <div class="eployee__item" *ngFor="let employee of employees">
+        <div class="card">
+          <img
+            [src]="
+              employee.avatar
+                ? employee.avatar
+                : 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'
+            "
+            class="card-img-top employee__img"
+            alt="employee"
+          />
+          <div class="card-body">
+            <h5 class="card-title text-center">
+              {{ employee.full_name ? employee.full_name : "User Test" }}
+            </h5>
+            <p class="card-text text-center">
+              Mã NV: {{ employee.user_account }}
+            </p>
+            <p class="card-text text-center">
+              Chức vụ: {{ employee.name_position }}
+            </p>
+            <p class="card-text text-center">
+              Team: {{ employee.name_department }}
+            </p>
 
-                      <a *ngIf="isAdmin" [routerLink]="['/', 'employee', employee.id]" class="btn btn-success btn-block">Chi tiết</a
-          >
-          <a [routerLink]="['/','employee-edit',employee.id]" *ngIf="isAdmin" class="btn btn-dark btn-block">Sửa</a>
-                  </div>
-              </div>
+            <a
+              *ngIf="isAdmin"
+              [routerLink]="['/', 'employee', employee.id]"
+              class="btn btn-success btn-block"
+              >Chi tiết</a
+            >
+            <a
+              [routerLink]="['/', 'employee-edit', employee.id]"
+              *ngIf="isAdmin"
+              class="btn btn-dark btn-block"
+              >Sửa</a
+            >
           </div>
+        </div>
       </div>
+    </div>
   </div>
   <div class="row d-flex justify-content-center" *ngIf="loadMoreButton">
-      <button (click)="handleLoadmore()" *ngIf="!loading" class="btn btn-lg btn-success">
-    Load more
-    <span
-      *ngIf="loadingExpand"
-      class="spinner-border spinner-border-sm"
-      role="status"
-      aria-hidden="true"
-    ></span>
-  </button>
+    <button
+      (click)="handleLoadmore()"
+      *ngIf="!loading"
+      class="btn btn-lg btn-success"
+    >
+      Load more
+      <span
+        *ngIf="loadingExpand"
+        class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true"
+      ></span>
+    </button>
   </div>
 </div>
