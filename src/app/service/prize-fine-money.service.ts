@@ -36,4 +36,14 @@ export class PrizeFineMoneyService {
   getDetailPrizeFine(id: string): Observable<any> {
     return this.http.get(this.URL_API + '/getdetail/' + id, {});
   }
+
+  getAllDelete(): Observable<any> {
+    return this.http.get(this.URL_API + '/getAllDelete')
+  }
+  destroyPrize(id: string): Observable<any> {
+    return this.http.delete(this.URL_API + '/destroy/' + id)
+  }
+  restorePrize(id: string, object: any): Observable<any> {
+    return this.http.post(this.URL_API + '/khoi_phuc/' + id, { object })
+  }
 }

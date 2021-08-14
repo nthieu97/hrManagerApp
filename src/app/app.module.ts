@@ -42,8 +42,11 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
 import { SalaryByUserComponent } from './component/salary-by-user/salary-by-user.component';
 import { registerLocaleData } from '@angular/common';
 import localeVi from '@angular/common/locales/vi';
-import { SalaryDetailComponent } from './component/salary-detail/salary-detail.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TrashOtComponent } from './component/trash-ot/trash-ot.component';
+import { ListOtByTimeComponent } from './component/list-ot-by-time/list-ot-by-time.component';
+import { TrashTimeOffComponent } from './component/trash-time-off/trash-time-off.component';
+import { TrashPrizeFineComponent } from './component/trash-prize-fine/trash-prize-fine.component';
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localeVi, 'vi-VN');
@@ -80,7 +83,10 @@ FullCalendarModule.registerPlugins([
     ListOtComponent,
     ForgotPasswordComponent,
     SalaryByUserComponent,
-    SalaryDetailComponent,
+    TrashOtComponent,
+    ListOtByTimeComponent,
+    TrashTimeOffComponent,
+    TrashPrizeFineComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AttendanceService } from 'src/app/service/attendance.service';
 import { ToastsService } from 'src/app/service/toasts.service';
+import { OTServiceService } from 'src/app/service/otservice.service';
 @Component({
   selector: 'app-update-ot',
   templateUrl: './update-ot.component.html',
@@ -12,15 +13,20 @@ import { ToastsService } from 'src/app/service/toasts.service';
 export class UpdateOtComponent implements OnInit {
   dropdownSettings: IDropdownSettings = {};
   selectedItems = [];
+  selectedItems2=[];
   dropdownList = [];
   formOT: FormGroup;
+  formOT2: FormGroup;
   listItem = [];
+  listID=[]
   constructor(
     private employeeService: EmployeeService,
     private attenService: AttendanceService,
-    private toastService:ToastsService
+    private toastService:ToastsService,
+    private otService:OTServiceService
   ) {
     this.formOT = this.createForm();
+    this.formOT2 = this.createForm2()
   }
 
   ngOnInit(): void {
@@ -29,7 +35,7 @@ export class UpdateOtComponent implements OnInit {
       this.dropdownList = data.data;
     });
     this.selectedItems = [];
-
+    this.selectedItems2 = [];
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -45,6 +51,13 @@ export class UpdateOtComponent implements OnInit {
     return new FormGroup({
       listUsers: new FormControl('', Validators.required),
     });
+  }
+  createForm2(): FormGroup {
+    return new FormGroup({
+      listUsers2: new FormControl('', Validators.required),
+      note: new FormControl('', Validators.required),
+      time_tang_ca: new FormControl('', Validators.required),
+    })
   }
   get f(): any {
     return this.formOT.controls;
@@ -75,6 +88,33 @@ export class UpdateOtComponent implements OnInit {
     this.listItem = []
     console.log(this.listItem);
   }
+  // select 2
+  onItemSelect2(item: any): void {
+    this.listID.push(item.id);
+    console.log(this.listID);
+
+  }
+
+  onDeSelect2(item: any): void {
+    console.log(item, 'deselect');
+    this.listID = this.listID.filter(data =>
+      data !== item.id
+    )
+    console.log(this.listID);
+  }
+  onSelectAll2(items: any): void {
+    for (let i = 0; i < items.length; i++) {
+      this.listID.push(items[i])
+    }
+    console.log(this.listID);
+
+
+  }
+  onDeSelectAll2(items: any): void {
+    console.log(items);
+    this.listID = []
+    console.log(this.listID);
+  }
   handleSubmit() {
     this.attenService.updateOT(this.listItem).subscribe((data) => {
       this.toastService.show(data.message,{
@@ -88,5 +128,23 @@ export class UpdateOtComponent implements OnInit {
         })
       }
     });
+  }
+
+  handleSubmit2() {
+    this.otService.createOT(this.formOT2.value).subscribe((data) => {
+      // this.toastService.show(data.message, {
+      //   classname: 'bg-success text-light',
+      //   delay: 3000
+      // }),
+      //   (err: any) => {
+      //     this.toastService.show(err.message, {
+      //       classname: 'bg-danger text-light',
+      //       delay: 3000
+      //     })
+      //   }
+      console.log(data);
+      // console.log(this.formOT2.value);
+
+    })
   }
 }

@@ -1,0 +1,37 @@
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb" style="padding: 0; margin: 0">
+        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/','prize-fine-money']">Danh sách thưởng phạt</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Thùng rác</li>
+    </ol>
+</nav>
+<div class="trash-prize-fine">
+    <h3>Thùng Rác</h3>
+    <table class="table">
+        <thead>
+            <th>#</th>
+            <th>Họ tên</th>
+            <th>Nội dung </th>
+            <th>Tiền thưởng</th>
+            <th>Tiền phạt</th>
+            <th>Hành động</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let prize of listAllDeletePrize; index as i">
+                <td>{{ i + 1 }}</td>
+                <td>{{ prize.user_account }}</td>
+                <td>{{ prize.name }}</td>
+                <td>{{ prize.prize_money }}</td>
+                <td>{{ prize.fine_money }}</td>
+                <td>
+                    <button class="btn btn-success" (click)="handeRestore(prize.id,i)">Khôi phục</button>
+                    <button class="btn btn-danger" (click)="handleDestroy(prize.id, i)">
+                  Xóa vĩnh viễn
+                </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

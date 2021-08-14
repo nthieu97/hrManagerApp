@@ -5,12 +5,20 @@
   </ol>
 </nav>
 <div class="prize-fine-money">
-  <h3 class="text-center">
-    List Prize-Fine-Money
-    <a [routerLink]="['/', 'prize-fine-add']"
-      ><span class="material-icons-outlined"> add_circle_outline </span></a
-    >
-  </h3>
+  <div class="header_fine_money">
+    <h3 class="text-center">
+        List Prize-Fine-Money
+
+        <a [routerLink]="['/', 'prize-fine-add']"><span class="material-icons-outlined"> add_circle_outline </span></a
+  >
+</h3>
+  
+<a [routerLink]="['/', 'trash-prize-fine']"
+><span class="material-icons">
+  delete_sweep
+  </span></a
+>
+</div>
   <div class="search mb-2">
     <input
       type="text"

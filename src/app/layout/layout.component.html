@@ -214,7 +214,20 @@
               routerLinkActive="sidebar__active"
               class="dropdown__link"
             >
+<<<<<<< HEAD
               <span class="material-icons"> list_alt </span>Danh sách OT</a
+=======
+              <span class="material-icons"> list_alt </span>Danh sách tăng ca</a
+            >
+          </li>
+          <li class="dropdow__item">
+            <a
+              [routerLink]="['/', 'list-ot-by-time']"
+              routerLinkActive="sidebar__active"
+              class="dropdown__link"
+            >
+              <span class="material-icons"> list_alt </span>Tăng ca theo giờ</a
+>>>>>>> origin/dong_97
             >
           </li>
           <li class="dropdow__item">
@@ -223,7 +236,40 @@
               routerLinkActive="sidebar__active"
               class="dropdown__link"
             >
+<<<<<<< HEAD
               <span class="material-icons"> upgrade </span>Cập nhật OT</a
+=======
+              <span class="material-icons"> upgrade </span>Cập nhật tăng ca</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar__item">
+        <a class="side-bar__link dropdown" (click)="toggleDropdown()"
+          ><span class="material-icons">qr_code</span> Attendance
+          <span class="material-icons">{{
+            !dropdown ? "expand_more" : "expand_less"
+          }}</span></a
+        >
+        <ul class="sidebar__dropdown" *ngIf="dropdown">
+          <li class="dropdow__item">
+            <a
+              [routerLink]="['/', 'attendance']"
+              routerLinkActive="sidebar__active"
+              class="dropdown__link"
+            >
+              <span class="material-icons">face</span> My Attendace</a
+            >
+          </li>
+          <li class="dropdow__item" *ngIf="isAdmin">
+            <a
+              [routerLink]="['/', 'attendanceAnalytics']"
+              class="dropdown__link"
+              routerLinkActive="sidebar__active"
+              ><span class="material-icons">analytics</span> Attendace
+              Employee</a
+>>>>>>> origin/dong_97
             >
           </li>
         </ul>

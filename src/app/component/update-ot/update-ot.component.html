@@ -8,27 +8,42 @@
   </ol>
 </nav>
 
-<div class="addForm">
-  <h3 class="text-center">Update OT</h3>
-  <form [formGroup]="formOT" (ngSubmit)="handleSubmit()">
-    <ng-multiselect-dropdown
-      [placeholder]="'--Chooses User--'"
-      [settings]="dropdownSettings"
-      [data]="dropdownList"
-      [(ngModel)]="selectedItems"
-      (onSelect)="onItemSelect($event)"
-      (onDeSelect)="onDeSelect($event)"
-      (onSelectAll)="onSelectAll($event)"
-      (onDeSelectAll)="onDeSelectAll($event)"
-      formControlName="listUsers"
-    >
-    </ng-multiselect-dropdown>
-    <div
-      *ngIf="f.listUsers.touched && f.listUsers.invalid"
-      class="alert alert-danger"
-    >
-      <div *ngIf="f.listUsers.errors?.required">List user is required.</div>
-    </div>
-    <button class="btn btn-success">Update</button>
-  </form>
+<div class="ot row">
+  <div class="col-6">
+      <div class="addForm">
+          <h3 class="text-center">Cập Nhật Tăng Ca</h3>
+          <form [formGroup]="formOT" (ngSubmit)="handleSubmit()">
+              <ng-multiselect-dropdown [placeholder]="'--Chooses User--'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)" (onDeSelect)="onDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)"
+                  formControlName="listUsers">
+              </ng-multiselect-dropdown>
+
+              <div *ngIf="f.listUsers.invalid && (f.listUsers.dirty || f.listUsers.touched)" class="alert alert-danger">
+                  <div *ngIf="f.listUsers.errors?.required">List user is required.</div>
+              </div>
+              <button class="btn btn-success">Cập nhật</button>
+          </form>
+      </div>
+
+  </div>
+  <div class="col-6">
+      <div class="addForm2">
+          <h3 class="text-center">Cập Nhật Tăng Ca Theo Giờ</h3>
+          <form [formGroup]="formOT2" (ngSubmit)="handleSubmit2()">
+              <ng-multiselect-dropdown [placeholder]="'--Chooses User--'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems2" (onSelect)="onItemSelect2($event)" (onDeSelect)="onDeSelect2($event)" (onSelectAll)="onSelectAll2($event)" (onDeSelectAll)="onDeSelectAll2($event)"
+                  formControlName="listUsers2">
+              </ng-multiselect-dropdown>
+
+              <!-- <div *ngIf="f.listUsers.invalid && (f.listUsers.dirty || f.listUsers.touched)" class="alert alert-danger">
+                  <div *ngIf="f.listUsers.errors?.required">List user is required.</div>
+              </div> -->
+
+              <textarea type="text" class="form-control" formControlName="note" placeholder="Note"></textarea>
+              <label for="">Thời gian tăng ca</label>
+              <!-- <ngb-timepicker formControlName="time_tang_ca" [(ngModel)]="time"></ngb-timepicker> -->
+              <input class="form-control" type="time" formControlName="time_tang_ca" id="">
+              <button class="btn btn-success">Cập nhật</button>
+          </form>
+      </div>
+
+  </div>
 </div>

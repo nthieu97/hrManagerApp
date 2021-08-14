@@ -9,11 +9,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./time-off.component.css'],
 })
 export class TimeOffComponent implements OnInit {
-  constructor(private timeOffService: TimeOffService, private router: Router,private toastService:ToastsService) {}
+  constructor(private timeOffService: TimeOffService, private router: Router, private toastService: ToastsService) {}
 
   timeOff;
   ngOnInit(): void {
-    this.getAllTimeOff()
+    this.getAllTimeOff();
   }
   getAllTimeOff(){
     this.timeOffService.getAllByUser().subscribe((data) => {
@@ -28,10 +28,10 @@ export class TimeOffComponent implements OnInit {
         cancelButton: 'btn btn-danger'
       },
       buttonsStyling: false
-    })
+    });
     swalWithBootstrapButtons.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      text: 'You won\'t be able to revert this!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, delete it!',
@@ -43,20 +43,20 @@ export class TimeOffComponent implements OnInit {
           this.toastService.show(data.message, {
             classname: 'bg-success text-light',
             delay: 3000
-          }),
-            (err: any) => {
+          })
+           
+        }, (err: any) => {
               this.toastService.show(err.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000
               })
-            }
-        })
-        this.getAllTimeOff()
+            })
+        this.getAllTimeOff();
       } else if (
         result.dismiss === Swal.DismissReason.cancel
       ) {
       }
-    })
-    
+    });
+
   }
-}
+

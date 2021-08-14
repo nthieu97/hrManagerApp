@@ -10,6 +10,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 50%;
+  transform: translateX(-50%)
 }
 .prize-fine-money h3 span {
   padding-left: 20px;
@@ -68,4 +70,9 @@ table th {
   border-radius: 0 5px 5px 0;
   cursor: pointer;
   font-size: 20px;
+}
+.header_fine_money {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

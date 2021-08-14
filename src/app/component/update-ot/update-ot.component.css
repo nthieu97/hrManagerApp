@@ -8,3 +8,14 @@
 button {
   margin-top: 15px;
 }
+.addForm2 {
+  background-color: #ffffff;
+  box-shadow: var(--box-shadow);
+  padding: 30px 20px;
+  border-radius: 1rem;
+  margin-top: 1rem;
+}
+
+textarea {
+  margin: 1em 0;
+}
