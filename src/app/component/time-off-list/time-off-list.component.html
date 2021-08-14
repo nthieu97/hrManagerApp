@@ -19,16 +19,24 @@
     </thead>
     <tbody>
       <tr *ngFor="let time of listTimeOff; index as i">
-        <td>{{ time.full_name }}</td>
-        <td>{{ time.time_start | date: "dd/MM/yyyy" }}</td>
-        <td>{{ time.time_end | date: "dd/MM/yyyy" }}</td>
-        <td>{{ time.note }}</td>
-        <td>{{ time.status == 1 ? "Đã duyệt" : "Chưa phê duyệt" }}</td>
-        <td>
+        <td data-title="Họ và tên">{{ time.full_name }}</td>
+        <td data-title="Ngày bắt đầu">
+          {{ time.time_start | date: "dd/MM/yyyy" }}
+        </td>
+        <td data-title="Ngày kết thúc">
+          {{ time.time_end | date: "dd/MM/yyyy" }}
+        </td>
+        <td data-title="Chú thich">{{ time.note }}</td>
+        <td data-title="Trạng thái">
+          {{ time.status == 1 ? "Đã duyệt" : "Chưa phê duyệt" }}
+        </td>
+        <td data-title="chế độ nghỉ">
           {{ time.mode_leave == 1 ? "Nghỉ có lương" : "Nghỉ không lương" }}
         </td>
-        <td>{{ time.number_day_leave }} ngày</td>
-        <td>{{ time.number_mode_leave }} ngày</td>
+        <td data-title="Số ngày xin nghỉ">{{ time.number_day_leave }} ngày</td>
+        <td data-title="Số ngày nghỉ có lương">
+          {{ time.number_mode_leave }} ngày
+        </td>
       </tr>
     </tbody>
   </table>

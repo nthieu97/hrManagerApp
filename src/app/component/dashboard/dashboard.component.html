@@ -50,7 +50,7 @@
   <hr />
   <div class="row">
     <!-- task-list -->
-    <div class="col-8">
+    <div class="col-8 col-12-md">
       <!-- task-list -->
       <div class="task-list">
         <div class="task-list__header">
@@ -73,9 +73,9 @@
                 class="text-center"
                 *ngFor="let confirm of confirmList; let i = index"
               >
-                <th scope="row">{{ confirm.id }}</th>
-                <td>{{ confirm?.full_name }}</td>
-                <td>
+                <th data-title="" scope="row">{{ confirm.id }}</th>
+                <td data-title="">{{ confirm?.full_name }}</td>
+                <td data-title="">
                   <img
                     [src]="
                       confirm?.avatar
@@ -86,9 +86,9 @@
                     class="task-list__img"
                   />
                 </td>
-                <td>{{ confirm.note }}</td>
-                <td>
-                  <div *ngIf="!loadConfirm" class="task-list__link tex-center">
+                <td data-title="">{{ confirm.note }}</td>
+                <td data-title="">
+                  <div class="task-list__link tex-center">
                     <a
                       (click)="handleAprove(confirm.id, i)"
                       class="task-list__approve"
@@ -125,7 +125,7 @@
       <!-- end-task-list -->
     </div>
     <!-- end task list -->
-    <div class="col-4">
+    <div class="col-4 col-12-md">
       <div class="team-chart">
         <div class="team-chart__header">
           <p>Số thành viên trong phòng ban</p>
@@ -145,25 +145,27 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-8">
+    <div class="col-8 col-12-md">
       <div class="attendace__analytic">
-        <h3 class="text-center">Thống kê lương nhân viên các phòng ban</h3>
-        <ngx-charts-line-chart
-          [scheme]="colorScheme"
-          [legend]="false"
-          [showXAxisLabel]="true"
-          [showYAxisLabel]="true"
-          [xAxis]="true"
-          [yAxis]="true"
-          [xAxisLabel]="'Tháng'"
-          [yAxisLabel]="'Lương'"
-          [timeline]="true"
-          [results]="multi"
-        >
-        </ngx-charts-line-chart>
+        <h3 class="text-center pt-3">Thống kê lương nhân viên các phòng ban</h3>
+        <div class="attendace__chart">
+          <ngx-charts-line-chart
+            [scheme]="colorScheme"
+            [legend]="false"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [xAxis]="true"
+            [yAxis]="true"
+            [xAxisLabel]="'Tháng'"
+            [yAxisLabel]="'Lương'"
+            [timeline]="true"
+            [results]="multi"
+          >
+          </ngx-charts-line-chart>
+        </div>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-4 col-12-md fl">
       <div class="absent">
         <div class="absent__head-container">
           <div class="absent__header">

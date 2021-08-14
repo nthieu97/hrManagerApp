@@ -28,14 +28,15 @@
     </thead>
     <tbody>
       <tr *ngFor="let time of timeOff; index as i">
-        <td>{{ time.full_name }}</td>
-        <td>{{ time.time_start | date: "dd/MM/yyyy" }}</td>
-        <td>{{ time.time_end | date: "dd/MM/yyyy" }}</td>
-        <td>{{ time.note }}</td>
-        <td>{{ time.status == 1 ? "Đã duyệt" : "Chưa phê duyệt" }}</td>
-        <td>
+        <td data-title="Full Name">{{ time.full_name }}</td>
+        <td data-title="Time start">{{ time.time_start | date: "dd/MM/yyyy" }}</td>
+        <td data-title="Time end">{{ time.time_end | date: "dd/MM/yyyy" }}</td>
+        <td data-title="Note">{{ time.note }}</td>
+        <td data-title="Status">{{ time.status == 1 ? "Đã duyệt" : "Chưa phê duyệt" }}</td>
+        <td data-title="Mode leave">
           {{ time.mode_leave == 1 ? "Nghỉ có lương" : "Nghỉ không lương" }}
         </td>
+<<<<<<< HEAD
         <td>{{ time.number_day_leave }} ngày</td>
         <td>{{ time.number_mode_leave }} ngày</td>
         <td *ngIf="time.status !== 1" class="d-flex">
@@ -44,6 +45,12 @@
             class="btn btn-primary mr-2"
             >Edit</a
           >
+=======
+        <td data-title="Number day off">{{ time.number_day_leave }} ngày</td>
+        <td data-title="Number day off salaries">{{ time.number_mode_leave }} ngày</td>
+        <td data-title="Action" *ngIf="time.status !== 1">
+          <a [routerLink]="['/', 'time-off-edit', time.id]" class="btn btn-primary">Edit</a>
+>>>>>>> origin/ha_responsive
           <button class="btn btn-danger" (click)="handleDelete(time.id, i)">
             Xóa
           </button>

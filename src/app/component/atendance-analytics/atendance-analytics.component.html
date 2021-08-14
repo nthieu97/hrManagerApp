@@ -1,25 +1,27 @@
 <div class="attendance-container">
   <div class="row">
-    <div class="col-8">
+    <div class="col-8 col-12-md">
       <div class="attendace__analytic">
         <h3 class="text-center">Thống kê đi làm nhân viên</h3>
-        <ngx-charts-bar-vertical-stacked
-          [view]="[800, 550]"
-          [scheme]="colorScheme"
-          [results]="multi"
-          [gradient]="false"
-          [xAxis]="true"
-          [yAxis]="true"
-          [legend]="false"
-          [barPadding]="10"
-          [showXAxisLabel]="true"
-          [showYAxisLabel]="true"
-          [animations]="true"
-        >
-        </ngx-charts-bar-vertical-stacked>
+        <div class="attendace__chart">
+          <ngx-charts-bar-vertical-stacked
+            [view]="[800, 550]"
+            [scheme]="colorScheme"
+            [results]="multi"
+            [gradient]="false"
+            [xAxis]="true"
+            [yAxis]="true"
+            [legend]="false"
+            [barPadding]="10"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [animations]="true"
+          >
+          </ngx-charts-bar-vertical-stacked>
+        </div>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-4 col-12-md lh-two">
       <div class="month-sumary">
         <h4 class="text-center">Điểm danh hôm nay</h4>
         <ngx-charts-pie-chart
@@ -65,17 +67,17 @@
       </thead>
       <tbody>
         <tr *ngFor="let atten of listAllAtten; index as i">
-          <td>{{ i + 1 }}</td>
-          <td>{{ atten.full_name }}</td>
-          <td>{{ atten.user_id }}</td>
-          <td>{{ atten.time_of_check_in }}</td>
-          <td>{{ atten.time_of_check_out }}</td>
-          <td>{{ atten.date_of_work }}</td>
-          <td *ngIf="atten.status == 1">
-            <span class="text-success">Đi làm</span>
+          <td data-title="#">{{ i + 1 }}</td>
+          <td data-title="Full Name">{{ atten.full_name }}</td>
+          <td data-title="ID">{{ atten.user_id }}</td>
+          <td data-title="Check in">{{ atten.time_of_check_in }}</td>
+          <td data-title="Check out">{{ atten.time_of_check_out }}</td>
+          <td data-title="Date">{{ atten.date_of_work }}</td>
+          <td data-title="Status" *ngIf="atten.status == 1">
+            <span class="text-success">Work</span>
           </td>
-          <td *ngIf="atten.status !== 1">
-            <span class="text-danger">vắng mặt</span>
+          <td data-title="Status" *ngIf="atten.status !== 1">
+            <span class="text-danger">Off</span>
           </td>
         </tr>
       </tbody>

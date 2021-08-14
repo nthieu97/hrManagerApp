@@ -169,3 +169,14 @@ li.dropdow__item {
   background-color: #ebebeb;
   padding: 1em;
 }
+@media only screen and (max-width: 480px) {
+  .sidebar {
+    display: none;
+  }
+  .app-container {
+    grid-template-columns: 0 1fr;
+  }
+  .logo__links {
+    margin-right: unset !important;
+  }
+}

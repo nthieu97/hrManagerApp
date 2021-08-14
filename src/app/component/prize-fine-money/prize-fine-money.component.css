@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
   margin-left: 50%;
-  transform: translateX(-50%)
+  transform: translateX(-50%);
 }
 .prize-fine-money h3 span {
   padding-left: 20px;
@@ -75,4 +75,53 @@ table th {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+@media only screen and (max-width: 768px) {
+  .search input {
+    width: 100%;
+  }
+  table thead {
+    display: none;
+  }
+  table tbody,
+  table tbody tr {
+    display: block;
+    width: 100%;
+  }
+  table tbody tr th::before,
+  table tbody tr td::before {
+    content: attr(data-title);
+    font-weight: bold;
+    color: #6bae2d;
+    text-align: left;
+  }
+  table tbody tr td {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  table tbody tr th {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  table tbody tr {
+    margin-bottom: 16px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  table tbody tr th::before,
+  table tbody tr td::before {
+    text-align: center;
+  }
+  table tbody tr td {
+    flex-direction: column;
+  }
+  table tbody tr th {
+    flex-direction: column;
+  }
+  .prize-fine-money {
+    max-height: 576px;
+    overflow: scroll;
+  }
 }

@@ -13,20 +13,20 @@ import { OTServiceService } from 'src/app/service/otservice.service';
 export class UpdateOtComponent implements OnInit {
   dropdownSettings: IDropdownSettings = {};
   selectedItems = [];
-  selectedItems2=[];
+  selectedItems2 = [];
   dropdownList = [];
   formOT: FormGroup;
   formOT2: FormGroup;
   listItem = [];
-  listID=[]
+  listID = [];
   constructor(
     private employeeService: EmployeeService,
     private attenService: AttendanceService,
-    private toastService:ToastsService,
-    private otService:OTServiceService
+    private toastService: ToastsService,
+    private otService: OTServiceService
   ) {
     this.formOT = this.createForm();
-    this.formOT2 = this.createForm2()
+    this.formOT2 = this.createForm2();
   }
 
   ngOnInit(): void {
@@ -57,7 +57,7 @@ export class UpdateOtComponent implements OnInit {
       listUsers2: new FormControl('', Validators.required),
       note: new FormControl('', Validators.required),
       time_tang_ca: new FormControl('', Validators.required),
-    })
+    });
   }
   get f(): any {
     return this.formOT.controls;
@@ -65,69 +65,53 @@ export class UpdateOtComponent implements OnInit {
 
   onItemSelect(item: any): void {
     this.listItem.push(item.id);
-    console.log(this.listItem);
-    
   }
-  onDeSelect(item:any):void{
+  onDeSelect(item: any): void {
     console.log(item, 'deselect');
-    this.listItem = this.listItem.filter(data =>
-      data !== item.id
-    )
-    console.log(this.listItem);
+    this.listItem = this.listItem.filter((data) => data !== item.id);
   }
   onSelectAll(items: any): void {
-    for(let i =0; i<items.length;i++){
-      this.listItem.push(items[i])
+    for (let i = 0; i < items.length; i++) {
+      this.listItem.push(items[i]);
     }
-    console.log(this.listItem);
-    
-    
   }
-  onDeSelectAll(items:any):void{
+  onDeSelectAll(items: any): void {
     console.log(items);
-    this.listItem = []
-    console.log(this.listItem);
+    this.listItem = [];
   }
   // select 2
   onItemSelect2(item: any): void {
     this.listID.push(item.id);
-    console.log(this.listID);
-
   }
 
   onDeSelect2(item: any): void {
     console.log(item, 'deselect');
-    this.listID = this.listID.filter(data =>
-      data !== item.id
-    )
-    console.log(this.listID);
+    this.listID = this.listID.filter((data) => data !== item.id);
   }
   onSelectAll2(items: any): void {
     for (let i = 0; i < items.length; i++) {
-      this.listID.push(items[i])
+      this.listID.push(items[i]);
     }
-    console.log(this.listID);
-
-
   }
   onDeSelectAll2(items: any): void {
     console.log(items);
-    this.listID = []
-    console.log(this.listID);
+    this.listID = [];
   }
   handleSubmit() {
-    this.attenService.updateOT(this.listItem).subscribe((data) => {
-      this.toastService.show(data.message,{
-        classname:'bg-success text-light',
-        delay:3000
-      }),
-      (err:any)=>{
-        this.toastService.show(err.message,{
-          classname:'bg-danger text-light',
-          delay:3000
-        })
+    this.attenService.updateOT(this.listItem).subscribe(
+      (data) => {
+        this.toastService.show(data.message, {
+          classname: 'bg-success text-light',
+          delay: 3000,
+        });
+      },
+      (err: any) => {
+        this.toastService.show(err.message, {
+          classname: 'bg-danger text-light',
+          delay: 3000,
+        });
       }
-    });
+    );
   }
 
   handleSubmit2() {
@@ -144,7 +128,6 @@ export class UpdateOtComponent implements OnInit {
       //   }
       console.log(data);
       // console.log(this.formOT2.value);
-
-    })
+    });
   }
 }

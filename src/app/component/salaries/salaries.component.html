@@ -20,27 +20,29 @@
     </thead>
     <tbody>
       <tr *ngFor="let salary of salaryData">
-        <td>{{ salary.id }}</td>
-        <td>{{ salary.full_name }}</td>
-        <td>
+        <td data-title="#">{{ salary.id }}</td>
+        <td data-title="Full name">{{ salary.full_name }}</td>
+        <td data-title="Total gross salary">
           {{
             salary.total_gross_salary | currency: "VND":"symbol":"1.0-0":"vi-VN"
           }}
         </td>
-        <td>
+        <td data-title="Total salary leave">
           {{
             salary.total_salary_leave
               ? salary.total_salary_leave
               : (0 | currency: "VND":"symbol":"1.0-0":"vi-VN")
           }}
         </td>
-        <td>
+        <td data-title="Total net salary">
           {{
             salary.total_net_salary | currency: "VND":"symbol":"1.0-0":"vi-VN"
           }}
         </td>
-        <td>{{ salary.status == 0 ? "Chưa trả" : "Đã trả" }}</td>
-        <td>{{ salary.date }}</td>
+        <td data-title="Status">
+          {{ salary.status == 0 ? "Chưa trả" : "Đã trả" }}
+        </td>
+        <td data-title="Date">{{ salary.date }}</td>
         <td *ngIf="isAdmin" class="d-flex">
           <button
             class="btn btn-primary btn-block"
