@@ -3,7 +3,7 @@
   box-shadow: var(--box-shadow);
   padding: 0.5em;
   border-radius: 10px;
-  height: 429px;
+  min-height: 429px;
   overflow: auto;
   padding-right: 1em;
 }
@@ -342,3 +342,81 @@ a.calendar__link {
   align-items: center;
 }
 /*end- team-chart */
+@media only screen and (max-width: 992px) {
+  .col-3 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .col-12-md {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .fl {
+    display: flex;
+  }
+  .absent {
+    width: 100%;
+    margin-right: 10px;
+  }
+  .remote-work {
+    width: 100%;
+  }
+  .team-chart {
+    margin-top: 10px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  table thead {
+    display: none;
+  }
+  table tbody,
+  table tbody tr {
+    display: block;
+    width: 100%;
+  }
+  table tbody tr th::before,
+  table tbody tr td::before {
+    content: attr(data-title);
+    font-weight: bold;
+    color: #6bae2d;
+    text-align: left;
+  }
+  table tbody tr td {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  table tbody tr th {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  table tbody tr {
+    margin-bottom: 16px;
+  }
+}
+.attendace__chart {
+  width: 100% !important;
+  height: auto;
+}
+@media only screen and (max-width: 480px) {
+  .fl {
+    flex-direction: column;
+  }
+  table tbody tr th::before,
+  table tbody tr td::before {
+    text-align: center;
+  }
+  table tbody tr td {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  table tbody tr th {
+    flex-direction: column;
+  }
+  .task-list {
+    max-height: 576px;
+    overflow: scroll;
+  }
+}

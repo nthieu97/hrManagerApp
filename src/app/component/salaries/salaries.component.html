@@ -20,61 +20,47 @@
     </thead>
     <tbody>
       <tr *ngFor="let salary of salaryData">
-        <td>{{ salary.id }}</td>
-        <td>{{ salary.full_name }}</td>
-        <td>
+        <td data-title="#">{{ salary.id }}</td>
+        <td data-title="Full name">{{ salary.full_name }}</td>
+        <td data-title="Total gross salary">
           {{
-            salary.total_gross_salary | currency: "VND":"symbol":"1.0-0":"vi-VN"
+          salary.total_gross_salary | currency: "VND":"symbol":"1.0-0":"vi-VN"
           }}
         </td>
-        <td>
+        <td data-title="Total salary leave">
           {{
-            salary.total_salary_leave | currency: "VND":"symbol":"1.0-0":"vi-VN"
+          salary.total_salary_leave | currency: "VND":"symbol":"1.0-0":"vi-VN"
           }}
         </td>
-        <td>
+        <td data-title="Total net salary">
           {{
-            salary.total_net_salary | currency: "VND":"symbol":"1.0-0":"vi-VN"
+          salary.total_net_salary | currency: "VND":"symbol":"1.0-0":"vi-VN"
           }}
         </td>
-        <td *ngIf="salary.status == 0 " >{{ status ? "Chưa trả" : "Đã trả" }}</td>
-        
-        <td>{{ salary.date }}</td>
+        <td data-title="Status" *ngIf="salary.status == 0 ">{{ status ? "Chưa trả" : "Đã trả" }}</td>
+
+        <td data-title="Date">{{ salary.date }}</td>
         <td *ngIf="isAdmin">
-         
-          <button
-            class="btn btn-primary"
-            [routerLink]="['/salaryDetail/' + salary.id]"
-          >
+
+          <button class="btn btn-primary" [routerLink]="['/salaryDetail/' + salary.id]">
             Detail
           </button>
-          </td>
+        </td>
 
-          <td *ngIf="isAdmin ">
-            <button *ngIf="salary.status == 0"  (click)="onclick()"
-            
-              class="btn btn-success"
-              [routerLink]="['/salaryPayment' + salary.id]"
-            >
-             {{payment?"Thanh toán":"Đã thanh toán"}}
-            </button>
+        <td data-title="" *ngIf="isAdmin ">
+          <button *ngIf="salary.status == 0" (click)="onclick()" class="btn btn-success"
+            [routerLink]="['/salaryPayment' + salary.id]">
+            {{payment?"Thanh toán":"Đã thanh toán"}}
+          </button>
         </td>
       </tr>
     </tbody>
 
     <!-- --paginate -->
   </Table>
-  <ngb-pagination
-    class="d-flex justify-content-end"
-    [collectionSize]="collectionSize"
-    [(page)]="page"
-    [maxSize]="7"
-    [rotate]="true"
-    [ellipses]="false"
-    [boundaryLinks]="true"
-    [pageSize]="pageSize"
-    (pageChange)="handlePaginate($event)"
-  ></ngb-pagination>
+  <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="7"
+    [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
+    (pageChange)="handlePaginate($event)"></ngb-pagination>
   <div class="d-flex">
     <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
       <div class="spinner-grow text-success" role="status">

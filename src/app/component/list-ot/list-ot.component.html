@@ -17,27 +17,19 @@
     </thead>
     <tbody>
       <tr *ngFor="let ot of listOT; index as i">
-        <td>{{ i + 1 }}</td>
-        <td>{{ ot.full_name }}</td>
-        <td>{{ ot.date_of_work }}</td>
-        <td>{{ ot.time_of_check_in }}</td>
-        <td>{{ ot.time_of_check_out }}</td>
-        <td *ngIf="ot.status == 1"><span class="text-success">OT</span></td>
-        <td *ngIf="ot.status !== 1"><span class="text-danger">Not OT</span></td>
+        <td data-title="#">{{ i + 1 }}</td>
+        <td data-title="Full Name">{{ ot.full_name }}</td>
+        <td data-title="Date_of_work">{{ ot.date_of_work }}</td>
+        <td data-title="Time_of_check_in">{{ ot.time_of_check_in }}</td>
+        <td data-title="Time_of_check_out">{{ ot.time_of_check_out }}</td>
+        <td data-title="Status" *ngIf="ot.status == 1"><span class="text-success">OT</span></td>
+        <td data-title="Status" *ngIf="ot.status !== 1"><span class="text-danger">Not OT</span></td>
       </tr>
     </tbody>
   </table>
-  <ngb-pagination
-    class="d-flex justify-content-end"
-    [collectionSize]="collectionSize"
-    [(page)]="page"
-    [maxSize]="5"
-    [rotate]="true"
-    [ellipses]="false"
-    [boundaryLinks]="true"
-    [pageSize]="pageSize"
-    (pageChange)="handlePaginate($event)"
-  ></ngb-pagination>
+  <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5"
+    [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
+    (pageChange)="handlePaginate($event)"></ngb-pagination>
   <div class="d-flex">
     <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
       <div class="spinner-grow text-success" role="status">

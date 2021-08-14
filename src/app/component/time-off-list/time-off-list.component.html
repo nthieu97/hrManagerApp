@@ -20,31 +20,23 @@
     </thead>
     <tbody>
       <tr *ngFor="let time of listTimeOff; index as i">
-        <td>{{ i + 1 }}</td>
-        <td>{{ time.full_name }}</td>
-        <td>{{ time.time_start | date: "dd/MM/yyyy" }}</td>
-        <td>{{ time.time_end | date: "dd/MM/yyyy" }}</td>
-        <td>{{ time.note }}</td>
-        <td>{{ time.status == 1 ? "Đã duyệt" : "Chưa phê duyệt" }}</td>
-        <td>
+        <td data-title="#">{{ i + 1 }}</td>
+        <td data-title="Full Name">{{ time.full_name }}</td>
+        <td data-title="Time Start">{{ time.time_start | date: "dd/MM/yyyy" }}</td>
+        <td data-title="Time End">{{ time.time_end | date: "dd/MM/yyyy" }}</td>
+        <td data-title="Note">{{ time.note }}</td>
+        <td data-title="Status">{{ time.status == 1 ? "Đã duyệt" : "Chưa phê duyệt" }}</td>
+        <td data-title="Mode Leave">
           {{ time.mode_leave == 1 ? "Nghỉ có lương" : "Nghỉ không lương" }}
         </td>
-        <td>{{ time.number_day_leave }} ngày</td>
-        <td>{{ time.number_mode_leave }} ngày</td>
+        <td data-title="Số ngày xin nghỉ">{{ time.number_day_leave }} ngày</td>
+        <td data-title="Số ngày nghỉ có lương">{{ time.number_mode_leave }} ngày</td>
       </tr>
     </tbody>
   </table>
-  <ngb-pagination
-    class="d-flex justify-content-end"
-    [collectionSize]="collectionSize"
-    [(page)]="page"
-    [maxSize]="3"
-    [rotate]="true"
-    [ellipses]="false"
-    [boundaryLinks]="true"
-    [pageSize]="pageSize"
-    (pageChange)="handlePaginate($event)"
-  ></ngb-pagination>
+  <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="3"
+    [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
+    (pageChange)="handlePaginate($event)"></ngb-pagination>
   <div class="d-flex">
     <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
       <div class="spinner-grow text-success" role="status">

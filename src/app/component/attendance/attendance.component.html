@@ -23,13 +23,13 @@
           </thead>
           <tbody>
             <tr *ngFor="let attendance of attendanceData">
-              <td scope="row">{{ attendance.id }}</td>
-              <td>{{ attendance.full_name }}</td>
-              <td>{{ attendance.user_id }}</td>
-              <td>{{ attendance.time_of_check_in }}</td>
-              <td>{{ attendance.time_of_check_out }}</td>
-              <td>{{ attendance.date_of_work }}</td>
-              <td *ngIf="attendance.status == 1">
+              <td data-title="id attendance" scope="row">{{ attendance.id }}</td>
+              <td data-title="full name">{{ attendance.full_name }}</td>
+              <td data-title="id nhan vien">{{ attendance.user_id }}</td>
+              <td data-title="check in">{{ attendance.time_of_check_in }}</td>
+              <td data-title="check out">{{ attendance.time_of_check_out }}</td>
+              <td data-title="date">{{ attendance.date_of_work }}</td>
+              <td data-title="status" *ngIf="attendance.status == 1">
                 <span class="text-success">Work</span>
               </td>
               <td *ngIf="attendance.status !== 1">
