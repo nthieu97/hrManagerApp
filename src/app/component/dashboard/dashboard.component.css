@@ -341,6 +341,10 @@ a.calendar__link {
   justify-content: center;
   align-items: center;
 }
+.attendace__chart {
+  width: 95%;
+  height: 95%;
+}
 /*end- team-chart */
 @media only screen and (max-width: 992px) {
   .col-3 {
@@ -394,10 +398,6 @@ a.calendar__link {
   table tbody tr {
     margin-bottom: 16px;
   }
-}
-.attendace__chart {
-  width: 100% !important;
-  height: auto;
 }
 @media only screen and (max-width: 480px) {
   .fl {
