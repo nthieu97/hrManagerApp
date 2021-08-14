@@ -83,7 +83,6 @@ const routes: Routes = [
         path: 'salaries',
         component: SalariesComponent,
       },
-
       {
         path: 'departments',
         component: DepartmentComponent,
