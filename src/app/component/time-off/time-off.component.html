@@ -42,14 +42,14 @@
           <a
             [routerLink]="['/', 'time-off-edit', time.id]"
             class="btn btn-primary"
-            >Edit</a
+            >Sửa</a
           >
           <button class="btn btn-danger" (click)="handleDelete(time.id, i)">
-            Delete
+            Xóa
           </button>
         </td>
         <td *ngIf="time.status == 1">
-          <span class="btn btn-success">Acepted</span>
+          <span class="btn btn-success">Đã phê duyệt</span>
         </td>
       </tr>
     </tbody>

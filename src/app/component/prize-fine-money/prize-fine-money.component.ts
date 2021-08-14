@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PrizeFineMoneyService } from 'src/app/service/prize-fine-money.service';
+import { ToastsService } from 'src/app/service/toasts.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-prize-fine-money',
   templateUrl: './prize-fine-money.component.html',
@@ -9,7 +11,8 @@ import { PrizeFineMoneyService } from 'src/app/service/prize-fine-money.service'
 export class PrizeFineMoneyComponent implements OnInit {
   constructor(
     private prizeFineMoneyService: PrizeFineMoneyService,
-    private router: Router
+    private router: Router,
+    private toastService:ToastsService
   ) {}
   list_prize_fine = [];
   keyword = '';
@@ -30,10 +33,46 @@ export class PrizeFineMoneyComponent implements OnInit {
     });
   }
   handleDelete(id: string, index): void {
-    this.prizeFineMoneyService.deletePrizeFine(id).subscribe(() => {
-      // console.log(id);
-      this.list_prize_fine.splice(index, 1);
-    });
+
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger',
+        },
+        buttonsStyling: false,
+      });
+      swalWithBootstrapButtons
+        .fire({
+          title: 'Bạn có muốn xóa ?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'CÓ',
+          cancelButtonText: 'Không',
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            this.prizeFineMoneyService.deletePrizeFine(id).subscribe(
+              (data) => {
+                this.toastService.show(data.message, {
+                  classname: 'bg-success text-light',
+                  delay: 3000,
+                });
+              },
+              (err: any) => {
+                this.toastService.show(err.message, {
+                  classname: 'bg-danger text-light',
+                  delay: 3000,
+                });
+              }
+            );
+            this.search();
+          } else if (result.dismiss === Swal.DismissReason.cancel) {
+           this.search();
+            
+          }
+        });
+ 
   }
   
   handlePaginate(event) {

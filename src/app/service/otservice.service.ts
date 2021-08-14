@@ -22,4 +22,11 @@ export class OTServiceService {
   listOTByLeader():Observable<any>{
     return this.http.get(this.URL_API + '/danh_sach_tang_ca_by_leader')
   }
+  getAllDeleteOT():Observable<any>{
+    return this.http.get(this.URL_API + '/getAllDelete')
+  }
+
+  restorseOT(id:string, object:any):Observable<any>{
+    return this.http.get(this.URL_API + '/khoi_phuc/'+id,object)
+  }
 }

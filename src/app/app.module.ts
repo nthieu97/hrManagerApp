@@ -45,7 +45,8 @@ import localeVi from '@angular/common/locales/vi';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TrashOtComponent } from './component/trash-ot/trash-ot.component';
 import { ListOtByTimeComponent } from './component/list-ot-by-time/list-ot-by-time.component';
-import { TrashTimeOffComponent } from './component/trash-time-off/trash-time-off.component'
+import { TrashTimeOffComponent } from './component/trash-time-off/trash-time-off.component';
+import { TrashPrizeFineComponent } from './component/trash-prize-fine/trash-prize-fine.component'
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localeVi, 'vi-VN');
@@ -85,6 +86,7 @@ FullCalendarModule.registerPlugins([
     TrashOtComponent,
     ListOtByTimeComponent,
     TrashTimeOffComponent,
+    TrashPrizeFineComponent,
   
 
   ],

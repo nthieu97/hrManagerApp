@@ -7,7 +7,7 @@
 </nav>
 <div class="trash-ot">
     <h3>Thùng Rác</h3>
-    <table class="table">
+    <table *ngIf="listOTDelete.length >0" class="table">
         <thead>
             <th>#</th>
             <th>Họ tên</th>
@@ -18,18 +18,23 @@
             <th>Hành động</th>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><span class="text-success"></span></td>
-                <td><span class="text-danger"></span></td>
+            <tr *ngFor="let ot of listOTDelete ; index as i">
+                <td>{{i+1}}</td>
+                <td>{{ot.full_name}}</td>
+                <td>{{ot.date}}</td>
+                <td>17:00:00</td>
+                <td>{{ot.time_tang_ca}}</td>
+                <td *ngIf="ot.status == 1"><span class="text-success">Đồng ý tăng ca</span></td>
+                <td *ngIf="ot.status == 0"><span class="text-danger">Không đồng ý </span></td>
                 <td>
-                    <button class="btn btn-danger">Xóa</button>
-                    <button class="btn btn-success">Khôi phục</button>
+                    <button class="btn btn-danger" (click)="handleDestroy(id)">Xóa</button>
+                    <button class="btn btn-success" (click)="handleRestore(id,object)">Khôi phục</button>
                 </td>
             </tr>
         </tbody>
+      
+    </table>
+    <table class="justify-content-center" *ngIf="listOTDelete.length == 0">
+        <p >Không có dữ liệu ...</p>
     </table>
 </div>

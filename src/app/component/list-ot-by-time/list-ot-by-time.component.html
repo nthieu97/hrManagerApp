@@ -34,11 +34,15 @@
           <td>{{ot.note}}</td>
           <td *ngIf="ot.status == 0"><span class="text-danger">Không tăng ca</span></td>
           <td *ngIf="ot.status == 1"><span class="text-success">Tăng ca</span></td>
-          <td>
+          <td *ngIf="ot.status ==0">
             <button (click)="handleDelete(ot.id)" class="btn btn-danger">Xóa</button>
+          </td>
+          <td *ngIf="ot.status ==1">
+            <button class="btn btn-success">Đã phê duyệt</button>
           </td>
         </tr>
       </tbody>
+     
     </table>
     <!-- <ngb-pagination
       class="d-flex justify-content-end"
