@@ -5,7 +5,15 @@
   </ol>
 </nav>
 <div class="time-off">
-  <h3 class="text-center">My Time off</h3>
+  <div class="header_timeoff">
+    <h3 class="text-center">My Time off</h3>
+    <a [routerLink]="['/','trash-time-off']">
+      <span class="material-icons">
+  delete_sweep
+  </span>
+  </a>
+  </div>
+  
   <table class="table">
     <thead>
       <th>Full Name</th>

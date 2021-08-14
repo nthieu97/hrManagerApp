@@ -1,0 +1,35 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb" style="padding: 0; margin: 0">
+        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/','list-ot-by-time']">Danh sách tăng ca theo giờ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Thùng rác</li>
+    </ol>
+</nav>
+<div class="trash-ot">
+    <h3>Thùng Rác</h3>
+    <table class="table">
+        <thead>
+            <th>#</th>
+            <th>Họ tên</th>
+            <th>Ngày</th>
+            <th>Giờ vào</th>
+            <th>Giờ ra</th>
+            <th>Trạng thái</th>
+            <th>Hành động</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span class="text-success"></span></td>
+                <td><span class="text-danger"></span></td>
+                <td>
+                    <button class="btn btn-danger">Xóa</button>
+                    <button class="btn btn-success">Khôi phục</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -27,7 +27,10 @@ import { TimeOffListComponent } from './component/time-off-list/time-off-list.co
 import { ListOtComponent } from './component/list-ot/list-ot.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { SalaryByUserComponent } from './component/salary-by-user/salary-by-user.component';
-import { SalaryDetailComponent } from './component/salary-detail/salary-detail.component';
+import { TrashOtComponent } from './component/trash-ot/trash-ot.component';
+import { ListOtByTimeComponent } from './component/list-ot-by-time/list-ot-by-time.component';
+import { TrashTimeOffComponent } from './component/trash-time-off/trash-time-off.component';
+
 
 
 const routes: Routes = [
@@ -80,10 +83,6 @@ const routes: Routes = [
         path: 'salaries',
         component: SalariesComponent,
       },
-      {
-        path: 'salaryDetail/:id',
-        component: SalaryDetailComponent,
-      },
      
       {
         path: 'departments',
@@ -128,11 +127,15 @@ const routes: Routes = [
       {
         path: 'update-ot',
         component: UpdateOtComponent,
-        canActivate: [AdminGuard],
+        // canActivate: [AdminGuard],
       },
       {
         path: 'list-ot',
         component: ListOtComponent,
+      },
+      {
+        path: 'list-ot-by-time',
+        component: ListOtByTimeComponent,
       },
       {
         path: 'prize-fine-money',
@@ -149,6 +152,14 @@ const routes: Routes = [
         component: PrizeFineFormComponent,
         canActivate: [AdminGuard],
       },
+      {
+        path:'trash-ot',
+        component:TrashOtComponent
+      },
+      {
+        path:'trash-time-off',
+        component:TrashTimeOffComponent
+      }
     ],
   },
   { path: 'login', component: LoginComponent },

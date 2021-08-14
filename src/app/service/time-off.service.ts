@@ -32,4 +32,13 @@ export class TimeOffService {
   getAllByUser(): Observable<any> {
     return this.http.get(this.API_URL + '/getAllByUser/', {});
   }
+  getAllDelete():Observable<any>{
+    return this.http.get(this.API_URL + '/getAllDelete/',{})
+  }
+  destroyTimeOff(id:string):Observable<any>{
+    return this.http.delete(this.API_URL +'/destroy/'+id)
+  }
+  restoreTimeOff(id:string, object:any):Observable<any>{
+    return this.http.post(this.API_URL +'/khoi_phuc/'+id,{object})
+  }
 }

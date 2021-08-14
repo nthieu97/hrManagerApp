@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AttendanceService } from 'src/app/service/attendance.service';
+import { OTServiceService } from 'src/app/service/otservice.service';
+import { ToastsService } from 'src/app/service/toasts.service';
 
 @Component({
   selector: 'app-list-ot',
@@ -12,8 +14,10 @@ export class ListOtComponent implements OnInit {
   page = 1;
   pageSize = 10;
   collectionSize = 49;
-
-  constructor(private attenService: AttendanceService) {}
+  
+  constructor(private attenService: AttendanceService,
+    private otService:OTServiceService,
+    private toastService:ToastsService) {}
 
   ngOnInit(): void {
     this.attenService.getListOT().subscribe((data) => {
@@ -29,5 +33,25 @@ export class ListOtComponent implements OnInit {
     //   this.listOT = data.data;
     //   this.loading = false;
     // });
+  }
+  handleDelete(id:string){
+    let conf = confirm("you definitely want to delete")
+    if(conf){
+      this.otService.deleteOT(id).subscribe((data)=> {
+        this.toastService.show(data.message,{
+          classname:'bg-success text-light',
+          delay:3000
+        }),
+        (err:any)=> {
+          this.toastService.show(err.message,{
+            classname:'bg-danger text-light',
+            delay:3000
+          })
+        }
+        console.log(data);
+        
+      })
+    }
+    
   }
 }

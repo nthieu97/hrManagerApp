@@ -65,3 +65,8 @@ table th {
   cursor: pointer;
   font-size: 20px;
 }
+.header_timeoff {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

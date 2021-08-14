@@ -5,15 +5,18 @@
   </ol>
 </nav>
 <div class="list-ot">
-  <h3 class="text-center">List Overtime</h3>
+  
+    <h3 class="text-center">Danh Sách Tăng Ca</h3>
+    
   <table class="table">
     <thead>
       <th>#</th>
-      <th>Full Name</th>
-      <th>Date_of_work</th>
-      <th>Time_of_check_in</th>
-      <th>Time_of_check_out</th>
-      <th>Status</th>
+      <th>Họ tên</th>
+      <th>Ngày</th>
+      <th>Giờ vào</th>
+      <th>Giờ ra</th>
+      <th>Trạng thái</th>
+      <th>Hành động</th>
     </thead>
     <tbody>
       <tr *ngFor="let ot of listOT; index as i">
@@ -24,6 +27,9 @@
         <td>{{ ot.time_of_check_out }}</td>
         <td *ngIf="ot.status == 1"><span class="text-success">OT</span></td>
         <td *ngIf="ot.status !== 1"><span class="text-danger">Not OT</span></td>
+        <td>
+          <button (click)="handleDelete(ot.id, i)" class="btn btn-danger">Xóa</button>
+        </td>
       </tr>
     </tbody>
   </table>
