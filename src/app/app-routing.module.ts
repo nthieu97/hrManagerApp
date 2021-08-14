@@ -27,7 +27,7 @@ import { TimeOffListComponent } from './component/time-off-list/time-off-list.co
 import { ListOtComponent } from './component/list-ot/list-ot.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { SalaryByUserComponent } from './component/salary-by-user/salary-by-user.component';
-import { SalaryDetailComponent } from './component/salary-detail/salary-detail.component';
+
 
 
 const routes: Routes = [
@@ -80,10 +80,7 @@ const routes: Routes = [
         path: 'salaries',
         component: SalariesComponent,
       },
-      {
-        path: 'salaryDetail/:id',
-        component: SalaryDetailComponent,
-      },
+     
      
       {
         path: 'departments',

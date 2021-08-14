@@ -42,7 +42,7 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
 import { SalaryByUserComponent } from './component/salary-by-user/salary-by-user.component';
 import { registerLocaleData } from '@angular/common';
 import localeVi from '@angular/common/locales/vi';
-import { SalaryDetailComponent } from './component/salary-detail/salary-detail.component';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -80,7 +80,7 @@ FullCalendarModule.registerPlugins([
     ListOtComponent,
     ForgotPasswordComponent,
     SalaryByUserComponent,
-    SalaryDetailComponent,
+   
 
   ],
   imports: [
