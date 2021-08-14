@@ -66,16 +66,12 @@ export class SalariesComponent implements OnInit {
   changePay(id): void {
     this.salaryService.paymentSalary(id).subscribe(
       (data) => {
-        // console.log(data);
-        console.log(id);
         this.id = data.id;
         this.toatService.show(data.message, {
           className: 'bg-success text-success',
           delay: 3000,
         }),
           this.getSalaries();
-        // this.payment = !this.payment;
-        // this.status = !this.status;
       },
       (err: any) => {
         this.toatService.show(err.message, {
@@ -84,14 +80,10 @@ export class SalariesComponent implements OnInit {
         });
       }
     );
-
-    // this.status = !this.status ;
   }
 
   openDetail(contentDetail, id): void {
     this.salaryService.getSalaryDetail(id).subscribe((data) => {
-      // console.log(id);
-      // console.log(data);
       this.salaryDetail = data.data.luong;
       this.totalWork = data.data.tong_ngay_lam;
       this.totalLeave = data.data.tong_ngay_xin_nghi;

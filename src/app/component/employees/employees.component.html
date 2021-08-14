@@ -1,6 +1,6 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
     <li class="breadcrumb-item active" aria-current="page">list nhân viên</li>
   </ol>
 </nav>
@@ -60,6 +60,13 @@
       <button class="btn btn-success ml-2" (click)="refreshFilteredEmployees()">
         Refresh
       </button>
+      <div
+        *ngIf="loadFilter"
+        class="ml-2 spinner-grow text-success"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
     </div>
   </div>
   <div class="spinner text-center mt-5" *ngIf="loading">
@@ -115,6 +122,12 @@
           </div>
         </div>
       </div>
+    </div>
+    <div
+      class="d-flex justify-content-center align-items-center"
+      *ngIf="employees.length === 0"
+    >
+      <p class="text-center">Không có dữ liệu</p>
     </div>
   </div>
   <div class="row d-flex justify-content-center" *ngIf="loadMoreButton">

@@ -7,6 +7,7 @@ import {
   NgbPaginationModule,
   NgbRadioGroup,
   NgbToastModule,
+  NgbModule,
 } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -18,6 +19,7 @@ import {
     NgbToastModule,
     NgbPaginationModule,
     NgbButtonsModule,
+    NgbModule,
   ],
   exports: [
     NgbDropdownModule,
@@ -25,6 +27,7 @@ import {
     NgbToastModule,
     NgbPaginationModule,
     NgbButtonsModule,
+    NgbModule,
   ],
 })
 export class BsModule {}

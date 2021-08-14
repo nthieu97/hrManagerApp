@@ -52,16 +52,16 @@
   </div>
 
   <div class="list-attendence">
-    <h3 class="text-center">List Attendence</h3>
+    <h3 class="text-center">Điểm danh của nhân viên</h3>
     <table class="table">
       <thead>
-        <th>#</th>
-        <th>Full Name</th>
-        <th>ID</th>
+        <th>Stt</th>
+        <th>Họ và tên</th>
+        <th>ID nhân viên</th>
         <th>Check in</th>
         <th>Check out</th>
-        <th>Date</th>
-        <th>Status</th>
+        <th>Ngày</th>
+        <th>Trạng thái</th>
       </thead>
       <tbody>
         <tr *ngFor="let atten of listAllAtten; index as i">
@@ -72,10 +72,10 @@
           <td>{{ atten.time_of_check_out }}</td>
           <td>{{ atten.date_of_work }}</td>
           <td *ngIf="atten.status == 1">
-            <span class="text-success">Work</span>
+            <span class="text-success">Đi làm</span>
           </td>
           <td *ngIf="atten.status !== 1">
-            <span class="text-danger">Off</span>
+            <span class="text-danger">vắng mặt</span>
           </td>
         </tr>
       </tbody>

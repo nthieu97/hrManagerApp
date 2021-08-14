@@ -1,6 +1,6 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
     <li class="breadcrumb-item active" aria-current="page">My Attendences</li>
   </ol>
 </nav>
@@ -8,41 +8,50 @@
   <div class="row">
     <div class="col">
       <div class="calendar">
-        <h3 class="text-center">My Attendences</h3>
+        <h3 class="text-center">Điểm danh của tôi</h3>
         <table class="table text-center">
           <thead class="thead-white">
             <tr>
-              <th scope="col">id attendance</th>
-              <th scope="col">full name</th>
-              <th scope="col">id nhan vien</th>
+              <th scope="col">Họ và tên</th>
+
               <th scope="col">check in</th>
               <th scope="col">check out</th>
-              <th scope="col">date</th>
-              <th scope="col">status</th>
+              <th scope="col">Ngày</th>
+              <th scope="col">Trạng thái</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let attendance of attendanceData">
-              <td scope="row">{{ attendance.id }}</td>
               <td>{{ attendance.full_name }}</td>
-              <td>{{ attendance.user_id }}</td>
+
               <td>{{ attendance.time_of_check_in }}</td>
               <td>{{ attendance.time_of_check_out }}</td>
               <td>{{ attendance.date_of_work }}</td>
               <td *ngIf="attendance.status == 1">
-                <span class="text-success">Work</span>
+                <span class="text-success">Có đi làm</span>
               </td>
               <td *ngIf="attendance.status !== 1">
-                <span class="text-danger">Off</span>
+                <span class="text-danger">Nghỉ làm</span>
               </td>
             </tr>
           </tbody>
         </table>
-        <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page"
-          [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
-          (pageChange)="handlePaginate($event)"></ngb-pagination>
+        <ngb-pagination
+          class="d-flex justify-content-end"
+          [collectionSize]="collectionSize"
+          [(page)]="page"
+          [maxSize]="5"
+          [rotate]="true"
+          [ellipses]="false"
+          [boundaryLinks]="true"
+          [pageSize]="pageSize"
+          (pageChange)="handlePaginate($event)"
+        ></ngb-pagination>
         <div class="d-flex">
-          <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
+          <div
+            class="spinner"
+            [ngStyle]="{ display: loading ? 'block' : 'none' }"
+          >
             <div class="spinner-grow text-success" role="status">
               <span class="sr-only">Loading...</span>
             </div>

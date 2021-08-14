@@ -1,6 +1,6 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
     <li class="breadcrumb-item active" aria-current="page">Time Off List</li>
   </ol>
 </nav>
@@ -8,19 +8,17 @@
   <h3 class="text-center">List Time Off</h3>
   <table class="table">
     <thead>
-      <th>#</th>
-      <th>Full Name</th>
-      <th>Time Start</th>
-      <th>Time End</th>
-      <th>Note</th>
-      <th>Status</th>
-      <th>Mode Leave</th>
-      <th>Số ngày xin nghỉ</th>
+      <th>Họ và tên</th>
+      <th>Ngày bắt đầu</th>
+      <th>Ngày kết thúc</th>
+      <th>Chú thich</th>
+      <th>Trạng thái</th>
+      <th>chế độ nghỉ</th>
+      <th>Số ngày nghỉ</th>
       <th>Số ngày nghỉ có lương</th>
     </thead>
     <tbody>
       <tr *ngFor="let time of listTimeOff; index as i">
-        <td>{{ i + 1 }}</td>
         <td>{{ time.full_name }}</td>
         <td>{{ time.time_start | date: "dd/MM/yyyy" }}</td>
         <td>{{ time.time_end | date: "dd/MM/yyyy" }}</td>

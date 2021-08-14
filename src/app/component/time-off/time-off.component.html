@@ -1,22 +1,24 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Time off</li>
+    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Nghỉ phép cá nhân
+    </li>
   </ol>
 </nav>
 <div class="time-off">
-  <h3 class="text-center">My Time off</h3>
+  <h3 class="text-center">HOạt động nghỉ phép cá nhân</h3>
   <table class="table">
     <thead>
-      <th>Full Name</th>
-      <th>Time start</th>
-      <th>Time end</th>
-      <th>Note</th>
-      <th>Status</th>
-      <th>Mode leave</th>
-      <th>Number day off</th>
-      <th>Number day off salaries</th>
-      <th>Action</th>
+      <th>Họ và tên</th>
+      <th>Ngày bắt đầu</th>
+      <th>Ngày kết thúc</th>
+      <th>Chú thich</th>
+      <th>Trạng thái</th>
+      <th>chế độ nghỉ</th>
+      <th>Số ngày nghỉ</th>
+      <th>Số ngày nghỉ có lương</th>
+      <th>Thao tác</th>
     </thead>
     <tbody>
       <tr *ngFor="let time of timeOff; index as i">
@@ -30,10 +32,10 @@
         </td>
         <td>{{ time.number_day_leave }} ngày</td>
         <td>{{ time.number_mode_leave }} ngày</td>
-        <td *ngIf="time.status !== 1">
+        <td *ngIf="time.status !== 1" class="d-flex">
           <a
             [routerLink]="['/', 'time-off-edit', time.id]"
-            class="btn btn-primary"
+            class="btn btn-primary mr-2"
             >Edit</a
           >
           <button class="btn btn-danger" (click)="handleDelete(time.id, i)">

@@ -1,13 +1,15 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Departments</li>
+    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Danh sách phòng ban
+    </li>
   </ol>
 </nav>
 
 <div class="departments">
   <h3 class="text-center">
-    Departments List<a [routerLink]="['/', 'department-form']"
+    Danh sách phòng ban<a [routerLink]="['/', 'department-form']"
       ><span class="material-icons-outlined"> add_circle_outline </span></a
     >
   </h3>
@@ -15,8 +17,8 @@
     <table class="table">
       <thead>
         <th>#</th>
-        <th>Name</th>
-        <th>Action</th>
+        <th>Tên danh sách</th>
+        <th>Thao tác</th>
       </thead>
       <tbody>
         <tr *ngFor="let department of departments; index as i">

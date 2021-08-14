@@ -3,8 +3,10 @@
     <div class="breadcrumb">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Detail</li>
+          <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Nhân viên chi tiết
+          </li>
         </ol>
       </nav>
     </div>
@@ -14,7 +16,11 @@
       <div class="card" #screen style="width: 18rem">
         <img
           class="card-img-top"
-          [src]="userInfo?.userinfo?.avatar"
+          [src]="
+            userInfo?.userinfo?.avatar
+              ? userInfo?.userinfo?.avatar
+              : 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/User-avatar.svg/1024px-User-avatar.svg.png'
+          "
           alt="Card image cap"
           crossorigin="anonymous"
         />
@@ -115,7 +121,13 @@
                             </tr> -->
                 <tr>
                   <th>Giới tính</th>
-                  <td>{{ userInfo?.userinfo?.sex }}</td>
+                  <td>
+                    {{
+                      userInfo?.userinfo?.sex
+                        ? userInfo?.userinfo?.sex
+                        : "Không có"
+                    }}
+                  </td>
                 </tr>
                 <!-- <tr>
                                 <th>Ngày sinh</th>
@@ -123,7 +135,13 @@
                             </tr> -->
                 <tr>
                   <th>Số Diện Thoại</th>
-                  <td>{{ userInfo?.userinfo?.phone }}</td>
+                  <td>
+                    {{
+                      userInfo?.userinfo?.phone
+                        ? userInfo?.userinfo?.phone
+                        : "Không có"
+                    }}
+                  </td>
                 </tr>
                 <tr>
                   <th>Email</th>
@@ -132,7 +150,13 @@
 
                 <tr>
                   <th>Địa chỉ hiện tại</th>
-                  <td>{{ userInfo?.userinfo?.address }}</td>
+                  <td>
+                    {{
+                      userInfo?.userinfo?.address
+                        ? userInfo?.userinfo?.address
+                        : "Không"
+                    }}
+                  </td>
                 </tr>
               </tbody>
             </table>

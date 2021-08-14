@@ -105,27 +105,23 @@ export class EmployeesComponent implements OnInit {
     const keyword = event.target.value;
     if (keyword === '') {
       this.userParams = this.userParams.delete('keyword');
-      this.updateUserList();
     }
 
     if (this.userParams.has('keyword')) {
       this.userParams = this.userParams.set('keyword', keyword);
-      // khi bat dau thuwc hien tim kiem thi tra lai trang ban dau page = 1
-      this.updateUserList();
     } else {
       this.userParams = this.userParams.append('keyword', keyword);
-      this.updateUserList();
     }
+    this.updateUserList();
   }
   handleFilterDepartment(idDepartment): void {
     this.loadFilter = true;
     if (this.userParams.has('phongban')) {
       this.userParams = this.userParams.set('phongban', idDepartment);
-      this.updateUserList();
     } else {
       this.userParams = this.userParams.append('phongban', idDepartment);
-      this.updateUserList();
     }
+    this.updateUserList();
   }
 
   handleFilterPosition(idPosition): void {
@@ -152,6 +148,7 @@ export class EmployeesComponent implements OnInit {
     });
   }
   refreshFilteredEmployees(): void {
+    this.loadFilter = true;
     this.userParams = new HttpParams();
     this.updateUserList();
   }

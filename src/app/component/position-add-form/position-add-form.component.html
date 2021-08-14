@@ -1,6 +1,6 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
     <li class="breadcrumb-item">
       <a [routerLink]="['/', 'positions']">Positions</a>
     </li>
@@ -21,9 +21,13 @@
           name="name"
           [(ngModel)]="model.namePosition"
           #name="ngModel"
-           [ngClass]="{ 'is-invalid': formPosition.submitted && name.invalid }" required
+          [ngClass]="{ 'is-invalid': formPosition.submitted && name.invalid }"
+          required
         />
-        <div class="invalid-feedback" *ngIf="formPosition.submitted && name.invalid">
+        <div
+          class="invalid-feedback"
+          *ngIf="formPosition.submitted && name.invalid"
+        >
           <p *ngIf="name.errors.required">Name is required</p>
         </div>
       </div>

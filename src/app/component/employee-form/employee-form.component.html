@@ -1,123 +1,183 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">{{idEmployee ? "Edit Employee" : "Add Employee"}}</li>
+    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+    <li class="breadcrumb-item active" aria-current="page">
+      {{ idEmployee ? "Edit Employee" : "Add Employee" }}
+    </li>
   </ol>
 </nav>
 
 <div class="addEmployee">
-  <h3 class="text-center">{{idEmployee ? "Edit Employee" : "Add Employee"}}</h3>
+  <h3 class="text-center">
+    {{ idEmployee ? "Edit Employee" : "Add Employee" }}
+  </h3>
   <form (ngSubmit)="submitForm()" [formGroup]="newEmployeeForm">
-      <div class="form-group">
-          <label for="">User Name</label>
-          <input type="text" placeholder="Please enter your username" formControlName="user_account" class="form-control" />
-          <div *ngIf="
-        newEmployeeForm.get('user_account').touched &&
-        newEmployeeForm.get('user_account').invalid
-      " class="alert alert-danger mt-1" role="alert">
-              Please enter your UserName
-          </div>
+    <div class="form-group">
+      <label for="">User Name</label>
+      <input
+        type="text"
+        placeholder="Please enter your username"
+        formControlName="user_account"
+        class="form-control"
+      />
+      <div
+        *ngIf="
+          newEmployeeForm.get('user_account').touched &&
+          newEmployeeForm.get('user_account').invalid
+        "
+        class="alert alert-danger mt-1"
+        role="alert"
+      >
+        Please enter your UserName
       </div>
-      <div class="form-group">
-          <label for="">Full Name</label>
-          <input type="text" placeholder="Please enter your Full Name" formControlName="full_name" class="form-control" />
-          <div *ngIf="
-        newEmployeeForm.get('full_name').touched &&
-        newEmployeeForm.get('full_name').invalid
-      " class="alert alert-danger mt-1" role="alert">
-              Please enter your Full Name
-          </div>
+    </div>
+    <div class="form-group">
+      <label for="">Full Name</label>
+      <input
+        type="text"
+        placeholder="Please enter your Full Name"
+        formControlName="full_name"
+        class="form-control"
+      />
+      <div
+        *ngIf="
+          newEmployeeForm.get('full_name').touched &&
+          newEmployeeForm.get('full_name').invalid
+        "
+        class="alert alert-danger mt-1"
+        role="alert"
+      >
+        Please enter your Full Name
       </div>
-      <div class="form-group">
-          <label for="">Avatar</label>
-          <input type="file" (change)="uploadImage($event.target)">
-          <img [src]="avatar" *ngIf="avatar" style="height: 100px; width:300px">
+    </div>
+    <div class="form-group">
+      <label for="">Avatar</label>
+      <input type="file" (change)="uploadImage($event.target)" />
+      <img [src]="avatar" *ngIf="avatar" style="height: 100px; width: 300px" />
+    </div>
+    <div class="form-group">
+      <label for="">Email</label>
+      <input type="email" formControlName="email" id="" class="form-control" />
+      <div
+        *ngIf="
+          newEmployeeForm.get('email').touched &&
+          newEmployeeForm.get('email').invalid
+        "
+        class="alert alert-danger mt-1"
+        role="alert"
+      >
+        Please enter your Email address
       </div>
-      <div class="form-group">
-          <label for="">Email</label>
-          <input type="email" formControlName="email" id="" class="form-control" />
-          <div *ngIf="
-        newEmployeeForm.get('email').touched &&
-        newEmployeeForm.get('email').invalid
-      " class="alert alert-danger mt-1" role="alert">
-              Please enter your Email address
-          </div>
-      </div>
-      <div class="gender">
-          <label for="">Male</label>
-          <input type="radio" name="sex" id="" formControlName="sex" value="male">
-          <label for="">Female</label>
-          <input type="radio" name="sex" id="" formControlName="sex" value="female">
-      </div>
-      <!-- <div class="form-group">
+    </div>
+    <div class="gender">
+      <label for="">Male</label>
+      <input type="radio" name="sex" id="" formControlName="sex" value="male" />
+      <label for="">Female</label>
+      <input
+        type="radio"
+        name="sex"
+        id=""
+        formControlName="sex"
+        value="female"
+      />
+    </div>
+    <!-- <div class="form-group">
     <label for="">Avatar</label>
     <input type="file" class="form-control" formControlName="avatar" />
   </div> -->
-      <div class="form-group">
-          <label for="">Address</label>
-          <input class="form-control" formControlName="address" placeholder="Please enter your address" type="text" />
-          <div *ngIf="
-        newEmployeeForm.get('address').touched &&
-        newEmployeeForm.get('address').invalid
-      " class="alert alert-danger mt-1" role="alert">
-              Please enter your address
-          </div>
+    <div class="form-group">
+      <label for="">Address</label>
+      <input
+        class="form-control"
+        formControlName="address"
+        placeholder="Please enter your address"
+        type="text"
+      />
+      <div
+        *ngIf="
+          newEmployeeForm.get('address').touched &&
+          newEmployeeForm.get('address').invalid
+        "
+        class="alert alert-danger mt-1"
+        role="alert"
+      >
+        Please enter your address
       </div>
-      <div class="form-group">
-          <label for="">Phone Number</label>
-          <input class="form-control" type="number" formControlName="phone" id="" placeholder="Please enter your phone number" />
-          <div *ngIf="
-        newEmployeeForm.get('phone').touched &&
-        newEmployeeForm.get('phone').invalid
-      " class="alert alert-danger mt-1" role="alert">
-              Please enter your phone number
-          </div>
+    </div>
+    <div class="form-group">
+      <label for="">Phone Number</label>
+      <input
+        class="form-control"
+        type="number"
+        formControlName="phone"
+        id=""
+        placeholder="Please enter your phone number"
+      />
+      <div
+        *ngIf="
+          newEmployeeForm.get('phone').touched &&
+          newEmployeeForm.get('phone').invalid
+        "
+        class="alert alert-danger mt-1"
+        role="alert"
+      >
+        Please enter your phone number
       </div>
-      <hr />
-      <div class="form-group">
-          <label for="">Position</label>
-          <select class="form-control" formControlName="position_id">
-      <option value="" disabled selected>--Choose position--</option>
-      <option *ngFor="let position of positions" [value]="position?.id">
-        {{ position?.name }}
-      </option>
-    </select>
+    </div>
+    <hr />
+    <div class="form-group">
+      <label for="">Position</label>
+      <select class="form-control" formControlName="position_id">
+        <option value="" disabled selected>--Choose position--</option>
+        <option *ngFor="let position of positions" [value]="position?.id">
+          {{ position?.name }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="">Department</label>
+      <select class="form-control" formControlName="department_id">
+        <option value="" disabled selected>--Choose department--</option>
+        <option *ngFor="let department of departments" [value]="department?.id">
+          {{ department?.name }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="">Role</label>
+      <select class="form-control" formControlName="role_id">
+        <option value="" disabled selected>--Choose Role--</option>
+        <option value="1">Admin</option>
+        <option value="2">HR</option>
+        <option value="3">Employee</option>
+        <option value="4">Leader</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="">Date join company</label>
+      <input type="date" class="form-control" formControlName="date_of_join" />
+    </div>
+    <div class="form-group">
+      <label for="">Basic Salaries</label>
+      <input
+        class="form-control"
+        type="number"
+        formControlName="basic_salary"
+        id=""
+      />
+      <div
+        *ngIf="
+          newEmployeeForm.get('basic_salary').touched &&
+          newEmployeeForm.get('basic_salary').invalid
+        "
+        class="alert alert-danger mt-1"
+        role="alert"
+      >
+        Please enter your phone number
       </div>
-      <div class="form-group">
-          <label for="">Department</label>
-          <select class="form-control" formControlName="department_id">
-      <option value="" disabled selected>--Choose department--</option>
-      <option *ngFor="let department of departments" [value]="department?.id">
-        {{ department?.name }}
-      </option>
-    </select>
-      </div>
-      <div class="form-group">
-          <label for="">Role</label>
-          <select class="form-control" formControlName="role_id">
-      <option value="" disabled selected>--Choose Role--</option>
-      <option value="1">Admin</option>
-      <option value="2">HR</option>
-      <option value="3">Employee</option>
-      <option value="4">Leader</option>
-    </select>
-      </div>
-      <div class="form-group">
-          <label for="">Date join company</label>
-          <input type="date" class="form-control" formControlName="date_of_join" />
-      </div>
-      <div class="form-group">
-          <label for="">Basic Salaries</label>
-          <input class="form-control" type="number" formControlName="basic_salary" id="" />
-          <div *ngIf="
-        newEmployeeForm.get('basic_salary').touched &&
-        newEmployeeForm.get('basic_salary').invalid
-      " class="alert alert-danger mt-1" role="alert">
-              Please enter your phone number
-          </div>
-      </div>
-      <button type="submit" class="btn btn-success btn-lg">
-    {{idEmployee ? "Edit" : "Add"}}
-  </button>
+    </div>
+    <button type="submit" class="btn btn-success btn-lg">
+      {{ idEmployee ? "Edit" : "Add" }}
+    </button>
   </form>
 </div>

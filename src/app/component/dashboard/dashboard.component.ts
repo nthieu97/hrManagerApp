@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
   isAdmin: boolean;
   confirmList: ConfirmResponse[] = [];
   loadListConfirm = false;
+  loadConfirm = false;
   totalUsers: number;
   totalUserWorker: number;
   totalUsersOff: number;
@@ -85,16 +86,29 @@ export class DashboardComponent implements OnInit {
   }
 
   handleAprove(id: string, index): void {
-    this.dashboardService.acceptLeave(id).subscribe((data) => {
-      this.toastService.show(data.message, {
-        classname: 'bg-success text-light',
-        delay: 3000,
-      });
-      this.confirmList.splice(index, 1);
-    });
+    this.loadConfirm = true;
+    this.dashboardService.acceptLeave(id).subscribe(
+      (data) => {
+        this.loadConfirm = false;
+        this.toastService.show(data.message, {
+          classname: 'bg-success text-light',
+          delay: 3000,
+        });
+        this.confirmList.splice(index, 1);
+      },
+      (err) => {
+        this.loadConfirm = false;
+        this.toastService.show(err.message, {
+          classname: 'bg-danger text-light',
+          delay: 3000,
+        });
+      }
+    );
   }
   handleReject(id: string, index): void {
+    this.loadConfirm = true;
     this.dashboardService.rejectLeave(id).subscribe((data) => {
+      this.loadConfirm = false;
       this.toastService.show(data.message, {
         classname: 'bg-success text-light',
         delay: 3000,

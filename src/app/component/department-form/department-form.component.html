@@ -1,9 +1,8 @@
-
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
     <li class="breadcrumb-item">
-      <a [routerLink]="['/','departments']">Departments</a>
+      <a [routerLink]="['/', 'departments']">Departments</a>
     </li>
     <li class="breadcrumb-item active" aria-current="page">
       {{ idDepartment ? "Edit Department" : "Add Department" }}
@@ -13,20 +12,27 @@
 <div class="container">
   <div class="addForm">
     <h3>{{ idDepartment ? "Edit Department" : "Add Department" }}</h3>
-    <form #formDepartment="ngForm" (ngSubmit)="handleSubmit(formDepartment.value)">
+    <form
+      #formDepartment="ngForm"
+      (ngSubmit)="handleSubmit(formDepartment.value)"
+    >
       <div class="form-group">
         <input
-        type="text"
-         class="form-control"
-         placeholder="Department name"
+          type="text"
+          class="form-control"
+          placeholder="Department name"
           name="name"
           [(ngModel)]="model.nameDepartment"
           #name="ngModel"
-          [ngClass]="{ 'is-invalid': formDepartment.submitted && name.invalid }" required
-            />
-            <div class="invalid-feedback" *ngIf="formDepartment.submitted && name.invalid">
-              <p *ngIf="name.errors.required">Name is required</p>
-            </div>
+          [ngClass]="{ 'is-invalid': formDepartment.submitted && name.invalid }"
+          required
+        />
+        <div
+          class="invalid-feedback"
+          *ngIf="formDepartment.submitted && name.invalid"
+        >
+          <p *ngIf="name.errors.required">Name is required</p>
+        </div>
       </div>
       <button class="btn btn-success">
         {{ idDepartment ? "Edit " : "Add " }}

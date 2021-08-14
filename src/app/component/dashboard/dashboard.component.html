@@ -1,6 +1,6 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
     <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
   </ol>
 </nav>
@@ -62,10 +62,10 @@
             <thead>
               <tr class="text-center">
                 <th scope="col">#</th>
-                <th scope="col">Employee Name</th>
-                <th scope="col">Image</th>
-                <th scope="col">Task</th>
-                <th scope="col">interactive</th>
+                <th scope="col">Tên nhân viên</th>
+                <th scope="col">Ảnh</th>
+                <th scope="col">Lý do xin nghỉ</th>
+                <th scope="col">Tương tác</th>
               </tr>
             </thead>
             <tbody>
@@ -88,7 +88,7 @@
                 </td>
                 <td>{{ confirm.note }}</td>
                 <td>
-                  <div class="task-list__link tex-center">
+                  <div *ngIf="!loadConfirm" class="task-list__link tex-center">
                     <a
                       (click)="handleAprove(confirm.id, i)"
                       class="task-list__approve"
@@ -99,6 +99,11 @@
                       class="task-list__decline"
                       ><span class="material-icons">thumb_down_off_alt</span>
                     </a>
+                  </div>
+                  <div *ngIf="loadConfirm" class="task-list__link tex-center">
+                    <div class="spinner-border" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
                   </div>
                 </td>
               </tr>
@@ -144,7 +149,6 @@
       <div class="attendace__analytic">
         <h3 class="text-center">Thống kê lương nhân viên các phòng ban</h3>
         <ngx-charts-line-chart
-          [view]="viewSalary"
           [scheme]="colorScheme"
           [legend]="false"
           [showXAxisLabel]="true"

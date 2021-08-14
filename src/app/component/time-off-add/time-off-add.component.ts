@@ -23,18 +23,16 @@ export class TimeOffAddComponent implements OnInit {
   idTimeOff: string;
   totalDay: number;
   totalDayOff: number;
-  today  = new Date();
-  
- 
+  today = new Date();
+
   constructor(
     private timeoffservice: TimeOffService,
     private router: Router,
     private atr: ActivatedRoute,
-    private toastService:ToastsService
+    private toastService: ToastsService
   ) {}
 
   getTotalDay(): void {
-    
     this.timeoffservice.getTotalDay().subscribe((data) => {
       this.totalDay = Number(data.data.total_day);
       this.totalDayOff = Number(
@@ -42,9 +40,9 @@ export class TimeOffAddComponent implements OnInit {
       );
     });
   }
- 
+
   ngOnInit(): void {
-    this.today.setDate(this.today.getDate()+1)
+    this.today.setDate(this.today.getDate() + 1);
     this.TimeOffForm = this.createForm();
     this.atr.params.subscribe((params) => {
       this.idTimeOff = params.id;
@@ -66,15 +64,12 @@ export class TimeOffAddComponent implements OnInit {
     this.getTotalDay();
   }
   disabledNumberDay(event) {
-    var numberDay: any = document.getElementById('numberDay')
+    const numberDay: any = document.getElementById('numberDay');
     if (event.target.checked) {
-      numberDay.removeAttribute("disabled");
+      numberDay.removeAttribute('disabled');
+    } else {
+      numberDay.setAttribute('disabled', '');
     }
-    else {
-      numberDay.setAttribute("disabled", "");
-    }
-    console.log(numberDay);
-
   }
   createForm(): FormGroup {
     return new FormGroup({
@@ -95,34 +90,36 @@ export class TimeOffAddComponent implements OnInit {
     if (this.idTimeOff) {
       this.timeoffservice
         .updateTimeOff(this.idTimeOff, this.TimeOffForm.value)
-        .subscribe((data) => {
-          this.toastService.show(data.message,{
-            classname:'bg-success text-light',
-            delay:3000
-          }),
-          (err:any)=> {
-            this.toastService.show(err.message,{
-              classname:'bg-danger text-light',
-              delay:3000
-            })
+        .subscribe(
+          (data) => {
+            this.toastService.show(data.message, {
+              classname: 'bg-success text-light',
+              delay: 3000,
+            }),
+              this.router.navigate(['/', 'my-time-off']);
+          },
+          (err: any) => {
+            this.toastService.show(err.message, {
+              classname: 'bg-danger text-light',
+              delay: 3000,
+            });
           }
-          this.router.navigate(['/', 'my-time-off']);
-        });
+        );
     }
-    this.timeoffservice
-      .createTimeOff(this.TimeOffForm.value)
-      .subscribe((data) => {
-        this.toastService.show(data.message,{
-          classname:'bg-success text-light',
-          delay:3000
+    this.timeoffservice.createTimeOff(this.TimeOffForm.value).subscribe(
+      (data) => {
+        this.toastService.show(data.message, {
+          classname: 'bg-success text-light',
+          delay: 3000,
         }),
-        (err:any)=> {
-          this.toastService.show(err.message,{
-            classname:'bg-danger text-light',
-            delay:3000
-          })
-        }
-        this.router.navigate(['/', 'my-time-off']);
-      });
+          this.router.navigate(['/', 'my-time-off']);
+      },
+      (err: any) => {
+        this.toastService.show(err.message, {
+          classname: 'bg-danger text-light',
+          delay: 3000,
+        });
+      }
+    );
   }
 }

@@ -26,7 +26,7 @@
             [routerLink]="['/', 'employee-form']"
             *ngIf="isAdmin"
             (click)="$event.preventDefault()"
-            ><span class="material-icons">people</span> Add Employee</a
+            ><span class="material-icons">people</span> Thêm nhân viên</a
           >
 
           <a
@@ -34,7 +34,7 @@
             [routerLink]="['/', 'time-off-add']"
             (click)="$event.preventDefault()"
           >
-            <span class="material-icons">verified</span> Add permisson</a
+            <span class="material-icons">verified</span> Thêm đơn nghỉ phép</a
           >
         </div>
       </div>
@@ -59,12 +59,12 @@
           class="tools_newtask__list"
         >
           <a ngbDropdownItem [routerLink]="['/', 'employee', user.id]"
-            >Detail</a
+            >Chi tiết</a
           >
           <a ngbDropdownItem [routerLink]="['/', 'change-password']"
-            >Change Password</a
+            >Đổi mật khẩu</a
           >
-          <a ngbDropdownItem (click)="logOut()">Log out</a>
+          <a ngbDropdownItem (click)="logOut()">Thoát</a>
         </div>
       </div>
     </div>
@@ -86,125 +86,12 @@
           [routerLink]="['/', 'employee']"
           class="side-bar__link"
           routerLinkActive="sidebar__active"
-          ><span class="material-icons">people</span> Employee</a
+          ><span class="material-icons">people</span> Nhân viên</a
         >
       </div>
-      <div class="sidebar__item" *ngIf="isAdmin">
-        <a
-          [routerLink]="['/', 'positions']"
-          class="side-bar__link"
-          routerLinkActive="sidebar__active"
-          ><span class="material-icons"> radar </span> Positions</a
-        >
-      </div>
-      <div class="sidebar__item" *ngIf="isAdmin">
-        <a
-          [routerLink]="['/', 'departments']"
-          class="side-bar__link"
-          routerLinkActive="sidebar__active"
-          ><span class="material-icons"> business</span> Departments</a
-        >
-      </div>
-      <div class="sidebar__item">
-        <a class="side-bar__link dropdown" (click)="toggleDropdownSalaries()"
-          ><span class="material-icons"> request_quote </span> Salaries
-          <span class="material-icons">{{
-            !dropdown ? "expand_more" : "expand_less"
-          }}</span></a
-        >
-        <ul class="sidebar__dropdown" *ngIf="dropdownSalaries">
-          <li class="dropdow__item">
-            <a
-              [routerLink]="['/', 'mySalaries']"
-              routerLinkActive="sidebar__active"
-              class="dropdown__link"
-            >
-              <span class="material-icons">money_off</span> My Salaries</a
-            >
-          </li>
-          <li class="dropdow__item" *ngIf="isAdmin">
-            <a
-              [routerLink]="['/', 'salaries']"
-              class="dropdown__link"
-              routerLinkActive="sidebar__active"
-              ><span class="material-icons">view_list</span>Salaries Employee</a
-            >
-          </li>
-        </ul>
-      </div>
-
-      <div class="sidebar__item">
-        <a class="side-bar__link dropdown" (click)="toggleDropdownTime()">
-          <span class="material-icons"> alarm_on </span>Time Off
-          <span class="material-icons">{{
-            !dropTime ? "expand_more" : "expand_less"
-          }}</span></a
-        >
-        <ul class="sidebar__dropdown" *ngIf="dropTime">
-          <li class="dropdow__item">
-            <a
-              [routerLink]="['/', 'my-time-off']"
-              routerLinkActive="sidebar__active"
-              class="dropdown__link"
-            >
-              <span class="material-icons"> insert_emoticon </span>My Time
-              Off</a
-            >
-          </li>
-          <li class="dropdow__item">
-            <a
-              [routerLink]="['/', 'time-off-list']"
-              routerLinkActive="sidebar__active"
-              class="dropdown__link"
-            >
-              <span class="material-icons"> pending_actions </span>List Time
-              Off</a
-            >
-          </li>
-        </ul>
-      </div>
-      <div class="sidebar__item" *ngIf="isAdmin">
-        <a
-          [routerLink]="['/', 'prize-fine-money']"
-          class="side-bar__link"
-          routerLinkActive="sidebar__active"
-          ><span class="material-icons"> military_tech </span>
-          Prize-Fine-Money</a
-        >
-      </div>
-
-      <div class="sidebar__item">
-        <a class="side-bar__link dropdown" (click)="toggleDropdownOT()">
-          <span class="material-icons"> nights_stay </span>OverTime
-          <span class="material-icons">{{
-            !dropOT ? "expand_more" : "expand_less"
-          }}</span></a
-        >
-        <ul class="sidebar__dropdown" *ngIf="dropOT">
-          <li class="dropdow__item">
-            <a
-              [routerLink]="['/', 'list-ot']"
-              routerLinkActive="sidebar__active"
-              class="dropdown__link"
-            >
-              <span class="material-icons"> list_alt </span>List OT</a
-            >
-          </li>
-          <li class="dropdow__item">
-            <a
-              [routerLink]="['/', 'update-ot']"
-              routerLinkActive="sidebar__active"
-              class="dropdown__link"
-            >
-              <span class="material-icons"> upgrade </span>Update OT</a
-            >
-          </li>
-        </ul>
-      </div>
-
       <div class="sidebar__item">
         <a class="side-bar__link dropdown" (click)="toggleDropdown()"
-          ><span class="material-icons">qr_code</span> Attendance
+          ><span class="material-icons">qr_code</span> Điểm danh
           <span class="material-icons">{{
             !dropdown ? "expand_more" : "expand_less"
           }}</span></a
@@ -216,7 +103,7 @@
               routerLinkActive="sidebar__active"
               class="dropdown__link"
             >
-              <span class="material-icons">face</span> My Attendace</a
+              <span class="material-icons">face</span> Điểm danh của tôi</a
             >
           </li>
           <li class="dropdow__item" *ngIf="isAdmin">
@@ -224,8 +111,119 @@
               [routerLink]="['/', 'attendanceAnalytics']"
               class="dropdown__link"
               routerLinkActive="sidebar__active"
-              ><span class="material-icons">analytics</span> Attendace
-              Employee</a
+              ><span class="material-icons">analytics</span> Điểm danh nhân
+              viên</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="sidebar__item" *ngIf="isAdmin">
+        <a
+          [routerLink]="['/', 'positions']"
+          class="side-bar__link"
+          routerLinkActive="sidebar__active"
+          ><span class="material-icons"> radar </span> Vị trí</a
+        >
+      </div>
+      <div class="sidebar__item" *ngIf="isAdmin">
+        <a
+          [routerLink]="['/', 'departments']"
+          class="side-bar__link"
+          routerLinkActive="sidebar__active"
+          ><span class="material-icons"> business</span> Phòng ban</a
+        >
+      </div>
+      <div class="sidebar__item">
+        <a class="side-bar__link dropdown" (click)="toggleDropdownSalaries()"
+          ><span class="material-icons"> request_quote </span> Lương
+          <span class="material-icons">{{
+            !dropdown ? "expand_more" : "expand_less"
+          }}</span></a
+        >
+        <ul class="sidebar__dropdown" *ngIf="dropdownSalaries">
+          <li class="dropdow__item">
+            <a
+              [routerLink]="['/', 'mySalaries']"
+              routerLinkActive="sidebar__active"
+              class="dropdown__link"
+            >
+              <span class="material-icons">money_off</span> Lương của tôi</a
+            >
+          </li>
+          <li class="dropdow__item" *ngIf="isAdmin">
+            <a
+              [routerLink]="['/', 'salaries']"
+              class="dropdown__link"
+              routerLinkActive="sidebar__active"
+              ><span class="material-icons">view_list</span>Lương nhân viên</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar__item">
+        <a class="side-bar__link dropdown" (click)="toggleDropdownTime()">
+          <span class="material-icons"> alarm_on </span> Nghỉ phép
+          <span class="material-icons">{{
+            !dropTime ? "expand_more" : "expand_less"
+          }}</span></a
+        >
+        <ul class="sidebar__dropdown" *ngIf="dropTime">
+          <li class="dropdow__item">
+            <a
+              [routerLink]="['/', 'my-time-off']"
+              routerLinkActive="sidebar__active"
+              class="dropdown__link"
+            >
+              <span class="material-icons"> insert_emoticon </span> Nghỉ phép
+              của tôi</a
+            >
+          </li>
+          <li class="dropdow__item">
+            <a
+              [routerLink]="['/', 'time-off-list']"
+              routerLinkActive="sidebar__active"
+              class="dropdown__link"
+            >
+              <span class="material-icons"> pending_actions </span>Nghỉ phép
+              nhân viên</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="sidebar__item" *ngIf="isAdmin">
+        <a
+          [routerLink]="['/', 'prize-fine-money']"
+          class="side-bar__link"
+          routerLinkActive="sidebar__active"
+          ><span class="material-icons"> military_tech </span> Tiền bên ngoài</a
+        >
+      </div>
+
+      <div class="sidebar__item">
+        <a class="side-bar__link dropdown" (click)="toggleDropdownOT()">
+          <span class="material-icons"> nights_stay </span>Làm OT
+          <span class="material-icons">{{
+            !dropOT ? "expand_more" : "expand_less"
+          }}</span></a
+        >
+        <ul class="sidebar__dropdown" *ngIf="dropOT">
+          <li class="dropdow__item">
+            <a
+              [routerLink]="['/', 'list-ot']"
+              routerLinkActive="sidebar__active"
+              class="dropdown__link"
+            >
+              <span class="material-icons"> list_alt </span>Danh sách OT</a
+            >
+          </li>
+          <li class="dropdow__item">
+            <a
+              [routerLink]="['/', 'update-ot']"
+              routerLinkActive="sidebar__active"
+              class="dropdown__link"
+            >
+              <span class="material-icons"> upgrade </span>Cập nhật OT</a
             >
           </li>
         </ul>
