@@ -55,6 +55,13 @@
 
   <div class="list-attendence">
     <h3 class="text-center">Điểm danh của nhân viên</h3>
+    <button
+      class="btn btn-success my-2"
+      (click)="expoetExcel()"
+      *ngIf="listAllAtten"
+    >
+      Tải xuống file Excel
+    </button>
     <table class="table">
       <thead>
         <th>Stt</th>
@@ -72,7 +79,7 @@
           <td data-title="ID">{{ atten.user_id }}</td>
           <td data-title="Check in">{{ atten.time_of_check_in }}</td>
           <td data-title="Check out">{{ atten.time_of_check_out }}</td>
-         
+
           <td data-title="Date">{{ atten.date_of_work }}</td>
           <td data-title="Status" *ngIf="atten.status == 1">
             <span class="text-success">Work</span>

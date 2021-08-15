@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AttendanceService } from 'src/app/service/attendance.service';
+import { ExportExcelService } from 'src/app/service/export-excel.service';
 
 @Component({
   selector: 'app-atendance-analytics',
@@ -9,7 +10,10 @@ import { AttendanceService } from 'src/app/service/attendance.service';
 export class AtendanceAnalyticsComponent implements OnInit {
   listAllAtten = [];
 
-  constructor(private attenService: AttendanceService) {}
+  constructor(
+    private attenService: AttendanceService,
+    private excel: ExportExcelService
+  ) {}
   // tslint:disable-next-line: variable-name
   multi = [
     {
@@ -135,6 +139,9 @@ export class AtendanceAnalyticsComponent implements OnInit {
       this.collectionSize = data.meta.total;
       this.pageSize = data.meta.perPage;
     });
+  }
+  expoetExcel(): void {
+    this.excel.exportExcel(this.listAllAtten, 'diemdanh');
   }
   handlePaginate(event): void {
     this.loading = true;

@@ -45,13 +45,12 @@ export class SalariesComponent implements OnInit {
   }
   getSalaries(): void {
     this.salaryService.getAllSalary().subscribe((data) => {
-      // console.log(data)
       this.salaryData = data.data;
+      console.log(data.data);
 
       this.page = data.meta.currentPage;
       this.collectionSize = data.meta.total;
       this.pageSize = data.meta.perPage;
-      // console.log(this.page);
     });
   }
 
