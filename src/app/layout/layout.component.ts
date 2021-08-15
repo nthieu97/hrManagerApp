@@ -11,18 +11,19 @@ import { AuthService } from '../service/auth.service';
 export class LayoutComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
   dropdown = false;
+  check = false;
   dropdownSalaries = false;
   dropOT = false;
   dropTime = false;
-  dropdownadd= false;
-  toggleDropuser= false;
-  isAdmin;
-  isLeader
+  dropdownadd = false;
+  toggleDropuser = false;
+  isAdmin = false;
+  isLeader = false;
   user: User;
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin();
     this.user = this.authService.getCurrentUser();
-    this.isLeader = this.authService.isLeader();
+    this.isLeader = this.authService.isLeader() || this.isAdmin;
   }
   toggleDropdown(): void {
     this.dropdown = !this.dropdown;
@@ -39,18 +40,17 @@ export class LayoutComponent implements OnInit {
   toggleDropdownadd(): void {
     this.dropdownadd = !this.dropdownadd;
   }
-  toggleDropdownuser(): void{
+  toggleDropdownuser(): void {
     this.toggleDropuser = !this.toggleDropuser;
   }
-  check:boolean=false;
-  addclass():void{
-    if(this.check==false){
-      this.check=true;
+
+  addclass(): void {
+    if (this.check === false) {
+      this.check = true;
+    } else {
+      this.check = false;
     }
-    else{
-      this.check=false;
-    }
-}
+  }
 
   logOut(): void {
     this.authService.logOut();
