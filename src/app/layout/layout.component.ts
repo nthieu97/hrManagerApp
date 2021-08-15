@@ -14,6 +14,8 @@ export class LayoutComponent implements OnInit {
   dropdownSalaries = false;
   dropOT = false;
   dropTime = false;
+  dropdownadd= false;
+  toggleDropuser= false;
   isAdmin;
   user: User;
   ngOnInit(): void {
@@ -32,6 +34,22 @@ export class LayoutComponent implements OnInit {
   toggleDropdownSalaries(): void {
     this.dropdownSalaries = !this.dropdownSalaries;
   }
+  toggleDropdownadd(): void {
+    this.dropdownadd = !this.dropdownadd;
+  }
+  toggleDropdownuser(): void{
+    this.toggleDropuser = !this.toggleDropuser;
+  }
+  check:boolean=false;
+  addclass():void{
+    if(this.check==false){
+      this.check=true;
+    }
+    else{
+      this.check=false;
+    }
+}
+
   logOut(): void {
     this.authService.logOut();
     this.router.navigate(['login']);
