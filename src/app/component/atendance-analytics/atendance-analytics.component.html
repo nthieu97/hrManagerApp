@@ -54,8 +54,9 @@
   </div>
 
   <div class="list-attendence">
-    <h3 class="text-center">Điểm danh của nhân viên</h3>
-    <button
+    <h3 class="text-center">Điểm danh của nhân viên<a [routerLink]="['/', 'attendance-form']"><span class="material-icons"> add_circle_outline </span></a
+      ></h3>
+      <button
       class="btn btn-success my-2"
       (click)="expoetExcel()"
       *ngIf="listAllAtten"
@@ -66,17 +67,18 @@
       <thead>
         <th>Stt</th>
         <th>Họ và tên</th>
-        <th>ID nhân viên</th>
+       
         <th>Check in</th>
         <th>Check out</th>
         <th>Ngày</th>
         <th>Trạng thái</th>
+        <th>Thao tác</th>
       </thead>
       <tbody>
         <tr *ngFor="let atten of listAllAtten; index as i">
           <td data-title="#">{{ i + 1 }}</td>
           <td data-title="Full Name">{{ atten.full_name }}</td>
-          <td data-title="ID">{{ atten.user_id }}</td>
+        
           <td data-title="Check in">{{ atten.time_of_check_in }}</td>
           <td data-title="Check out">{{ atten.time_of_check_out }}</td>
 
@@ -87,6 +89,16 @@
           <td data-title="Status" *ngIf="atten.status !== 1">
             <span class="text-danger">Off</span>
           </td>
+         
+            <td>
+              <button [routerLink]="['/','attendance-edit',atten.id]" class="btn btn-primary"><span title="Chỉnh sửa" class="material-icons">
+                edit_note
+                </span></button>
+                <button (click)="handleDelete(atten.id, i)" class="btn btn-danger"><span title="Xóa" class="material-icons">
+                  delete_forever
+                  </span></button>
+            </td>
+      
         </tr>
       </tbody>
     </table>

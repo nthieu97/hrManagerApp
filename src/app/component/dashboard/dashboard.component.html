@@ -74,11 +74,11 @@
                       <th scope="row">{{i+1 }}</th>
                       <td>{{ confirm.note }}</td>
                       <td>
-                          <div *ngIf="!loadConfirm" class="task-list__link tex-center">
+                          <div *ngIf="!loadAccept" class="task-list__link tex-center">
                               <a (click)="handleAccept(confirm.id, i)" class="task-list__approve"><span class="material-icons">done</span></a>
                               <a (click)="handleNotAccept(confirm.id, i)" class="task-list__decline"><span class="material-icons">thumb_down_off_alt</span> </a>
                           </div>
-                          <div *ngIf="loadConfirm" class="task-list__link tex-center">
+                          <div *ngIf="loadAccept" class="task-list__link tex-center">
                               <div class="spinner-border" role="status">
                                   <span class="sr-only">Loading...</span>
                               </div>
