@@ -47,6 +47,7 @@ import { TrashOtComponent } from './component/trash-ot/trash-ot.component';
 import { ListOtByTimeComponent } from './component/list-ot-by-time/list-ot-by-time.component';
 import { TrashTimeOffComponent } from './component/trash-time-off/trash-time-off.component';
 import { TrashPrizeFineComponent } from './component/trash-prize-fine/trash-prize-fine.component';
+import { AttendanceFormComponent } from './component/attendance-form/attendance-form.component';
 // import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localeVi, 'vi-VN');
@@ -87,6 +88,7 @@ FullCalendarModule.registerPlugins([
     ListOtByTimeComponent,
     TrashTimeOffComponent,
     TrashPrizeFineComponent,
+    AttendanceFormComponent,
   ],
   imports: [
     BrowserModule,

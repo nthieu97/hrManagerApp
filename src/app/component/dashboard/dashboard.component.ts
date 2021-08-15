@@ -33,6 +33,7 @@ export class DashboardComponent implements OnInit {
   confirmList: ConfirmResponse[] = [];
   loadListConfirm = false;
   loadConfirm = false;
+  loadAccept = false;
   totalUsers: number;
   totalUserWorker: number;
   totalUsersOff: number;
@@ -127,5 +128,26 @@ export class DashboardComponent implements OnInit {
       });
       this.confirmList.splice(index, 1);
     });
+  }
+  handleAccept(id: string, object: any) {
+    this.loadAccept = true;
+    this.otService.confirmOT(id, object).subscribe((data) => {
+
+      this.toastService.show(data.message, {
+        classname: 'bg-success text-light',
+        delay: 3000,
+      }),
+        (err: any) => {
+          this.toastService.show(err.message, {
+            classname: 'bg-danger text-light',
+            delay: 3000,
+          })
+        }
+      console.log(data);
+
+    })
+  }
+  handleNotAccept(id: string) {
+
   }
 }

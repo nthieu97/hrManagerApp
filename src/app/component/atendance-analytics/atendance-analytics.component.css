@@ -28,9 +28,29 @@
   text-align: center;
   box-shadow: var(--box-shadow);
 }
+.list-attendence {
+  margin-top: 1rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: var(--box-shadow);
+}
+.list-attendence h3 span {
+  padding-left: 20px;
+  color: var(--primary-color);
+  cursor: pointer;
+}
 th {
   color: var(--primary-color);
 }
+
+.list-attendence h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .chart-legend {
   width: 100% !important;
 }

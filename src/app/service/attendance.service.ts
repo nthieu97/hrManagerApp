@@ -27,7 +27,12 @@ export class AttendanceService {
   getListOT(page?: string): Observable<any> {
     return this.http.get(this.URL_API + '/getListOt/', { params: { page } });
   }
-
+  createAttendance(object: any): Observable<any> {
+    return this.http.post(this.URL_API + '/create/', object)
+  }
+  updateAttendance(id: string, object: any): Observable<any> {
+    return this.http.post(this.URL_API + '/update/' + id, { object });
+  }
   getDetailOT(id: string): Observable<any> {
     return this.http.get(this.URL_API + '/getdetail/' + id);
   }

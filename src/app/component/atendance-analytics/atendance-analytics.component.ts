@@ -151,4 +151,7 @@ export class AtendanceAnalyticsComponent implements OnInit {
       this.listAllAtten = data.data;
     });
   }
+  handleDelete(id:string){
+    
+  }
 }
