@@ -13,3 +13,14 @@
   th {
     color: var(--primary-color);
   }
+  h3{
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  .header_ot a{
+    margin-right: 3rem;
+  }
+  .header_ot span{
+    font-size: 30px;
+    color: darkcyan;
+  }

@@ -9,3 +9,6 @@
 th {
     color: var(--primary-color);
 }
+button{
+    margin: 0 2px;
+}

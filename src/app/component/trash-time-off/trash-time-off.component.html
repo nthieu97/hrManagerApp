@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb" style="padding: 0; margin: 0">
         <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-        <li class="breadcrumb-item"><a [routerLink]="['/','time-off']">Lịch nghỉ cá nhân</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/','my-time-off']">Lịch nghỉ cá nhân</a></li>
         <li class="breadcrumb-item active" aria-current="page">Thùng rác</li>
     </ol>
 </nav>
@@ -11,7 +11,7 @@
      
    
     
-    <table class="table">
+    <table *ngIf="listTimeOffDelete.length > 0" class="table">
       <thead>
           <th>#</th>
         <th>Họ tên</th>
@@ -39,15 +39,22 @@
           <td>{{ time.number_mode_leave }} ngày</td>
           <td >
            
-            <button class="btn btn-danger" (click)="handleDestroy(time.id, i)">
-              Delete
+            <button title="Xóa vĩnh viễn" class="btn btn-danger" (click)="handleDestroy(time.id, i)">
+              <span title="Xóa vĩnh viễn" class="material-icons">
+                delete_forever
+                </span>
             </button>
-            <button class="btn btn-success" (click)="handleRestore(time.id,i)">Khôi phục</button>
+            <button title="Khôi phục" class="btn btn-success" (click)="handleRestore(time.id,i)"><span title="Khôi phục" class="material-icons">
+              settings_backup_restore
+              </span></button>
           </td>
        
         
           
         </tr>
       </tbody>
+    </table>
+    <table *ngIf="listTimeOffDelete.length == 0">
+      <p>Thùng rác rỗng</p>
     </table>
   </div>

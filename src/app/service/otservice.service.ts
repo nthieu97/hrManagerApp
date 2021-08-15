@@ -29,4 +29,11 @@ export class OTServiceService {
   restorseOT(id:string, object:any):Observable<any>{
     return this.http.get(this.URL_API + '/khoi_phuc/'+id,object)
   }
+   //xác nhận tăng ca nhân viên
+   confirmOT(id: string, object: any): Observable<any> {
+    return this.http.post(this.URL_API + '/xac_nhan_tang_ca/' + id, object);
+  }
+  getListOTByUser(): Observable<any> {
+    return this.http.get(this.URL_API + '/danh_sach_tang_ca_by_user')
+  }
 }

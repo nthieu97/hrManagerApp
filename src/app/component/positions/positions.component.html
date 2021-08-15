@@ -6,7 +6,7 @@
 </nav>
 <div class="position">
   <h3 class="text-center">
-    Danh sách vị trí<a [routerLink]="['/', 'position-add']"
+    Danh sách chức vụ<a [routerLink]="['/', 'position-add']"
       ><span class="material-icons-outlined"> add_circle_outline </span></a
     >
   </h3>
@@ -26,14 +26,16 @@
               class="btn btn-primary"
               [routerLink]="['/', 'position-edit', position.id]"
             >
-              Edit
+            <span title="Chỉnh sửa" class="material-icons">
+              edit_note
+              </span>
             </a>
-            <button
+            <!-- <button
               class="btn btn-danger"
               (click)="handleDelete(position.id, i)"
             >
               Delete
-            </button>
+            </button> -->
           </td>
         </tr>
       </tbody>

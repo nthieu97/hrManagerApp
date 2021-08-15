@@ -27,14 +27,18 @@
                 <td *ngIf="ot.status == 1"><span class="text-success">Đồng ý tăng ca</span></td>
                 <td *ngIf="ot.status == 0"><span class="text-danger">Không đồng ý </span></td>
                 <td>
-                    <button class="btn btn-danger" (click)="handleDestroy(id)">Xóa</button>
-                    <button class="btn btn-success" (click)="handleRestore(id,object)">Khôi phục</button>
+                    <button class="btn btn-danger" (click)="handleDestroy(id)"><span title="Xóa vĩnh viễn" class="material-icons">
+                        delete_forever
+                        </span></button>
+                    <button class="btn btn-success" (click)="handleRestore(id,object)"><span title="Khôi phục" class="material-icons">
+                        settings_backup_restore
+                        </span></button>
                 </td>
             </tr>
         </tbody>
       
     </table>
     <table class="justify-content-center" *ngIf="listOTDelete.length == 0">
-        <p >Không có dữ liệu ...</p>
+        <p >Thùng rác rỗng</p>
     </table>
 </div>

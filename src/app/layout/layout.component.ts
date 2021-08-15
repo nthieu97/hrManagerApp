@@ -15,10 +15,12 @@ export class LayoutComponent implements OnInit {
   dropOT = false;
   dropTime = false;
   isAdmin;
+  isLeader
   user: User;
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin();
     this.user = this.authService.getCurrentUser();
+    this.isLeader = this.authService.isLeader();
   }
   toggleDropdown(): void {
     this.dropdown = !this.dropdown;

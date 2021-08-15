@@ -12,15 +12,19 @@ table button {
 table th {
   color: var(--primary-color);
 }
-.time-off h3 {
+.header_timeoff h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
-.time-off h3 span {
-  padding-left: 20px;
-  color: var(--primary-color);
-  cursor: pointer;
+.header_timeoff a{
+  margin-right: 3rem
+}
+.header_timeoff span{
+  font-size: 30px;
+  color: darkcyan;
 }
 table button {
   margin: 0 5px;

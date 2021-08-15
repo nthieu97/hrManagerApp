@@ -8,7 +8,7 @@
     <div class="header_ot">
       <h3 class="text-center">Danh Sách Tăng Ca Theo Giờ</h3>
       <a [routerLink]="['/','trash-ot']">
-          <span class="material-icons">
+          <span title="Thùng rác" class="material-icons">
       delete_sweep
       </span>
       </a>
@@ -35,10 +35,14 @@
           <td *ngIf="ot.status == 0"><span class="text-danger">Không tăng ca</span></td>
           <td *ngIf="ot.status == 1"><span class="text-success">Tăng ca</span></td>
           <td *ngIf="ot.status ==0">
-            <button (click)="handleDelete(ot.id)" class="btn btn-danger">Xóa</button>
+            <button  (click)="handleDelete(ot.id)" class="btn btn-danger"><span title="Xóa" class="material-icons">
+              delete_forever
+              </span></button>
           </td>
           <td *ngIf="ot.status ==1">
-            <button class="btn btn-success">Đã phê duyệt</button>
+            <button class="btn btn-success"><span title="Đã phê duyệt" class="material-icons">
+              check
+              </span></button>
           </td>
         </tr>
       </tbody>

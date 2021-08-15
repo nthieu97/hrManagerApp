@@ -8,7 +8,7 @@
 </nav>
 <div class="trash-prize-fine">
     <h3>Thùng Rác</h3>
-    <table class="table">
+    <table *ngIf="listAllDeletePrize.length > 0" class="table">
         <thead>
             <th>#</th>
             <th>Họ tên</th>
@@ -25,13 +25,20 @@
                 <td>{{ prize.prize_money }}</td>
                 <td>{{ prize.fine_money }}</td>
                 <td>
-                    <button class="btn btn-success" (click)="handeRestore(prize.id,i)">Khôi phục</button>
                     <button class="btn btn-danger" (click)="handleDestroy(prize.id, i)">
-                  Xóa vĩnh viễn
-                </button>
+                        <span title="Xóa vĩnh viễn" class="material-icons">
+                            delete_forever
+                            </span>
+                      </button>
+                    <button class="btn btn-success" (click)="handeRestore(prize.id,i)"><span title="Khôi phục" class="material-icons">
+                        settings_backup_restore
+                        </span></button>
+                    
                 </td>
             </tr>
         </tbody>
     </table>
-
+    <table *ngIf="listAllDeletePrize.length == 0">
+        <p>Thùng rác rỗng</p>
+    </table>
 </div>

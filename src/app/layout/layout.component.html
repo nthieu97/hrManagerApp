@@ -122,7 +122,7 @@
           [routerLink]="['/', 'positions']"
           class="side-bar__link"
           routerLinkActive="sidebar__active"
-          ><span class="material-icons"> radar </span> Vị trí</a
+          ><span class="material-icons"> radar </span> Chức vụ</a
         >
       </div>
       <div class="sidebar__item" *ngIf="isAdmin">
@@ -196,11 +196,11 @@
           [routerLink]="['/', 'prize-fine-money']"
           class="side-bar__link"
           routerLinkActive="sidebar__active"
-          ><span class="material-icons"> military_tech </span> Tiền bên ngoài</a
+          ><span class="material-icons"> military_tech </span> Thưởng phạt</a
         >
       </div>
 
-      <div class="sidebar__item">
+      <div class="sidebar__item" *ngIf="isLeader">
         <a class="side-bar__link dropdown" (click)="toggleDropdownOT()">
           <span class="material-icons"> nights_stay </span>Làm OT
           <span class="material-icons">{{
@@ -238,7 +238,7 @@
         </ul>
       </div>
 
-      <div class="sidebar__item">
+      <!-- <div class="sidebar__item">
         <a class="side-bar__link dropdown" (click)="toggleDropdown()"
           ><span class="material-icons">qr_code</span> Attendance
           <span class="material-icons">{{
@@ -265,7 +265,7 @@
             >
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
     <div class="sidebar__footer">
       <p>HR Manager</p>

@@ -12,6 +12,7 @@
         <table class="table text-center">
           <thead class="thead-white">
             <tr>
+              <th scope="col">STT</th>
               <th scope="col">Họ và tên</th>
 
               <th scope="col">check in</th>
@@ -21,12 +22,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let attendance of attendanceData">
+            <tr *ngFor="let attendance of attendanceData ; index as i">
               <td data-title="id attendance" scope="row">
-                {{ attendance.id }}
+                {{ i+1}}
               </td>
               <td data-title="full name">{{ attendance.full_name }}</td>
-              <td data-title="id nhan vien">{{ attendance.user_id }}</td>
               <td data-title="check in">{{ attendance.time_of_check_in }}</td>
               <td data-title="check out">{{ attendance.time_of_check_out }}</td>
               <td data-title="date">{{ attendance.date_of_work }}</td>
@@ -34,7 +34,7 @@
                 <span class="text-success">Work</span>
               </td>
               <td *ngIf="attendance.status !== 1">
-                <span class="text-danger">Nghỉ làm</span>
+                <span class="text-danger">Off</span>
               </td>
             </tr>
           </tbody>

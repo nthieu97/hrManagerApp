@@ -7,6 +7,7 @@ import {
 import { User } from 'src/app/model/user.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { DashboardService } from 'src/app/service/dashboard.service';
+import { OTServiceService } from 'src/app/service/otservice.service';
 import { ToastsService } from 'src/app/service/toasts.service';
 
 @Component({
@@ -36,10 +37,13 @@ export class DashboardComponent implements OnInit {
   totalUserWorker: number;
   totalUsersOff: number;
   departments: number;
+  acceptOTList=[];
+  isLeader:boolean
   constructor(
     private authService: AuthService,
     private dashboardService: DashboardService,
-    private toastService: ToastsService
+    private toastService: ToastsService,
+    private otService:OTServiceService
   ) {}
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin();
@@ -83,8 +87,16 @@ export class DashboardComponent implements OnInit {
         this.totalUsersOff = data.data[0].nhan_vien_nghi_lam;
       });
     }
+    this.getListOTByUser()
   }
+  getListOTByUser() {
+    this.otService.getListOTByUser().subscribe((data) => {
+      console.log(data);
+      this.acceptOTList = data.data
+      console.log(this.acceptOTList);
 
+    })
+  }
   handleAprove(id: string, index): void {
     this.loadConfirm = true;
     this.dashboardService.acceptLeave(id).subscribe(

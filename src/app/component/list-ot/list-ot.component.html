@@ -31,8 +31,10 @@
           <span class="text-danger">Not OT</span>
         </td>
         <td>
-          <button (click)="handleDelete(ot.id, i)" class="btn btn-danger">
-            Xóa
+          <button (click)="handleDelete(ot.id, i)" class="btn btn-primary">
+            <span title="Cập nhật trạng thái" class="material-icons">
+              sync_alt
+              </span>
           </button>
         </td>
       </tr>
