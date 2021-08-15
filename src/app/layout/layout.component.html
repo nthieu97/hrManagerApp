@@ -12,7 +12,7 @@
           Attendance</a
         >
       </div> -->
-      <div class="tools_newtask" ngbDropdown>
+      <div class="tools_newtask user-web" ngbDropdown>
         <a tabindex="0" ngbDropdownToggle id="navbarDropdown1" role="button">
           <span class="material-icons">add</span>
         </a>
@@ -39,7 +39,7 @@
         </div>
       </div>
 
-      <div class="tools_user" ngbDropdown>
+      <div class="tools_user user-web" ngbDropdown>
         <a
           class="user__links"
           tabindex="0"
@@ -67,11 +67,20 @@
           <a ngbDropdownItem (click)="logOut()">Thoát</a>
         </div>
       </div>
+      <div id="nav-status" [class.open]="check" (click)="addclass()">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </header>
+  <div class="blur" [class.open]="check" (click)="addclass()"></div>
   <!-- end Header-container -->
   <!-- Side-bar -->
-  <div class="sidebar">
+  <div #myDiv class="sidebar" [class.open]="check">
     <div class="sidebar__list">
       <div class="sidebar__item">
         <a
@@ -267,14 +276,83 @@
         </ul>
       </div> -->
     </div>
+
+    <div class="sidebar__item user-ad">
+      <a class="side-bar__link dropdown" (click)="toggleDropdownadd()">
+        <span class="material-icons">add</span> add
+        <span class="material-icons">{{
+          !dropdownadd ? "expand_more" : "expand_less"
+        }}</span></a
+      >
+      <ul class="sidebar__dropdown" *ngIf="dropdownadd">
+        <li class="dropdow__item">
+          <a
+            [routerLink]="['/', 'employee-form']"
+            *ngIf="isAdmin"
+            class="dropdown__link"
+            routerLinkActive="sidebar__active"
+          >
+            <span class="material-icons">face</span>Add Employee
+          </a>
+        </li>
+        <li class="dropdow__item" *ngIf="isAdmin">
+          <a
+            [routerLink]="['/', 'time-off-add']"
+            class="dropdown__link"
+            routerLinkActive="sidebar__active"
+            ><span class="material-icons">analytics</span> Add permisson</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <div class="sidebar__item user-ad">
+      <a class="side-bar__link dropdown" (click)="toggleDropdownuser()"
+        ><span class="material-icons">face</span> {{ user.user_account }}
+        <span class="material-icons">{{
+          !toggleDropuser ? "expand_more" : "expand_less"
+        }}</span></a
+      >
+      <ul class="sidebar__dropdown" *ngIf="toggleDropuser">
+        <li class="dropdow__item">
+          <a
+            [routerLink]="['/', 'employee', user.id]"
+            *ngIf="isAdmin"
+            (click)="$event.preventDefault()"
+            class="dropdown__link"
+            routerLinkActive="sidebar__active"
+          >
+            <span class="material-icons">face</span> detail
+          </a>
+        </li>
+        <li class="dropdow__item" *ngIf="isAdmin">
+          <a
+            [routerLink]="['/', 'change-password']"
+            (click)="$event.preventDefault()"
+            class="dropdown__link"
+            routerLinkActive="sidebar__active"
+            ><span class="material-icons">analytics</span> Change Password</a
+          >
+        </li>
+        <li class="dropdow__item" *ngIf="isAdmin">
+          <a
+            (click)="logOut()"
+            class="dropdown__link"
+            routerLinkActive="sidebar__active"
+            ><span class="material-icons">analytics</span> logOut</a
+          >
+        </li>
+      </ul>
+    </div>
     <div class="sidebar__footer">
       <p>HR Manager</p>
     </div>
   </div>
-  <!-- End-Side-bar -->
 
   <!-- Content -->
   <div class="content"><router-outlet></router-outlet></div>
   <!-- End--Content -->
 </div>
+<!-- End-Side-bar -->
+
 <app-toast aria-live="polite" aria-atomic="true"></app-toast>
