@@ -54,83 +54,121 @@
       <!-- task-list -->
       <div class="task-list">
         <div class="task-list__header">
-          <p><i class="fas fa-thumbtack"></i> Công việc mới nhất</p>
+          <h3><i class="fas fa-thumbtack"></i> Đơn yêu cầu mới nhất</h3>
           <a href="#"><span class="material-icons">more_horiz</span> </a>
         </div>
         <div class="task-list__body">
-         <!-- xác nhận tăng ca -->
-         <div class="accept_ot">
-          <h5>Xác nhận tăng ca</h5>
-          <table *ngIf="acceptOTList.length > 0" class="table my-custom-scrollbar">
+          <!-- xác nhận tăng ca -->
+          <div class="accept_ot">
+            <h5>Xác nhận tăng ca</h5>
+            <table
+              *ngIf="acceptOTList.length > 0"
+              class="table my-custom-scrollbar"
+            >
               <thead>
-                  <tr class="text-center">
-                      <th scope="col">#</th>
-                      <th scope="col">Lý do tăng ca</th>
-                      <th scope="col">Xác nhận</th>
-                  </tr>
+                <tr class="text-center">
+                  <th scope="col">#</th>
+                  <th scope="col">Lý do tăng ca</th>
+                  <th scope="col">Xác nhận</th>
+                </tr>
               </thead>
               <tbody>
-                  <tr class="text-center" *ngFor="let confirm of acceptOTList; let i = index">
-                      <th scope="row">{{i+1 }}</th>
-                      <td>{{ confirm.note }}</td>
-                      <td>
-                          <div *ngIf="!loadConfirm" class="task-list__link tex-center">
-                              <a (click)="handleAccept(confirm.id, i)" class="task-list__approve"><span class="material-icons">done</span></a>
-                              <a (click)="handleNotAccept(confirm.id, i)" class="task-list__decline"><span class="material-icons">thumb_down_off_alt</span> </a>
-                          </div>
-                          <div *ngIf="loadConfirm" class="task-list__link tex-center">
-                              <div class="spinner-border" role="status">
-                                  <span class="sr-only">Loading...</span>
-                              </div>
-                          </div>
-                      </td>
-                  </tr>
+                <tr
+                  class="text-center"
+                  *ngFor="let confirm of acceptOTList; let i = index"
+                >
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ confirm.note }}</td>
+                  <td>
+                    <div
+                      *ngIf="!loadConfirm"
+                      class="task-list__link tex-center"
+                    >
+                      <a
+                        (click)="handleAccept(confirm.id, i)"
+                        class="task-list__approve"
+                        ><span class="material-icons">done</span></a
+                      >
+                      <a
+                        (click)="handleNotAccept(confirm.id, i)"
+                        class="task-list__decline"
+                        ><span class="material-icons">thumb_down_off_alt</span>
+                      </a>
+                    </div>
+                    <div *ngIf="loadConfirm" class="task-list__link tex-center">
+                      <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
               </tbody>
-          </table>
-          <table *ngIf="acceptOTList.length == 0" class="table my-custom-scrollbar">
+            </table>
+            <table
+              *ngIf="acceptOTList.length == 0"
+              class="table my-custom-scrollbar"
+            >
               <p>Không có lịch tăng ca</p>
-          </table>
-      </div>
+            </table>
+          </div>
 
-      <div class="accept_time_off" *ngIf="isAdmin">
-          <h5>Xác nhận nghỉ phép</h5>
-          <table class="table my-custom-scrollbar">
+          <div class="accept_time_off" *ngIf="isAdmin">
+            <h5>Xác nhận nghỉ phép</h5>
+            <table class="table my-custom-scrollbar">
               <thead>
-                  <tr class="text-center">
-                      <th scope="col">#</th>
-                      <th scope="col">Tên nhân viên</th>
-                      <th scope="col">Ảnh</th>
-                      <th scope="col">Lý do xin nghỉ</th>
-                      <th scope="col">Xác nhận</th>
-                  </tr>
+                <tr class="text-center">
+                  <th scope="col">#</th>
+                  <th scope="col">Tên nhân viên</th>
+                  <th scope="col">Ảnh</th>
+                  <th scope="col">Lý do xin nghỉ</th>
+                  <th scope="col">Xác nhận</th>
+                </tr>
               </thead>
               <tbody>
-                  <tr class="text-center" *ngFor="let confirm of confirmList; let i = index">
-                      <th scope="row">{{ confirm.id }}</th>
-                      <td>{{ confirm?.full_name }}</td>
-                      <td>
-                          <img [src]="
-          confirm?.avatar
-            ? confirm.avatar
-            : 'https://ps.w.org/simple-user-avatar/assets/icon-256x256.png?rev=2413146'
-        " alt="image" class="task-list__img" />
-                      </td>
-                      <td>{{ confirm.note }}</td>
-                      <td>
-                          <div *ngIf="!loadConfirm" class="task-list__link tex-center">
-                              <a (click)="handleAprove(confirm.id, i)" class="task-list__approve"><span class="material-icons">done</span></a>
-                              <a (click)="handleReject(confirm.id, i)" class="task-list__decline"><span class="material-icons">thumb_down_off_alt</span> </a>
-                          </div>
-                          <div *ngIf="loadConfirm" class="task-list__link tex-center">
-                              <div class="spinner-border" role="status">
-                                  <span class="sr-only">Loading...</span>
-                              </div>
-                          </div>
-                      </td>
-                  </tr>
+                <tr
+                  class="text-center"
+                  *ngFor="let confirm of confirmList; let i = index"
+                >
+                  <th scope="row">{{ confirm.id }}</th>
+                  <td>{{ confirm?.full_name }}</td>
+                  <td>
+                    <img
+                      [src]="
+                        confirm?.avatar
+                          ? confirm.avatar
+                          : 'https://ps.w.org/simple-user-avatar/assets/icon-256x256.png?rev=2413146'
+                      "
+                      alt="image"
+                      class="task-list__img"
+                    />
+                  </td>
+                  <td>{{ confirm.note }}</td>
+                  <td>
+                    <div
+                      *ngIf="!loadConfirm"
+                      class="task-list__link tex-center"
+                    >
+                      <a
+                        (click)="handleAprove(confirm.id, i)"
+                        class="task-list__approve"
+                        ><span class="material-icons">done</span></a
+                      >
+                      <a
+                        (click)="handleReject(confirm.id, i)"
+                        class="task-list__decline"
+                        ><span class="material-icons">thumb_down_off_alt</span>
+                      </a>
+                    </div>
+                    <div *ngIf="loadConfirm" class="task-list__link tex-center">
+                      <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
               </tbody>
-          </table>
-      </div>
+            </table>
+          </div>
         </div>
         <div class="d-flex justify-content-center" *ngIf="loadListConfirm">
           <div class="spinner-border" role="status">
@@ -324,37 +362,56 @@
           <!-- xác nhận tăng ca nhân viên-->
           <div class="accept_ot">
             <h5>Xác nhận tăng ca</h5>
-            <table *ngIf="acceptOTList.length > 0" class="table my-custom-scrollbar">
-                <thead>
-                    <tr class="text-center">
-                        <th scope="col">#</th>
-                        <th scope="col">Lý do tăng ca</th>
-                        <th scope="col">Xác nhận</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="text-center" *ngFor="let confirm of acceptOTList; let i = index">
-                        <th scope="row">{{i+1 }}</th>
-                        <td>{{ confirm.note }}</td>
-                        <td>
-                            <div *ngIf="!loadConfirm" class="task-list__link tex-center">
-                                <a (click)="handleAcceptEmployee(confirm.id, i)" class="task-list__approve"><span class="material-icons">done</span></a>
-                                <a (click)="handleNotAcceptEmployee(confirm.id, i)" class="task-list__decline"><span class="material-icons">thumb_down_off_alt</span> </a>
-                            </div>
-                            <div *ngIf="loadConfirm" class="task-list__link tex-center">
-                                <div class="spinner-border" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
+            <table
+              *ngIf="acceptOTList.length > 0"
+              class="table my-custom-scrollbar"
+            >
+              <thead>
+                <tr class="text-center">
+                  <th scope="col">#</th>
+                  <th scope="col">Lý do tăng ca</th>
+                  <th scope="col">Xác nhận</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  class="text-center"
+                  *ngFor="let confirm of acceptOTList; let i = index"
+                >
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>{{ confirm.note }}</td>
+                  <td>
+                    <div
+                      *ngIf="!loadConfirm"
+                      class="task-list__link tex-center"
+                    >
+                      <a
+                        (click)="handleAcceptEmployee(confirm.id, i)"
+                        class="task-list__approve"
+                        ><span class="material-icons">done</span></a
+                      >
+                      <a
+                        (click)="handleNotAcceptEmployee(confirm.id, i)"
+                        class="task-list__decline"
+                        ><span class="material-icons">thumb_down_off_alt</span>
+                      </a>
+                    </div>
+                    <div *ngIf="loadConfirm" class="task-list__link tex-center">
+                      <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
             </table>
-            <table *ngIf="acceptOTList.length == 0" class="table my-custom-scrollbar">
-                <p>Không có lịch tăng ca</p>
+            <table
+              *ngIf="acceptOTList.length == 0"
+              class="table my-custom-scrollbar"
+            >
+              <p>Không có lịch tăng ca</p>
             </table>
-        </div>
-       
+          </div>
         </div>
       </div>
       <!-- end-task-list -->

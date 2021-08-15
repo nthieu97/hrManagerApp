@@ -16,7 +16,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["ngx-kjua", "html2canvas"],
+            "allowedCommonJsDependencies": [
+              "ngx-kjua",
+              "html2canvas",
+              "file-saver",
+              "xlsx"
+            ],
             "outputPath": "dist/hrManager",
             "index": "src/index.html",
             "main": "src/main.ts",
