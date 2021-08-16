@@ -14,6 +14,9 @@ export class PrizeFineMoneyComponent implements OnInit {
     private router: Router,
     private toastService: ToastsService
   ) {}
+  listAllDeletePrize = []
+  listID = [];
+  checks = false;
   list_prize_fine = [];
   keyword = '';
   loading = false;
@@ -22,7 +25,24 @@ export class PrizeFineMoneyComponent implements OnInit {
   collectionSize: any;
   ngOnInit(): void {
     this.search();
+    this.getAllDeletePrize()
   }
+  checkValue(e) {
+    if (e.target.checked == true) {
+      this.checks = true
+      // console.log(e.target.value);
+      for (let i = 0; i < this.list_prize_fine.length; i++) {
+        // console.log(this.list_prize_fine[i].id);
+        this.listID.push(this.list_prize_fine[i].id)
+        console.log(this.listID);
+      }
+    } else {
+      this.checks = false
+      this.listID = []
+      console.log(this.listID);
+    }
+  }
+
   search(): void {
     this.prizeFineMoneyService.getAllPrize(this.keyword).subscribe((data) => {
       this.list_prize_fine = data.data;
@@ -81,5 +101,85 @@ export class PrizeFineMoneyComponent implements OnInit {
         this.list_prize_fine = data.data;
         this.loading = false;
       });
+  }
+  getAllDeletePrize() {
+    this.prizeFineMoneyService.getAllDelete().subscribe((data) => {
+      console.log(data);
+      this.listAllDeletePrize = data.data
+    })
+  }
+  handleDestroy(id: string) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, destroy it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.prizeFineMoneyService.destroyPrize(id).subscribe((data) => {
+          console.log(data);
+          this.toastService.show(data.message, {
+            classname: 'bg-success text-light',
+            delay: 3000
+          }),
+            (err: any) => {
+              this.toastService.show(err.message, {
+                classname: 'bg-danger text-light',
+                delay: 3000
+              })
+            }
+        })
+        this.getAllDeletePrize()
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+      }
+
+    })
+  }
+  handeRestore(id: string, object: any) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "you definitely want to restore !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, restore it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.prizeFineMoneyService.restorePrize(id, object).subscribe((data) => {
+          console.log(data);
+          this.toastService.show(data.message, {
+            classname: 'bg-success text-light',
+            delay: 3000
+          }),
+            (err: any) => {
+              this.toastService.show(err.message, {
+                classname: 'bg-danger text-light',
+                delay: 3000
+              })
+            }
+        })
+        this.getAllDeletePrize()
+      } else if (result.dismiss === Swal.DismissReason.cancel) { }
+
+    })
   }
 }

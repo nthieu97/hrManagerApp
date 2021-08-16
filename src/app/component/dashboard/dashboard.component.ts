@@ -129,10 +129,10 @@ export class DashboardComponent implements OnInit {
       this.confirmList.splice(index, 1);
     });
   }
-  handleAccept(id: string, object: any) {
+  handleAccept(id: string) {
     this.loadAccept = true;
-    this.otService.confirmOT(id, object).subscribe((data) => {
-
+    this.otService.confirmOT(id).subscribe((data) => {
+      this.loadAccept = false
       this.toastService.show(data.message, {
         classname: 'bg-success text-light',
         delay: 3000,
@@ -148,6 +148,19 @@ export class DashboardComponent implements OnInit {
     })
   }
   handleNotAccept(id: string) {
-
+    this.loadAccept = true;
+    this.otService.notConfirmOT(id).subscribe((data)=> {
+      this.loadAccept = false;
+      this.toastService.show(data.message,{
+        classname:'bg-success text-light',
+        delay:3000
+      }),
+      (err:any)=> {
+        this.toastService.show(err.message,{
+          classname:'bg-danger text-light',
+          delay:3000
+        })
+      }
+    })
   }
 }
