@@ -341,6 +341,10 @@ a.calendar__link {
   justify-content: center;
   align-items: center;
 }
+.team-chart__body-ct {
+  width: 95%;
+  height: 95%;
+}
 .attendace__chart {
   width: 95%;
   height: 95%;
