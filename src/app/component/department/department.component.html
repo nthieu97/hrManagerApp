@@ -7,9 +7,8 @@
 
 <div class="departments">
   <h3 class="text-center">
-    Departments List<a [routerLink]="['/', 'department-form']"
-      ><span class="material-icons-outlined"> add_circle_outline </span></a
-    >
+    Departments List<a [routerLink]="['/', 'department-form']"><span class="material-icons-outlined"> add_circle_outline
+      </span></a>
   </h3>
   <div class="row">
     <table class="table">
@@ -23,15 +22,8 @@
           <td>{{ department.id }}</td>
           <td>{{ department.name }}</td>
           <td>
-            <a
-              class="btn btn-primary"
-              [routerLink]="['/', 'department-edit', department.id]"
-              >Edit</a
-            >
-            <button
-              class="btn btn-danger"
-              (click)="handleDelete(department.id, i)"
-            >
+            <a class="btn btn-primary btn-bt" [routerLink]="['/', 'department-edit', department.id]">Edit</a>
+            <button class="btn btn-danger" (click)="handleDelete(department.id, i)">
               Delete
             </button>
           </td>
