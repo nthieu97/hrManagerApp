@@ -3,7 +3,7 @@
   box-shadow: var(--box-shadow);
   padding: 0.5em;
   border-radius: 10px;
-  min-height: 429px;
+  min-height: 260px;
   overflow: auto;
   padding-right: 1em;
 }
@@ -162,7 +162,6 @@ img.absent__img {
   width: 3em;
   height: 3em;
   border-radius: 50%;
-  margin-left: 1em;
 }
 .absent__info p {
   font-size: var(--text-sm);
@@ -234,7 +233,6 @@ p.remote-work__username {
   margin-bottom: 1em;
 }
 p.remote-work__time {
-  margin-left: 4em;
   font-size: var(--text-sm);
 }
 /* end-remote-work */
@@ -351,6 +349,9 @@ a.calendar__link {
 }
 /*end- team-chart */
 @media only screen and (max-width: 992px) {
+  .team-chart {
+    margin-top: 10px;
+  }
   .col-3 {
     flex: 0 0 50%;
     max-width: 50%;
@@ -402,6 +403,24 @@ a.calendar__link {
   .col-12-list {
     flex: 0 0 100%;
     max-width: 100%;
+  }
+  .sumary__item {
+    flex-direction: column;
+  }
+  .sumary__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  p.sumary__desc {
+    text-align: center;
+  }
+  p.sumary__count {
+    font-size: 1.1em;
+    margin-right: 3px;
+  }
+  .sumary__item span {
+    font-size: 3em;
   }
 }
 @media only screen and (max-width: 480px) {

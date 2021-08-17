@@ -70,17 +70,17 @@
             </thead>
             <tbody>
               <tr class="text-center" *ngFor="let confirm of confirmList; let i = index">
-                <th data-title="" scope="row">{{ confirm.id }}</th>
-                <td data-title="">{{ confirm?.full_name }}</td>
-                <td data-title="">
+                <th data-title="#" scope="row">{{ confirm.id }}</th>
+                <td data-title="Employee Name">{{ confirm?.full_name }}</td>
+                <td data-title="Image">
                   <img [src]="
                       confirm?.avatar
                         ? confirm.avatar
                         : 'https://ps.w.org/simple-user-avatar/assets/icon-256x256.png?rev=2413146'
                     " alt="image" class="task-list__img" />
                 </td>
-                <td data-title="">{{ confirm.note }}</td>
-                <td data-title="">
+                <td data-title="Task">{{ confirm.note }}</td>
+                <td data-title="interactive">
                   <div class="task-list__link tex-center">
                     <a (click)="handleAprove(confirm.id, i)" class="task-list__approve"><span
                         class="material-icons">done</span>
@@ -114,9 +114,11 @@
         </div>
 
         <div class="team-chart__body">
-          <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="dataUserByDepartment" [gradient]="false"
-            [doughnut]="true">
-          </ngx-charts-pie-chart>
+          <div class="team-chart__body-ct">
+            <ngx-charts-pie-chart [scheme]="colorScheme" [results]="dataUserByDepartment" [gradient]="false"
+              [doughnut]="true">
+            </ngx-charts-pie-chart>
+          </div>
         </div>
       </div>
     </div>
