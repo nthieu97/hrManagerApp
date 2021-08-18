@@ -8,7 +8,7 @@
   <h2 class="mt-2">Nhân viên :</h2>
   <hr />
   <div class="employees__tools">
-    <div class="employees__filter d-flex justify-content-between">
+    <div class="employees__filter">
       <div class="search mr-2">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -18,22 +18,22 @@
             aria-label="Username" aria-describedby="basic-addon1" />
         </div>
       </div>
-      <select style="width: 7em" class="custom-select mr-2" id="inputGroupSelect01"
-        (change)="handleFilterDepartment($event.target.value)">
-        <option selected disabled>Phòng ban</option>
+      <div class="sl">
+        <select class="custom-select mr-2" id="inputGroupSelect01"
+          (change)="handleFilterDepartment($event.target.value)">
+          <option selected disabled>Phòng ban</option>
+          <option *ngFor="let department of departments" [value]="department?.id">
+            {{ department?.name }}
+          </option>
+        </select>
+        <select class="custom-select" (change)="handleFilterPosition($event.target.value)" id="inputGroupSelect01">
+          <option selected disabled>Vị Trí</option>
 
-        <option *ngFor="let department of departments" [value]="department?.id">
-          {{ department?.name }}
-        </option>
-      </select>
-      <select style="width: 7em" class="custom-select" (change)="handleFilterPosition($event.target.value)"
-        id="inputGroupSelect01">
-        <option selected disabled>Vị Trí</option>
-
-        <option *ngFor="let position of positions" [value]="position?.id">
-          {{ position?.name }}
-        </option>
-      </select>
+          <option *ngFor="let position of positions" [value]="position?.id">
+            {{ position?.name }}
+          </option>
+        </select>
+      </div>
     </div>
     <!-- <div class="employees__view">
     <div class="sort_by d-flex">

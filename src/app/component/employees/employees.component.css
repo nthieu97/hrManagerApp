@@ -83,12 +83,25 @@ p.card-text.text-center {
   -moz-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
 }
+.sl {
+  display: flex;
+}
+.employees__filter {
+  display: flex;
+  justify-content: space-between;
+}
 @media only screen and (max-width: 992px) {
   .employees__list {
     justify-content: center;
   }
 }
 @media only screen and (max-width: 768px) {
+  .employees__tools {
+    flex: unset;
+  }
+  .employees__filter {
+    flex-direction: column;
+  }
   .eployee__item .card {
     width: auto;
     padding: 0px 20px;
