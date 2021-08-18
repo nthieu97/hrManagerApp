@@ -6,38 +6,20 @@
 </nav>
 <div class="prize-fine-money">
   <div class="header_fine_money">
-    <h3 class="text-center">
+    <h3 class="fine-money">
       List Prize-Fine-Money
-
-      <a [routerLink]="['/', 'prize-fine-add']"
-        ><span class="material-icons-outlined"> add_circle_outline </span></a
-      >
+      <a [routerLink]="['/', 'prize-fine-add']"><span class="material-icons-outlined"> add_circle_outline </span></a>
     </h3>
 
-    <a [routerLink]="['/', 'trash-prize-fine']"
-      ><span title="Thùng rác" class="material-icons"> delete_sweep </span></a
-    >
+    <a [routerLink]="['/', 'trash-prize-fine']"><span title="Thùng rác" class="material-icons"> delete_sweep </span></a>
   </div>
   <div class="search mb-2">
-    <input
-      type="text"
-      [(ngModel)]="keyword"
-      (keyup.enter)="search()"
-      class="searchTerm"
-      placeholder="Tìm kiếm..."
-    />
+    <input type="text" [(ngModel)]="keyword" (keyup.enter)="search()" class="searchTerm" placeholder="Tìm kiếm..." />
     <button type="submit" class="searchButton">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        class="bi bi-search"
-        viewBox="0 0 16 16"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+        viewBox="0 0 16 16">
         <path
-          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-        />
+          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
       </svg>
     </button>
   </div>
@@ -58,11 +40,7 @@
         <td data-title="Prize">{{ prize.prize_money }}</td>
         <td data-title="Fine">{{ prize.fine_money }}</td>
         <td data-title="Action">
-          <a
-            [routerLink]="['/', 'prize-fine-edit', prize.id]"
-            class="btn btn-primary"
-            >Edit</a
-          >
+          <a [routerLink]="['/', 'prize-fine-edit', prize.id]" class="btn btn-primary">Edit</a>
           <button class="btn btn-danger" (click)="handleDelete(prize.id, i)">
             Delete
           </button>
@@ -70,17 +48,9 @@
       </tr>
     </tbody>
   </table>
-  <ngb-pagination
-    class="d-flex justify-content-end"
-    [collectionSize]="collectionSize"
-    [(page)]="page"
-    [maxSize]="5"
-    [rotate]="true"
-    [ellipses]="false"
-    [boundaryLinks]="true"
-    [pageSize]="pageSize"
-    (pageChange)="handlePaginate($event)"
-  ></ngb-pagination>
+  <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5"
+    [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
+    (pageChange)="handlePaginate($event)"></ngb-pagination>
   <div class="d-flex">
     <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
       <div class="spinner-grow text-success" role="status">
