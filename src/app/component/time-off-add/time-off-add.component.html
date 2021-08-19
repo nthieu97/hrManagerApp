@@ -2,20 +2,20 @@
   <ol class="breadcrumb" style="padding: 0; margin: 0">
     <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
     <li class="breadcrumb-item" aria-current="page">
-      <a [routerLink]="['/', 'my-time-off']">Time Off</a>
+      <a [routerLink]="['/', 'my-time-off']">Danh sách nghỉ phép của tôi</a>
     </li>
     <li class="breadcrumb-item active" aria-current="page">
-      {{ idTimeOff ? "edit" : "add" }}
+      {{ idTimeOff ? "Chỉnh sửa" : "Thêm mới" }}
     </li>
   </ol>
 </nav>
 <div class="time-off-add">
   <h3 class="text-center">
-    {{ idTimeOff ? "Edit Time Off" : "Add Time Off" }}
+    {{ idTimeOff ? "Chỉnh sửa lịch nghỉ" : "Thêm lịch nghỉ" }}
   </h3>
   <form (ngSubmit)="submitForm()" [formGroup]="TimeOffForm">
     <div class="form-group">
-      <label for="">Time Start</label>
+      <label for="">Ngày bắt đầu</label>
       <!-- <span class="text-danger" *ngIf="idTimeOff">
         ( {{ this.TimeOffForm.value.time_start | date: "yyyy/MM/dd" }} )</span
       > -->
@@ -23,7 +23,7 @@
         class="form-control"
         type="date"
         formControlName="time_start"
-        min="{{ today | date: 'dd-MM-yyy' }}"
+        min="{{ today | date: 'yyyy-MM-dd' }}"
       />
     </div>
     <div
@@ -32,11 +32,11 @@
       "
       class="alert alert-danger"
     >
-      <div *ngIf="f.time_start.errors?.required">Time start is required.</div>
+      <div *ngIf="f.time_start.errors?.required">Ngày bắt đầu không để trống</div>
     </div>
 
     <div class="form-group">
-      <label for="">Time End</label>
+      <label for="">Ngày kết thúc </label>
       <!-- <span class="text-danger" *ngIf="idTimeOff">
         ( {{ this.TimeOffForm.value.time_end | date: "yyyy/MM/dd" }} )</span
       > -->
@@ -45,17 +45,17 @@
         type="date"
         formControlName="time_end"
         id=""
-        min="{{ today | date: 'dd-MM-yyyy' }}"
+        min="{{ today | date: 'yyyy-MM-dd' }}"
       />
     </div>
     <div
       *ngIf="f.time_end.invalid && (f.time_end.dirty || f.time_end.touched)"
       class="alert alert-danger"
     >
-      <div *ngIf="f.time_end.errors?.required">Time end is required.</div>
+      <div *ngIf="f.time_end.errors?.required">Ngày kết thúc không để trống</div>
     </div>
     <div class="form-group">
-      <label for="">Note</label>
+      <label for="">Lý do nghỉ phép</label>
       <textarea
         class="form-control"
         formControlName="note"
@@ -68,10 +68,10 @@
       *ngIf="f.note.invalid && (f.note.dirty || f.note.touched)"
       class="alert alert-danger"
     >
-      <div *ngIf="f.note.errors?.required">Note is required.</div>
+      <div *ngIf="f.note.errors?.required">Lý do nghỉ phép không để trống</div>
     </div>
     <div class="form-group" *ngIf="totalDay - totalDayOff !== 0">
-      <label for="">Paid Leave</label>
+      <label for="">Nghỉ có lương</label>
       <input
         class="ml-2"
         type="checkbox"
@@ -83,8 +83,8 @@
     </div>
     <div class="form-group">
       <label for=""
-        >Number of paid leave days (Remaining
-        {{ totalDay - totalDayOff }} Days)</label
+        >Số ngày nghỉ có lương (Còn
+        {{ totalDay - totalDayOff }} ngày)</label
       >
       <input
         disabled
@@ -95,6 +95,6 @@
       />
     </div>
 
-    <button class="btn btn-primary">{{ idTimeOff ? "Edit" : "Add" }}</button>
+    <button class="btn btn-primary">{{ idTimeOff ? "Cập nhật" : "Thêm" }}</button>
   </form>
 </div>

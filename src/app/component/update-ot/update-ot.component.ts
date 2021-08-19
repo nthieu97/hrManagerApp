@@ -116,16 +116,16 @@ export class UpdateOtComponent implements OnInit {
 
   handleSubmit2() {
     this.otService.createOT(this.formOT2.value).subscribe((data) => {
-      // this.toastService.show(data.message, {
-      //   classname: 'bg-success text-light',
-      //   delay: 3000
-      // }),
-      //   (err: any) => {
-      //     this.toastService.show(err.message, {
-      //       classname: 'bg-danger text-light',
-      //       delay: 3000
-      //     })
-      //   }
+      this.toastService.show(data.message, {
+        classname: 'bg-success text-light',
+        delay: 3000
+      }),
+        (err: any) => {
+          this.toastService.show(err.message, {
+            classname: 'bg-danger text-light',
+            delay: 3000
+          })
+        }
       console.log(data);
       // console.log(this.formOT2.value);
     });

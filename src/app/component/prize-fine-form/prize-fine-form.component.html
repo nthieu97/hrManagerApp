@@ -2,7 +2,7 @@
   <ol class="breadcrumb" style="padding: 0; margin: 0">
     <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
     <li class="breadcrumb-item">
-      <a [routerLink]="['/', 'prize-fine-money']">Prize-Fine-Money</a>
+      <a [routerLink]="['/', 'prize-fine-money']">Danh sách thưởng phạt</a>
     </li>
     <li class="breadcrumb-item active" aria-current="page">
       {{ prizeFineId ? "Sửa thưởng-phạt" : "Thêm mới thưởng-phạt" }}
@@ -23,9 +23,9 @@
       </select>
     </div>
     <div class="form-group">
-      <label for="">mã nhân viên</label>
-      <select formControlName="user_id" class="form-control">
-        <option value="" selected disabled>--Chọn mã nhân viên--</option>
+      <label for="">Nhân viên</label>
+      <!-- <select formControlName="user_id" class="form-control">
+        <option value="" selected disabled>--Chọn nhân viên--</option>
         <option
           [value]="employee.id"
           *ngFor="let employee of employees; index as i"
@@ -37,8 +37,11 @@
         *ngIf="f.user_id.invalid && (f.user_id.dirty || f.user_id.touched)"
         class="alert alert-danger"
       >
-        <div *ngIf="f.user_id.errors?.required">Full name is required.</div>
-      </div>
+        <div *ngIf="f.user_id.errors?.required">Nhân viên không để trống</div>
+      </div> -->
+      <ng-multiselect-dropdown [placeholder]="'--Chooses User--'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)" (onDeSelect)="onDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)"
+      formControlName="user_id">
+  </ng-multiselect-dropdown>
     </div>
 
     <div class="form-group">
@@ -75,7 +78,7 @@
     </div>
 
     <button class="btn btn-primary" type="submit">
-      {{ prizeFineId ? "Edit" : "Add" }}
+      {{ prizeFineId ? "Cập nhật" : "Thêm" }}
     </button>
   </form>
 </div>

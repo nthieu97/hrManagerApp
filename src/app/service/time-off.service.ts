@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class TimeOffService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   API_URL = environment.baseURL + 'lichxinnghi';
   getAllTimeOff(): Observable<any> {
     return this.http.get(this.API_URL);
@@ -32,13 +32,16 @@ export class TimeOffService {
   getAllByUser(): Observable<any> {
     return this.http.get(this.API_URL + '/getAllByUser/');
   }
-  getAllDelete():Observable<any>{
+  getAllDelete(): Observable<any> {
     return this.http.get(this.API_URL + '/getAllDelete/')
   }
-  destroyTimeOff(id:string):Observable<any>{
-    return this.http.delete(this.API_URL +'/destroy/'+id)
+  destroyTimeOff(id: string): Observable<any> {
+    return this.http.delete(this.API_URL + '/destroy/' + id)
   }
-  restoreTimeOff(id:string, object:any):Observable<any>{
-    return this.http.post(this.API_URL +'/khoi_phuc/'+id,object)
+  restoreTimeOff(id: string, object: any): Observable<any> {
+    return this.http.post(this.API_URL + '/khoi_phuc/' + id, object)
+  }
+  destroyAllTimeOff(object: any): Observable<any> {
+    return this.http.post(this.API_URL + '/destroy_all', object)
   }
 }

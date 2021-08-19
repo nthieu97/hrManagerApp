@@ -1,60 +1,221 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
     <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Prize-Fine-Money</li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Danh sách thưởng phạt
+    </li>
   </ol>
 </nav>
-<div class="prize-fine-money">
-  <div class="header_fine_money">
-    <h3 class="fine-money">
-      List Prize-Fine-Money
-      <a [routerLink]="['/', 'prize-fine-add']"><span class="material-icons-outlined"> add_circle_outline </span></a>
-    </h3>
+<div class="main_content">
+  <div class="tabs">
+    <input hidden type="radio" name="tab-css" id="tab-1" checked />
+    <label class="tab-control" for="tab-1">Danh sách thưởng phạt</label>
+    <input hidden type="radio" name="tab-css" id="tab-2" />
+    <label class="tab-control" for="tab-2">Thùng rác</label>
+    <div class="tab-content">
+      <div id="tab-panel-1" class="tab-panel">
+        <div class="prize-fine-money">
+          <div class="header_fine_money">
+            <h3 class="text-center">
+              Danh sách thưởng phạt
 
-    <a [routerLink]="['/', 'trash-prize-fine']"><span title="Thùng rác" class="material-icons"> delete_sweep </span></a>
-  </div>
-  <div class="search mb-2">
-    <input type="text" [(ngModel)]="keyword" (keyup.enter)="search()" class="searchTerm" placeholder="Tìm kiếm..." />
-    <button type="submit" class="searchButton">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
-        viewBox="0 0 16 16">
-        <path
-          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-      </svg>
-    </button>
-  </div>
-  <table class="table">
-    <thead>
-      <th>#</th>
-      <th>User Name</th>
-      <th>Prize-Fine Name</th>
-      <th>Prize</th>
-      <th>Fine</th>
-      <th>Action</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let prize of list_prize_fine; index as i">
-        <td data-title="#">{{ i + 1 }}</td>
-        <td data-title="User Name">{{ prize.user_account }}</td>
-        <td data-title="Prize-Fine Name">{{ prize.name }}</td>
-        <td data-title="Prize">{{ prize.prize_money }}</td>
-        <td data-title="Fine">{{ prize.fine_money }}</td>
-        <td data-title="Action">
-          <a [routerLink]="['/', 'prize-fine-edit', prize.id]" class="btn btn-primary">Edit</a>
-          <button class="btn btn-danger" (click)="handleDelete(prize.id, i)">
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5"
-    [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
-    (pageChange)="handlePaginate($event)"></ngb-pagination>
-  <div class="d-flex">
-    <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
-      <div class="spinner-grow text-success" role="status">
-        <span class="sr-only">Loading...</span>
+              <a [routerLink]="['/', 'prize-fine-add']"
+                ><span title="Thêm mới" class="material-icons-outlined">
+                  add_circle_outline
+                </span></a
+              >
+            </h3>
+
+            <!-- <a [routerLink]="['/', 'trash-prize-fine']"
+            ><span title="Thùng rác" class="material-icons"> delete_sweep </span></a
+          > -->
+          </div>
+          <div class="search mb-2">
+            <input
+              type="text"
+              [(ngModel)]="keyword"
+              (keyup.enter)="search()"
+              class="searchTerm"
+              placeholder="Tìm kiếm..."
+            />
+            <button type="submit" class="searchButton">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-search"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                />
+              </svg>
+            </button>
+          </div>
+          <table class="table" *ngIf="list_prize_fine.length > 0">
+            <thead>
+              <th>
+                <input
+                  *ngIf="list_prize_fine.length > 0"
+                  type="checkbox"
+                  [value]="listID"
+                  (change)="checkValue($event)"
+                />
+              </th>
+              <th>#</th>
+              <th>Họ tên</th>
+              <th>Nội dung thưởng phạt</th>
+              <th>Tiền thưởng</th>
+              <th>Tiền phạt</th>
+              <th>Hành động</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prize of list_prize_fine; index as i">
+                <td>
+                  <input
+                    type="checkbox"
+                    [checked]="checks"
+                    [value]="prize.id"
+                    (change)="checkResult($event)"
+                  />
+                </td>
+                <td data-title="#">{{ i + 1 }}</td>
+                <td data-title="User Name">{{ prize.user_account }}</td>
+                <td data-title="Prize-Fine Name">{{ prize.name }}</td>
+                <td data-title="Prize">{{ prize.prize_money }}</td>
+                <td data-title="Fine">{{ prize.fine_money }}</td>
+                <td data-title="Action">
+                  <a
+                    [routerLink]="['/', 'prize-fine-edit', prize.id]"
+                    class="btn btn-primary"
+                    ><span title="Chỉnh sửa" class="material-icons">
+                      edit_note
+                    </span></a
+                  >
+                  <button
+                    class="btn btn-danger"
+                    (click)="handleDelete(prize.id, i)"
+                  >
+                    <span title="Xóa" class="material-icons">
+                      delete_forever
+                    </span>
+                  </button>
+                </td>
+              </tr>
+              <tr *ngIf="listID.length > 0">
+                <button
+                  (click)="deleteAll()"
+                  class="btn btn-danger"
+                  style="max-width: 100px; margin-top: 10px"
+                >
+                  Xóa tất cả
+                </button>
+              </tr>
+            </tbody>
+          </table>
+          <table *ngIf="list_prize_fine.length == 0">
+            <p>Danh sách rỗng</p>
+          </table>
+          <ngb-pagination
+            class="d-flex justify-content-end"
+            [collectionSize]="collectionSize"
+            [(page)]="page"
+            [maxSize]="5"
+            [rotate]="true"
+            [ellipses]="false"
+            [boundaryLinks]="true"
+            [pageSize]="pageSize"
+            (pageChange)="handlePaginate($event)"
+          ></ngb-pagination>
+          <div class="d-flex">
+            <div
+              class="spinner"
+              [ngStyle]="{ display: loading ? 'block' : 'none' }"
+            >
+              <div class="spinner-grow text-success" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tab-panel-2" class="tab-panel">
+        <div class="trash-prize-fine">
+          <h3>Thùng Rác</h3>
+          <table *ngIf="listAllDeletePrize.length > 0" class="table">
+            <thead>
+              <th>
+                <input
+                  *ngIf="listAllDeletePrize.length > 0"
+                  type="checkbox"
+                  [value]="listIDDelete"
+                  (change)="checkValueDelete($event)"
+                />
+              </th>
+              <th>#</th>
+              <th>Họ tên</th>
+              <th>Nội dung</th>
+              <th>Tiền thưởng</th>
+              <th>Tiền phạt</th>
+              <th>Hành động</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prize of listAllDeletePrize; index as i">
+                <td>
+                  <input
+                    type="checkbox"
+                    [checked]="checkDelete"
+                    [value]="prize.id"
+                    (change)="checkResultDelete($event)"
+                  />
+                </td>
+                <td>{{ i + 1 }}</td>
+                <td>{{ prize.user_account }}</td>
+                <td>{{ prize.name }}</td>
+                <td>{{ prize.prize_money }}</td>
+                <td>{{ prize.fine_money }}</td>
+                <td>
+                  <button
+                    class="btn btn-danger"
+                    (click)="handleDestroy(prize.id, i)"
+                  >
+                    <span title="Xóa vĩnh viễn" class="material-icons">
+                      delete_forever
+                    </span>
+                  </button>
+                  <button
+                    class="btn btn-success"
+                    (click)="handeRestore(prize.id, i)"
+                  >
+                    <span title="Khôi phục" class="material-icons">
+                      settings_backup_restore
+                    </span>
+                  </button>
+                </td>
+              </tr>
+              <tr *ngIf="listIDDelete.length > 0">
+                <button
+                  (click)="destroyAll()"
+                  class="btn btn-danger"
+                  style="max-width: 100px; margin-top: 10px"
+                >
+                  Xóa tất cả
+                </button>
+                <button
+                  (click)="restoreAll()"
+                  class="btn btn-success"
+                  style="max-width: 150px; margin-top: 10px"
+                >
+                  Khôi phục tất cả
+                </button>
+              </tr>
+            </tbody>
+          </table>
+          <table *ngIf="listAllDeletePrize.length == 0">
+            <p style="padding-left: 1rem">Thùng rác rỗng</p>
+          </table>
+        </div>
       </div>
     </div>
   </div>

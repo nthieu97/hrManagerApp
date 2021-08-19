@@ -36,7 +36,7 @@ export class TimeOffAddComponent implements OnInit {
     this.timeoffservice.getTotalDay().subscribe((data) => {
       this.totalDay = Number(data.data.total_day);
       this.totalDayOff = Number(
-        data.data.totalDayOff ? data.data.total_day_off : 0
+        data.data.total_day_off ? data.data.total_day_off : 0
       );
     });
   }

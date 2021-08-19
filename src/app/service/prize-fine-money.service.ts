@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class PrizeFineMoneyService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   URL_API = environment.baseURL + 'prize_fine_money';
   getAllPrize(keyword: any): Observable<any> {
     if (keyword.length > 0) {
@@ -45,5 +45,14 @@ export class PrizeFineMoneyService {
   }
   restorePrize(id: string, object: any): Observable<any> {
     return this.http.post(this.URL_API + '/khoi_phuc/' + id, { object })
+  }
+  restoreAll(array: any): Observable<any> {
+    return this.http.post(this.URL_API + '/khoi_phuc_all/', array)
+  }
+  destroyAll(array: any): Observable<any> {
+    return this.http.post(this.URL_API + '/destroy_all/', array)
+  }
+  deleteAll(array: any): Observable<any> {
+    return this.http.post(this.URL_API + '/trashAll/', array)
   }
 }

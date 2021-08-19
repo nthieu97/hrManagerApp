@@ -45,22 +45,55 @@ h3 {
     width: 100%;
     justify-content: space-between;
   }
-  table tbody tr th {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+  .main_content {
+    margin-top: 1rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
   }
-  table tbody tr {
-    margin-bottom: 16px;
-  }
-}
-@media only screen and (max-width: 480px) {
-  table tbody tr th::before,
-  table tbody tr td::before {
+
+  h3 {
     text-align: center;
   }
-  table tbody tr td {
-    flex-direction: column;
+
+  .tab-control {
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+    font-size: var(--text-md);
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .tabs {
+    padding: 1em;
+  }
+
+  .tab-control:hover {
+    color: var(--primary-color);
+  }
+
+  .tab-panel {
+    display: none;
+  }
+
+  /* Magic style */
+
+  input[type="radio"]:checked + .tab-control {
+    font-weight: 600;
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+  }
+
+  #tab-1:checked ~ .tab-content > #tab-panel-1 {
+    display: block;
+  }
+
+  #tab-2:checked ~ .tab-content > #tab-panel-2 {
+    display: block;
+  }
+  h3 {
+    margin-left: 50%;
+    transform: translateX(-50%);
   }
   table tbody tr th {
     flex-direction: column;

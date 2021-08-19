@@ -6,56 +6,160 @@
     </li>
   </ol>
 </nav>
-<div class="time-off">
-  <div class="header_timeoff">
-    <h3 class="text-center">Hoạt động nghỉ phép cá nhân</h3>
-    <a [routerLink]="['/', 'trash-time-off']">
-      <span title="Thùng rác" class="material-icons"> delete_sweep </span>
-    </a>
+<div class="main_content">
+  <div class="tabs">
+    <input hidden type="radio" name="tab-css" id="tab-1" checked />
+    <label class="tab-control" for="tab-1">Lịch nghỉ của tôi</label>
+    <input hidden type="radio" name="tab-css" id="tab-2" />
+    <label class="tab-control" for="tab-2">Thùng rác</label>
+    <div class="tab-content">
+      <div id="tab-panel-1" class="tab-panel">
+        <div class="time-off">
+          <div class="header_timeoff">
+            <h3 class="text-center">Hoạt động nghỉ phép cá nhân</h3>
+          </div>
+          <table class="table">
+            <thead>
+              <th>#</th>
+              <th>Họ và tên</th>
+              <th>Ngày bắt đầu</th>
+              <th>Ngày kết thúc</th>
+              <th>Chú thich</th>
+              <th>Trạng thái</th>
+              <th>chế độ nghỉ</th>
+              <th>Số ngày nghỉ</th>
+              <th>Số ngày nghỉ có lương</th>
+              <th>Thao tác</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let time of timeOff; index as i">
+                <td>{{ i + 1 }}</td>
+                <td data-title="Full Name">{{ time.full_name }}</td>
+                <td data-title="Time start">
+                  {{ time.time_start | date: "dd/MM/yyyy" }}
+                </td>
+                <td data-title="Time end">
+                  {{ time.time_end | date: "dd/MM/yyyy" }}
+                </td>
+                <td data-title="Note">{{ time.note }}</td>
+                <td data-title="Status">
+                  {{ time.status == 1 ? "Đã duyệt" : "Chưa phê duyệt" }}
+                </td>
+                <td data-title="Mode leave">
+                  {{
+                    time.mode_leave == 1 ? "Nghỉ có lương" : "Nghỉ không lương"
+                  }}
+                </td>
+                <td>{{ time.number_day_leave }} ngày</td>
+                <td>{{ time.number_mode_leave }} ngày</td>
+                <td *ngIf="time.status !== 1" class="d-flex">
+                  <a
+                    [routerLink]="['/', 'time-off-edit', time.id]"
+                    class="btn btn-primary mr-2"
+                    >Edit</a
+                  >
+                  <button
+                    class="btn btn-danger"
+                    (click)="handleDelete(time.id, i)"
+                  >
+                    Xóa
+                  </button>
+                </td>
+                <td *ngIf="time.status == 1">
+                  <button class="btn btn-success">
+                    <span title="Đã phê duyệt" class="material-icons-outlined">
+                      check
+                    </span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div id="tab-panel-2" class="tab-panel">
+        <div class="trash-time-off">
+          <h3 class="text-center">Thùng rác</h3>
+          <table *ngIf="listTimeOffDelete.length > 0" class="table">
+            <thead>
+              <th>
+                <input
+                  type="checkbox"
+                  [value]="listID"
+                  (change)="checkValue($event)"
+                />
+              </th>
+              <th>#</th>
+              <th>Họ tên</th>
+              <th>Ngày bắt đầu</th>
+              <th>Ngày kết thúc</th>
+              <th>Lý do</th>
+              <th>Trạng thái</th>
+              <th>Chế độ</th>
+              <th>Số ngày nghỉ</th>
+              <th>Ngày nghỉ có lương</th>
+              <th>Hành động</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let time of listTimeOffDelete; index as a">
+                <td>
+                  <input
+                    type="checkbox"
+                    [checked]="checks"
+                    [value]="time.id"
+                    (change)="checkResult($event)"
+                  />
+                </td>
+                <td>{{ a + 1 }}</td>
+                <td>{{ time.full_name }}</td>
+                <td>{{ time.time_start | date: "dd/MM/yyyy" }}</td>
+                <td>{{ time.time_end | date: "dd/MM/yyyy" }}</td>
+                <td>{{ time.note }}</td>
+                <td>{{ time.status == 1 ? "Đã duyệt" : "Chưa phê duyệt" }}</td>
+                <td>
+                  {{
+                    time.mode_leave == 1 ? "Nghỉ có lương" : "Nghỉ không lương"
+                  }}
+                </td>
+                <td>{{ time.number_day_leave }} ngày</td>
+                <td>{{ time.number_mode_leave }} ngày</td>
+                <td>
+                  <button
+                    title="Xóa vĩnh viễn"
+                    class="btn btn-danger"
+                    (click)="handleDestroy(time.id, i)"
+                  >
+                    <span title="Xóa vĩnh viễn" class="material-icons">
+                      delete_forever
+                    </span>
+                  </button>
+                  <button
+                    title="Khôi phục"
+                    class="btn btn-success"
+                    (click)="handleRestore(time.id, i)"
+                  >
+                    <span title="Khôi phục" class="material-icons">
+                      settings_backup_restore
+                    </span>
+                  </button>
+                </td>
+              </tr>
+              <tr *ngIf="listID.length > 0">
+                <button
+                  (click)="destroyAll()"
+                  style="margin-top: 10px; min-width: 100px"
+                  class="btn btn-danger"
+                >
+                  Xóa tất cả
+                </button>
+              </tr>
+            </tbody>
+          </table>
+          <table *ngIf="listTimeOffDelete.length == 0">
+            <p style="padding-left: 1rem">Thùng rác rỗng</p>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <table class="table">
-    <thead>
-      <th>Họ và tên</th>
-      <th>Ngày bắt đầu</th>
-      <th>Ngày kết thúc</th>
-      <th>Chú thich</th>
-      <th>Trạng thái</th>
-      <th>chế độ nghỉ</th>
-      <th>Số ngày nghỉ</th>
-      <th>Số ngày nghỉ có lương</th>
-      <th>Thao tác</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let time of timeOff; index as i">
-        <td data-title="Full Name">{{ time.full_name }}</td>
-        <td data-title="Time start">
-          {{ time.time_start | date: "dd/MM/yyyy" }}
-        </td>
-        <td data-title="Time end">{{ time.time_end | date: "dd/MM/yyyy" }}</td>
-        <td data-title="Note">{{ time.note }}</td>
-        <td data-title="Status">
-          {{ time.status == 1 ? "Đã duyệt" : "Chưa phê duyệt" }}
-        </td>
-        <td data-title="Mode leave">
-          {{ time.mode_leave == 1 ? "Nghỉ có lương" : "Nghỉ không lương" }}
-        </td>
-        <td>{{ time.number_day_leave }} ngày</td>
-        <td>{{ time.number_mode_leave }} ngày</td>
-        <td *ngIf="time.status !== 1" class="d-flex">
-          <a
-            [routerLink]="['/', 'time-off-edit', time.id]"
-            class="btn btn-primary mr-2"
-            >Edit</a
-          >
-          <button class="btn btn-danger" (click)="handleDelete(time.id, i)">
-            Xóa
-          </button>
-        </td>
-        <td *ngIf="time.status == 1">
-          <span class="btn btn-success">Đã phê duyệt</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </div>
