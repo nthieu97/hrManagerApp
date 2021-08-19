@@ -106,3 +106,9 @@ input[type="radio"]:checked + .tab-control {
 }
 
 /* main content */
+
+@media only screen and (max-width: 768px) {
+  .content__main-content {
+    flex-direction: column;
+  }
+}

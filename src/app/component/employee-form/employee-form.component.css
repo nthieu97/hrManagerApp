@@ -25,3 +25,9 @@ form {
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+@media only screen and (max-width: 480px) {
+  form {
+    margin-left: unset;
+    transform: unset;
+  }
+}

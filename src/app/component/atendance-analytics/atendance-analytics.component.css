@@ -54,6 +54,14 @@ th {
 .chart-legend {
   width: 100% !important;
 }
+.attendace__chart {
+  width: 95%;
+  height: 95%;
+}
+.month-sumary-chart {
+  width: 95%;
+  height: 63%;
+}
 @media only screen and (max-width: 992px) {
   .col-12-md {
     flex: 0 0 100%;
@@ -67,6 +75,10 @@ th {
   }
   .month-sumary {
     margin-right: 10px;
+    width: 100%;
+  }
+  .employee-sumary {
+    width: 100%;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -123,11 +135,18 @@ th {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 20px;
+    height: auto;
   }
   .employee-sumary {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: auto;
+    padding-bottom: 20px;
+  }
+  .month-sumary-chart {
+    height: 45%;
   }
 }

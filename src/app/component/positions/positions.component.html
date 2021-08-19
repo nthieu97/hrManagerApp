@@ -19,23 +19,23 @@
       </thead>
       <tbody>
         <tr *ngFor="let position of positions; index as i">
-          <td>{{ position.id }}</td>
-          <td>{{ position.name }}</td>
-          <td>
-            <a
-              class="btn btn-primary"
-              [routerLink]="['/', 'position-edit', position.id]"
-            >
-            <span title="Chỉnh sửa" class="material-icons">
-              edit_note
-              </span>
-            </a>
-            <!-- <button
-              class="btn btn-danger"
-              (click)="handleDelete(position.id, i)"
-            >
-              Delete
-            </button> -->
+          <td data-title="#">{{ position.id }}</td>
+          <td data-title="Name">{{ position.name }}</td>
+          <td data-title="Action">
+            <div class="osition">
+              <a
+                class="btn btn-primary"
+                [routerLink]="['/', 'position-edit', position.id]"
+              >
+                Edit
+              </a>
+              <button
+                class="btn btn-danger"
+                (click)="handleDelete(position.id, i)"
+              >
+                Delete
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>

@@ -5,7 +5,6 @@
         <h3 class="text-center">Thống kê đi làm nhân viên</h3>
         <div class="attendace__chart">
           <ngx-charts-bar-vertical-stacked
-            [view]="[800, 550]"
             [scheme]="colorScheme"
             [results]="multi"
             [gradient]="false"
@@ -24,39 +23,44 @@
     <div class="col-4 col-12-md lh-two">
       <div class="month-sumary">
         <h4 class="text-center">Điểm danh hôm nay</h4>
-        <ngx-charts-pie-chart
-          [view]="[390, 190]"
-          [scheme]="colorScheme"
-          [results]="single"
-          [gradient]="true"
-          [legend]="true"
-          [legendPosition]="'below'"
-          [labels]="false"
-          [doughnut]="true"
-        >
-        </ngx-charts-pie-chart>
+        <div class="month-sumary-chart">
+          <ngx-charts-pie-chart
+            [scheme]="colorScheme"
+            [results]="single"
+            [gradient]="true"
+            [legend]="true"
+            [legendPosition]="'below'"
+            [labels]="false"
+            [doughnut]="true"
+          >
+          </ngx-charts-pie-chart>
+        </div>
       </div>
       <div class="employee-sumary">
         <h4 class="text-center">nghỉ quá số buổi</h4>
-        <ngx-charts-pie-chart
-          [view]="[390, 190]"
-          [scheme]="'forest'"
-          [results]="emplyee"
-          [gradient]="true"
-          [legend]="false"
-          [legendPosition]="'below'"
-          [labels]="false"
-          [doughnut]="true"
-        >
-        </ngx-charts-pie-chart>
+        <div class="month-sumary-chart">
+          <ngx-charts-pie-chart
+            [scheme]="'forest'"
+            [results]="emplyee"
+            [gradient]="true"
+            [legend]="false"
+            [legendPosition]="'below'"
+            [labels]="false"
+            [doughnut]="true"
+          >
+          </ngx-charts-pie-chart>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="list-attendence">
-    <h3 class="text-center">Điểm danh của nhân viên<a [routerLink]="['/', 'attendance-form']"><span class="material-icons"> add_circle_outline </span></a
-      ></h3>
-      <button
+    <h3 class="text-center">
+      Điểm danh của nhân viên<a [routerLink]="['/', 'attendance-form']"
+        ><span class="material-icons"> add_circle_outline </span></a
+      >
+    </h3>
+    <button
       class="btn btn-success my-2"
       (click)="expoetExcel()"
       *ngIf="listAllAtten"
@@ -67,7 +71,7 @@
       <thead>
         <th>Stt</th>
         <th>Họ và tên</th>
-       
+
         <th>Check in</th>
         <th>Check out</th>
         <th>Ngày</th>
@@ -78,7 +82,7 @@
         <tr *ngFor="let atten of listAllAtten; index as i">
           <td data-title="#">{{ i + 1 }}</td>
           <td data-title="Full Name">{{ atten.full_name }}</td>
-        
+
           <td data-title="Check in">{{ atten.time_of_check_in }}</td>
           <td data-title="Check out">{{ atten.time_of_check_out }}</td>
 
@@ -89,16 +93,18 @@
           <td data-title="Status" *ngIf="atten.status !== 1">
             <span class="text-danger">Off</span>
           </td>
-         
-            <td>
-              <button [routerLink]="['/','attendance-edit',atten.id]" class="btn btn-primary"><span title="Chỉnh sửa" class="material-icons">
-                edit_note
-                </span></button>
-                <button (click)="handleDelete(atten.id, i)" class="btn btn-danger"><span title="Xóa" class="material-icons">
-                  delete_forever
-                  </span></button>
-            </td>
-      
+
+          <td>
+            <button
+              [routerLink]="['/', 'attendance-edit', atten.id]"
+              class="btn btn-primary"
+            >
+              <span title="Chỉnh sửa" class="material-icons"> edit_note </span>
+            </button>
+            <button (click)="handleDelete(atten.id, i)" class="btn btn-danger">
+              <span title="Xóa" class="material-icons"> delete_forever </span>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
