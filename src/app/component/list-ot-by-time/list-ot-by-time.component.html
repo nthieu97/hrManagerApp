@@ -1,54 +1,54 @@
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb" style="padding: 0; margin: 0">
-      <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Tăng ca theo giờ</li>
-    </ol>
-  </nav>
-  <div class="list-ot-by-time">
-    <div class="header_ot">
-      <h3 class="text-center">Danh Sách Tăng Ca Theo Giờ</h3>
-      <a [routerLink]="['/','trash-ot']">
-          <span title="Thùng rác" class="material-icons">
-      delete_sweep
+  <ol class="breadcrumb" style="padding: 0; margin: 0">
+    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Tăng ca theo giờ</li>
+  </ol>
+</nav>
+<div class="list-ot-by-time">
+  <div class="header_ot">
+    <h3 class="text-center">Danh Sách Tăng Ca Theo Giờ</h3>
+    <a [routerLink]="['/','trash-ot']">
+      <span title="Thùng rác" class="material-icons">
+        delete_sweep
       </span>
-      </a>
+    </a>
   </div>
-    <table class="table">
-      <thead>
-        <th>#</th>
-        <th>Họ tên</th>
-        <th>Ngày</th>
-        <th>Giờ vào</th>
-        <th>Giờ ra</th>
-        <th>Ghi chú</th>
-        <th>Trạng thái</th>
-        <th>Hành động</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let ot of listOT; index as i">
-          <td>{{i+1}}</td>
-          <td>{{ot.full_name}}</td>
-          <td>{{ot.date}}</td>
-          <td>17:00:00</td>
-          <td>{{ot.time_tang_ca}}</td>
-          <td>{{ot.note}}</td>
-          <td *ngIf="ot.status == 0"><span class="text-danger">Không tăng ca</span></td>
-          <td *ngIf="ot.status == 1"><span class="text-success">Tăng ca</span></td>
-          <td *ngIf="ot.status ==0">
-            <button  (click)="handleDelete(ot.id)" class="btn btn-danger"><span title="Xóa" class="material-icons">
+  <table class="table">
+    <thead>
+      <th>#</th>
+      <th>Họ tên</th>
+      <th>Ngày</th>
+      <th>Giờ vào</th>
+      <th>Giờ ra</th>
+      <th>Ghi chú</th>
+      <th>Trạng thái</th>
+      <th>Hành động</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ot of listOT; index as i">
+        <td data-title="#">{{i+1}}</td>
+        <td data-title="Họ tên">{{ot.full_name}}</td>
+        <td data-title="Ngày">{{ot.date}}</td>
+        <td data-title="Giờ vào">17:00:00</td>
+        <td data-title="Giờ ra">{{ot.time_tang_ca}}</td>
+        <td data-title="Ghi chú">{{ot.note}}</td>
+        <td data-title="Trạng thái" *ngIf="ot.status == 0"><span class="text-danger">Không tăng ca</span></td>
+        <td data-title="Trạng thái" *ngIf="ot.status == 1"><span class="text-success">Tăng ca</span></td>
+        <td data-title="Hành động" *ngIf="ot.status ==0">
+          <button (click)="handleDelete(ot.id)" class="btn btn-danger"><span title="Xóa" class="material-icons">
               delete_forever
-              </span></button>
-          </td>
-          <td *ngIf="ot.status ==1">
-            <button class="btn btn-success"><span title="Đã phê duyệt" class="material-icons">
+            </span></button>
+        </td>
+        <td data-title="" *ngIf="ot.status ==1">
+          <button class="btn btn-success"><span title="Đã phê duyệt" class="material-icons">
               check
-              </span></button>
-          </td>
-        </tr>
-      </tbody>
-     
-    </table>
-    <!-- <ngb-pagination
+            </span></button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+  <!-- <ngb-pagination
       class="d-flex justify-content-end"
       [collectionSize]="collectionSize"
       [(page)]="page"
@@ -59,11 +59,11 @@
       [pageSize]="pageSize"
       (pageChange)="handlePaginate($event)"
     ></ngb-pagination> -->
-    <!-- <div class="d-flex">
+  <!-- <div class="d-flex">
       <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
         <div class="spinner-grow text-success" role="status">
           <span class="sr-only">Loading...</span>
         </div>
       </div>
     </div> -->
-  </div>
+</div>
