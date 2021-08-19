@@ -11,7 +11,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { responsePrizeFine } from 'src/app/model/prize.model';
 import { ToastsService } from 'src/app/service/toasts.service';
-
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 @Component({
   selector: 'app-prize-fine-form',
   templateUrl: './prize-fine-form.component.html',
@@ -22,7 +22,10 @@ export class PrizeFineFormComponent implements OnInit {
   prizeFineForm: FormGroup;
 
   prizeFineId: string;
-
+  dropdownSettings: IDropdownSettings = {};
+  selectedItems = [];
+  dropdownList = [];
+  listItem = []
   constructor(
     private prizrFineService: PrizeFineMoneyService,
     private employeeService: EmployeeService,
@@ -59,6 +62,16 @@ export class PrizeFineFormComponent implements OnInit {
           });
       }
     });
+    this.selectedItems = [];
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'user_account',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true,
+    };
   }
   createForm(): void {
     this.prizeFineForm = this.fb.group({
@@ -68,9 +81,10 @@ export class PrizeFineFormComponent implements OnInit {
       money: [0, Validators.required],
     });
   }
+
   getEmployees(): void {
     this.employeeService.getAllUser().subscribe((data) => {
-      this.employees = data.data;
+      this.dropdownList = data.data;
     });
   }
   get f(): {
@@ -102,6 +116,29 @@ export class PrizeFineFormComponent implements OnInit {
     console.log(event.target);
 
     // this.isPrize = !this.isPrize;
+  }
+  onItemSelect(item: any): void {
+    this.listItem.push(item.id);
+    console.log(this.listItem);
+
+  }
+  onDeSelect(item: any): void {
+    console.log(item, 'deselect');
+    this.listItem = this.listItem.filter((data) => data !== item.id);
+    console.log(this.listItem);
+  }
+  onSelectAll(items: any): void {
+    for (let i = 0; i < items.length; i++) {
+      this.listItem.push(items[i].id);
+      console.log(items[i].id);
+
+    }
+    console.log(this.listItem);
+  }
+  onDeSelectAll(items: any): void {
+    console.log(items);
+    this.listItem = [];
+    console.log(this.listItem);
   }
   submitForm(): void {
     if (this.prizeFineId) {

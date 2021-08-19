@@ -9,13 +9,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./prize-fine-money.component.css'],
 })
 export class PrizeFineMoneyComponent implements OnInit {
+  listAllDeletePrize = []
   constructor(
     private prizeFineMoneyService: PrizeFineMoneyService,
     private router: Router,
     private toastService: ToastsService
-  ) {}
-  listAllDeletePrize = []
+  ) { }
   listID = [];
+  listIDDelete = [];
+  checkDelete = false
   checks = false;
   list_prize_fine = [];
   keyword = '';
@@ -24,15 +26,15 @@ export class PrizeFineMoneyComponent implements OnInit {
   pageSize: any;
   collectionSize: any;
   ngOnInit(): void {
+    console.log(this.listID);
+
     this.search();
     this.getAllDeletePrize()
   }
   checkValue(e) {
     if (e.target.checked == true) {
       this.checks = true
-      // console.log(e.target.value);
       for (let i = 0; i < this.list_prize_fine.length; i++) {
-        // console.log(this.list_prize_fine[i].id);
         this.listID.push(this.list_prize_fine[i].id)
         console.log(this.listID);
       }
@@ -40,9 +42,47 @@ export class PrizeFineMoneyComponent implements OnInit {
       this.checks = false
       this.listID = []
       console.log(this.listID);
+
     }
   }
+  checkResult(event) {
+    if (event.target.checked == true) {
+      this.listID.push(parseInt(event.target.value))
+      console.log(this.listID);
 
+    } else {
+      const x = parseInt(event.target.value)
+      const arr = this.listID.filter(data => data !== x)
+      console.log('kp', arr);
+
+      this.listID = arr
+      console.log(this.listID);
+
+    }
+  }
+  checkValueDelete(e) {
+    if (e.target.checked == true) {
+      this.checkDelete = true
+      for (let i = 0; i < this.listAllDeletePrize.length; i++) {
+        this.listIDDelete.push(this.listAllDeletePrize[i].id)
+        console.log(this.listIDDelete);
+      }
+    } else {
+      this.checkDelete = false
+      this.listIDDelete = []
+    }
+  }
+  checkResultDelete(e) {
+    if (e.target.checked == true) {
+      this.listIDDelete.push(parseInt(e.target.value))
+    } else {
+      const x = parseInt(e.target.value)
+      const arr = this.listIDDelete.filter(data => data !== x)
+      this.listIDDelete = arr
+      console.log(this.listIDDelete);
+
+    }
+  }
   search(): void {
     this.prizeFineMoneyService.getAllPrize(this.keyword).subscribe((data) => {
       this.list_prize_fine = data.data;
@@ -181,5 +221,118 @@ export class PrizeFineMoneyComponent implements OnInit {
       } else if (result.dismiss === Swal.DismissReason.cancel) { }
 
     })
+  }
+  deleteAll() {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: 'Bạn chắc chắn chứ',
+      text: "Xóa vĩnh viễn dữ liệu",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Có',
+      cancelButtonText: 'Không',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.prizeFineMoneyService.deleteAll(this.listID).subscribe((data) => {
+          this.toastService.show(data.message, {
+            classname: 'bg-success text-light',
+            delay: 3000
+          }),
+            (err: any) => {
+              this.toastService.show(err.message, {
+                classname: 'bg-danger text-light',
+                delay: 3000
+              })
+            }
+
+        })
+        this.search()
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        this.search()
+      }
+
+    });
+
+  }
+  restoreAll() {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: 'Bạn chắc chắn ?',
+      text: "Khôi phục tất cả dữ liệu",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Có',
+      cancelButtonText: 'Không',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.prizeFineMoneyService.restoreAll(this.listIDDelete).subscribe((data) => {
+          this.toastService.show(data.message, {
+            classname: 'bg-success text-light',
+            delay: 3000
+          }),
+            (err: any) => {
+              this.toastService.show(err.message, {
+                classname: 'bg-danger text-light',
+                delay: 3000
+              })
+            }
+        })
+        this.getAllDeletePrize()
+      } else if (result.dismiss === Swal.DismissReason.cancel) { }
+
+    })
+
+  }
+  destroyAllDelete() {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: 'Bạn chắc chắn chứ',
+      text: "Xóa vĩnh viễn dữ liệu",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Có',
+      cancelButtonText: 'Không',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.prizeFineMoneyService.destroyAll(this.listIDDelete).subscribe((data) => {
+          this.toastService.show(data.message, {
+            classname: 'bg-success text-light',
+            delay: 3000
+          }),
+            (err: any) => {
+              this.toastService.show(err.message, {
+                classname: 'bg-danger text-light',
+                delay: 3000
+              })
+
+            }
+        })
+        this.getAllDeletePrize()
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+      }
+
+    });
   }
 }

@@ -1,115 +1,142 @@
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb" style="padding: 0; margin: 0">
+  <ol class="breadcrumb" style="padding: 0; margin: 0">
       <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
       <li class="breadcrumb-item active" aria-current="page">Tăng ca theo giờ</li>
-    </ol>
-  </nav>
-  <div class="main_content">
-    <div class="tabs">
-        <input hidden type="radio" name="tab-css" id="tab-1" checked />
-        <label class="tab-control" for="tab-1">Lịch tăng ca theo giờ</label>
-        <input hidden type="radio" name="tab-css" id="tab-2" />
-        <label class="tab-control" for="tab-2">Thùng rác</label>
-        <div class="tab-content">
-            <div id="tab-panel-1" class="tab-panel">
-                <div class="list-ot-by-time">
-                    <div class="header_ot">
-                        <h3 class="text-center">Danh Sách Tăng Ca Theo Giờ</h3>
-                    </div>
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <th>#</th>
-                            <th>Họ tên</th>
-                            <th>Ngày</th>
-                            <th>Giờ vào</th>
-                            <th>Giờ ra</th>
-                            <th>Ghi chú</th>
-                            <th>Trạng thái</th>
-                            <th>Hành động</th>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let ot of listOT; index as i">
-                                <td>{{i+1}}</td>
-                                <td>{{ot.full_name}}</td>
-                                <td>{{ot.date}}</td>
-                                <td>17:00:00</td>
-                                <td>{{ot.time_tang_ca}}</td>
-                                <td>{{ot.note}}</td>
-                                <td *ngIf="ot.status == 0"><span class="text-danger">Không tăng ca</span></td>
-                                <td *ngIf="ot.status == 1"><span class="text-success">Tăng ca</span></td>
-                                <td *ngIf="ot.status ==0">
-                                    <button (click)="handleDelete(ot.id)" class="btn btn-danger"><span title="Xóa" class="material-icons">
-                      delete_forever
-                      </span></button>
-                                </td>
-                                <td *ngIf="ot.status ==1">
-                                    <button class="btn btn-success"><span title="Đã phê duyệt" class="material-icons">
-                      check
-                      </span></button>
-                                </td>
-                            </tr>
-                        </tbody>
+  </ol>
+</nav>
+<div class="main_content">
+  <div class="tabs">
+      <input hidden type="radio" name="tab-css" id="tab-1" checked />
+      <label class="tab-control" for="tab-1">Lịch tăng ca theo giờ</label>
+      <input hidden type="radio" name="tab-css" id="tab-2" />
+      <label class="tab-control" for="tab-2">Thùng rác</label>
+      <div class="tab-content">
+          <div id="tab-panel-1" class="tab-panel">
+              <div class="list-ot-by-time">
+                  <div class="header_ot">
+                      <h3 class="text-center">Danh Sách Tăng Ca Theo Giờ</h3>
+                  </div>
+                  <table class="table" *ngIf="listOT.length > 0">
+                      <thead>
+                          <th>
+                              <input type="checkbox" [value]="listID" (change)="checkValue($event)">
+                          </th>
+                          <th>#</th>
 
-                    </table>
-                    <!-- <ngb-pagination
-              class="d-flex justify-content-end"
-              [collectionSize]="collectionSize"
-              [(page)]="page"
-              [maxSize]="5"
-              [rotate]="true"
-              [ellipses]="false"
-              [boundaryLinks]="true"
-              [pageSize]="pageSize"
-              (pageChange)="handlePaginate($event)"
-            ></ngb-pagination> -->
-                    <!-- <div class="d-flex">
-              <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
-                <div class="spinner-grow text-success" role="status">
-                  <span class="sr-only">Loading...</span>
-                </div>
+                          <th>Họ tên</th>
+                          <th>Ngày</th>
+                          <th>Giờ vào</th>
+                          <th>Giờ ra</th>
+                          <th>Ghi chú</th>
+                          <th>Trạng thái</th>
+                          <th>Hành động</th>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let ot of listOT; index as i">
+                              <td>
+                                  <input type="checkbox" [checked]="checks" [value]="ot.id" (change)="checkResult($event)">
+                              </td>
+                              <td>{{i+1}}</td>
+                              <td>{{ot.full_name}}</td>
+                              <td>{{ot.date}}</td>
+                              <td>17:00:00</td>
+                              <td>{{ot.time_tang_ca}}</td>
+                              <td>{{ot.note}}</td>
+                              <td *ngIf="ot.status == 0"><span class="text-danger">Không tăng ca</span></td>
+                              <td *ngIf="ot.status == 1"><span class="text-success">Tăng ca</span></td>
+                              <td *ngIf="ot.status ==0">
+                                  <button (click)="handleDelete(ot.id)" class="btn btn-danger"><span title="Xóa" class="material-icons">
+                    delete_forever
+                    </span></button>
+                              </td>
+                              <td *ngIf="ot.status ==1">
+                                  <button class="btn btn-success"><span title="Đã phê duyệt" class="material-icons">
+                    check
+                    </span></button>
+                              </td>
+                          </tr>
+                          <tr *ngIf="listID.length > 0">
+                              <button (click)="deleteAll()" class="btn btn-danger" style="max-width: 100px; margin-top: 10px;">Xóa tất cả</button>
+                          </tr>
+                      </tbody>
+
+                  </table>
+                  <table *ngIf="listOT.length ==0">
+                      <p>Danh sách rỗng</p>
+                  </table>
+                  <!-- <ngb-pagination
+            class="d-flex justify-content-end"
+            [collectionSize]="collectionSize"
+            [(page)]="page"
+            [maxSize]="5"
+            [rotate]="true"
+            [ellipses]="false"
+            [boundaryLinks]="true"
+            [pageSize]="pageSize"
+            (pageChange)="handlePaginate($event)"
+          ></ngb-pagination> -->
+                  <!-- <div class="d-flex">
+            <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
+              <div class="spinner-grow text-success" role="status">
+                <span class="sr-only">Loading...</span>
               </div>
-            </div> -->
-                </div>
             </div>
-            <div id="tab-panel-2" class="tab-panel">
-                <div class="trash-ot">
-                    <h3>Thùng Rác</h3>
-                    <table *ngIf="listOTDelete.length >0" class="table">
-                        <thead>
-                            <th>#</th>
-                            <th>Họ tên</th>
-                            <th>Ngày</th>
-                            <th>Giờ vào</th>
-                            <th>Giờ ra</th>
-                            <th>Trạng thái</th>
-                            <th>Hành động</th>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let ot of listOTDelete ; index as i">
-                                <td>{{i+1}}</td>
-                                <td>{{ot.full_name}}</td>
-                                <td>{{ot.date}}</td>
-                                <td>17:00:00</td>
-                                <td>{{ot.time_tang_ca}}</td>
-                                <td *ngIf="ot.status == 1"><span class="text-success">Đồng ý tăng ca</span></td>
-                                <td *ngIf="ot.status == 0"><span class="text-danger">Không đồng ý </span></td>
-                                <td>
-                                    <button class="btn btn-danger" (click)="handleDestroy(id)"><span title="Xóa vĩnh viễn" class="material-icons">
-                                delete_forever
-                                </span></button>
-                                    <button class="btn btn-success" (click)="handleRestore(id,object)"><span title="Khôi phục" class="material-icons">
-                                settings_backup_restore
-                                </span></button>
-                                </td>
-                            </tr>
-                        </tbody>
+          </div> -->
+              </div>
+          </div>
+          <div id="tab-panel-2" class="tab-panel">
+              <div class="trash-ot">
+                  <h3>Thùng Rác</h3>
+                  <table *ngIf="listOTDelete.length >0" class="table">
+                      <thead>
+                          <th>
+                              <input *ngIf="listOTDelete.length > 0" type="checkbox" [value]="listIDDelete" (change)="checkValueDelete($event)">
+                          </th>
+                          <th>#</th>
+                          <th>Họ tên</th>
+                          <th>Ngày</th>
+                          <th>Giờ vào</th>
+                          <th>Giờ ra</th>
+                          <th>Trạng thái</th>
+                          <th>Hành động</th>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let ot of listOTDelete ; index as i">
+                              <td>
+                                  <input type="checkbox" [checked]="checkDelete" [value]="ot.id" (change)="checkResultDelete($event)">
+                              </td>
+                              <td>{{i+1}}</td>
+                              <td>{{ot.full_name}}</td>
+                              <td>{{ot.date}}</td>
+                              <td>17:00:00</td>
+                              <td>{{ot.time_tang_ca}}</td>
+                              <td *ngIf="ot.status == 1"><span class="text-success">Đồng ý tăng ca</span></td>
+                              <td *ngIf="ot.status == 0"><span class="text-danger">Không đồng ý </span></td>
+                              <td>
+                                  <button class="btn btn-danger" (click)="handleDestroy(ot.id)"><span title="Xóa vĩnh viễn" class="material-icons">
+                              delete_forever
+                              </span></button>
+                                  <button class="btn btn-success" (click)="handleRestore(ot.id,object)"><span title="Khôi phục" class="material-icons">
+                              settings_backup_restore
+                              </span></button>
+                              </td>
+                          </tr>
+                          <tr *ngIf="listIDDelete.length > 0">
+                              <button (click)="destroyAll()" class="btn btn-danger" style="margin-top:10px;max-width: 100px;">Xóa tất cả</button>
+                              <button (click)="restoreAll()" class="btn btn-success" style="max-width: 150px; margin-top: 10px;">Khôi phục tất cả</button>
+                          </tr>
 
-                    </table>
-                    <table class="justify-content-center" *ngIf="listOTDelete.length == 0">
-                        <p style="padding-left: 1rem;">Thùng rác rỗng</p>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+
+                      </tbody>
+
+                  </table>
+                  <table class="justify-content-center" *ngIf="listOTDelete.length == 0">
+                      <p style="padding-left: 1rem;">Thùng rác rỗng</p>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>

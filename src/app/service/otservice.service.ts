@@ -13,30 +13,38 @@ export class OTServiceService {
   createOT(object: any): Observable<any> {
     return this.http.post(this.URL_API + '/addTangCa/', object);
   }
-  deleteOT(id:string):Observable<any>{
-    return this.http.delete(this.URL_API + '/delete/'+id,{})
+  deleteOT(id: string): Observable<any> {
+    return this.http.delete(this.URL_API + '/delete/' + id, {})
   }
-  destroyOT(id:string):Observable<any>{
-    return this.http.delete(this.URL_API +'/destroy/'+id)
+  destroyOT(id: string): Observable<any> {
+    return this.http.delete(this.URL_API + '/destroy/' + id)
   }
-  listOTByLeader():Observable<any>{
+  listOTByLeader(): Observable<any> {
     return this.http.get(this.URL_API + '/danh_sach_tang_ca_by_leader')
   }
-  getAllDeleteOT():Observable<any>{
+  getAllDeleteOT(): Observable<any> {
     return this.http.get(this.URL_API + '/getAllDelete')
   }
 
-  restorseOT(id:string, object:any):Observable<any>{
-    return this.http.post(this.URL_API + '/khoi_phuc/'+id,object)
+  restorseOT(id: string, object: any): Observable<any> {
+    return this.http.post(this.URL_API + '/khoi_phuc/' + id, { object })
   }
-   //xác nhận tăng ca nhân viên
-   confirmOT(id: string): Observable<any> {
-    return this.http.post(this.URL_API + '/xac_nhan_tang_ca/' + id, {confirm:'yes'});
-  }
-   notConfirmOT(id: string): Observable<any> {
-    return this.http.post(this.URL_API + '/xac_nhan_tang_ca/' + id, {});
+  //xác nhận tăng ca nhân viên
+  confirmOT(id: string, object: any): Observable<any> {
+    return this.http.post(this.URL_API + '/xac_nhan_tang_ca/' + id, object);
   }
   getListOTByUser(): Observable<any> {
     return this.http.get(this.URL_API + '/danh_sach_tang_ca_by_user')
   }
+
+  restoreAll(array: any): Observable<any> {
+    return this.http.post(this.URL_API + '/khoi_phuc_all/', array)
+  }
+  destroyAll(array: any): Observable<any> {
+    return this.http.post(this.URL_API + '/destroyAll/', array)
+  }
+  deleteAll(array: any): Observable<any> {
+    return this.http.post(this.URL_API + '/delete_all/', array)
+  }
+
 }

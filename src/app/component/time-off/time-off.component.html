@@ -1,9 +1,9 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
-    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
-    <li class="breadcrumb-item active" aria-current="page">
-      Nghỉ phép cá nhân
-    </li>
+      <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+          Nghỉ phép cá nhân
+      </li>
   </ol>
 </nav>
 <div class="main_content">
@@ -18,7 +18,7 @@
                   <div class="header_timeoff">
                       <h3 class="text-center">Hoạt động nghỉ phép cá nhân</h3>
                   </div>
-                  <table class="table table-striped table-hover">
+                  <table class="table">
                       <thead>
                           <th>#</th>
                           <th>Họ và tên</th>
@@ -70,7 +70,7 @@
           <div id="tab-panel-2" class="tab-panel">
               <div class="trash-time-off">
                   <h3 class="text-center">Thùng rác</h3>
-                  <table *ngIf="listTimeOffDelete.length > 0" class="table table-striped table-hover">
+                  <table *ngIf="listTimeOffDelete.length > 0" class="table">
                       <thead>
                           <th>
                               <input type="checkbox" [value]="listID" (change)="checkValue($event)">
@@ -113,8 +113,10 @@
                 settings_backup_restore
                 </span></button>
                               </td>
+                          </tr>
+                          <tr *ngIf="listID.length > 0">
 
-
+                              <button (click)="destroyAll()" style="margin-top:10px; min-width: 100px;" class="btn btn-danger">Xóa tất cả</button>
 
                           </tr>
                       </tbody>

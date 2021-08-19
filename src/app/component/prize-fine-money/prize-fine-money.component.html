@@ -1,7 +1,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
-    <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Danh sách thưởng phạt</li>
+      <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Danh sách thưởng phạt</li>
   </ol>
 </nav>
 <div class="main_content">
@@ -48,7 +48,7 @@
             </svg>
           </button>
         </div>
-        <table class="table">
+        <table class="table" *ngIf="list_prize_fine.length > 0">
           <thead>
             <th>
               <input *ngIf="list_prize_fine.length > 0"  type="checkbox" [value]="listID" (change)="checkValue($event)">
@@ -63,7 +63,7 @@
           <tbody>
             <tr *ngFor="let prize of list_prize_fine; index as i">
               <td>
-                <input  type="checkbox" [checked]="checks" [value]="prize.id" (changes)="checkResult($event)">
+                <input  type="checkbox" [checked]="checks" [value]="prize.id" (change)="checkResult($event)">
               </td>
               <td data-title="#">{{ i + 1 }}</td>
               <td data-title="User Name">{{ prize.user_account }}</td>
@@ -85,7 +85,13 @@
                 </button>
               </td>
             </tr>
+            <tr *ngIf="listID.length > 0">
+                <button (click)="deleteAll()" class="btn btn-danger" style="max-width: 100px;margin-top:10px">Xóa tất cả</button>
+            </tr>
           </tbody>
+        </table>
+        <table *ngIf="list_prize_fine.length == 0">
+          <p>Danh sách rỗng</p>
         </table>
         <ngb-pagination
           class="d-flex justify-content-end"
@@ -112,6 +118,9 @@
         <h3>Thùng Rác</h3>
         <table *ngIf="listAllDeletePrize.length > 0" class="table">
             <thead>
+                <th> 
+                    <input *ngIf="listAllDeletePrize.length > 0"  type="checkbox" [value]="listIDDelete" (change)="checkValueDelete($event)">
+                </th>
                 <th>#</th>
                 <th>Họ tên</th>
                 <th>Nội dung </th>
@@ -121,6 +130,9 @@
             </thead>
             <tbody>
                 <tr *ngFor="let prize of listAllDeletePrize; index as i">
+                  <td>
+                    <input  type="checkbox" [checked]="checkDelete" [value]="prize.id" (change)="checkResultDelete($event)">
+                  </td>
                     <td>{{ i + 1 }}</td>
                     <td>{{ prize.user_account }}</td>
                     <td>{{ prize.name }}</td>
@@ -138,6 +150,10 @@
                         
                     </td>
                 </tr>
+                <tr *ngIf="listIDDelete.length > 0">
+                  <button (click)="destroyAll()" class="btn btn-danger" style="max-width: 100px; margin-top: 10px;">Xóa tất cả</button>
+                  <button (click)="restoreAll()" class="btn btn-success" style="max-width: 150px; margin-top: 10px;">Khôi phục tất cả</button>
+                </tr>
             </tbody>
         </table>
         <table *ngIf="listAllDeletePrize.length == 0">
@@ -148,5 +164,6 @@
   </div>
 </div>
 </div>
+
 
 <!-- paginate -->

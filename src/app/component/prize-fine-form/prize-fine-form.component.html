@@ -24,7 +24,7 @@
     </div>
     <div class="form-group">
       <label for="">Nhân viên</label>
-      <select formControlName="user_id" class="form-control">
+      <!-- <select formControlName="user_id" class="form-control">
         <option value="" selected disabled>--Chọn nhân viên--</option>
         <option
           [value]="employee.id"
@@ -38,7 +38,10 @@
         class="alert alert-danger"
       >
         <div *ngIf="f.user_id.errors?.required">Nhân viên không để trống</div>
-      </div>
+      </div> -->
+      <ng-multiselect-dropdown [placeholder]="'--Chooses User--'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)" (onDeSelect)="onDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)"
+      formControlName="user_id">
+  </ng-multiselect-dropdown>
     </div>
 
     <div class="form-group">

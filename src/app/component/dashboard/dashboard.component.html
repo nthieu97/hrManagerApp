@@ -88,7 +88,7 @@
               </tbody>
           </table>
           <table *ngIf="acceptOTList.length == 0" class="table my-custom-scrollbar">
-              <p>Không có lịch tăng ca</p>
+              <p class="text-center">Bạn không có lịch tăng ca hôm nay</p>
           </table>
       </div>
 
@@ -191,52 +191,32 @@
       <div class="absent">
         <div class="absent__head-container">
           <div class="absent__header">
-            <a href="" class="absent__link">Nghỉ phép/ Vắng mặt</a>
-            <p>Ngày10 Tháng 6</p>
+            <a href="" class="absent__link">Nghỉ phép hôm nay</a>
+            <p>Hôm nay {{dateOff | date:'dd-MM-yyyy'}}</p>
           </div>
           <div class="absent__more">
             <a href=""><span class="material-icons">more_horiz</span> </a>
-            <p class="absent__more_info"><span>2</span>/19</p>
+            <p class="absent__more_info">SL(<span>{{listUserOff.length}}</span>)</p>
           </div>
         </div>
-        <div class="absent__body">
-          <div class="absent__item">
+        <div class="absent__body" *ngIf="listUserOff.length > 0">
+          <div class="absent__item" *ngFor="let item of listUserOff; index as i">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU"
               class="absent__img"
               alt="image"
             />
             <div class="absent__info">
-              <p class="absent__username">Thạch Hoàng Hà</p>
-              <p class="absnet__desc">Nghỉ ốm</p>
+              <p class="absent__username">{{item.full_name}}</p>
+              <p class="absnet__desc">{{item.note}}</p>
             </div>
             <p class="absent__time">Hôm nay</p>
           </div>
-          <div class="absent__item">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU"
-              class="absent__img"
-              alt="image"
-            />
-            <div class="absent__info">
-              <p class="absent__username">Thạch Hoàng Hà</p>
-              <p class="absnet__desc">Nghỉ ốm</p>
-            </div>
-            <p class="absent__time">Hôm nay</p>
-          </div>
-          <div class="absent__item">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU"
-              class="absent__img"
-              alt="image"
-            />
-            <div class="absent__info">
-              <p class="absent__username">Thạch Hoàng Hà</p>
-              <p class="absnet__desc">Nghỉ ốm</p>
-            </div>
-            <p class="absent__time">Hôm nay</p>
-          </div>
+        
         </div>
+        <div class="absent__body" *ngIf="listUserOff.length == 0">
+          <p>Không ai nghỉ phép hôm nay ...</p>
+      </div>
       </div>
       <!-- end-absent -->
       <div class="remote-work">
@@ -338,8 +318,8 @@
                         <td>{{ confirm.note }}</td>
                         <td>
                             <div *ngIf="!loadConfirm" class="task-list__link tex-center">
-                                <a (click)="handleAcceptEmployee(confirm.id, i)" class="task-list__approve"><span class="material-icons">done</span></a>
-                                <a (click)="handleNotAcceptEmployee(confirm.id, i)" class="task-list__decline"><span class="material-icons">thumb_down_off_alt</span> </a>
+                                <a (click)="handleAccept(confirm.id, i)" class="task-list__approve"><span class="material-icons">done</span></a>
+                                <a (click)="handleNotAccept(confirm.id, i)" class="task-list__decline"><span class="material-icons">thumb_down_off_alt</span> </a>
                             </div>
                             <div *ngIf="loadConfirm" class="task-list__link tex-center">
                                 <div class="spinner-border" role="status">

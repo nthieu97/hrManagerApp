@@ -8,6 +8,7 @@ import { User } from 'src/app/model/user.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { DashboardService } from 'src/app/service/dashboard.service';
 import { OTServiceService } from 'src/app/service/otservice.service';
+import { TimeOffService } from 'src/app/service/time-off.service';
 import { ToastsService } from 'src/app/service/toasts.service';
 
 @Component({
@@ -39,12 +40,15 @@ export class DashboardComponent implements OnInit {
   totalUsersOff: number;
   departments: number;
   acceptOTList=[];
-  isLeader:boolean
+  isLeader:boolean;
+  dateOff = new Date();
+  listUserOff = [];
   constructor(
     private authService: AuthService,
     private dashboardService: DashboardService,
     private toastService: ToastsService,
-    private otService:OTServiceService
+    private otService:OTServiceService,
+    private timeOffService:TimeOffService
   ) {}
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin();
@@ -129,9 +133,9 @@ export class DashboardComponent implements OnInit {
       this.confirmList.splice(index, 1);
     });
   }
-  handleAccept(id: string) {
+  handleAccept(id: string, object: any) {
     this.loadAccept = true;
-    this.otService.confirmOT(id).subscribe((data) => {
+    this.otService.confirmOT(id, object).subscribe((data) => {
       this.loadAccept = false
       this.toastService.show(data.message, {
         classname: 'bg-success text-light',
@@ -148,18 +152,20 @@ export class DashboardComponent implements OnInit {
     })
   }
   handleNotAccept(id: string) {
-    this.loadAccept = true;
-    this.otService.notConfirmOT(id).subscribe((data)=> {
-      this.loadAccept = false;
-      this.toastService.show(data.message,{
-        classname:'bg-success text-light',
-        delay:3000
-      }),
-      (err:any)=> {
-        this.toastService.show(err.message,{
-          classname:'bg-danger text-light',
-          delay:3000
-        })
+
+  }
+
+  getAllUserOff() {
+    this.timeOffService.getAllTimeOff().subscribe((data) => {
+      console.log(data.data);
+
+      for (let i = 0; i < data.data.length; i++) {
+        console.log(data.data[i]);
+        if (data.data[i].status == 1 && data.data[i].date == this.dateOff) {
+          this.listUserOff.push(data.data[i])
+        }
+        console.log(this.listUserOff);
+
       }
     })
   }

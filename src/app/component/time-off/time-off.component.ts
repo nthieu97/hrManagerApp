@@ -13,18 +13,16 @@ export class TimeOffComponent implements OnInit {
     private timeOffService: TimeOffService,
     private router: Router,
     private toastService: ToastsService
-  ) {}
-
+  ) { }
   listID = [];
-  listDeleteID = [];
   listTimeOffDelete = [];
   timeOff;
   checks = false;
   ngOnInit(): void {
     this.getAllTimeOff();
     this.getAllDeleteTimeOff();
+
   }
-  // tslint:disable-next-line: typedef
   checkValue(e) {
     if (e.target.checked == true) {
       this.checks = true
@@ -61,7 +59,6 @@ export class TimeOffComponent implements OnInit {
     });
   }
   handleDelete(id: string, index): void {
-
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -175,5 +172,46 @@ export class TimeOffComponent implements OnInit {
       }
 
     });
+  }
+
+  destroyAll() {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: 'Bạn chắc chắn chứ',
+      text: "Xóa vĩnh viễn dữ liệu",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Có',
+      cancelButtonText: 'Không',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.timeOffService.destroyAllTimeOff(this.listID).subscribe((data) => {
+          console.log(data);
+
+          this.toastService.show(data.message, {
+            classname: 'bg-success text-light',
+            delay: 3000
+          }),
+            (err: any) => {
+              this.toastService.show(err.message, {
+                classname: 'bg-danger text-light',
+                delay: 3000
+              })
+            }
+        })
+        this.getAllDeleteTimeOff()
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        this.getAllDeleteTimeOff()
+      }
+
+    });
+
   }
 }
