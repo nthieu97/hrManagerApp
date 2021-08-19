@@ -8,63 +8,36 @@
   <h2 class="mt-2">Nhân viên :</h2>
   <hr />
   <div class="employees__tools">
-    <div
-      class="
-        employees__filter
-        d-flex
-        justify-content-between
-        align-items-center
-      "
-    >
-      <div class="search mr-2">
+    <div class="employees__filter d-flex justify-content-between align-items-center">
+      <div class="search mr-2 mb-2">
         <div class="input-group">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"
-              ><span class="material-icons">search</span></span
-            >
+            <span class="input-group-text" id="basic-addon1"><span class="material-icons">search</span></span>
           </div>
-          <input
-            type="text"
-            (keyup.enter)="handleSearch($event)"
-            class="form-control"
-            placeholder="search"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-          />
+          <input type="text" (keyup.enter)="handleSearch($event)" class="form-control" placeholder="search"
+            aria-label="Username" aria-describedby="basic-addon1" />
         </div>
       </div>
-      <select
-        style="width: 7em"
-        class="custom-select mr-2"
-        id="inputGroupSelect01"
-        (change)="handleFilterDepartment($event.target.value)"
-      >
+      <select style="width: 7em" class="custom-select mr-2 mb-2" id="inputGroupSelect01"
+        (change)="handleFilterDepartment($event.target.value)">
         <option selected disabled>Phòng ban</option>
 
         <option *ngFor="let department of departments" [value]="department?.id">
           {{ department?.name }}
         </option>
       </select>
-      <select
-        style="width: 7em"
-        class="custom-select"
-        (change)="handleFilterPosition($event.target.value)"
-        id="inputGroupSelect01"
-      >
+      <select style="width: 7em" class="custom-select mb-2" (change)="handleFilterPosition($event.target.value)"
+        id="inputGroupSelect01">
         <option selected disabled>Vị Trí</option>
 
         <option *ngFor="let position of positions" [value]="position?.id">
           {{ position?.name }}
         </option>
       </select>
-      <button class="btn btn-success ml-2" (click)="refreshFilteredEmployees()">
+      <button class="btn btn-success ml-2 mb-2" (click)="refreshFilteredEmployees()">
         Refresh
       </button>
-      <div
-        *ngIf="loadFilter"
-        class="ml-2 spinner-grow text-success"
-        role="status"
-      >
+      <div *ngIf="loadFilter" class="ml-2 spinner-grow text-success" role="status">
         <span class="sr-only">Loading...</span>
       </div>
     </div>
@@ -82,17 +55,13 @@
   </div>
   <div class="row" *ngIf="!loading">
     <div class="employees__list">
-      <div class="eployee__item" *ngFor="let employee of employees">
+      <div class="eployee__item col-3 employees-col-6" *ngFor="let employee of employees">
         <div class="card">
-          <img
-            [src]="
+          <img [src]="
               employee.avatar
                 ? employee.avatar
                 : 'https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png'
-            "
-            class="card-img-top employee__img"
-            alt="employee"
-          />
+            " class="card-img-top employee__img" alt="employee" />
           <div class="card-body">
             <h5 class="card-title text-center">
               {{ employee.full_name ? employee.full_name : "User Test" }}
@@ -107,42 +76,21 @@
               Team: {{ employee.name_department }}
             </p>
 
-            <a
-              *ngIf="isAdmin"
-              [routerLink]="['/', 'employee', employee.id]"
-              class="btn btn-success btn-block"
-              >Chi tiết</a
-            >
-            <a
-              [routerLink]="['/', 'employee-edit', employee.id]"
-              *ngIf="isAdmin"
-              class="btn btn-dark btn-block"
-              >Sửa</a
-            >
+            <a *ngIf="isAdmin" [routerLink]="['/', 'employee', employee.id]" class="btn btn-success btn-block">Chi
+              tiết</a>
+            <a [routerLink]="['/', 'employee-edit', employee.id]" *ngIf="isAdmin" class="btn btn-dark btn-block">Sửa</a>
           </div>
         </div>
       </div>
     </div>
-    <div
-      class="d-flex justify-content-center align-items-center"
-      *ngIf="employees.length === 0"
-    >
+    <div class="d-flex justify-content-center align-items-center" *ngIf="employees.length === 0">
       <p class="text-center">Không có dữ liệu</p>
     </div>
   </div>
   <div class="row d-flex justify-content-center" *ngIf="loadMoreButton">
-    <button
-      (click)="handleLoadmore()"
-      *ngIf="!loading"
-      class="btn btn-lg btn-success"
-    >
+    <button (click)="handleLoadmore()" *ngIf="!loading" class="btn btn-lg btn-success">
       Load more
-      <span
-        *ngIf="loadingExpand"
-        class="spinner-border spinner-border-sm"
-        role="status"
-        aria-hidden="true"
-      ></span>
+      <span *ngIf="loadingExpand" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     </button>
   </div>
 </div>

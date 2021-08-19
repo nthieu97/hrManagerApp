@@ -77,6 +77,13 @@ table th {
   align-items: center;
 }
 @media only screen and (max-width: 768px) {
+  .fine-money {
+    margin-left: unset !important;
+    transform: unset !important;
+  }
+  .fine-money a {
+    display: flex !important;
+  }
   .search input {
     width: 100%;
   }
