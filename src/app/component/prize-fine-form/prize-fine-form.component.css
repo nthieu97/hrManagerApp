@@ -4,6 +4,7 @@
   border-radius: 1rem;
   padding: 30px 20px;
   box-shadow: var(--box-shadow);
+  min-height: 36em;
 }
 .prize-fine-money span {
   margin-right: 15px;

@@ -36,6 +36,8 @@
     "material-icons": "^0.7.3",
     "ng-multiselect-dropdown": "^0.3.4",
     "ngx-kjua": "^1.12.3",
+    "primeicons": "^4.1.0",
+    "primeng": "^11.4.2",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.0.19",
     "tslib": "^2.0.0",

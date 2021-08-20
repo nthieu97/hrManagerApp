@@ -9,8 +9,9 @@
     </li>
   </ol>
 </nav>
-<div class="container">
-  <div class="addForm">
+
+<div class="addForm">
+  <div class="container">
     <h3>{{ idPosition ? "Edit Position" : "Add Position" }}</h3>
     <form #formPosition="ngForm" (ngSubmit)="handleSubmit(formPosition.value)">
       <div class="form-group">

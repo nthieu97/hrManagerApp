@@ -15,22 +15,9 @@ export class AttendanceComponent implements OnInit {
   ) {}
   attendanceData;
   loading = false;
-  page = 1;
-  pageSize: number;
-  collectionSize: number;
+
   ngOnInit(): void {
     this.attendanceService.getMyAttendance().subscribe((data) => {
-      this.attendanceData = data.data;
-      this.page = data.meta.currentPage;
-      this.collectionSize = data.meta.total;
-      this.pageSize = data.meta.perPage;
-    });
-  }
-  handlePaginate(event): void {
-    this.loading = true;
-    const page = String(event);
-    this.attendanceService.getMyAttendance(page).subscribe((data) => {
-      this.loading = false;
       this.attendanceData = data.data;
     });
   }

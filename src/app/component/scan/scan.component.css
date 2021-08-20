@@ -3,6 +3,7 @@
   background-color: whitesmoke;
   border-radius: 10px;
   box-shadow: var(--box-shadow);
+  min-height: 36em;
 }
 .scan_camera {
   padding: 3em;

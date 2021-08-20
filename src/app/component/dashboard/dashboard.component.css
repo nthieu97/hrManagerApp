@@ -325,7 +325,7 @@ a.calendar__link {
   background-color: white;
   border-radius: 10px;
   box-shadow: var(--box-shadow);
-
+  height: 100%;
   padding: 1em;
 }
 .team-chart__header {
@@ -421,7 +421,6 @@ a.calendar__link {
   }
 }
 
-  h5{
-    margin:1rem 2rem
-  }
-
+h5 {
+  margin: 1rem 2rem;
+}

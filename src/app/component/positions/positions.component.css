@@ -5,6 +5,7 @@
   text-align: center;
   border-radius: 1rem;
   margin-top: 1rem;
+  min-height: 36em;
 }
 .position h3 {
   display: flex;
