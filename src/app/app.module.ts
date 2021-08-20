@@ -48,14 +48,14 @@ import { ListOtByTimeComponent } from './component/list-ot-by-time/list-ot-by-ti
 import { TrashTimeOffComponent } from './component/trash-time-off/trash-time-off.component';
 import { TrashPrizeFineComponent } from './component/trash-prize-fine/trash-prize-fine.component';
 import { AttendanceFormComponent } from './component/attendance-form/attendance-form.component';
-// import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { PaginatorModule } from 'primeng/paginator';
+import { InputTextModule } from 'primeng/inputtext';
+import { FilterComponent } from './component/filter/filter.component';
 
 registerLocaleData(localeVi, 'vi-VN');
-FullCalendarModule.registerPlugins([
-  // register FullCalendar plugins
-  dayGridPlugin,
-  interactionPlugin,
-]);
+FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,6 +89,7 @@ FullCalendarModule.registerPlugins([
     TrashTimeOffComponent,
     TrashPrizeFineComponent,
     AttendanceFormComponent,
+    FilterComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,6 +104,10 @@ FullCalendarModule.registerPlugins([
     HttpClientModule,
     FullCalendarModule,
     ReactiveFormsModule,
+    TableModule,
+    ButtonModule,
+    PaginatorModule,
+    InputTextModule,
     NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [

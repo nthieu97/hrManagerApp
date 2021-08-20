@@ -6,6 +6,7 @@
   background-color: white;
   border-radius: 10px;
   box-shadow: var(--box-shadow);
+  min-height: 36em;
 }
 table button {
   margin: 0 5px;

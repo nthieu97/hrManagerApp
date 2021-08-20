@@ -71,6 +71,7 @@ export class UpdateOtComponent implements OnInit {
     this.listItem = this.listItem.filter((data) => data !== item.id);
   }
   onSelectAll(items: any): void {
+    // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < items.length; i++) {
       this.listItem.push(items[i]);
     }

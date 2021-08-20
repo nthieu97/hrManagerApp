@@ -5,6 +5,7 @@
   text-align: center;
   margin-top: 1rem;
   box-shadow: var(--box-shadow);
+  min-height: 36em;
 }
 .salaries img {
   width: 60px;

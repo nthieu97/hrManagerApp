@@ -1,14 +1,14 @@
-.trash-time-off{
-    margin-top: 1rem;
-    background-color: #ffffff;
-    border-radius: 1rem;
-    padding: 30px 20px;
-    text-align: center;
-
+.trash-time-off {
+  margin-top: 1rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  padding: 30px 20px;
+  text-align: center;
+  min-height: 36em;
 }
 th {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
-button{
-    margin:0 2px
+button {
+  margin: 0 2px;
 }

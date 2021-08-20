@@ -4,6 +4,18 @@ import { AuthService } from 'src/app/service/auth.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
 import { ToastsService } from 'src/app/service/toasts.service';
+import { HttpParams } from '@angular/common/http';
+import { ExportExcelService } from 'src/app/service/export-excel.service';
+export interface SalariesMap {
+  userID: string;
+  name: string;
+  gross: number;
+  net: number;
+  leave: number;
+  date: string;
+  status: number;
+  id: number;
+}
 @Component({
   selector: 'app-salaries',
   templateUrl: './salaries.component.html',
@@ -12,11 +24,10 @@ import { ToastsService } from 'src/app/service/toasts.service';
 export class SalariesComponent implements OnInit {
   isAdmin: boolean;
   loading = false;
-  salaryData: any;
+  salaries: SalariesMap[];
 
-  page = 1;
-  pageSize: any;
-  collectionSize: any;
+  first = 0;
+  rows = 10;
   id: string;
   payment = true;
   status = true;
@@ -33,32 +44,20 @@ export class SalariesComponent implements OnInit {
     private authService: AuthService,
     private modalService: NgbModal,
     private route: ActivatedRoute,
-    private toatService: ToastsService
+    private toatService: ToastsService,
+    private excel: ExportExcelService
   ) {}
 
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin();
     this.id = this.route.snapshot.params.id;
-    // this. getSalaryDetail();
+
     this.getSalaries();
-    // this.changePay();
   }
   getSalaries(): void {
-    this.salaryService.getAllSalary().subscribe((data) => {
-      this.salaryData = data.data;
-      console.log(data.data);
-
-      this.page = data.meta.currentPage;
-      this.collectionSize = data.meta.total;
-      this.pageSize = data.meta.perPage;
-    });
-  }
-
-  handlePaginate(event): void {
-    this.loading = true;
-    this.salaryService.getAllSalary(String(event)).subscribe((data) => {
-      this.salaryData = data.data;
-      this.loading = false;
+    const params = new HttpParams();
+    this.salaryService.getAllSalary(params).subscribe((data) => {
+      this.salaries = data;
     });
   }
 
@@ -67,7 +66,7 @@ export class SalariesComponent implements OnInit {
       (data) => {
         this.id = data.id;
         this.toatService.show(data.message, {
-          className: 'bg-success text-success',
+          className: 'bg-success text-light',
           delay: 3000,
         }),
           this.getSalaries();
@@ -80,7 +79,9 @@ export class SalariesComponent implements OnInit {
       }
     );
   }
-
+  exportExcel(): void {
+    this.excel.exportExcel(this.salaries, 'luong thang ');
+  }
   openDetail(contentDetail, id): void {
     this.salaryService.getSalaryDetail(id).subscribe((data) => {
       this.salaryDetail = data.data.luong;

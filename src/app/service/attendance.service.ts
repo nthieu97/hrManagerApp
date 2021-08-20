@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, timer } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Atendance, ListAtendanceResponse } from '../model/attendance.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,14 +22,28 @@ export class AttendanceService {
   getAttendanceDetailById(id: string): Observable<any> {
     return this.http.get(this.URL_API + '/getdetail/' + id);
   }
-  getAllAttendance(page?: string): Observable<any> {
-    return this.http.get(this.URL_API, { params: { page } });
+  getAllAttendance(params: HttpParams): Observable<any> {
+    return this.http.get(this.URL_API, { params }).pipe(
+      map((res: ListAtendanceResponse) => {
+        return res.data.map((atendance: Atendance) => {
+          return {
+            userID: atendance.user_id,
+            name: atendance.full_name,
+            OT: atendance.check_ot,
+            date: new Date(atendance.date_of_work),
+            checkIn: atendance.time_of_check_in,
+            checkOut: atendance.time_of_check_out,
+            status: atendance.status,
+          };
+        });
+      })
+    );
   }
   getListOT(page?: string): Observable<any> {
     return this.http.get(this.URL_API + '/getListOt/', { params: { page } });
   }
   createAttendance(object: any): Observable<any> {
-    return this.http.post(this.URL_API + '/create/', object)
+    return this.http.post(this.URL_API + '/create/', object);
   }
   updateAttendance(id: string, object: any): Observable<any> {
     return this.http.post(this.URL_API + '/update/' + id, { object });

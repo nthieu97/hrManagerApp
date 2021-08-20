@@ -1,130 +1,120 @@
 <div class="attendance-container">
-  <div class="row">
-    <div class="col-8 col-12-md">
-      <div class="attendace__analytic">
-        <h3 class="text-center">Thống kê đi làm nhân viên</h3>
-        <div class="attendace__chart">
-          <ngx-charts-bar-vertical-stacked
-            [scheme]="colorScheme"
-            [results]="multi"
-            [gradient]="false"
-            [xAxis]="true"
-            [yAxis]="true"
-            [legend]="false"
-            [barPadding]="10"
-            [showXAxisLabel]="true"
-            [showYAxisLabel]="true"
-            [animations]="true"
-          >
-          </ngx-charts-bar-vertical-stacked>
-        </div>
-      </div>
-    </div>
-    <div class="col-4 col-12-md lh-two">
-      <div class="month-sumary">
-        <h4 class="text-center">Điểm danh hôm nay</h4>
-        <div class="month-sumary-chart">
-          <ngx-charts-pie-chart
-            [scheme]="colorScheme"
-            [results]="single"
-            [gradient]="true"
-            [legend]="true"
-            [legendPosition]="'below'"
-            [labels]="false"
-            [doughnut]="true"
-          >
-          </ngx-charts-pie-chart>
-        </div>
-      </div>
-      <div class="employee-sumary">
-        <h4 class="text-center">nghỉ quá số buổi</h4>
-        <div class="month-sumary-chart">
-          <ngx-charts-pie-chart
-            [scheme]="'forest'"
-            [results]="emplyee"
-            [gradient]="true"
-            [legend]="false"
-            [legendPosition]="'below'"
-            [labels]="false"
-            [doughnut]="true"
-          >
-          </ngx-charts-pie-chart>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="list-attendence">
+  <app-filter (filtered)="handleFilter($event)"></app-filter>
+  <div class="list-attendence" *ngIf="atendances">
     <h3 class="text-center">
       Điểm danh của nhân viên<a [routerLink]="['/', 'attendance-form']"
         ><span class="material-icons"> add_circle_outline </span></a
       >
     </h3>
-    <button
-      class="btn btn-success my-2"
-      (click)="expoetExcel()"
-      *ngIf="listAllAtten"
+
+    <p-table
+      #dt
+      [value]="atendances"
+      [paginator]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi"
+      sortMode="multiple"
+      [globalFilterFields]="['name']"
     >
-      Tải xuống file Excel
-    </button>
-    <table class="table">
-      <thead>
-        <th>Stt</th>
-        <th>Họ và tên</th>
-
-        <th>Check in</th>
-        <th>Check out</th>
-        <th>Ngày</th>
-        <th>Trạng thái</th>
-        <th>Thao tác</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let atten of listAllAtten; index as i">
-          <td data-title="#">{{ i + 1 }}</td>
-          <td data-title="Full Name">{{ atten.full_name }}</td>
-
-          <td data-title="Check in">{{ atten.time_of_check_in }}</td>
-          <td data-title="Check out">{{ atten.time_of_check_out }}</td>
-
-          <td data-title="Date">{{ atten.date_of_work }}</td>
-          <td data-title="Status" *ngIf="atten.status == 1">
-            <span class="text-success">Work</span>
-          </td>
-          <td data-title="Status" *ngIf="atten.status !== 1">
-            <span class="text-danger">Off</span>
-          </td>
-
+      <ng-template pTemplate="caption">
+        <div class="d-flex flex-row-reverse align-items-center">
+          <button
+            class="btn btn-success ml-2 d-flex align-items-center"
+            (click)="exportExcel()"
+          >
+            <span class="material-icons">get_app</span> EXCEL
+          </button>
+          <span class="p-input-icon-left p-ml-auto">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="dt.filterGlobal($event.target.value, 'contains')"
+              placeholder="Tìm theo nhân viên"
+            />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="userID">
+            ID NV <p-sortIcon field="userID"></p-sortIcon>
+            <p-columnFilter
+              type="text"
+              field="userID"
+              display="menu"
+            ></p-columnFilter>
+          </th>
+          <th pSortableColumn="name">
+            Tên NV<p-sortIcon field="name"></p-sortIcon
+            ><p-columnFilter
+              type="text"
+              field="name"
+              display="menu"
+            ></p-columnFilter>
+          </th>
+          <th pSortableColumn="date">
+            Ngày <p-sortIcon field="date"></p-sortIcon
+            ><p-columnFilter
+              type="date"
+              field="date"
+              display="menu"
+            ></p-columnFilter>
+          </th>
+          <th pSortableColumn="checkIn">
+            Giờ vào <p-sortIcon field="checkIn"></p-sortIcon
+            ><p-columnFilter
+              type="text"
+              field="checkIn"
+              display="menu"
+            ></p-columnFilter>
+          </th>
+          <th pSortableColumn="checkOut">
+            Giờ ra <p-sortIcon field="checkOut"></p-sortIcon
+            ><p-columnFilter
+              type="text"
+              field="checkOut"
+              display="menu"
+            ></p-columnFilter>
+          </th>
+          <th pSortableColumn="OT">
+            Làm thêm <p-sortIcon field="OT"></p-sortIcon>
+          </th>
+          <th pSortableColumn="status">
+            Trạng thái <p-sortIcon field="status"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-atendance let-colums="colums">
+        <tr>
           <td>
-            <button
-              [routerLink]="['/', 'attendance-edit', atten.id]"
-              class="btn btn-primary"
-            >
-              <span title="Chỉnh sửa" class="material-icons"> edit_note </span>
-            </button>
-            <button (click)="handleDelete(atten.id, i)" class="btn btn-danger">
-              <span title="Xóa" class="material-icons"> delete_forever </span>
-            </button>
+            {{ atendance.userID }}
+          </td>
+          <td>
+            {{ atendance.name }}
+          </td>
+          <td>
+            {{ atendance.date | date: "dd/MM/yyyy" }}
+          </td>
+          <td>
+            {{ atendance.checkIn }}
+          </td>
+          <td>
+            {{ atendance.checkOut }}
+          </td>
+          <td [ngClass]="[atendance.OT === 1 ? 'text-success' : 'text-danger']">
+            {{ atendance.OT === 1 ? "OT" : "Không" }}
+          </td>
+          <td
+            [ngClass]="[
+              atendance.status === 1 ? 'text-success' : 'text-danger'
+            ]"
+          >
+            {{ atendance.status === 1 ? "Đi làm" : "nghỉ" }}
           </td>
         </tr>
-      </tbody>
-    </table>
-    <ngb-pagination
-      class="d-flex justify-content-end"
-      [collectionSize]="collectionSize"
-      [(page)]="page"
-      [maxSize]="5"
-      [rotate]="true"
-      [ellipses]="false"
-      [boundaryLinks]="true"
-      [pageSize]="pageSize"
-      (pageChange)="handlePaginate($event)"
-    ></ngb-pagination>
-    <div class="d-flex">
-      <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
-        <div class="spinner-grow text-success" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </div>
-    </div>
+      </ng-template>
+    </p-table>
   </div>
 </div>

@@ -1,157 +1,57 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { AttendanceService } from 'src/app/service/attendance.service';
+import { EmployeeService } from 'src/app/service/employee.service';
 import { ExportExcelService } from 'src/app/service/export-excel.service';
-
+export interface AttendanceMap {
+  userID: string;
+  name: string;
+  OT: number;
+  date: string;
+  checkIn: string;
+  checkOut: string;
+  status: number;
+}
 @Component({
   selector: 'app-atendance-analytics',
   templateUrl: './atendance-analytics.component.html',
   styleUrls: ['./atendance-analytics.component.css'],
 })
 export class AtendanceAnalyticsComponent implements OnInit {
-  listAllAtten = [];
-
+  atendances: AttendanceMap[];
+  cols: { field: string; header: string }[];
   constructor(
     private attenService: AttendanceService,
     private excel: ExportExcelService
   ) {}
-  // tslint:disable-next-line: variable-name
-  multi = [
-    {
-      name: 'thu hai',
-      series: [
-        {
-          name: 'di lam',
-          value: 22,
-        },
-        {
-          name: 'ko di lam',
-          value: 1,
-        },
-      ],
-    },
 
-    {
-      name: 'thu ba',
-      series: [
-        {
-          name: 'di lam',
-          value: 21,
-        },
-        {
-          name: 'ko di lam',
-          value: 2,
-        },
-      ],
-    },
-
-    {
-      name: 'thu tu ',
-      series: [
-        {
-          name: 'di lam',
-          value: 20,
-        },
-        {
-          name: 'ko di lam',
-          value: 3,
-        },
-      ],
-    },
-    {
-      name: 'thu nam',
-      series: [
-        {
-          name: 'di lam',
-          value: 17,
-        },
-        {
-          name: 'ko di lam',
-          value: 6,
-        },
-      ],
-    },
-    {
-      name: 'thu sau',
-      series: [
-        {
-          name: 'di lam',
-          value: 23,
-        },
-        {
-          name: 'ko di lam',
-          value: 0,
-        },
-      ],
-    },
-    {
-      name: 'thu bay',
-      series: [
-        {
-          name: 'di lam',
-          value: 23,
-        },
-        {
-          name: 'ko di lam',
-          value: 0,
-        },
-      ],
-    },
-  ];
-  single = [
-    {
-      name: 'di lam',
-      value: 12,
-    },
-    {
-      name: 'nghi',
-      value: 6,
-    },
-    {
-      name: 'lam o nha ',
-      value: 4,
-    },
-  ];
-  emplyee = [
-    {
-      name: 'hieunt39',
-      value: 12,
-    },
-    {
-      name: 'tuansd7392',
-      value: 6,
-    },
-    {
-      name: 'hung38',
-      value: 8,
-    },
-  ];
-  colorScheme = {
-    domain: ['#5AA454', '#C7B42C', '#AAAAAA'],
-  };
   loading = false;
-  page = 1;
-  pageSize: number;
-  collectionSize: number;
+
+  first = 0;
+  rows = 10;
   ngOnInit(): void {
-    this.attenService.getAllAttendance().subscribe((data) => {
-      this.listAllAtten = data.data;
-      this.page = data.meta.currentPage;
-      this.collectionSize = data.meta.total;
-      this.pageSize = data.meta.perPage;
+    this.cols = [
+      { field: 'userID', header: 'ID nhân viên' },
+      { field: 'name', header: 'Tên nhân viên' },
+      { field: 'date', header: 'Ngày ' },
+      { field: 'checkIn', header: 'Giờ vào' },
+      { field: 'checkOut', header: 'Giờ ra' },
+      { field: 'OT', header: 'Làm thêm' },
+      { field: 'status', header: 'Trạng thái' },
+    ];
+  }
+  exportExcel(): void {
+    this.excel.exportExcel(this.atendances, 'diemdanh');
+  }
+
+  handleDelete(id: string): void {}
+
+  handleFilter(event) {
+    let param = new HttpParams();
+    param = param.set('date', String(event.month));
+    this.attenService.getAllAttendance(param).subscribe((data) => {
+      this.atendances = data;
     });
-  }
-  expoetExcel(): void {
-    this.excel.exportExcel(this.listAllAtten, 'diemdanh');
-  }
-  handlePaginate(event): void {
-    this.loading = true;
-    const page = String(event);
-    this.attenService.getAllAttendance(page).subscribe((data) => {
-      this.loading = false;
-      this.listAllAtten = data.data;
-    });
-  }
-  handleDelete(id:string){
-    
   }
 }

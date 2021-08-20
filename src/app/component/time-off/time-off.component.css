@@ -3,6 +3,7 @@
   box-shadow: var(--box-shadow);
   border-radius: 1rem;
   margin-top: 1rem;
+  min-height: 36em;
 }
 
 h3 {
@@ -60,10 +61,10 @@ table th {
   margin-left: 50%;
   transform: translateX(-50%);
 }
-.header_timeoff a{
-  margin-right: 3rem
+.header_timeoff a {
+  margin-right: 3rem;
 }
-.header_timeoff span{
+.header_timeoff span {
   font-size: 30px;
   color: darkcyan;
 }

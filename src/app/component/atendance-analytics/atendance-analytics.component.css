@@ -27,15 +27,9 @@
   padding: 30px 20px;
   text-align: center;
   box-shadow: var(--box-shadow);
+  min-height: 36em;
 }
-.list-attendence {
-  margin-top: 1rem;
-  background-color: #ffffff;
-  border-radius: 1rem;
-  padding: 30px 20px;
-  text-align: center;
-  box-shadow: var(--box-shadow);
-}
+
 .list-attendence h3 span {
   padding-left: 20px;
   color: var(--primary-color);

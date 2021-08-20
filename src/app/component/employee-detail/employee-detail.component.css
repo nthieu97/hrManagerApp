@@ -22,6 +22,7 @@
   height: 100%;
   border-radius: 10px;
   box-shadow: var(--box-shadow);
+  min-height: 36em;
 }
 
 .content__main-info {

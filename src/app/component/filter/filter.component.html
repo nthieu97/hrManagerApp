@@ -1,0 +1,59 @@
+<div class="filter-group p-3">
+  <form #formFilter="ngForm" (ngSubmit)="handleSubmit()">
+    <div class="d-flex align-items-center filter-groups">
+      <div class="mx-2 form-group filter-control">
+        <label for="">Tháng :</label>
+        <select
+          required
+          name="month"
+          ngModel
+          #month="ngModel"
+          class="form-control"
+        >
+          <option value="" selected disabled>Chọn tháng</option>
+          <option
+            *ngFor="let month of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]"
+            [value]="month"
+          >
+            Tháng {{ month }}
+          </option>
+        </select>
+        <div
+          *ngIf="month.invalid && month.touched"
+          class="alert alert-danger mt-2"
+          role="alert"
+        >
+          Bạn cần chọn tháng
+        </div>
+      </div>
+
+      <div class="mx-2 form-group filter-control">
+        <label for="">Năm:</label>
+        <select
+          required
+          name="year"
+          #year="ngModel"
+          ngModel
+          class="form-control"
+        >
+          <option value="" selected disabled>Chọn năm</option>
+          <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+        </select>
+        <div
+          *ngIf="year.invalid && year.touched"
+          class="alert alert-danger mt-2"
+          role="alert"
+        >
+          Bạn cần chọn năm
+        </div>
+      </div>
+      <button
+        type="submit"
+        [disabled]="!formFilter.valid"
+        class="btn btn-success mt-3 text-center"
+      >
+        Lấy thông tin
+      </button>
+    </div>
+  </form>
+</div>
