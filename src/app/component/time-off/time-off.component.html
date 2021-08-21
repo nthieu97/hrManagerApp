@@ -8,9 +8,9 @@
 </nav>
 <div class="main_content">
   <div class="tabs">
-    <input hidden type="radio" name="tab-css" id="tab-1" checked />
+    <input (click)="reloadPage($event)" hidden type="radio" name="tab-css" id="tab-1" checked />
     <label class="tab-control" for="tab-1">Lịch nghỉ của tôi</label>
-    <input hidden type="radio" name="tab-css" id="tab-2" />
+    <input click)="reloadPageTrash($event)" hidden type="radio" name="tab-css" id="tab-2" />
     <label class="tab-control" for="tab-2">Thùng rác</label>
     <div class="tab-content">
       <div id="tab-panel-1" class="tab-panel">

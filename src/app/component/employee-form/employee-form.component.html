@@ -15,6 +15,7 @@
     <div class="form-group">
       <label for="">User Name</label>
       <input
+      *ngIf="idEmployee" disabled
         type="text"
         placeholder="Please enter your username"
         formControlName="user_account"
@@ -57,7 +58,7 @@
     </div>
     <div class="form-group">
       <label for="">Email</label>
-      <input type="email" formControlName="email" id="" class="form-control" />
+      <input *ngIf="idEmployee" disabled type="email" formControlName="email" id="" class="form-control" />
       <div
         *ngIf="
           newEmployeeForm.get('email').touched &&
@@ -107,6 +108,7 @@
     <div class="form-group">
       <label for="">Phone Number</label>
       <input
+      
         class="form-control"
         type="number"
         formControlName="phone"
@@ -155,7 +157,7 @@
     </div>
     <div class="form-group">
       <label for="">Date join company</label>
-      <input type="date" class="form-control" formControlName="date_of_join" />
+      <input *ngIf="idEmployee" disabled type="date" class="form-control" formControlName="date_of_join" />
     </div>
     <div class="form-group">
       <label for="">Basic Salaries</label>

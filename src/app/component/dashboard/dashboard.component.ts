@@ -92,7 +92,8 @@ export class DashboardComponent implements OnInit {
         this.totalUsersOff = data.data[0].nhan_vien_nghi_lam;
       });
     }
-    this.getListOTByUser()
+    this.getListOTByUser();
+    this.getAllUserOff()
   }
   getListOTByUser() {
     this.otService.getListOTByUser().subscribe((data) => {
@@ -133,9 +134,11 @@ export class DashboardComponent implements OnInit {
       this.confirmList.splice(index, 1);
     });
   }
-  handleAccept(id: string, object: any) {
+  handleAccept(id: string) {
     this.loadAccept = true;
-    this.otService.confirmOT(id, object).subscribe((data) => {
+    this.otService.confirmOT(id).subscribe((data) => {
+      console.log(data);
+      
       this.loadAccept = false
       this.toastService.show(data.message, {
         classname: 'bg-success text-light',
@@ -152,7 +155,11 @@ export class DashboardComponent implements OnInit {
     })
   }
   handleNotAccept(id: string) {
-
+    this.loadAccept = true;
+    this.otService.notConfirmOT(id).subscribe((data)=> {
+      console.log(data);
+      
+    })
   }
 
   getAllUserOff() {

@@ -6,9 +6,9 @@
 </nav>
 <div class="main_content">
   <div class="tabs">
-    <input hidden type="radio" name="tab-css" id="tab-1" checked />
-    <label class="tab-control" for="tab-1">Lịch tăng ca theo giờ</label>
-    <input hidden type="radio" name="tab-css" id="tab-2" />
+    <input (click)="reloadPage($event)" hidden type="radio" name="tab-css" id="tab-1" checked />
+    <label  class="tab-control" for="tab-1">Lịch tăng ca theo giờ</label>
+    <input (click)="reloadPageTrash($event)" hidden type="radio" name="tab-css" id="tab-2" />
     <label class="tab-control" for="tab-2">Thùng rác</label>
     <div class="tab-content">
       <div id="tab-panel-1" class="tab-panel">
@@ -38,7 +38,7 @@
             <tbody>
               <tr *ngFor="let ot of listOT; index as i">
                 <td>
-                  <input
+                  <input *ngIf="ot.status == 0"
                     type="checkbox"
                     [checked]="checks"
                     [value]="ot.id"
@@ -72,17 +72,18 @@
                   </button>
                 </td>
               </tr>
-              <tr *ngIf="listID.length > 0">
-                <button
-                  (click)="deleteAll()"
-                  class="btn btn-danger"
-                  style="max-width: 100px; margin-top: 10px"
-                >
-                  Xóa tất cả
-                </button>
-              </tr>
+             
             </tbody>
           </table>
+          <div *ngIf="listID.length > 0">
+            <button
+              (click)="deleteAll()"
+              class="btn btn-danger"
+              style="max-width: 100px; margin-top: 10px"
+            >
+              Xóa tất cả
+            </button>
+          </div>
           <table *ngIf="listOT.length == 0">
             <p>Danh sách rỗng</p>
           </table>
@@ -164,24 +165,25 @@
                   </button>
                 </td>
               </tr>
-              <tr *ngIf="listIDDelete.length > 0">
-                <button
-                  (click)="destroyAll()"
-                  class="btn btn-danger"
-                  style="margin-top: 10px; max-width: 100px"
-                >
-                  Xóa tất cả
-                </button>
-                <button
-                  (click)="restoreAll()"
-                  class="btn btn-success"
-                  style="max-width: 150px; margin-top: 10px"
-                >
-                  Khôi phục tất cả
-                </button>
-              </tr>
+             
             </tbody>
           </table>
+          <div *ngIf="listIDDelete.length > 0">
+            <button
+              (click)="destroyAll()"
+              class="btn btn-danger"
+              style="margin-top: 10px; max-width: 100px"
+            >
+              Xóa tất cả
+            </button>
+            <button
+              (click)="restoreAll()"
+              class="btn btn-success"
+              style="max-width: 150px; margin-top: 10px"
+            >
+              Khôi phục tất cả
+            </button>
+          </div>
           <table
             class="justify-content-center"
             *ngIf="listOTDelete.length == 0"

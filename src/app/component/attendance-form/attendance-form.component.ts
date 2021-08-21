@@ -17,7 +17,8 @@ export class AttendanceFormComponent implements OnInit {
   constructor(private listEmployeeService: EmployeeService,
     private attendanceService: AttendanceService,
     private toastService: ToastsService,
-    private atr: ActivatedRoute,) {
+    private atr: ActivatedRoute,
+    private router:Router) {
     this.formAttendance = this.createForm()
     }
   ngOnInit(): void {
@@ -26,7 +27,7 @@ export class AttendanceFormComponent implements OnInit {
       if (this.idAtten) {
         this.attendanceService.getDetailOT(this.idAtten).subscribe((data) => {
           this.formAttendance.setValue({
-            user_id: data.data.id,
+            user_id: data.data.user_id,
             time_of_check_in: data.data.time_of_check_in,
             time_of_check_out: data.data.time_of_check_out,
             date_of_work: data.data.date_of_work,
@@ -68,6 +69,7 @@ export class AttendanceFormComponent implements OnInit {
             })
           }
       })
+      this.router.navigate(['/', 'attendanceAnalytics'])
     }
     this.attendanceService.createAttendance(this.formAttendance.value).subscribe((data) => {
       console.log(data);
@@ -82,5 +84,6 @@ export class AttendanceFormComponent implements OnInit {
           })
         }
     })
+    this.router.navigate(['/', 'attendanceAnalytics'])
   }
 }
