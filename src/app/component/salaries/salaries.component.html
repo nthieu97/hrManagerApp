@@ -6,80 +6,59 @@
 </nav>
 
 <div class="salaries">
-  <h3>Danh sách lương</h3>
-  <p-table
-    #dt
-    [value]="salaries"
-    [paginator]="true"
-    [rows]="10"
-    [showCurrentPageReport]="true"
-    currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi"
-    sortMode="multiple"
-    [globalFilterFields]="['name']"
-  >
+  <ng-template #tipContent let-greeting="greeting">{{greeting}}</ng-template>
+  <h3>Danh sách lương
+    <svg [ngbTooltip]="tipContent" triggers="manual" #t1="ngbTooltip" (mouseover)="salariesTooltip(t1, 'Lương Gross : Là lương trước thuế,
+      Lương nghỉ phép : là ngày nghỉ được lương ,
+      Lương net : là lương sau thuế(bao gồm cả thưởng phạt)')" (mouseout)="salariesTooltip(t1, '')"
+      xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle"
+      viewBox="0 0 16 16">
+      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+      <path
+        d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+    </svg>
+  </h3>
+  <p-table #dt [value]="salaries" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+    currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi" sortMode="multiple"
+    [globalFilterFields]="['name']">
+
     <ng-template pTemplate="caption">
       <div class="d-flex flex-row-reverse align-items-center">
-        <button
-          class="btn btn-success ml-2 d-flex align-items-center"
-          (click)="exportExcel()"
-        >
+        <button class="btn btn-success ml-2 d-flex align-items-center" (click)="exportExcel()">
           <span class="material-icons">get_app</span> EXCEL
         </button>
-        <span class="p-input-icon-left p-ml-auto">
+        <span class="p-input-icon-left mr-2 ">
           <i class="pi pi-search"></i>
-          <input
-            pInputText
-            type="text"
-            (input)="dt.filterGlobal($event.target.value, 'contains')"
-            placeholder="Tìm theo nhân viên"
-          />
+          <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+            placeholder="Tìm theo nhân viên" />
         </span>
       </div>
     </ng-template>
+
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="userID" style="width: 5em">
           ID NV <p-sortIcon field="userID"></p-sortIcon>
         </th>
         <th pSortableColumn="name">
-          Tên NV<p-sortIcon field="name"></p-sortIcon
-          ><p-columnFilter
-            type="text"
-            field="name"
-            display="menu"
-          ></p-columnFilter>
+          Tên NV<p-sortIcon field="name"></p-sortIcon>
+          <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
         </th>
         <th pSortableColumn="gross">
-          Lương <p-sortIcon field="gross"></p-sortIcon
-          ><p-columnFilter
-            type="text"
-            field="gross"
-            display="menu"
-          ></p-columnFilter>
+          Lương Gross <p-sortIcon field="gross"></p-sortIcon>
+          <p-columnFilter type="text" field="gross" display="menu"></p-columnFilter>
         </th>
         <th pSortableColumn="leave" style="width: 10em">
-          Lương nghỉ phép <p-sortIcon field="leave"></p-sortIcon
-          ><p-columnFilter
-            type="text"
-            field="leave"
-            display="menu"
-          ></p-columnFilter>
+          Lương nghỉ phép <p-sortIcon field="leave"></p-sortIcon>
+          <p-columnFilter type="text" field="leave" display="menu"></p-columnFilter>
         </th>
         <th pSortableColumn="checkOut">
-          Lương ròng <p-sortIcon field="net"></p-sortIcon
-          ><p-columnFilter
-            type="text"
-            field="net"
-            display="menu"
-          ></p-columnFilter>
+          Lương Net <p-sortIcon field="net"></p-sortIcon>
+          <p-columnFilter type="text" field="net" display="menu"></p-columnFilter>
         </th>
         <th pSortableColumn="date" style="width: 10em">
           Ngày tính lương <p-sortIcon field="date"></p-sortIcon>
-          <p-columnFilter
-            type="date"
-            field="date"
-            display="menu"
-          ></p-columnFilter>
+          <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
         </th>
         <th pSortableColumn="status">
           Trạng thái <p-sortIcon field="status"></p-sortIcon>
@@ -93,37 +72,30 @@
         <td>{{ salary.name }}</td>
         <td>
           {{
-            (salary.gross ? salary.gross : 0)
-              | currency: "VND":"symbol":"1.0-0":"vi-VN"
+          (salary.gross ? salary.gross : 0)
+          | currency: "VND":"symbol":"1.0-0":"vi-VN"
           }}
         </td>
         <td>
           {{
-            (salary.leave ? salary.leave : 0)
-              | currency: "VND":"symbol":"1.0-0":"vi-VN"
+          (salary.leave ? salary.leave : 0)
+          | currency: "VND":"symbol":"1.0-0":"vi-VN"
           }}
         </td>
         <td>
           {{
-            (salary.net ? salary.net : 0)
-              | currency: "VND":"symbol":"1.0-0":"vi-VN"
+          (salary.net ? salary.net : 0)
+          | currency: "VND":"symbol":"1.0-0":"vi-VN"
           }}
         </td>
         <td>{{ salary.date | date: "dd/MM/yyyy" }}</td>
         <td>{{ salary.status === 1 ? "Đã trả" : "Chưa trả" }}</td>
         <td>
           <div class="d-flex">
-            <button
-              class="btn btn-primary btn-block"
-              (click)="openDetail(contentDetail, salary.id)"
-            >
+            <button class="btn btn-primary btn-block" (click)="openDetail(contentDetail, salary.id)">
               Detail
             </button>
-            <button
-              *ngIf="salary.status !== 1"
-              (click)="changePay(salary.id)"
-              class="btn btn-success ml-1"
-            >
+            <button *ngIf="salary.status !== 1" (click)="changePay(salary.id)" class="btn btn-success ml-1">
               {{ payment ? "Payment" : "Paymented" }}
             </button>
           </div>
@@ -191,12 +163,7 @@
 <ng-template #contentDetail let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Chi tiết lương nhân viên</h4>
-    <button
-      type="button"
-      class="close"
-      aria-label="Close"
-      (click)="modal.dismiss('Cross click')"
-    >
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -208,8 +175,8 @@
             <th>Tổng lương:</th>
             <td>
               {{
-                salaryDetail.total_gross_salary
-                  | currency: "VND":"symbol":"1.0-0":"vi-VN"
+              salaryDetail.total_gross_salary
+              | currency: "VND":"symbol":"1.0-0":"vi-VN"
               }}
             </td>
           </tr>
@@ -217,9 +184,9 @@
             <th>Tổng lương nghỉ phép:</th>
             <td>
               {{
-                salaryDetail.total_salary_leave
-                  ? salaryDetail.total_salary_leave
-                  : (0 | currency: "VND":"symbol":"1.0-0":"vi-VN")
+              salaryDetail.total_salary_leave
+              ? salaryDetail.total_salary_leave
+              : (0 | currency: "VND":"symbol":"1.0-0":"vi-VN")
               }}
             </td>
           </tr>
@@ -227,8 +194,8 @@
             <th>Tổng lương ròng:</th>
             <td>
               {{
-                salaryDetail.total_net_salary
-                  | currency: "VND":"symbol":"1.0-0":"vi-VN"
+              salaryDetail.total_net_salary
+              | currency: "VND":"symbol":"1.0-0":"vi-VN"
               }}
             </td>
           </tr>
@@ -262,9 +229,9 @@
             <th>Tiền tốt:</th>
             <td>
               {{
-                moneyFine.total_money_fine
-                  ? moneyFine.total_money_fine
-                  : (0 | currency: "VND":"symbol":"1.0-0":"vi-VN")
+              moneyFine.total_money_fine
+              ? moneyFine.total_money_fine
+              : (0 | currency: "VND":"symbol":"1.0-0":"vi-VN")
               }}
             </td>
           </tr>
@@ -272,9 +239,9 @@
             <th>Tiền thưởng:</th>
             <td>
               {{
-                moneyPrize.total_money_prize
-                  ? moneyPrize.total_money_prize
-                  : (0 | currency: "VND":"symbol":"1.0-0":"vi-VN")
+              moneyPrize.total_money_prize
+              ? moneyPrize.total_money_prize
+              : (0 | currency: "VND":"symbol":"1.0-0":"vi-VN")
               }}
             </td>
           </tr>

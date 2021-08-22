@@ -60,7 +60,13 @@ export class SalariesComponent implements OnInit {
       this.salaries = data;
     });
   }
-
+  salariesTooltip(tooltip, greeting: string) {
+    if (tooltip.isOpen()) {
+      tooltip.close();
+    } else {
+      tooltip.open({ greeting });
+    }
+  }
   changePay(id): void {
     this.salaryService.paymentSalary(id).subscribe(
       (data) => {
