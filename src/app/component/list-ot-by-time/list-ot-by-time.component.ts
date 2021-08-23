@@ -69,7 +69,13 @@ export class ListOtByTimeComponent implements OnInit {
         }
       });
   }
-
+  listOtTooltip(tooltip, greeting: string) {
+    if (tooltip.isOpen()) {
+      tooltip.close();
+    } else {
+      tooltip.open({ greeting });
+    }
+  }
   getAllDeleteOT() {
     this.otService.getAllDeleteOT().subscribe((data) => {
       console.log(data);

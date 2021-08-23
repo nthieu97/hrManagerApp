@@ -29,4 +29,11 @@ export class TimeOffListComponent implements OnInit {
       this.loading = false;
     });
   }
+  timeOffTooltip(tooltip, greeting: any) {
+    if (tooltip.isOpen()) {
+      tooltip.close();
+    } else {
+      tooltip.open({ greeting });
+    }
+  }
 }

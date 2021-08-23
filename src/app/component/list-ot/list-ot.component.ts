@@ -56,4 +56,11 @@ export class ListOtComponent implements OnInit {
       );
     }
   }
+  listOtTooltip(tooltip, greeting: string) {
+    if (tooltip.isOpen()) {
+      tooltip.close();
+    } else {
+      tooltip.open({ greeting });
+    }
+  }
 }

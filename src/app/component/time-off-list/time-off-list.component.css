@@ -16,6 +16,10 @@
 th {
   color: var(--primary-color);
 }
+::ng-deep .tooltip-inner {
+  font-size: 16px;
+  white-space: pre-line;
+}
 @media only screen and (max-width: 768px) {
   table thead {
     display: none;

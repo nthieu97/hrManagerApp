@@ -7,7 +7,7 @@
 }
 
 h3 {
-  text-align: center
+  text-align: center;
 }
 
 .tab-control {
@@ -31,20 +31,19 @@ h3 {
   display: none;
 }
 
-
 /* Magic style */
 
-input[type="radio"]:checked+.tab-control {
+input[type="radio"]:checked + .tab-control {
   font-weight: 600;
   color: var(--primary-color);
   border-bottom-color: var(--primary-color);
 }
 
-#tab-1:checked~.tab-content>#tab-panel-1 {
+#tab-1:checked ~ .tab-content > #tab-panel-1 {
   display: block;
 }
 
-#tab-2:checked~.tab-content>#tab-panel-2 {
+#tab-2:checked ~ .tab-content > #tab-panel-2 {
   display: block;
 }
 
@@ -58,8 +57,6 @@ table th {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 50%;
-  transform: translateX(-50%);
 }
 .header_timeoff a {
   margin-right: 3rem;
@@ -114,7 +111,11 @@ table th {
 .header_timeoff {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+}
+::ng-deep .tooltip-inner {
+  font-size: 16px;
+  white-space: pre-line;
 }
 @media only screen and (max-width: 768px) {
   table thead {
