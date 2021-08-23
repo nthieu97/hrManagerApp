@@ -14,16 +14,22 @@
       <div id="tab-panel-1" class="tab-panel">
         <div class="list-ot-by-time">
           <div class="header_ot">
-            <h3 class="text-center">Danh Sách Tăng Ca Theo Giờ</h3>
+            <ng-template #tipContent let-greeting="greeting">{{greeting}}</ng-template>
+            <h3 class="text-center">Danh Sách Tăng Ca Theo Giờ
+              <svg [ngbTooltip]="tipContent" triggers="manual" #t1="ngbTooltip"
+                (mouseover)="listOtTooltip(t1, 'Trạng thái tăng ca : Đã tăng ca thành công&#13; Trạng thái chờ xác nhận : Chưa được tăng ca')"
+                (mouseout)="listOtTooltip(t1, '')" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                <path
+                  d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+              </svg>
+            </h3>
           </div>
           <table class="table" *ngIf="listOT.length > 0">
             <thead>
               <th>
-                <input
-                  type="checkbox"
-                  [value]="listID"
-                  (change)="checkValue($event)"
-                />
+                <input type="checkbox" [value]="listID" (change)="checkValue($event)" />
               </th>
               <th>#</th>
 
@@ -38,33 +44,28 @@
             <tbody>
               <tr *ngFor="let ot of listOT; index as i">
                 <td>
-                  <input
-                    type="checkbox"
-                    [checked]="checks"
-                    [value]="ot.id"
-                    (change)="checkResult($event)"
-                  />
+                  <input type="checkbox" [checked]="checks" [value]="ot.id" (change)="checkResult($event)" />
                 </td>
-                <td>{{ i + 1 }}</td>
-                <td>{{ ot.full_name }}</td>
-                <td>{{ ot.date }}</td>
-                <td>17:00:00</td>
-                <td>{{ ot.time_tang_ca }}</td>
-                <td>{{ ot.note }}</td>
-                <td *ngIf="ot.status == 0">
+                <td data-title="#">{{ i + 1 }}</td>
+                <td data-title="Họ tên">{{ ot.full_name }}</td>
+                <td data-title="Ngày">{{ ot.date }}</td>
+                <td data-title="Giờ vào">17:00:00</td>
+                <td data-title="Giờ ra">{{ ot.time_tang_ca }}</td>
+                <td data-title="Ghi chú">{{ ot.note }}</td>
+                <td data-title="Trạng thái" *ngIf="ot.status == 0">
                   <span class="text-danger">Không tăng ca</span>
                 </td>
-                <td *ngIf="ot.status == 1">
+                <td data-title="Trạng thái" *ngIf="ot.status == 1">
                   <span class="text-success">Tăng ca</span>
                 </td>
-                <td *ngIf="ot.status == 0">
+                <td data-title="Trạng thái" *ngIf="ot.status == 0">
                   <button (click)="handleDelete(ot.id)" class="btn btn-danger">
                     <span title="Xóa" class="material-icons">
                       delete_forever
                     </span>
                   </button>
                 </td>
-                <td *ngIf="ot.status == 1">
+                <td data-title="Hành động" *ngIf="ot.status == 1">
                   <button class="btn btn-success">
                     <span title="Đã phê duyệt" class="material-icons">
                       check
@@ -72,12 +73,8 @@
                   </button>
                 </td>
               </tr>
-              <tr *ngIf="listID.length > 0">
-                <button
-                  (click)="deleteAll()"
-                  class="btn btn-danger"
-                  style="max-width: 100px; margin-top: 10px"
-                >
+              <tr data-title="Hành động" *ngIf="listID.length > 0">
+                <button (click)="deleteAll()" class="btn btn-danger" style="max-width: 100px; margin-top: 10px">
                   Xóa tất cả
                 </button>
               </tr>
@@ -112,12 +109,8 @@
           <table *ngIf="listOTDelete.length > 0" class="table">
             <thead>
               <th>
-                <input
-                  *ngIf="listOTDelete.length > 0"
-                  type="checkbox"
-                  [value]="listIDDelete"
-                  (change)="checkValueDelete($event)"
-                />
+                <input *ngIf="listOTDelete.length > 0" type="checkbox" [value]="listIDDelete"
+                  (change)="checkValueDelete($event)" />
               </th>
               <th>#</th>
               <th>Họ tên</th>
@@ -130,12 +123,7 @@
             <tbody>
               <tr *ngFor="let ot of listOTDelete; index as i">
                 <td>
-                  <input
-                    type="checkbox"
-                    [checked]="checkDelete"
-                    [value]="ot.id"
-                    (change)="checkResultDelete($event)"
-                  />
+                  <input type="checkbox" [checked]="checkDelete" [value]="ot.id" (change)="checkResultDelete($event)" />
                 </td>
                 <td>{{ i + 1 }}</td>
                 <td>{{ ot.full_name }}</td>
@@ -154,10 +142,7 @@
                       delete_forever
                     </span>
                   </button>
-                  <button
-                    class="btn btn-success"
-                    (click)="handleRestore(ot.id, object)"
-                  >
+                  <button class="btn btn-success" (click)="handleRestore(ot.id, object)">
                     <span title="Khôi phục" class="material-icons">
                       settings_backup_restore
                     </span>
@@ -165,27 +150,16 @@
                 </td>
               </tr>
               <tr *ngIf="listIDDelete.length > 0">
-                <button
-                  (click)="destroyAll()"
-                  class="btn btn-danger"
-                  style="margin-top: 10px; max-width: 100px"
-                >
+                <button (click)="destroyAll()" class="btn btn-danger" style="margin-top: 10px; max-width: 100px">
                   Xóa tất cả
                 </button>
-                <button
-                  (click)="restoreAll()"
-                  class="btn btn-success"
-                  style="max-width: 150px; margin-top: 10px"
-                >
+                <button (click)="restoreAll()" class="btn btn-success" style="max-width: 150px; margin-top: 10px">
                   Khôi phục tất cả
                 </button>
               </tr>
             </tbody>
           </table>
-          <table
-            class="justify-content-center"
-            *ngIf="listOTDelete.length == 0"
-          >
+          <table class="justify-content-center" *ngIf="listOTDelete.length == 0">
             <p style="padding-left: 1rem">Thùng rác rỗng</p>
           </table>
         </div>

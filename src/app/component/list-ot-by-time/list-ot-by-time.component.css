@@ -1,7 +1,7 @@
 .header_ot {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 .list-ot-by-time {
   margin-top: 1rem;
@@ -14,16 +14,16 @@
 th {
   color: var(--primary-color);
 }
-h3 {
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
 .header_ot a {
   margin-right: 3rem;
 }
 .header_ot span {
   font-size: 30px;
   color: darkcyan;
+}
+::ng-deep .tooltip-inner {
+  font-size: 16px;
+  white-space: pre-line;
 }
 @media only screen and (max-width: 768px) {
   table thead {
@@ -95,6 +95,22 @@ h3 {
   h3 {
     margin-left: 50%;
     transform: translateX(-50%);
+  }
+  table tbody tr th {
+    flex-direction: column;
+  }
+  .list-ot-by-time {
+    max-height: 576px;
+    overflow: scroll;
+  }
+}
+@media only screen and (max-width: 480px) {
+  table tbody tr th::before,
+  table tbody tr td::before {
+    text-align: center;
+  }
+  table tbody tr td {
+    flex-direction: column;
   }
   table tbody tr th {
     flex-direction: column;

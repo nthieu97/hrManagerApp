@@ -16,7 +16,19 @@
       <div id="tab-panel-1" class="tab-panel">
         <div class="time-off">
           <div class="header_timeoff">
-            <h3 class="text-center">Hoạt động nghỉ phép cá nhân</h3>
+            <ng-template #tipContent let-greeting="greeting">{{greeting}}</ng-template>
+            <h3 class="text-center">Hoạt động nghỉ phép cá nhân
+              <span class="ml-2 list-tooltip">
+                <svg [ngbTooltip]="tipContent" placement="top" triggers="manual" #t1="ngbTooltip"
+                  (mouseover)="timeOffTooltip(t1, 'Chế độ nghỉ : Nghỉ có lương và nghỉ không lương&#13; Chú thích : Lý do xin nghỉ')"
+                  (mouseout)="timeOffTooltip(t1, '')" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                  fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                  <path
+                    d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                </svg>
+              </span>
+            </h3>
           </div>
           <table class="table">
             <thead>
@@ -47,21 +59,14 @@
                 </td>
                 <td data-title="Mode leave">
                   {{
-                    time.mode_leave == 1 ? "Nghỉ có lương" : "Nghỉ không lương"
+                  time.mode_leave == 1 ? "Nghỉ có lương" : "Nghỉ không lương"
                   }}
                 </td>
                 <td>{{ time.number_day_leave }} ngày</td>
                 <td>{{ time.number_mode_leave }} ngày</td>
                 <td *ngIf="time.status !== 1" class="d-flex">
-                  <a
-                    [routerLink]="['/', 'time-off-edit', time.id]"
-                    class="btn btn-primary mr-2"
-                    >Edit</a
-                  >
-                  <button
-                    class="btn btn-danger"
-                    (click)="handleDelete(time.id, i)"
-                  >
+                  <a [routerLink]="['/', 'time-off-edit', time.id]" class="btn btn-primary mr-2">Edit</a>
+                  <button class="btn btn-danger" (click)="handleDelete(time.id, i)">
                     Xóa
                   </button>
                 </td>
@@ -83,11 +88,7 @@
           <table *ngIf="listTimeOffDelete.length > 0" class="table">
             <thead>
               <th>
-                <input
-                  type="checkbox"
-                  [value]="listID"
-                  (change)="checkValue($event)"
-                />
+                <input type="checkbox" [value]="listID" (change)="checkValue($event)" />
               </th>
               <th>#</th>
               <th>Họ tên</th>
@@ -103,12 +104,7 @@
             <tbody>
               <tr *ngFor="let time of listTimeOffDelete; index as a">
                 <td>
-                  <input
-                    type="checkbox"
-                    [checked]="checks"
-                    [value]="time.id"
-                    (change)="checkResult($event)"
-                  />
+                  <input type="checkbox" [checked]="checks" [value]="time.id" (change)="checkResult($event)" />
                 </td>
                 <td>{{ a + 1 }}</td>
                 <td>{{ time.full_name }}</td>
@@ -118,26 +114,18 @@
                 <td>{{ time.status == 1 ? "Đã duyệt" : "Chưa phê duyệt" }}</td>
                 <td>
                   {{
-                    time.mode_leave == 1 ? "Nghỉ có lương" : "Nghỉ không lương"
+                  time.mode_leave == 1 ? "Nghỉ có lương" : "Nghỉ không lương"
                   }}
                 </td>
                 <td>{{ time.number_day_leave }} ngày</td>
                 <td>{{ time.number_mode_leave }} ngày</td>
                 <td>
-                  <button
-                    title="Xóa vĩnh viễn"
-                    class="btn btn-danger"
-                    (click)="handleDestroy(time.id, i)"
-                  >
+                  <button title="Xóa vĩnh viễn" class="btn btn-danger" (click)="handleDestroy(time.id, i)">
                     <span title="Xóa vĩnh viễn" class="material-icons">
                       delete_forever
                     </span>
                   </button>
-                  <button
-                    title="Khôi phục"
-                    class="btn btn-success"
-                    (click)="handleRestore(time.id, i)"
-                  >
+                  <button title="Khôi phục" class="btn btn-success" (click)="handleRestore(time.id, i)">
                     <span title="Khôi phục" class="material-icons">
                       settings_backup_restore
                     </span>
@@ -145,11 +133,7 @@
                 </td>
               </tr>
               <tr *ngIf="listID.length > 0">
-                <button
-                  (click)="destroyAll()"
-                  style="margin-top: 10px; min-width: 100px"
-                  class="btn btn-danger"
-                >
+                <button (click)="destroyAll()" style="margin-top: 10px; min-width: 100px" class="btn btn-danger">
                   Xóa tất cả
                 </button>
               </tr>
