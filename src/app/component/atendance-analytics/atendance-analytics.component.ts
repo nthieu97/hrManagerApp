@@ -47,9 +47,10 @@ export class AtendanceAnalyticsComponent implements OnInit {
 
   handleDelete(id: string): void {}
 
-  handleFilter(event) {
+  handleFilter(event): void {
     let param = new HttpParams();
     param = param.set('date', String(event.month));
+    param = param.set('year', String(event.year));
     this.attenService.getAllAttendance(param).subscribe((data) => {
       this.atendances = data;
     });

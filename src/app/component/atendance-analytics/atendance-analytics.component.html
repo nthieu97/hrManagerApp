@@ -16,6 +16,8 @@
       currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi"
       sortMode="multiple"
       [globalFilterFields]="['name']"
+      [responsive]="true"
+      responsiveLayout="stack"
     >
       <ng-template pTemplate="caption">
         <div class="d-flex flex-row-reverse align-items-center">
@@ -36,7 +38,7 @@
           </span>
         </div>
       </ng-template>
-      <ng-template pTemplate="header">
+      <ng-template pTemplate="header" let-columns>
         <tr>
           <th pSortableColumn="userID">
             ID NV <p-sortIcon field="userID"></p-sortIcon>
@@ -89,21 +91,27 @@
       <ng-template pTemplate="body" let-atendance let-colums="colums">
         <tr>
           <td>
+            <span class="p-column-title">ID NV</span>
             {{ atendance.userID }}
           </td>
           <td>
+            <span class="p-column-title">Tên NV</span>
             {{ atendance.name }}
           </td>
           <td>
+            <span class="p-column-title">Ngày</span>
             {{ atendance.date | date: "dd/MM/yyyy" }}
           </td>
           <td>
+            <span class="p-column-title">Giờ vào</span>
             {{ atendance.checkIn }}
           </td>
           <td>
+            <span class="p-column-title">Giờ ra</span>
             {{ atendance.checkOut }}
           </td>
           <td [ngClass]="[atendance.OT === 1 ? 'text-success' : 'text-danger']">
+            <span class="p-column-title">Làm thêm</span>
             {{ atendance.OT === 1 ? "OT" : "Không" }}
           </td>
           <td
@@ -111,6 +119,7 @@
               atendance.status === 1 ? 'text-success' : 'text-danger'
             ]"
           >
+            <span class="p-column-title">Trạng thấi</span>
             {{ atendance.status === 1 ? "Đi làm" : "nghỉ" }}
           </td>
         </tr>

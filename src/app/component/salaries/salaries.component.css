@@ -7,6 +7,9 @@
   box-shadow: var(--box-shadow);
   min-height: 36em;
 }
+.file-input {
+  display: none;
+}
 .salaries img {
   width: 60px;
   height: 60px;

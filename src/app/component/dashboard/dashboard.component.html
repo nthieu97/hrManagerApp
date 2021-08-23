@@ -190,11 +190,13 @@
 
         <div class="team-chart__body">
           <ngx-charts-pie-chart
-            [view]="view"
             [scheme]="colorScheme"
             [results]="dataUserByDepartment"
-            [gradient]="false"
+            [gradient]="true"
             [doughnut]="true"
+            [legend]="true"
+            legendTitle="Phòng ban"
+            legendPosition="below"
           >
           </ngx-charts-pie-chart>
         </div>
@@ -202,7 +204,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-8 col-12-md">
+    <div class="col-12">
       <div class="attendace__analytic">
         <h3 class="text-center pt-3">Thống kê lương nhân viên các phòng ban</h3>
         <div class="attendace__chart">
@@ -219,70 +221,6 @@
             [results]="multi"
           >
           </ngx-charts-line-chart>
-        </div>
-      </div>
-    </div>
-    <div class="col-4 col-12-md fl">
-      <div class="absent">
-        <div class="absent__head-container">
-          <div class="absent__header">
-            <a href="" class="absent__link">Nghỉ phép hôm nay</a>
-            <p>Hôm nay {{ dateOff | date: "dd-MM-yyyy" }}</p>
-          </div>
-          <div class="absent__more">
-            <a href=""><span class="material-icons">more_horiz</span> </a>
-            <p class="absent__more_info">
-              SL(<span>{{ listUserOff.length }}</span
-              >)
-            </p>
-          </div>
-        </div>
-        <div class="absent__body" *ngIf="listUserOff.length > 0">
-          <div
-            class="absent__item"
-            *ngFor="let item of listUserOff; index as i"
-          >
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU"
-              class="absent__img"
-              alt="image"
-            />
-            <div class="absent__info">
-              <p class="absent__username">{{ item.full_name }}</p>
-              <p class="absnet__desc">{{ item.note }}</p>
-            </div>
-            <p class="absent__time">Hôm nay</p>
-          </div>
-        </div>
-        <div class="absent__body" *ngIf="listUserOff.length == 0">
-          <p>Không ai nghỉ phép hôm nay ...</p>
-        </div>
-      </div>
-      <!-- end-absent -->
-      <div class="remote-work">
-        <div class="remote-work__header">
-          <div class="remote-work__header__left">
-            <a href="" class="remote-work__title">Remote work</a>
-            <span>15 Aug,2021</span>
-          </div>
-          <div class="remote-work__header__right">
-            <a href=""><span class="material-icons">more_horiz</span></a>
-            <p><span>2</span>/19</p>
-          </div>
-        </div>
-        <div class="remote-work__body">
-          <div class="remote-work__item">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQEZrATmgHOi5ls0YCCQBTkocia_atSw0X-Q&usqp=CAU"
-              class="remote-work__img"
-              alt="image"
-            />
-            <div class="remote-work__info">
-              <p class="remote-work__username">Thạch Hoàng Hà</p>
-              <p class="remote-work__desc">Làm việc ở nhà</p>
-            </div>
-            <p class="remote-work__time">từ 20/6 đến 30/6</p>
-          </div>
         </div>
       </div>
     </div>

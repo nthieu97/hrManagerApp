@@ -18,7 +18,7 @@ export class AttendanceComponent implements OnInit {
 
   ngOnInit(): void {
     this.attendanceService.getMyAttendance().subscribe((data) => {
-      this.attendanceData = data.data;
+      this.attendanceData = data.data.data;
     });
   }
 }

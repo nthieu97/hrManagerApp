@@ -39,16 +39,16 @@ export class DashboardComponent implements OnInit {
   totalUserWorker: number;
   totalUsersOff: number;
   departments: number;
-  acceptOTList=[];
-  isLeader:boolean;
+  acceptOTList = [];
+  isLeader: boolean;
   dateOff = new Date();
   listUserOff = [];
   constructor(
     private authService: AuthService,
     private dashboardService: DashboardService,
     private toastService: ToastsService,
-    private otService:OTServiceService,
-    private timeOffService:TimeOffService
+    private otService: OTServiceService,
+    private timeOffService: TimeOffService
   ) {}
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin();
@@ -92,15 +92,14 @@ export class DashboardComponent implements OnInit {
         this.totalUsersOff = data.data[0].nhan_vien_nghi_lam;
       });
     }
-    this.getListOTByUser()
+    this.getListOTByUser();
   }
   getListOTByUser() {
     this.otService.getListOTByUser().subscribe((data) => {
       console.log(data);
-      this.acceptOTList = data.data
+      this.acceptOTList = data.data;
       console.log(this.acceptOTList);
-
-    })
+    });
   }
   handleAprove(id: string, index): void {
     this.loadConfirm = true;
@@ -135,25 +134,24 @@ export class DashboardComponent implements OnInit {
   }
   handleAccept(id: string, object: any) {
     this.loadAccept = true;
-    this.otService.confirmOT(id, object).subscribe((data) => {
-      this.loadAccept = false
-      this.toastService.show(data.message, {
-        classname: 'bg-success text-light',
-        delay: 3000,
-      }),
-        (err: any) => {
-          this.toastService.show(err.message, {
-            classname: 'bg-danger text-light',
-            delay: 3000,
-          })
-        }
-      console.log(data);
-
-    })
+    this.otService.confirmOT(id, object).subscribe(
+      (data) => {
+        this.loadAccept = false;
+        this.toastService.show(data.message, {
+          classname: 'bg-success text-light',
+          delay: 3000,
+        });
+        console.log(data);
+      },
+      (err: any) => {
+        this.toastService.show(err.message, {
+          classname: 'bg-danger text-light',
+          delay: 3000,
+        });
+      }
+    );
   }
-  handleNotAccept(id: string) {
-
-  }
+  handleNotAccept(id: string) {}
 
   getAllUserOff() {
     this.timeOffService.getAllTimeOff().subscribe((data) => {
@@ -161,12 +159,11 @@ export class DashboardComponent implements OnInit {
 
       for (let i = 0; i < data.data.length; i++) {
         console.log(data.data[i]);
-        if (data.data[i].status == 1 && data.data[i].date == this.dateOff) {
-          this.listUserOff.push(data.data[i])
+        if (data.data[i].status === 1 && data.data[i].date === this.dateOff) {
+          this.listUserOff.push(data.data[i]);
         }
         console.log(this.listUserOff);
-
       }
-    })
+    });
   }
 }

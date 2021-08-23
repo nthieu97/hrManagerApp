@@ -29,7 +29,9 @@
               <td data-title="full name">{{ attendance.full_name }}</td>
               <td data-title="check in">{{ attendance.time_of_check_in }}</td>
               <td data-title="check out">{{ attendance.time_of_check_out }}</td>
-              <td data-title="date">{{ attendance.date_of_work }}</td>
+              <td data-title="date">
+                {{ attendance.date_of_work | date: "dd/MM/YYYY" }}
+              </td>
               <td data-title="status" *ngIf="attendance.status == 1">
                 <span class="text-success">Work</span>
               </td>

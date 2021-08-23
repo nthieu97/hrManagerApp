@@ -25,7 +25,7 @@ export class SalariesComponent implements OnInit {
   isAdmin: boolean;
   loading = false;
   salaries: SalariesMap[];
-
+  fileName = '';
   first = 0;
   rows = 10;
   id: string;
@@ -51,8 +51,6 @@ export class SalariesComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin();
     this.id = this.route.snapshot.params.id;
-
-    this.getSalaries();
   }
   getSalaries(): void {
     const params = new HttpParams();
@@ -60,20 +58,31 @@ export class SalariesComponent implements OnInit {
       this.salaries = data;
     });
   }
+  onFileSelect(event) {
+    const file: File = event.target.files[0];
 
+    if (file) {
+      this.fileName = file.name;
+
+      const formData = new FormData();
+
+      formData.append('file', file);
+    }
+  }
   changePay(id): void {
     this.salaryService.paymentSalary(id).subscribe(
       (data) => {
         this.id = data.id;
         this.toatService.show(data.message, {
-          className: 'bg-success text-light',
+          classname: 'bg-success text-light',
           delay: 3000,
-        }),
-          this.getSalaries();
+        });
+        const salaryCHange = this.salaries.find((salary) => salary.id === id);
+        console.log(salaryCHange);
       },
       (err: any) => {
         this.toatService.show(err.message, {
-          className: 'bg-danger text-light',
+          classname: 'bg-danger text-light',
           delay: 3000,
         });
       }
@@ -81,6 +90,14 @@ export class SalariesComponent implements OnInit {
   }
   exportExcel(): void {
     this.excel.exportExcel(this.salaries, 'luong thang ');
+  }
+  handleFilter(event): void {
+    let param = new HttpParams();
+    param = param.set('date', String(event.month));
+    param = param.set('year', String(event.year));
+    this.salaryService.getAllSalary(param).subscribe((data) => {
+      this.salaries = data;
+    });
   }
   openDetail(contentDetail, id): void {
     this.salaryService.getSalaryDetail(id).subscribe((data) => {

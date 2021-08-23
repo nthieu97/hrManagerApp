@@ -4,11 +4,13 @@
     <li class="breadcrumb-item active" aria-current="page">Salaries</li>
   </ol>
 </nav>
-
-<div class="salaries">
+<app-filter (filtered)="handleFilter($event)"></app-filter>
+<div class="salaries" *ngIf="salaries">
   <h3>Danh sách lương</h3>
   <p-table
     #dt
+    [responsive]="true"
+    responsiveLayout="stack"
     [value]="salaries"
     [paginator]="true"
     [rows]="10"
@@ -19,6 +21,23 @@
   >
     <ng-template pTemplate="caption">
       <div class="d-flex flex-row-reverse align-items-center">
+        <input
+          type="file"
+          class="file-input"
+          (change)="onFileSelect($event)"
+          #fileUpload
+        />
+        <div class="file-upload">
+          <button
+            style="padding: 3px 10px"
+            type="button"
+            class="btn btn-dark ml-1"
+            (click)="fileUpload.click()"
+          >
+            <span class="material-icons">file_upload</span>
+          </button>
+          {{ fileName || "No file upload" }}
+        </div>
         <button
           class="btn btn-success ml-2 d-flex align-items-center"
           (click)="exportExcel()"
@@ -36,7 +55,7 @@
         </span>
       </div>
     </ng-template>
-    <ng-template pTemplate="header">
+    <ng-template pTemplate="header" let-columns>
       <tr>
         <th pSortableColumn="userID" style="width: 5em">
           ID NV <p-sortIcon field="userID"></p-sortIcon>
@@ -65,7 +84,7 @@
             display="menu"
           ></p-columnFilter>
         </th>
-        <th pSortableColumn="checkOut">
+        <th pSortableColumn="net">
           Lương ròng <p-sortIcon field="net"></p-sortIcon
           ><p-columnFilter
             type="text"
@@ -87,31 +106,41 @@
         <th style="width: 12em">Action</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-salary>
+    <ng-template pTemplate="body" let-salary let-columns="columns">
       <tr>
-        <td>{{ salary.userID }}</td>
-        <td>{{ salary.name }}</td>
+        <td><span class="p-column-title">ID NV</span>{{ salary.userID }}</td>
+        <td><span class="p-column-title">Tên NV</span>{{ salary.name }}</td>
         <td>
+          <span class="p-column-title">Lương gross</span>
           {{
             (salary.gross ? salary.gross : 0)
               | currency: "VND":"symbol":"1.0-0":"vi-VN"
           }}
         </td>
         <td>
+          <span class="p-column-title">Lương nghỉ phép</span>
           {{
             (salary.leave ? salary.leave : 0)
               | currency: "VND":"symbol":"1.0-0":"vi-VN"
           }}
         </td>
         <td>
+          <span class="p-column-title">Lương Net</span>
           {{
             (salary.net ? salary.net : 0)
               | currency: "VND":"symbol":"1.0-0":"vi-VN"
           }}
         </td>
-        <td>{{ salary.date | date: "dd/MM/yyyy" }}</td>
-        <td>{{ salary.status === 1 ? "Đã trả" : "Chưa trả" }}</td>
         <td>
+          <span class="p-column-title">Ngày</span
+          >{{ salary.date | date: "dd/MM/yyyy" }}
+        </td>
+        <td>
+          <span class="p-column-title">Trạng thái</span
+          >{{ salary.status === 1 ? "Đã trả" : "Chưa trả" }}
+        </td>
+        <td>
+          <span class="p-column-title">Hành động</span>
           <div class="d-flex">
             <button
               class="btn btn-primary btn-block"

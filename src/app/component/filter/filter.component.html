@@ -18,13 +18,9 @@
             Tháng {{ month }}
           </option>
         </select>
-        <div
-          *ngIf="month.invalid && month.touched"
-          class="alert alert-danger mt-2"
-          role="alert"
-        >
+        <span *ngIf="month.invalid && month.touched" class="text-danger">
           Bạn cần chọn tháng
-        </div>
+        </span>
       </div>
 
       <div class="mx-2 form-group filter-control">
@@ -39,13 +35,9 @@
           <option value="" selected disabled>Chọn năm</option>
           <option *ngFor="let year of years" [value]="year">{{ year }}</option>
         </select>
-        <div
-          *ngIf="year.invalid && year.touched"
-          class="alert alert-danger mt-2"
-          role="alert"
-        >
+        <span *ngIf="year.invalid && year.touched" class="text-danger">
           Bạn cần chọn năm
-        </div>
+        </span>
       </div>
       <button
         type="submit"
