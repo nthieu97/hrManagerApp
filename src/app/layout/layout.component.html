@@ -39,6 +39,137 @@
         </div>
       </div>
 
+       <!-- thông báo -->
+       <div ngbDropdown class="notify d-inline-block" *ngIf="isAdmin">
+        
+        <a>
+         <span class="bell material-icons" id="dropdownBasic1" ngbDropdownToggle>
+           notifications
+           </span>
+           <span title="Thông báo mới" class="badge badge-light">+{{countNotify.length}}</span>
+        </a>
+                     <div class="notify_bag" ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                         <div class="view_all">
+                             <a class="view_all_target" (click)="getListNotify(contentList)">Xem tất cả <span style="font-size: 14px;" class="material-icons">double_arrow_right</span></a>
+                         </div>
+                         <ul *ngFor="let item of listNotify">
+                             <a (click)="notifyDetail(contentDetail,item.id)">
+                                 <li *ngIf="item.read_at == null" class="bg">
+                                     <div ngbDropdownItem style="padding: 10px 8px;">
+                                         <h5 class="title_notify" *ngIf="item.type =='1'">Thông báo nghỉ phép</h5>
+                                         <h5 class="title_notify" *ngIf="item.type =='2'">Thông báo tăng ca</h5>
+                                         <h5 class="title_notify" *ngIf="item.type =='3'">Thông báo tăng ca theo giờ</h5>
+ 
+                                         <p class="note_notify" *ngIf="item.type =='1'">Bạn có thông báo nghỉ phép</p>
+                                         <p class="note_notify" *ngIf="item.type =='2'">Bạn có thông báo tăng ca</p>
+                                         <p class="note_notify" *ngIf="item.type =='3'">Bạn có thông báo tăng ca theo giờ</p>
+                                         <div class="item_bottom">
+                                             <span class="date_notify">{{item.date_notyfi}}</span>
+                                             <span id="icon_read" class=" material-icons ">
+                                             fiber_manual_record
+                                             </span>
+                                         </div>
+                                     </div>
+                                 </li>
+                                 <li *ngIf="item.read_at !==null " class="bg2 ">
+                                     <div ngbDropdownItem style="padding: 10px 8px;">
+                                         <h5 class="title_notify" *ngIf="item.type =='1'">Thông báo nghỉ phép</h5>
+                                         <h5 class="title_notify" *ngIf="item.type =='2'">Thông báo tăng ca</h5>
+                                         <h5 class="title_notify" *ngIf="item.type =='3'">Thông báo tăng ca theo giờ</h5>
+ 
+                                         <p class="note_notify" *ngIf="item.type =='1'">Bạn có thông báo nghỉ phép</p>
+                                         <p class="note_notify" *ngIf="item.type =='2'">Bạn có thông báo tăng ca</p>
+                                         <p class="note_notify" *ngIf="item.type =='3'">Bạn có thông báo tăng ca theo giờ</p>
+                                         <div class="item_bottom">
+                                             <span class="date_notify">{{item.date_notyfi | date:'dd-MM-yyyy'}}</span>
+                                             <span id="icon_readed" class="material-icons ">
+                                             done
+                                             </span>
+                                         </div>
+                                     </div>
+                                 </li>
+                             </a>
+                         </ul>
+                     </div>
+                 </div>
+                 <!-- hết thông báo -->
+                 <!-- modal chi tiết-->
+                 <ng-template #contentDetail let-modal>
+                     <div class="modal-header">
+                         <h4 class="modal-title" style="padding-left:10px" id="modal-basic-title">Chi tiết</h4>
+                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                       <span aria-hidden="true">&times;</span>
+                     </button>
+                     </div>
+                     <div class="modal-body" style="padding:10px">
+                         <div id="tab-panel-1" class="tab-panel">
+                             <div>
+                                 <h5 class="title_notify" style="font-size: 14px;" *ngIf="getDetailNotify.type =='1'">Thông báo nghỉ phép</h5>
+                                 <h5 class="title_notify" style="font-size: 14px;" *ngIf="getDetailNotify.type =='2'">Thông báo tăng ca</h5>
+                                 <h5 class="title_notify" style="font-size: 14px;" *ngIf="getDetailNotify.type =='3'">Thông báo tăng ca theo giờ</h5>
+                                 <p class="name_notify_detail">Họ tên: <strong>{{getDetailNotify.full_name}}</strong></p>
+                                 <p class="note_notify_detail">Nội dung: <strong>{{getDetailNotify.note}}</strong></p>
+                                 <span class="date_notify_detail">Ngày: <strong>{{getDetailNotify.date_notyfi | date:'dd-MM-yyyy'}}</strong></span>
+                             </div>
+ 
+                         </div>
+                     </div>
+                 </ng-template>
+                 <!-- end modal chi tiết-->
+ 
+                 <!-- modal all -->
+                 <ng-template #contentList let-modal>
+                     <div class=" modal-header">
+                         <h4 class="modal-title" id="modal-basic-title">Tất cả thông báo</h4>
+                         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                       <span aria-hidden="true">&times;</span>
+                     </button>
+                     </div>
+                     <div class="modal-body">
+                         <div id="tab-panel-1" class="list_notify tab-panel">
+ 
+                             <ul *ngFor="let item of listNotify">
+                                 <a (click)="notifyDetail(contentDetail,item.id)">
+                                     <li *ngIf="item.read_at == null" class="bg">
+                                         <div class="item_notify" ngbDropdownItem style="padding: 10px 8px;">
+                                             <h5 class="title_notify" *ngIf="item.type =='1'">Thông báo nghỉ phép</h5>
+                                             <h5 class="title_notify" *ngIf="item.type =='2'">Thông báo tăng ca</h5>
+                                             <h5 class="title_notify" *ngIf="item.type =='3'">Thông báo tăng ca theo giờ</h5>
+ 
+                                             <p class="note_notify" *ngIf="item.type =='1'">Bạn có thông báo nghỉ phép</p>
+                                             <p class="note_notify" *ngIf="item.type =='2'">Bạn có thông báo tăng ca</p>
+                                             <p class="note_notify" *ngIf="item.type =='3'">Bạn có thông báo tăng ca theo giờ</p>
+                                             <div class="item_bottom">
+                                                 <span class="date_notify">{{item.date_notyfi}}</span>
+                                                 <span id="icon_read" class=" material-icons ">
+                                             fiber_manual_record
+                                             </span>
+                                             </div>
+                                         </div>
+                                     </li>
+                                     <li *ngIf="item.read_at !==null " class="bg2 ">
+                                         <div ngbDropdownItem style="padding: 10px 8px;">
+                                             <h5 class="title_notify" *ngIf="item.type ==1">Thông báo nghỉ phép</h5>
+                                             <h5 class="title_notify" *ngIf="item.type ==2">Thông báo tăng ca</h5>
+                                             <h5 class="title_notify" *ngIf="item.type ==3">Thông báo tăng ca theo giờ</h5>
+                                             <p class="note_notify" *ngIf="item.type =='1'">Bạn có thông báo nghỉ phép</p>
+                                             <p class="note_notify" *ngIf="item.type =='2'">Bạn có thông báo tăng ca</p>
+                                             <p class="note_notify" *ngIf="item.type =='3'">Bạn có thông báo tăng ca theo giờ</p>
+                                             <div class="item_bottom">
+                                                 <span class="date_notify">{{item.date_notyfi | date:'dd-MM-yyyy'}}</span>
+                                                 <span id="icon_readed" class=" material-icons ">
+                                             done
+                                             </span>
+                                             </div>
+                                         </div>
+                                     </li>
+                                 </a>
+                             </ul>
+                         </div>
+                     </div>
+                 </ng-template>
+                 <!--end modal all -->
+
       <div class="tools_user user-web" ngbDropdown>
         <a
           class="user__links"

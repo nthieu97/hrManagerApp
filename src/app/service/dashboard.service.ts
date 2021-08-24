@@ -46,4 +46,13 @@ export class DashboardService {
   getAllDepartment(): Observable<any> {
     return this.http.get(this.URL_API + 'total_phong_ban');
   }
+  listNotify(): Observable<any> {
+    return this.http.get(this.URL_API + 'list_notyfi');
+  }
+  detailNotify(id: string): Observable<any> {
+    return this.http.get(this.URL_API + 'detail_notyfi/' + id, {});
+  }
+  countNotify(): Observable<any> {
+    return this.http.get(this.URL_API + 'count_notyfi');
+  }
 }

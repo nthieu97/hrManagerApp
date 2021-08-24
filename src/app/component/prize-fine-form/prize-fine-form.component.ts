@@ -25,7 +25,8 @@ export class PrizeFineFormComponent implements OnInit {
   dropdownSettings: IDropdownSettings = {};
   selectedItems = [];
   dropdownList = [];
-  listItem = []
+  listItem = [];
+  listUser=[]
   constructor(
     private prizrFineService: PrizeFineMoneyService,
     private employeeService: EmployeeService,
@@ -84,7 +85,11 @@ export class PrizeFineFormComponent implements OnInit {
 
   getEmployees(): void {
     this.employeeService.getAllUser().subscribe((data) => {
-      this.dropdownList = data.data;
+      const x = data.data
+      for (let i = 0; i < x.length; i++) {
+        this.listUser.push(x[i].userinfo.full_name)
+      }
+      this.dropdownList = this.listUser
     });
   }
   get f(): {
