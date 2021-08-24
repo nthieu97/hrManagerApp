@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  Input,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -23,15 +24,34 @@ export class EmployeeDetailComponent implements OnInit {
   @ViewChild('screen', { static: false }) screen: ElementRef;
   @ViewChild('canvas') canvas: ElementRef;
   @ViewChild('downLoadLink') downloadLink: ElementRef;
+  // @ViewChild('canvasImg') canvasImg: ElementRef;
+  // @Input() public width = 200;
+  // @Input() public height = 200;
+  // private cx: CanvasRenderingContext2D;
   ngOnInit(): void {
     this.atr.params.subscribe((params) => {
       const id = params.id;
       this.employeeService.getUserById(id).subscribe((res) => {
         this.userInfo = res.data;
-        console.log(res);
+        // this.drawImage(this.userInfo.userinfo.avatar);
       });
     });
   }
+  // drawImage(srcImg: string) {
+  //   const canvasEl: HTMLCanvasElement = this.canvasImg.nativeElement;
+  //   this.cx = canvasEl.getContext('2d');
+  //   const image = new Image();
+  //   image.setAttribute('src', srcImg);
+  //   canvasEl.width = this.width;
+  //   canvasEl.height = this.height;
+  //   this.cx.lineWidth = 3;
+  //   this.cx.lineCap = 'round';
+  //   this.cx.strokeStyle = '#000';
+  //   image.onload = () => {
+  //     this.cx.drawImage(image, 0, 0, this.width, this.height);
+  //   };
+  //   image.src = srcImg;
+  // }
   downloadCard(): void {
     html2canvas(this.screen.nativeElement).then((canvas) => {
       this.canvas.nativeElement.src = canvas.toDataURL();
