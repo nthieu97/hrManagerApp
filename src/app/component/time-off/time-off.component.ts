@@ -58,6 +58,8 @@ export class TimeOffComponent implements OnInit {
   getAllTimeOff() {
     this.timeOffService.getAllByUser().subscribe((data) => {
       this.timeOff = data.data;
+      console.log(data);
+
       console.log(this.timeOff);
     });
   }
@@ -217,12 +219,11 @@ export class TimeOffComponent implements OnInit {
         }
       });
   }
-  reloadPage(event){
+  reloadPage(event) {
     console.log('reload page');
-   this.getAllTimeOff()
+    this.getAllTimeOff();
   }
-  reloadPageTrash(event){
-   this.getAllDeleteTimeOff()
-    
+  reloadPageTrash(event) {
+    this.getAllDeleteTimeOff();
   }
 }

@@ -50,7 +50,7 @@ export class TimeOffService {
     return this.http.get(this.API_URL, { params: { page } });
   }
   getAllByUser(): Observable<any> {
-    return this.http.get(this.API_URL + '/getAllByUser/');
+    return this.http.get(this.API_URL + '/getAllByUser');
   }
   getAllDelete(): Observable<any> {
     return this.http.get(this.API_URL + '/getAllDelete/');
