@@ -20,6 +20,7 @@ export interface AttendanceMap {
 })
 export class AtendanceAnalyticsComponent implements OnInit {
   atendances: AttendanceMap[];
+  fileName = '';
   cols: { field: string; header: string }[];
   constructor(
     private attenService: AttendanceService,
@@ -40,6 +41,20 @@ export class AtendanceAnalyticsComponent implements OnInit {
       { field: 'OT', header: 'Làm thêm' },
       { field: 'status', header: 'Trạng thái' },
     ];
+  }
+  onFileSelect(event) {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.fileName = file.name;
+
+      const formData = new FormData();
+
+      formData.append('file', file, file.name);
+      this.attenService.importTable(formData).subscribe((data) => {
+        console.log(data);
+      });
+    }
   }
   exportExcel(): void {
     this.excel.exportExcel(this.atendances, 'diemdanh');

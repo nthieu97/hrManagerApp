@@ -54,4 +54,7 @@ export class AttendanceService {
   updateOT(object: any): Observable<any> {
     return this.http.post(this.URL_API + '/update_OT/', { object });
   }
+  importTable(data: FormData): Observable<any> {
+    return this.http.post(this.URL_API + '/import', data);
+  }
 }

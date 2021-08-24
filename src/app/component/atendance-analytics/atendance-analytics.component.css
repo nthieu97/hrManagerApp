@@ -13,6 +13,9 @@
   box-shadow: var(--box-shadow);
   border-radius: 10px;
 }
+.file-input {
+  display: none;
+}
 .employee-sumary {
   margin-top: 1em;
   background-color: white;

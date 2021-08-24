@@ -21,6 +21,23 @@
     >
       <ng-template pTemplate="caption">
         <div class="d-flex flex-row-reverse align-items-center">
+          <input
+            type="file"
+            class="file-input"
+            (change)="onFileSelect($event)"
+            #fileUpload
+          />
+          <div class="file-upload">
+            <button
+              style="padding: 3px 10px"
+              type="button"
+              class="btn btn-dark ml-1"
+              (click)="fileUpload.click()"
+            >
+              <span class="material-icons">file_upload</span>
+            </button>
+            {{ fileName || "No file upload" }}
+          </div>
           <button
             class="btn btn-success ml-2 d-flex align-items-center"
             (click)="exportExcel()"

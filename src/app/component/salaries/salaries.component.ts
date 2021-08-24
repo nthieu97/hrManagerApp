@@ -66,7 +66,7 @@ export class SalariesComponent implements OnInit {
 
       const formData = new FormData();
 
-      formData.append('file', file);
+      formData.append('file', file, file.name);
       this.salaryService.importTable(formData).subscribe((data) => {
         console.log(data);
       });
