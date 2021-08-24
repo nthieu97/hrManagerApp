@@ -43,6 +43,11 @@ export class DashboardComponent implements OnInit {
   isLeader: boolean;
   dateOff = new Date();
   listUserOff = [];
+
+  totalDayWorker: number;
+  totalDayOff: number;
+  totalSalary: number;
+  totalDayLeaveHaveGross: number;
   constructor(
     private authService: AuthService,
     private dashboardService: DashboardService,
@@ -91,14 +96,25 @@ export class DashboardComponent implements OnInit {
       this.dashboardService.getTotalUserOff().subscribe((data) => {
         this.totalUsersOff = data.data[0].nhan_vien_nghi_lam;
       });
+    } else {
+      this.dashboardService.getTotalSalaryByUser().subscribe((data) => {
+        this.totalSalary = data.data[0].total_net_salary;
+      });
+      this.dashboardService.getTotalWorkByUser().subscribe((data) => {
+        this.totalDayWorker = data.data[0].tong_ngay_di_lam;
+      });
+      this.dashboardService.getTotalLeaveHaveGrossbyUser().subscribe((data) => {
+        this.totalDayLeaveHaveGross = data.data[0].tongsongaynghi;
+      });
+      this.dashboardService.getTotalDayOffByUser().subscribe((data) => {
+        this.totalDayOff = data.data[0].nhan_vien_nghi_lam;
+      });
     }
     this.getListOTByUser();
   }
   getListOTByUser() {
     this.otService.getListOTByUser().subscribe((data) => {
-      console.log(data);
       this.acceptOTList = data.data;
-      console.log(this.acceptOTList);
     });
   }
   handleAprove(id: string, index): void {

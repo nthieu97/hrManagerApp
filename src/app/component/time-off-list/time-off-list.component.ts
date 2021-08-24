@@ -7,29 +7,18 @@ import { TimeOffService } from 'src/app/service/time-off.service';
   styleUrls: ['./time-off-list.component.css'],
 })
 export class TimeOffListComponent implements OnInit {
-  listTimeOff = [];
-  page = 1;
-  collectionSize: any;
-  pageSize: any;
+  listTimeOff;
+
   loading = false;
   constructor(private timeOffService: TimeOffService) {}
 
   ngOnInit(): void {
     this.timeOffService.getAllTimeOff().subscribe((data) => {
-      this.listTimeOff = data.data;
-      this.page = data.meta.currentPage;
-      this.collectionSize = data.meta.total;
-      this.pageSize = data.meta.perPage;
+      this.listTimeOff = data;
     });
   }
-  handlePaginate(event): void {
-    this.loading = true;
-    this.timeOffService.paginateTime(String(event)).subscribe((data) => {
-      this.listTimeOff = data.data;
-      this.loading = false;
-    });
-  }
-  timeOffTooltip(tooltip, greeting: any) {
+
+  timeOffTooltip(tooltip, greeting: any): void {
     if (tooltip.isOpen()) {
       tooltip.close();
     } else {

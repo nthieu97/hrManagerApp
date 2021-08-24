@@ -40,4 +40,7 @@ export class SalaryService {
   paymentSalary(id: string): Observable<any> {
     return this.http.post(this.URL_API + '/tra_luong/' + id, {});
   }
+  importTable(data: FormData): Observable<any> {
+    return this.http.post(this.URL_API + '/import', data);
+  }
 }

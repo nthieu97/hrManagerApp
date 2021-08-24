@@ -22,9 +22,7 @@ export class PrizeFineMoneyComponent implements OnInit {
   list_prize_fine = [];
   keyword = '';
   loading = false;
-  page = 1;
-  pageSize: any;
-  collectionSize: any;
+
   ngOnInit(): void {
     console.log(this.listID);
 
@@ -82,10 +80,6 @@ export class PrizeFineMoneyComponent implements OnInit {
   search(): void {
     this.prizeFineMoneyService.getAllPrize(this.keyword).subscribe((data) => {
       this.list_prize_fine = data.data;
-      this.page = data.meta.currentPage;
-      this.collectionSize = data.meta.total;
-      this.pageSize = data.meta.perPage;
-      console.log(this.keyword);
     });
   }
   handleDelete(id: string, index): void {
@@ -164,19 +158,21 @@ export class PrizeFineMoneyComponent implements OnInit {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          this.prizeFineMoneyService.destroyPrize(id).subscribe((data) => {
-            console.log(data);
-            this.toastService.show(data.message, {
-              classname: 'bg-success text-light',
-              delay: 3000,
-            }),
-              (err: any) => {
-                this.toastService.show(err.message, {
-                  classname: 'bg-danger text-light',
-                  delay: 3000,
-                });
-              };
-          });
+          this.prizeFineMoneyService.destroyPrize(id).subscribe(
+            (data) => {
+              console.log(data);
+              this.toastService.show(data.message, {
+                classname: 'bg-success text-light',
+                delay: 3000,
+              });
+            },
+            (err: any) => {
+              this.toastService.show(err.message, {
+                classname: 'bg-danger text-light',
+                delay: 3000,
+              });
+            }
+          );
           this.getAllDeletePrize();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
         }
@@ -202,21 +198,21 @@ export class PrizeFineMoneyComponent implements OnInit {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          this.prizeFineMoneyService
-            .restorePrize(id, object)
-            .subscribe((data) => {
+          this.prizeFineMoneyService.restorePrize(id, object).subscribe(
+            (data) => {
               console.log(data);
               this.toastService.show(data.message, {
                 classname: 'bg-success text-light',
                 delay: 3000,
-              }),
-                (err: any) => {
-                  this.toastService.show(err.message, {
-                    classname: 'bg-danger text-light',
-                    delay: 3000,
-                  });
-                };
-            });
+              });
+            },
+            (err: any) => {
+              this.toastService.show(err.message, {
+                classname: 'bg-danger text-light',
+                delay: 3000,
+              });
+            }
+          );
           this.getAllDeletePrize();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
         }
@@ -242,20 +238,20 @@ export class PrizeFineMoneyComponent implements OnInit {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          this.prizeFineMoneyService
-            .deleteAll(this.listID)
-            .subscribe((data) => {
+          this.prizeFineMoneyService.deleteAll(this.listID).subscribe(
+            (data) => {
               this.toastService.show(data.message, {
                 classname: 'bg-success text-light',
                 delay: 3000,
-              }),
-                (err: any) => {
-                  this.toastService.show(err.message, {
-                    classname: 'bg-danger text-light',
-                    delay: 3000,
-                  });
-                };
-            });
+              });
+            },
+            (err: any) => {
+              this.toastService.show(err.message, {
+                classname: 'bg-danger text-light',
+                delay: 3000,
+              });
+            }
+          );
           this.search();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           this.search();
@@ -282,20 +278,20 @@ export class PrizeFineMoneyComponent implements OnInit {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          this.prizeFineMoneyService
-            .restoreAll(this.listIDDelete)
-            .subscribe((data) => {
+          this.prizeFineMoneyService.restoreAll(this.listIDDelete).subscribe(
+            (data) => {
               this.toastService.show(data.message, {
                 classname: 'bg-success text-light',
                 delay: 3000,
-              }),
-                (err: any) => {
-                  this.toastService.show(err.message, {
-                    classname: 'bg-danger text-light',
-                    delay: 3000,
-                  });
-                };
-            });
+              });
+            },
+            (err: any) => {
+              this.toastService.show(err.message, {
+                classname: 'bg-danger text-light',
+                delay: 3000,
+              });
+            }
+          );
           this.getAllDeletePrize();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
         }
@@ -321,20 +317,20 @@ export class PrizeFineMoneyComponent implements OnInit {
       })
       .then((result) => {
         if (result.isConfirmed) {
-          this.prizeFineMoneyService
-            .destroyAll(this.listIDDelete)
-            .subscribe((data) => {
+          this.prizeFineMoneyService.destroyAll(this.listIDDelete).subscribe(
+            (data) => {
               this.toastService.show(data.message, {
                 classname: 'bg-success text-light',
                 delay: 3000,
-              }),
-                (err: any) => {
-                  this.toastService.show(err.message, {
-                    classname: 'bg-danger text-light',
-                    delay: 3000,
-                  });
-                };
-            });
+              });
+            },
+            (err: any) => {
+              this.toastService.show(err.message, {
+                classname: 'bg-danger text-light',
+                delay: 3000,
+              });
+            }
+          );
           this.getAllDeletePrize();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
         }

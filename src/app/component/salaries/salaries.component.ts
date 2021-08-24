@@ -67,6 +67,9 @@ export class SalariesComponent implements OnInit {
       const formData = new FormData();
 
       formData.append('file', file);
+      this.salaryService.importTable(formData).subscribe((data) => {
+        console.log(data);
+      });
     }
   }
   salariesTooltip(tooltip, greeting: string) {

@@ -233,7 +233,7 @@
         <span class="material-icons">work</span>
 
         <div class="sumary__content">
-          <p class="sumary__count">10</p>
+          <p class="sumary__count">{{ totalDayWorker }}</p>
           <p class="sumary__desc">Số ngày làm việc</p>
         </div>
       </div>
@@ -243,7 +243,9 @@
         <span class="material-icons">today</span>
 
         <div class="sumary__content">
-          <p class="sumary__count">4</p>
+          <p class="sumary__count">
+            {{ totalDayLeaveHaveGross ? totalDayLeaveHaveGross : 0 }}
+          </p>
           <p class="sumary__desc">Số ngày nghỉ có lương</p>
         </div>
       </div>
@@ -253,7 +255,7 @@
         <span class="material-icons">event_busy</span>
 
         <div class="sumary__content">
-          <p class="sumary__count">1</p>
+          <p class="sumary__count">{{ totalDayOff ? totalDayOff : 0 }}</p>
           <p class="sumary__desc">Số ngày đã nghỉ</p>
         </div>
       </div>
@@ -263,7 +265,9 @@
         <span class="material-icons">paid</span>
 
         <div class="sumary__content">
-          <p class="sumary__count">9.000.000</p>
+          <p class="sumary__count">
+            {{ totalSalary | currency: "VND":"symbol":"1.0-0":"vi-VN" }}
+          </p>
           <p class="sumary__desc">Lương tháng</p>
         </div>
       </div>
@@ -343,17 +347,7 @@
           <p>Chức vụ trong phòng ban</p>
         </div>
 
-        <div class="team-chart__body">
-          <ngx-charts-pie-chart
-            [view]="view"
-            [scheme]="colorScheme"
-            [results]="data"
-            [gradient]="false"
-            [doughnut]="true"
-            (select)="onSelect($event)"
-          >
-          </ngx-charts-pie-chart>
-        </div>
+        <div class="team-chart__body"></div>
       </div>
     </div>
   </div>

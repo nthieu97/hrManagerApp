@@ -46,4 +46,16 @@ export class DashboardService {
   getAllDepartment(): Observable<any> {
     return this.http.get(this.URL_API + 'total_phong_ban');
   }
+  getTotalWorkByUser(): Observable<any> {
+    return this.http.get(this.URL_API + 'total_work_by_user');
+  }
+  getTotalSalaryByUser(): Observable<any> {
+    return this.http.get(this.URL_API + 'total_salary_by_user');
+  }
+  getTotalDayOffByUser(): Observable<any> {
+    return this.http.get(this.URL_API + 'total_day_off_by_user');
+  }
+  getTotalLeaveHaveGrossbyUser(): Observable<any> {
+    return this.http.get(this.URL_API + 'total_leave_have_gross_by_user');
+  }
 }

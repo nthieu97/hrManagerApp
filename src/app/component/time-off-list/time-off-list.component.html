@@ -5,61 +5,123 @@
   </ol>
 </nav>
 <div class="list-time-off">
-  <ng-template #tipContent let-greeting="greeting">{{greeting}}</ng-template>
-  <h3 class="text-center">List Time Off
+  <ng-template #tipContent let-greeting="greeting">{{ greeting }}</ng-template>
+  <h3 class="text-center">
+    List Time Off
     <span class="ml-2 list-tooltip">
-      <svg [ngbTooltip]="tipContent" placement="top" triggers="manual" #t1="ngbTooltip"
-        (mouseover)="timeOffTooltip(t1, 'Chế độ nghỉ : Nghỉ có lương và nghỉ không lương&#13; Chú thích : Lý do xin nghỉ')"
-        (mouseout)="timeOffTooltip(t1, '')" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-        fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+      <svg
+        [ngbTooltip]="tipContent"
+        placement="top"
+        triggers="manual"
+        #t1="ngbTooltip"
+        (mouseover)="
+          timeOffTooltip(
+            t1,
+            'Chế độ nghỉ : Nghỉ có lương và nghỉ không lương&#13; Chú thích : Lý do xin nghỉ'
+          )
+        "
+        (mouseout)="timeOffTooltip(t1, '')"
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-question-circle"
+        viewBox="0 0 16 16"
+      >
         <path
-          d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+          d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+        />
+        <path
+          d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"
+        />
       </svg>
     </span>
   </h3>
-  <table class="table">
-    <thead>
-      <th>Họ và tên</th>
-      <th>Ngày bắt đầu</th>
-      <th>Ngày kết thúc</th>
-      <th>Chú thich</th>
-      <th>Trạng thái</th>
-      <th>chế độ nghỉ</th>
-      <th>Số ngày nghỉ</th>
-      <th>Số ngày nghỉ có lương</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let time of listTimeOff; index as i">
-        <td data-title="Họ và tên">{{ time.full_name }}</td>
-        <td data-title="Ngày bắt đầu">
-          {{ time.time_start | date: "dd/MM/yyyy" }}
+  <p-table
+    #dt
+    [responsive]="true"
+    responsiveLayout="stack"
+    [value]="listTimeOff"
+    [paginator]="true"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi"
+    sortMode="multiple"
+    [globalFilterFields]="['name']"
+  >
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th pSortableColumn="fullName">
+          Họ và tên<p-sortIcon field="fullName"></p-sortIcon>
+        </th>
+        <th pSortableColumn="time_start">
+          Bắt đầu <p-sortIcon field="time_start"></p-sortIcon>
+          <p-columnFilter
+            type="date"
+            field="time_start"
+            display="menu"
+          ></p-columnFilter>
+        </th>
+        <th pSortableColumn="time_end">
+          Kết thúc <p-sortIcon field="time_end"></p-sortIcon>
+          <p-columnFilter
+            type="date"
+            field="time_end"
+            display="menu"
+          ></p-columnFilter>
+        </th>
+        <th>Chú thich</th>
+        <th pSortableColumn="status">
+          Trạng thái <p-sortIcon field="status"></p-sortIcon>
+        </th>
+        <th pSortableColumn="mode_leave">
+          chế độ nghỉ <p-sortIcon field="mode_leave"></p-sortIcon>
+        </th>
+        <th pSortableColumn="number_day_leave">
+          Số ngày nghỉ <p-sortIcon field="number_day_leave"></p-sortIcon>
+        </th>
+        <th pSortableColumn="number_mode_leave">
+          Số ngày nghỉ có lương
+          <p-sortIcon field="number_mode_leave"></p-sortIcon>
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-timeoff let-columns="columns">
+      <tr>
+        <td>
+          <span class="p-column-title">Họ và tên</span>{{ timeoff.fullName }}
         </td>
-        <td data-title="Ngày kết thúc">
-          {{ time.time_end | date: "dd/MM/yyyy" }}
+        <td>
+          <span class="p-column-title"> Bắt đầu</span>
+          {{ timeoff.time_start | date: "dd/MM/yyyy" }}
         </td>
-        <td data-title="Chú thich">{{ time.note }}</td>
-        <td data-title="Trạng thái">
-          {{ time.status == 1 ? "Đã duyệt" : "Chưa phê duyệt" }}
+        <td>
+          <span class="p-column-title">Kết thúc</span>
+          {{ timeoff.time_end | date: "dd/MM/yyyy" }}
         </td>
-        <td data-title="chế độ nghỉ">
-          {{ time.mode_leave == 1 ? "Nghỉ có lương" : "Nghỉ không lương" }}
+        <td>
+          <span class="p-column-title">Chú thich</span>
+          {{ time?.note ? timeoff.note : "Không có ghi chú" }}
         </td>
-        <td data-title="Số ngày xin nghỉ">{{ time.number_day_leave }} ngày</td>
-        <td data-title="Số ngày nghỉ có lương">
-          {{ time.number_mode_leave }} ngày
+        <td [ngClass]="[timeoff.status == 1 ? 'text-success' : 'text-danger']">
+          <span class="p-column-title">Trạng thái</span>
+          {{ timeoff.status == 1 ? "Đã duyệt" : "Chưa phê duyệt" }}
+        </td>
+        <td
+          [ngClass]="[timeoff.mode_leave == 1 ? 'text-success' : 'text-danger']"
+        >
+          <span class="p-column-title">Chế độ </span>
+          {{ timeoff.mode_leave == 1 ? "Nghỉ có lương" : "Nghỉ không lương" }}
+        </td>
+        <td>
+          <span class="p-column-title">Tổng ngày nghỉ</span
+          >{{ timeoff.numberDayLeave }} ngày
+        </td>
+        <td>
+          <span class="p-column-title">Ngày nghỉ có lương</span>
+          {{ timeoff.numberModeLive }} ngày
         </td>
       </tr>
-    </tbody>
-  </table>
-  <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="3"
-    [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
-    (pageChange)="handlePaginate($event)"></ngb-pagination>
-  <div class="d-flex">
-    <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
-      <div class="spinner-grow text-success" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
-  </div>
+    </ng-template>
+  </p-table>
 </div>

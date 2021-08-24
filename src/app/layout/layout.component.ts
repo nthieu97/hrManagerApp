@@ -1,7 +1,9 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../model/user.model';
 import { AuthService } from '../service/auth.service';
+import { EmployeeService } from '../service/employee.service';
 
 @Component({
   selector: 'app-layout',
@@ -9,7 +11,11 @@ import { AuthService } from '../service/auth.service';
   styleUrls: ['./layout.component.css'],
 })
 export class LayoutComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private employeeService: EmployeeService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
   dropdown = false;
   check = false;
   dropdownSalaries = false;
@@ -19,10 +25,14 @@ export class LayoutComponent implements OnInit {
   toggleDropuser = false;
   isAdmin = false;
   isLeader = false;
-  user: User;
+  user;
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin();
     this.user = this.authService.getCurrentUser();
+    this.employeeService.getUserById(String(this.user.id)).subscribe((data) => {
+      this.user = data.data;
+      console.log(data.data);
+    });
     this.isLeader = this.authService.isLeader() || this.isAdmin;
   }
   toggleDropdown(): void {
