@@ -111,6 +111,7 @@ export class DashboardComponent implements OnInit {
       });
     }
     this.getListOTByUser();
+    this.getAllUserOff();
   }
   getListOTByUser() {
     this.otService.getListOTByUser().subscribe((data) => {
@@ -148,16 +149,17 @@ export class DashboardComponent implements OnInit {
       this.confirmList.splice(index, 1);
     });
   }
-  handleAccept(id: string, object: any) {
+  handleAccept(id: string) {
     this.loadAccept = true;
-    this.otService.confirmOT(id, object).subscribe(
+    this.otService.confirmOT(id).subscribe(
       (data) => {
+        console.log(data);
+
         this.loadAccept = false;
         this.toastService.show(data.message, {
           classname: 'bg-success text-light',
           delay: 3000,
         });
-        console.log(data);
       },
       (err: any) => {
         this.toastService.show(err.message, {
@@ -167,18 +169,21 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-  handleNotAccept(id: string) {}
+  handleNotAccept(id: string) {
+    this.loadAccept = true;
+    this.otService.notConfirmOT(id).subscribe((data) => {
+      console.log(data);
+    });
+  }
 
   getAllUserOff() {
     this.timeOffService.getAllTimeOff().subscribe((data) => {
       console.log(data.data);
 
       for (let i = 0; i < data.data.length; i++) {
-        console.log(data.data[i]);
         if (data.data[i].status === 1 && data.data[i].date === this.dateOff) {
           this.listUserOff.push(data.data[i]);
         }
-        console.log(this.listUserOff);
       }
     });
   }

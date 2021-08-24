@@ -130,5 +130,10 @@ export class UpdateOtComponent implements OnInit {
       console.log(data);
       // console.log(this.formOT2.value);
     });
+  this.formOT2.setValue({
+    listUsers2:'',
+    note:'',
+    time_tang_ca:''
+  })
   }
 }

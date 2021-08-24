@@ -19,6 +19,7 @@ export class PrizeFineMoneyComponent implements OnInit {
   listIDDelete = [];
   checkDelete = false;
   checks = false;
+
   list_prize_fine = [];
   keyword = '';
   loading = false;
@@ -34,6 +35,7 @@ export class PrizeFineMoneyComponent implements OnInit {
       this.checks = true;
       for (let i = 0; i < this.list_prize_fine.length; i++) {
         this.listID.push(this.list_prize_fine[i].id);
+
         console.log(this.listID);
       }
     } else {
@@ -297,7 +299,7 @@ export class PrizeFineMoneyComponent implements OnInit {
         }
       });
   }
-  destroyAllDelete() {
+  destroyAll() {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
@@ -335,5 +337,14 @@ export class PrizeFineMoneyComponent implements OnInit {
         } else if (result.dismiss === Swal.DismissReason.cancel) {
         }
       });
+  }
+  reloadPage(event) {
+    console.log('reload page');
+    this.search();
+    this.checks = false;
+  }
+  reloadPageTrash(event) {
+    this.getAllDeletePrize();
+    this.checkDelete = false;
   }
 }

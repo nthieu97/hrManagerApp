@@ -338,4 +338,12 @@ export class ListOtByTimeComponent implements OnInit {
         }
       });
   }
+  reloadPage(event){
+    console.log('reload page');
+   this.listOT
+  }
+  reloadPageTrash(event){
+   this.getAllDeleteOT()
+    
+  }
 }

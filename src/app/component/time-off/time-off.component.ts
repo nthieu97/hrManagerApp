@@ -58,7 +58,7 @@ export class TimeOffComponent implements OnInit {
   getAllTimeOff() {
     this.timeOffService.getAllByUser().subscribe((data) => {
       this.timeOff = data.data;
-      console.log(data);
+      console.log(this.timeOff);
     });
   }
   handleDelete(id: string, index): void {
@@ -216,5 +216,13 @@ export class TimeOffComponent implements OnInit {
           this.getAllDeleteTimeOff();
         }
       });
+  }
+  reloadPage(event){
+    console.log('reload page');
+   this.getAllTimeOff()
+  }
+  reloadPageTrash(event){
+   this.getAllDeleteTimeOff()
+    
   }
 }
