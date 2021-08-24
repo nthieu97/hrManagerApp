@@ -19,8 +19,8 @@
       <th>Action</th>
     </thead>
     <tbody>
-      <tr *ngFor="let salary of salaUserData">
-        <td data-title="#">{{ salary.id }}</td>
+      <tr *ngFor="let salary of salaUserData ; index as i">
+        <td data-title="#">{{ i + 1 }}</td>
         <td data-title="Full name">{{ salary.full_name }}</td>
         <td data-title="Total salary">
           {{
@@ -28,11 +28,9 @@
           }}
         </td>
         <td data-title="Total salary leave">
-          {{
-            salary.total_salary_leave
-              ? salary.total_salary_leave
-              : (0 | currency: "VND":"symbol":"1.0-0":"vi-VN")
-          }}
+          <!-- {{
+            salary.total_salary_leave ? salary.total_salary_leave | currency: "VND":"symbol":"1.0-0":"vi-VN")
+          }} -->
         </td>
         <td data-title="Salary minus tax">
           {{
