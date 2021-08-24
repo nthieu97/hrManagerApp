@@ -81,14 +81,6 @@
             <tbody>
               <tr *ngFor="let ot of listOT; index as i">
                 <td>
-                  <<<<<<< HEAD
-                  <input
-                    type="checkbox"
-                    [checked]="checks"
-                    [value]="ot.id"
-                    (change)="checkResult($event)"
-                  />
-                  =======
                   <input
                     *ngIf="ot.status == 0"
                     type="checkbox"
@@ -96,7 +88,6 @@
                     [value]="ot.id"
                     (change)="checkResult($event)"
                   />
-                  >>>>>>> origin/dongtb
                 </td>
                 <td data-title="#">{{ i + 1 }}</td>
                 <td data-title="Họ tên">{{ ot.full_name }}</td>
