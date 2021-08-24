@@ -28,7 +28,7 @@ export class LayoutComponent implements OnInit {
   toggleDropuser = false;
   isAdmin = false;
   isLeader = false;
-  user: User;
+  user;
   listNotify = [];
   countNotify = [];
   closeResult = '';
