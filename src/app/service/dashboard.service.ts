@@ -58,4 +58,14 @@ export class DashboardService {
   getTotalLeaveHaveGrossbyUser(): Observable<any> {
     return this.http.get(this.URL_API + 'total_leave_have_gross_by_user');
   }
+
+  listNotify(): Observable<any> {
+    return this.http.get(this.URL_API + 'list_notyfi');
+  }
+  detailNotify(id: string): Observable<any> {
+    return this.http.get(this.URL_API + 'detail_notyfi/' + id, {});
+  }
+  countNotify(): Observable<any> {
+    return this.http.get(this.URL_API + 'count_notyfi');
+  }
 }

@@ -15,6 +15,115 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+/* thông báo */
+
+.notify a:hover {
+  cursor: pointer;
+}
+
+.list_notify a:hover {
+  cursor: pointer;
+}
+
+.bell {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 15px;
+  right: 52px;
+  background-color: red;
+  color: #fff;
+  padding: 1px;
+  font-size: 9px;
+}
+
+.bg {
+  list-style: none;
+  margin-top: 8px;
+}
+
+.bg2 {
+  list-style: none;
+  margin-top: 8px;
+}
+
+li:first-child {
+  margin-top: 0px;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: #ffffff;
+  box-shadow: var(--box-shadow);
+}
+
+.modal-header .close {
+  margin: 0
+}
+
+.modal-header {
+  align-items: center
+}
+
+.title_notify {
+  font-size: 14px;
+}
+
+.note_notify {
+  font-size: 12px
+}
+
+.date_notify {
+  font-size: 10px;
+}
+.title_notify_detail,.note_notify_detail,.date_notify_detail{
+  font-size: 14px;
+}
+.item_notyfi {
+  padding: 10px 8px;
+}
+
+.item_bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon_readed,
+#icon_readed {
+  color: rgb(4, 133, 4);
+  font-size: 12px;
+}
+
+.icon_read,
+#icon_read {
+  color: rgb(30, 163, 252);
+  font-size: 12px;
+}
+
+.view_all {
+  padding-top: 8px
+}
+
+.view_all .view_all_target {
+  font-size: 12px;
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+  color: red;
+}
+
+.notify_bag {
+  overflow: scroll;
+  max-height: 300px;
+  width: 300px;
+  background-color: rgb(247, 245, 245);
+}
+
+
+/* hết thông báo */
 /* layout-grid */
 header {
   grid-area: header;
