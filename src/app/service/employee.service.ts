@@ -38,4 +38,7 @@ export class EmployeeService {
   updateEmployee(id: string, object: any) {
     return this.http.post(this.URL_API + '/update/' + id, object);
   }
+  getDetail(): Observable<any> {
+    return this.http.get(this.URL_API + '/my_info');
+  }
 }

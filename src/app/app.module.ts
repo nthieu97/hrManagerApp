@@ -52,6 +52,7 @@ import { ButtonModule } from 'primeng/button';
 import { PaginatorModule } from 'primeng/paginator';
 import { InputTextModule } from 'primeng/inputtext';
 import { FilterComponent } from './component/filter/filter.component';
+import { ErrorpageComponent } from './component/errorpage/errorpage.component';
 
 registerLocaleData(localeVi, 'vi-VN');
 FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
@@ -89,6 +90,7 @@ FullCalendarModule.registerPlugins([dayGridPlugin, interactionPlugin]);
     TrashPrizeFineComponent,
     AttendanceFormComponent,
     FilterComponent,
+    ErrorpageComponent,
   ],
   imports: [
     BrowserModule,

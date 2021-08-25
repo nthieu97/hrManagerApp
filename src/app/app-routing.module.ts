@@ -33,6 +33,7 @@ import { TrashTimeOffComponent } from './component/trash-time-off/trash-time-off
 import { TrashPrizeFineComponent } from './component/trash-prize-fine/trash-prize-fine.component';
 import { LoginGuard } from './guard/login.guard';
 import { AttendanceFormComponent } from './component/attendance-form/attendance-form.component';
+import { ErrorpageComponent } from './component/errorpage/errorpage.component';
 
 const routes: Routes = [
   {
@@ -52,15 +53,15 @@ const routes: Routes = [
       },
       { path: 'dashboard', component: DashboardComponent },
       {
-        path: 'employee/:id',
+        path: 'employee/detail/:id',
         component: EmployeeDetailComponent,
         canActivate: [AdminGuard],
       },
       { path: 'employee', component: EmployeesComponent },
-
+      { path: 'employee/detail', component: EmployeeDetailComponent },
       { path: 'attendance', component: AttendanceComponent },
-      {path:'attendance-form',component:AttendanceFormComponent},
-      {path:'attendance-edit/:id',component:AttendanceFormComponent},
+      { path: 'attendance-form', component: AttendanceFormComponent },
+      { path: 'attendance-edit/:id', component: AttendanceFormComponent },
       {
         path: 'attendanceAnalytics',
         component: AtendanceAnalyticsComponent,
@@ -174,6 +175,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
   { path: 'change-password', component: ChangePasswordComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: '**', component: ErrorpageComponent },
 ];
 
 @NgModule({

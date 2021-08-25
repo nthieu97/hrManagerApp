@@ -29,12 +29,20 @@ export class EmployeeDetailComponent implements OnInit {
   // @Input() public height = 200;
   // private cx: CanvasRenderingContext2D;
   ngOnInit(): void {
-    this.atr.params.subscribe((params) => {
-      const id = params.id;
-      this.employeeService.getUserById(id).subscribe((res) => {
-        this.userInfo = res.data;
-        // this.drawImage(this.userInfo.userinfo.avatar);
-      });
+    this.atr.params.subscribe((param) => {
+      console.log(param);
+
+      if (param.id) {
+        const id = param.id;
+        this.employeeService.getUserById(id).subscribe((res) => {
+          this.userInfo = res.data;
+        });
+      } else {
+        this.employeeService.getDetail().subscribe((data) => {
+          this.userInfo = data.data;
+          console.log(data);
+        });
+      }
     });
   }
   // drawImage(srcImg: string) {

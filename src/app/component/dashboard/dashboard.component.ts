@@ -93,9 +93,6 @@ export class DashboardComponent implements OnInit {
       this.dashboardService.getAllDepartment().subscribe((data) => {
         this.departments = data.data[0].so_luong_phong_ban;
       });
-      this.dashboardService.getTotalUserOff().subscribe((data) => {
-        this.totalUsersOff = data.data[0].nhan_vien_nghi_lam;
-      });
     } else {
       this.dashboardService.getTotalSalaryByUser().subscribe((data) => {
         this.totalSalary = data.data[0].total_net_salary;
@@ -111,7 +108,6 @@ export class DashboardComponent implements OnInit {
       });
     }
     this.getListOTByUser();
-    this.getAllUserOff();
   }
   getListOTByUser() {
     this.otService.getListOTByUser().subscribe((data) => {
@@ -173,18 +169,6 @@ export class DashboardComponent implements OnInit {
     this.loadAccept = true;
     this.otService.notConfirmOT(id).subscribe((data) => {
       console.log(data);
-    });
-  }
-
-  getAllUserOff() {
-    this.timeOffService.getAllTimeOff().subscribe((data) => {
-      console.log(data.data);
-
-      for (let i = 0; i < data.data.length; i++) {
-        if (data.data[i].status === 1 && data.data[i].date === this.dateOff) {
-          this.listUserOff.push(data.data[i]);
-        }
-      }
     });
   }
 }
