@@ -77,7 +77,6 @@ export class LayoutComponent implements OnInit {
   getAllNotify(): void {
     this.homeService.listNotify().subscribe((data) => {
       this.listNotify = data.data;
-      console.log(this.listNotify);
     });
   }
   getListNotify(contentList): void {
@@ -106,7 +105,6 @@ export class LayoutComponent implements OnInit {
 
   notifyDetail(contentDetail, id: string): void {
     this.homeService.detailNotify(id).subscribe((data) => {
-      console.log(data.data);
       this.getDetailNotify = data.data;
       this.totalNotify();
       this.getAllNotify();

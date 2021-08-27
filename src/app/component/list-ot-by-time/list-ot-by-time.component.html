@@ -27,9 +27,9 @@
       <div id="tab-panel-1" class="tab-panel">
         <div class="list-ot-by-time">
           <div class="header_ot">
-            <ng-template #tipContent let-greeting="greeting">{{
-              greeting
-            }}</ng-template>
+            <ng-template #tipContent let-greeting="greeting"
+              >{{ greeting }}
+            </ng-template>
             <h3 class="text-center">
               Danh Sách Tăng Ca Theo Giờ
               <svg
@@ -66,6 +66,7 @@
                   type="checkbox"
                   [value]="listID"
                   (change)="checkValue($event)"
+                  [checked]="checkAllList"
                 />
               </th>
               <th>#</th>
@@ -82,7 +83,6 @@
               <tr *ngFor="let ot of listOT; index as i">
                 <td>
                   <input
-                    *ngIf="ot.status == 0"
                     type="checkbox"
                     [checked]="checks"
                     [value]="ot.id"
@@ -96,12 +96,15 @@
                 <td data-title="Giờ ra">{{ ot.time_tang_ca }}</td>
                 <td data-title="Ghi chú">{{ ot.note }}</td>
                 <td data-title="Trạng thái" *ngIf="ot.status == 0">
-                  <span class="text-danger">Không tăng ca</span>
+                  <span class="text-warning">Chờ xác nhận</span>
                 </td>
                 <td data-title="Trạng thái" *ngIf="ot.status == 1">
                   <span class="text-success">Tăng ca</span>
                 </td>
-                <td data-title="Trạng thái" *ngIf="ot.status == 0">
+                <td data-title="Trạng thái" *ngIf="ot.status == 2">
+                  <span class="text-danger">Không tăng ca</span>
+                </td>
+                <td data-title="Trạng thái" *ngIf="ot.status == 2">
                   <button (click)="handleDelete(ot.id)" class="btn btn-danger">
                     <span title="Xóa" class="material-icons">
                       delete_forever
@@ -115,15 +118,13 @@
                     </span>
                   </button>
                 </td>
-              </tr>
-              <tr data-title="Hành động" *ngIf="listID.length > 0">
-                <button
-                  (click)="deleteAll()"
-                  class="btn btn-danger"
-                  style="max-width: 100px; margin-top: 10px"
-                >
-                  Xóa tất cả
-                </button>
+                <td data-title="Hành động" *ngIf="ot.status == 0">
+                  <button class="btn btn-warning">
+                    <span title="Chờ phê duyệt" class="material-icons">
+                      more_horiz
+                    </span>
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -140,23 +141,23 @@
             <p>Danh sách rỗng</p>
           </table>
           <!-- <ngb-pagination
-            class="d-flex justify-content-end"
-            [collectionSize]="collectionSize"
-            [(page)]="page"
-            [maxSize]="5"
-            [rotate]="true"
-            [ellipses]="false"
-            [boundaryLinks]="true"
-            [pageSize]="pageSize"
-            (pageChange)="handlePaginate($event)"
-          ></ngb-pagination> -->
+          class="d-flex justify-content-end"
+          [collectionSize]="collectionSize"
+          [(page)]="page"
+          [maxSize]="5"
+          [rotate]="true"
+          [ellipses]="false"
+          [boundaryLinks]="true"
+          [pageSize]="pageSize"
+          (pageChange)="handlePaginate($event)"
+        ></ngb-pagination> -->
           <!-- <div class="d-flex">
-            <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
-              <div class="spinner-grow text-success" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
+          <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
+            <div class="spinner-grow text-success" role="status">
+              <span class="sr-only">Loading...</span>
             </div>
-          </div> -->
+          </div>
+        </div> -->
         </div>
       </div>
       <div id="tab-panel-2" class="tab-panel">
@@ -170,6 +171,7 @@
                   type="checkbox"
                   [value]="listIDDelete"
                   (change)="checkValueDelete($event)"
+                  [checked]="checkAllDelete"
                 />
               </th>
               <th>#</th>
@@ -199,7 +201,10 @@
                   <span class="text-success">Đồng ý tăng ca</span>
                 </td>
                 <td *ngIf="ot.status == 0">
-                  <span class="text-danger">Không đồng ý </span>
+                  <span class="text-warning">Chờ xác nhận</span>
+                </td>
+                <td *ngIf="ot.status == 2">
+                  <span class="text-danger">Không tăng ca</span>
                 </td>
                 <td>
                   <button class="btn btn-danger" (click)="handleDestroy(ot.id)">

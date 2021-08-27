@@ -104,6 +104,9 @@
           <th pSortableColumn="status">
             Trạng thái <p-sortIcon field="status"></p-sortIcon>
           </th>
+          <th >
+            Hành động 
+          </th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-atendance let-colums="colums">
@@ -139,6 +142,13 @@
           >
             <span class="p-column-title">Trạng thấi</span>
             {{ atendance.status === 1 ? "Đi làm" : "nghỉ" }}
+          </td>
+          <td>
+            <a class="btn btn-primary" [routerLink]="['/','attendance-edit',atendance.userID]">
+              <span title="Chỉnh sửa" class="material-icons">
+                edit_note
+                </span>
+            </a>
           </td>
         </tr>
       </ng-template>

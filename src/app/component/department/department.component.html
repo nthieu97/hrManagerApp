@@ -29,14 +29,16 @@
               <a
                 class="btn btn-primary btn-bt"
                 [routerLink]="['/', 'department-edit', department.id]"
-                >Edit</a
+                ><span title="Chỉnh sửa" class="material-icons">
+                  edit_note
+                  </span></a
               >
-              <button
+              <!-- <button
                 class="btn btn-danger"
                 (click)="handleDelete(department.id, i)"
               >
                 Delete
-              </button>
+              </button> -->
             </div>
           </td>
         </tr>

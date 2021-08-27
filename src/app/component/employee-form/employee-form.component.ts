@@ -48,10 +48,8 @@ export class EmployeeFormComponent implements OnInit {
     this.newEmployeeForm = this.createForm();
     this.atr.params.subscribe((params) => {
       this.idEmployee = params.id;
-      console.log(this.idEmployee);
       if (this.idEmployee) {
         this.employeeService.getUserById(this.idEmployee).subscribe((data) => {
-          console.log(data);
           this.newEmployeeForm.setValue({
             full_name: data.data.userinfo.full_name,
             avatar: data.data.userinfo.avatar,
@@ -103,7 +101,6 @@ export class EmployeeFormComponent implements OnInit {
   }
   uploadImage(file: any): void {
     this.avatar = file.files[0];
-    console.log(this.avatar);
   }
   submitForm(): void {
     const formdata = new FormData();
@@ -112,7 +109,6 @@ export class EmployeeFormComponent implements OnInit {
     } else {
       formdata.append('avatar', this.avatar, this.avatar.name);
     }
-    console.log(this.newEmployeeForm);
     formdata.append('user_account', this.newEmployeeForm.value.user_account);
     formdata.append('full_name', this.newEmployeeForm.value.full_name);
     formdata.append('email', this.newEmployeeForm.value.email);
@@ -129,7 +125,6 @@ export class EmployeeFormComponent implements OnInit {
       this.employeeService
         .updateEmployee(this.idEmployee, formdata)
         .subscribe((data) => {
-          console.log(data);
           this.toastService.show('Update successfully !', {
             classname: 'bg-success text-light',
             delay: 3000,
@@ -144,12 +139,10 @@ export class EmployeeFormComponent implements OnInit {
       this.router.navigate(['/', 'employee']);
     } else {
       this.employeeService.createEmployee(formdata).subscribe((data) => {
-        console.log(data);
         this.toastService.show(data.message, {
           classname: 'bg-success text-light',
           delay: 3000,
         }),
-          // tslint:disable-next-line: no-unused-expression
           (err: any) => {
             this.toastService.show(err.message, {
               classname: 'bg-danger text-light',

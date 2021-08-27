@@ -122,9 +122,10 @@
             <a
               [routerLink]="['/', 'employee-edit', employee.id]"
               *ngIf="isAdmin"
-              class="btn btn-dark btn-block"
+              class="btn btn-primary btn-block"
               >Sửa</a
             >
+            <button (click)="deleteUser(employee.id)" class="btn btn-danger btn-block">Cho thôi việc</button>
           </div>
         </div>
       </div>

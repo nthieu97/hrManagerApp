@@ -117,38 +117,24 @@ export class PrizeFineFormComponent implements OnInit {
     }
     return body;
   }
-  changePrizeFine(event): void {
-    console.log(event.target);
-
-    // this.isPrize = !this.isPrize;
-  }
   onItemSelect(item: any): void {
     this.listItem.push(item.id);
-    console.log(this.listItem);
 
   }
   onDeSelect(item: any): void {
-    console.log(item, 'deselect');
     this.listItem = this.listItem.filter((data) => data !== item.id);
-    console.log(this.listItem);
   }
   onSelectAll(items: any): void {
     for (let i = 0; i < items.length; i++) {
       this.listItem.push(items[i].id);
-      console.log(items[i].id);
-
     }
-    console.log(this.listItem);
   }
   onDeSelectAll(items: any): void {
-    console.log(items);
     this.listItem = [];
-    console.log(this.listItem);
   }
   submitForm(): void {
     if (this.prizeFineId) {
       const body = this.checkPrizeFine();
-      console.log(body);
 
       this.prizrFineService.updatePrizeFine(this.prizeFineId, body).subscribe(
         (_) => {
@@ -167,7 +153,6 @@ export class PrizeFineFormComponent implements OnInit {
       );
     } else {
       const body = this.checkPrizeFine();
-      console.log(body);
 
       this.prizrFineService.createPrize(body).subscribe(
         (data) => {

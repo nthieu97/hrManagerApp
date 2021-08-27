@@ -4,6 +4,7 @@ import { AttendanceService } from 'src/app/service/attendance.service';
 import { EmployeeService } from 'src/app/service/employee.service';
 import { ToastsService } from 'src/app/service/toasts.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { HttpParams } from '@angular/common/http';
 @Component({
   selector: 'app-attendance-form',
   templateUrl: './attendance-form.component.html',
@@ -25,7 +26,9 @@ export class AttendanceFormComponent implements OnInit {
     this.atr.params.subscribe((params) => {
       this.idAtten = params.id;
       if (this.idAtten) {
-        this.attendanceService.getDetailOT(this.idAtten).subscribe((data) => {
+        this.attendanceService.getAttendanceDetailById(this.idAtten).subscribe((data) => {
+          console.log('data',data);
+          
           this.formAttendance.setValue({
             user_id: data.data.user_id,
             time_of_check_in: data.data.time_of_check_in,
@@ -39,10 +42,11 @@ export class AttendanceFormComponent implements OnInit {
     this.getAllUser()
   }
   getAllUser() {
-    this.listEmployeeService.getAllEmployee().subscribe((data) => {
-      console.log(data);
-      this.listItem = data.data
-
+    this.listEmployeeService.getAllUser().subscribe((data) => {
+      data.data.map((items) => {
+        this.listItem.push(items.userinfo)
+      })
+      console.log('listIte', this.listItem);
     })
   }
   createForm() {
@@ -58,21 +62,20 @@ export class AttendanceFormComponent implements OnInit {
   handleSubmit() {
     if (this.idAtten) {
       this.attendanceService.updateAttendance(this.idAtten, this.formAttendance.value).subscribe((data) => {
-        this.toastService.show(data.message, {
-          classname: 'bg-success text-light',
-          delay: 3000
-        }),
-          (err: any) => {
-            this.toastService.show(err.message, {
-              classname: 'bg-danger text-light',
-              delay: 3000
-            })
-          }
+        this.toastService.show(data.message,{
+          classname:'bg-success text-light',
+          delay:3000
+        })
+        this.router.navigate(['/', 'attendanceAnalytics'])
+      },(err:any)=> {
+        this.toastService.show(err.message,{
+          classname:'bg-danger text-light',
+          delay:3000
+        })
       })
       this.router.navigate(['/', 'attendanceAnalytics'])
     }
     this.attendanceService.createAttendance(this.formAttendance.value).subscribe((data) => {
-      console.log(data);
       this.toastService.show(data.message, {
         classname: 'bg-success text-light',
         delay: 3000

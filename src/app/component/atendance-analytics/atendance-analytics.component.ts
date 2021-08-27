@@ -52,7 +52,6 @@ export class AtendanceAnalyticsComponent implements OnInit {
 
       formData.append('file', file, file.name);
       this.attenService.importTable(formData).subscribe((data) => {
-        console.log(data);
       });
     }
   }
@@ -68,6 +67,8 @@ export class AtendanceAnalyticsComponent implements OnInit {
     param = param.set('year', String(event.year));
     this.attenService.getAllAttendance(param).subscribe((data) => {
       this.atendances = data;
+      
+      
     });
   }
 }

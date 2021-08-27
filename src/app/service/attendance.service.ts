@@ -52,9 +52,13 @@ export class AttendanceService {
     return this.http.get(this.URL_API + '/getdetail/' + id);
   }
   updateOT(object: any): Observable<any> {
-    return this.http.post(this.URL_API + '/update_OT/', { object });
+    return this.http.post(this.URL_API + '/update_OT/', object );
   }
   importTable(data: FormData): Observable<any> {
     return this.http.post(this.URL_API + '/import', data);
   }
+  updateStatus(id: string): Observable<any> {
+    return this.http.post(this.URL_API + '/update_status/' + id, {});
+  }
+  
 }

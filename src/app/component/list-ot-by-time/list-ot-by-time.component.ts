@@ -13,6 +13,8 @@ export class ListOtByTimeComponent implements OnInit {
   listIDDelete = [];
   checks = false;
   checkDelete = false;
+  checkAllList = false;
+  checkAllDelete=false;
   listOTDelete = [];
   constructor(
     private otService: OTServiceService,
@@ -26,7 +28,6 @@ export class ListOtByTimeComponent implements OnInit {
   listOtByLeader() {
     this.otService.listOTByLeader().subscribe((data) => {
       this.listOT = data.data;
-      console.log(this.listOT);
     });
   }
   handleDelete(id: string) {
@@ -50,7 +51,6 @@ export class ListOtByTimeComponent implements OnInit {
         if (result.isConfirmed) {
           this.otService.deleteOT(id).subscribe(
             (data) => {
-              console.log(data);
               this.toastService.show(data.message, {
                 classname: 'bg-success text-light',
                 delay: 3000,
@@ -78,9 +78,7 @@ export class ListOtByTimeComponent implements OnInit {
   }
   getAllDeleteOT() {
     this.otService.getAllDeleteOT().subscribe((data) => {
-      console.log(data);
       this.listOTDelete = data.data;
-      console.log(this.listOTDelete);
     });
   }
   handleDestroy(id: string) {
@@ -145,8 +143,6 @@ export class ListOtByTimeComponent implements OnInit {
         if (result.isConfirmed) {
           this.otService.restorseOT(id, object).subscribe(
             (data) => {
-              console.log(data);
-
               this.toastService.show(data.message, {
                 classname: 'bg-success text-light',
                 delay: 3000,
@@ -165,59 +161,47 @@ export class ListOtByTimeComponent implements OnInit {
       });
   }
   checkValue(e) {
+    this.checkAllList = !this.checkAllList
     if (e.target.checked == true) {
       this.checks = true;
       // tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < this.listOT.length; i++) {
         this.listID.push(this.listOT[i].id);
-        console.log(this.listID);
       }
     } else {
       this.checks = false;
       this.listID = [];
-      console.log(this.listID);
     }
   }
   checkResult(e) {
     if (e.target.checked === true) {
-      // tslint:disable-next-line: radix
       this.listID.push(parseInt(e.target.value));
-      console.log(this.listID);
     } else {
-      // tslint:disable-next-line: radix
       const x = parseInt(e.target.value);
       const arr = this.listID.filter((data) => data !== x);
-      console.log('kp', arr);
-
       this.listID = arr;
-      console.log(this.listID);
     }
   }
   checkValueDelete(e) {
+    this.checkAllDelete =!this.checkAllDelete
     if (e.target.checked == true) {
       this.checkDelete = true;
       // tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < this.listOTDelete.length; i++) {
         this.listIDDelete.push(this.listOTDelete[i].id);
-        console.log(this.listIDDelete);
       }
     } else {
       this.checkDelete = false;
       this.listIDDelete = [];
-      console.log(this.listIDDelete);
     }
   }
   checkResultDelete(event) {
     if (event.target.checked === true) {
       this.listIDDelete.push(parseInt(event.target.value));
-      console.log(this.listIDDelete);
     } else {
       const x = parseInt(event.target.value);
       const arr = this.listIDDelete.filter((data) => data !== x);
-      console.log('kp', arr);
-
       this.listIDDelete = arr;
-      console.log(this.listIDDelete);
     }
   }
 
@@ -246,7 +230,10 @@ export class ListOtByTimeComponent implements OnInit {
                 classname: 'bg-success text-light',
                 delay: 3000,
               }),
-                this.getAllDeleteOT();
+              this.getAllDeleteOT()
+               this.checkAllDelete=false;
+               this.checkDelete=false;
+               this.listIDDelete=[]
             },
             (err: any) => {
               this.toastService.show(err.message, {
@@ -285,6 +272,10 @@ export class ListOtByTimeComponent implements OnInit {
                 classname: 'bg-success text-light',
                 delay: 3000,
               });
+              this.getAllDeleteOT()
+              this.listIDDelete=[];
+              this.checkAllDelete = false;
+              this.checkDelete = false
             },
             (err: any) => {
               this.toastService.show(err.message, {
@@ -324,6 +315,10 @@ export class ListOtByTimeComponent implements OnInit {
                 classname: 'bg-success text-light',
                 delay: 3000,
               });
+              this.listOtByLeader();
+              this.checks = false;
+              this.checkAllList = false;
+              this.listID = []
             },
             (err: any) => {
               this.toastService.show(err.message, {
@@ -339,7 +334,6 @@ export class ListOtByTimeComponent implements OnInit {
       });
   }
   reloadPage(event){
-    console.log('reload page');
    this.listOT
   }
   reloadPageTrash(event){

@@ -55,8 +55,7 @@ input[type="radio"]:checked+.tab-control {
   background-color: #ffffff;
   border-radius: 1rem;
   padding: 30px 20px;
-  text-align: center;
-  min-height: 36em;
+
 }
 th {
   color: var(--primary-color);

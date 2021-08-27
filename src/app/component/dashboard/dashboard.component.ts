@@ -123,8 +123,6 @@ export class DashboardComponent implements OnInit {
         });
       });
       data.data.total_di_lam.forEach((dilam, index) => {
-        console.log(dilam, index);
-
         if (dilam === '0') {
           this.events[index].backgroundColor = 'red';
         } else if (dilam === '1') {
@@ -200,5 +198,15 @@ export class DashboardComponent implements OnInit {
   handleNotAccept(id: string): void {
     this.loadAccept = true;
     this.otService.notConfirmOT(id).subscribe((data) => {});
+  }
+
+  getAllUserOff() {
+    this.timeOffService.getAllTimeOff().subscribe((data) => {
+      for (let i = 0; i < data.data.length; i++) {
+        if (data.data[i].status === 1 && data.data[i].date === this.dateOff) {
+          this.listUserOff.push(data.data[i]);
+        }
+      }
+    });
   }
 }
