@@ -48,15 +48,19 @@ a.task-list__watch {
 /* dashboard-sumary */
 .sumary__item.people {
   background-color: #a10e9e;
+  height: 80%;
 }
 .sumary__item.group_work {
   background-color: #7469ef;
+  height: 80%;
 }
 .sumary__item.group_add {
   background-color: #1131ba;
+  height: 80%;
 }
 .sumary__item.group_off {
   background-color: #6b8750;
+  height: 80%;
 }
 .sumary__item {
   display: flex;

@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
   loadAccept = false;
   totalUsers: number;
   totalUserWorker: number;
-  totalUsersOff: number;
+  totalUsersOT: number;
   departments: number;
   acceptOTList = [];
   isLeader: boolean;
@@ -78,6 +78,9 @@ export class DashboardComponent implements OnInit {
           return { name: month.name, series: tungThang };
         });
         this.multi = luong;
+      });
+      this.dashboardService.getOTYesterday().subscribe((data) => {
+        this.totalUsersOT = data.data.tongtangca;
       });
       this.dashboardService.getTotalUserByDepartment().subscribe((data) => {
         const department = data.data;

@@ -71,4 +71,7 @@ export class DashboardService {
   showCalendar(): Observable<any> {
     return this.http.get(this.URL_API + 'show_calendar');
   }
+  getOTYesterday(): Observable<any> {
+    return this.http.get(this.URL_API + 'total_user_ot_yesterday');
+  }
 }
