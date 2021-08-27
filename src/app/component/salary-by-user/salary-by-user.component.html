@@ -30,8 +30,8 @@
       <th>Action</th>
     </thead>
     <tbody>
-      <tr *ngFor="let salary of salaUserData">
-        <td data-title="#">{{ salary.id }}</td>
+      <tr *ngFor="let salary of salaUserData,index as i">
+        <td data-title="#">{{ i + 1 }}</td>
         <td data-title="Full name">{{ salary.full_name }}</td>
         <td data-title="Total salary">
           {{

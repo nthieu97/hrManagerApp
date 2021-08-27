@@ -24,7 +24,9 @@ export class TimeOffAddComponent implements OnInit {
   totalDay: number;
   totalDayOff: number;
   today = new Date();
-
+  checkTimeStart=[];
+  checkTimeEnd=[];
+  timeOff=[]
   constructor(
     private timeoffservice: TimeOffService,
     private router: Router,
@@ -42,6 +44,7 @@ export class TimeOffAddComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.today.setDate(this.today.getDate() + 1);
     this.TimeOffForm = this.createForm();
     this.atr.params.subscribe((params) => {
@@ -62,22 +65,16 @@ export class TimeOffAddComponent implements OnInit {
     });
 
     this.getTotalDay();
+    this.getAllTimeOff()
   }
-  disabledNumberDay(event) {
-    const numberDay: any = document.getElementById('numberDay');
-    if (event.target.checked) {
-      numberDay.removeAttribute('disabled');
-    } else {
-      numberDay.setAttribute('disabled', '');
-    }
-  }
+
   createForm(): FormGroup {
     return new FormGroup({
       time_start: new FormControl('', [Validators.required]),
       time_end: new FormControl('', [Validators.required]),
       note: new FormControl('', [Validators.required]),
-      mode_leave: new FormControl('', [Validators.required]),
-      number_day: new FormControl('', [Validators.required]),
+      mode_leave: new FormControl(''),
+      number_day: new FormControl('', [Validators.max(this.totalDay - this.totalDayOff), Validators.min(0)]),
     });
   }
 
@@ -86,7 +83,35 @@ export class TimeOffAddComponent implements OnInit {
   } {
     return this.TimeOffForm.controls;
   }
+  getAllTimeOff() {
+    this.timeoffservice.getAllByUser().subscribe((data) => {
+      this.timeOff = data.data
+      for (let i = 0; i < this.timeOff.length; i++) {
+        this.checkTimeStart.push(this.timeOff[i].time_start)
+        this.checkTimeEnd.push(this.timeOff[i].time_end)
+      }
+    });
+  }
+  equarDateStart(event) {
+    this.checkTimeStart.map((item) => {
+      if (item == event.target.value) {
+        document.querySelector('.error').innerHTML = "Bạn đã chọn trùng ngày, vui lòng nhập lại"
+      }
+    })
+  }
+  equarDateEnd(event) {
+    this.checkTimeEnd.map((item) => {
+      if (item == event.target.value) {
+        document.querySelector('.error2').innerHTML = "Bạn đã chọn trùng ngày, vui lòng nhập lại"
+      }
+    })
+  }
   submitForm(): void {
+    if (this.TimeOffForm.value.number_day > 0) {
+      this.TimeOffForm.value.mode_leave = true
+    } else {
+      this.TimeOffForm.value.mode_leave = false
+    }
     if (this.idTimeOff) {
       this.timeoffservice
         .updateTimeOff(this.idTimeOff, this.TimeOffForm.value)

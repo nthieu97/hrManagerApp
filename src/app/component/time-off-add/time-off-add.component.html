@@ -34,6 +34,9 @@
     >
       <div *ngIf="f.time_start.errors?.required">Ngày bắt đầu không để trống</div>
     </div>
+    <div>
+      <p class="error"></p>
+    </div>
 
     <div class="form-group">
       <label for="">Ngày kết thúc </label>
@@ -45,7 +48,7 @@
         type="date"
         formControlName="time_end"
         id=""
-        min="{{ today | date: 'yyyy-MM-dd' }}"
+        min="{{ TimeOffForm.value.time_start | date: 'yyyy-MM-dd' }}"
       />
     </div>
     <div
@@ -53,6 +56,9 @@
       class="alert alert-danger"
     >
       <div *ngIf="f.time_end.errors?.required">Ngày kết thúc không để trống</div>
+    </div>
+    <div>
+      <p class="error2"></p>
     </div>
     <div class="form-group">
       <label for="">Lý do nghỉ phép</label>
@@ -70,31 +76,21 @@
     >
       <div *ngIf="f.note.errors?.required">Lý do nghỉ phép không để trống</div>
     </div>
-    <div class="form-group" *ngIf="totalDay - totalDayOff !== 0">
-      <label for="">Nghỉ có lương</label>
-      <input
-        class="ml-2"
-        type="checkbox"
-        formControlName="mode_leave"
-        id=""
-        (change)="showPaidLeave()"
-        (change)="disabledNumberDay($event)"
-      />
-    </div>
     <div class="form-group">
       <label for=""
         >Số ngày nghỉ có lương (Còn
         {{ totalDay - totalDayOff }} ngày)</label
       >
       <input
-        disabled
         class="form-control"
         type="number"
         formControlName="number_day"
         id="numberDay"
       />
     </div>
-
-    <button class="btn btn-primary">{{ idTimeOff ? "Cập nhật" : "Thêm" }}</button>
+    <div *ngIf="TimeOffForm.value.number_day > (totalDay - totalDayOff)" class="alert alert-danger">
+      <div>Bạn đã chọn vượt quá số ngày nghỉ có lương còn lại, vui lòng chọn lại !</div>
+  </div>
+    <button [disabled]="TimeOffForm.invalid" class="btn btn-primary">{{ idTimeOff ? "Cập nhật" : "Thêm" }}</button>
   </form>
 </div>

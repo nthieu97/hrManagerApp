@@ -25,12 +25,8 @@ export class ForgotPasswordComponent implements OnInit {
   return this.ForgotPass.controls
   }
   submitForm(event) {
-   console.log(event);
-   
     this.forgotService.ForgotPassword(this.ForgotPass.value).subscribe((data) => {
-      console.log(this.ForgotPass.value);
       this.email = data
-      console.log(this.email);
     })
   }
 }

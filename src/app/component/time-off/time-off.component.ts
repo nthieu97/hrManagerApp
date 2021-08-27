@@ -18,6 +18,7 @@ export class TimeOffComponent implements OnInit {
   listTimeOffDelete = [];
   timeOff;
   checks = false;
+  checkAllDeletet = false
   ngOnInit(): void {
     this.getAllTimeOff();
     this.getAllDeleteTimeOff();
@@ -25,15 +26,12 @@ export class TimeOffComponent implements OnInit {
   checkValue(e) {
     if (e.target.checked == true) {
       this.checks = true;
-      console.log(e.target.value);
       for (let i = 0; i < this.listTimeOffDelete.length; i++) {
         this.listID.push(this.listTimeOffDelete[i].id);
-        console.log(this.listID);
       }
     } else {
       this.checks = false;
       this.listID = [];
-      console.log(this.listID);
     }
   }
   timeOffTooltip(tooltip, greeting: string) {
@@ -46,19 +44,16 @@ export class TimeOffComponent implements OnInit {
   checkResult(event) {
     if (event.target.checked == true) {
       this.listID.push(parseInt(event.target.value));
-      console.log(this.listID);
     } else {
       const x = parseInt(event.target.value);
       const arr = this.listID.filter((data) => data !== x);
-      console.log('kp', arr);
       this.listID = arr;
-      console.log(this.listID);
     }
   }
   getAllTimeOff() {
     this.timeOffService.getAllByUser().subscribe((data) => {
       this.timeOff = data.data;
-      console.log(this.timeOff);
+
     });
   }
   handleDelete(id: string, index): void {
@@ -103,7 +98,7 @@ export class TimeOffComponent implements OnInit {
   getAllDeleteTimeOff() {
     this.timeOffService.getAllDelete().subscribe((data) => {
       this.listTimeOffDelete = data.data;
-      console.log(this.listTimeOffDelete);
+
     });
   }
   handleDestroy(id: string) {
@@ -127,7 +122,7 @@ export class TimeOffComponent implements OnInit {
       .then((result) => {
         if (result.isConfirmed) {
           this.timeOffService.destroyTimeOff(id).subscribe((data) => {
-            console.log(data);
+
             this.toastService.show(data.message, {
               classname: 'bg-success text-light',
               delay: 3000,
@@ -166,7 +161,7 @@ export class TimeOffComponent implements OnInit {
       .then((result) => {
         if (result.isConfirmed) {
           this.timeOffService.restoreTimeOff(id, object).subscribe((data) => {
-            console.log(data);
+ 
           });
           this.getAllDeleteTimeOff();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -197,20 +192,22 @@ export class TimeOffComponent implements OnInit {
         if (result.isConfirmed) {
           this.timeOffService
             .destroyAllTimeOff(this.listID)
-            .subscribe((data) => {
-              console.log(data);
-
-              this.toastService.show(data.message, {
-                classname: 'bg-success text-light',
-                delay: 3000,
-              }),
-                (err: any) => {
-                  this.toastService.show(err.message, {
-                    classname: 'bg-danger text-light',
-                    delay: 3000,
-                  });
-                };
-            });
+            .subscribe((data)=>{
+              this.toastService.show(data.message,{
+                classname:'bg-success text-light',
+                delay:3000
+              })
+              this.checks = false;
+              this.checkAllDeletet = false;
+              this.listTimeOffDelete = []
+            },
+            (err:any)=> {
+             this.toastService.show(err.message,{
+               classname:'bg-danger text-light',
+               delay:3000
+             })
+            }
+             );
           this.getAllDeleteTimeOff();
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           this.getAllDeleteTimeOff();
@@ -218,7 +215,7 @@ export class TimeOffComponent implements OnInit {
       });
   }
   reloadPage(event){
-    console.log('reload page');
+
    this.getAllTimeOff()
   }
   reloadPageTrash(event){

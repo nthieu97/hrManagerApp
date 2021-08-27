@@ -19,64 +19,60 @@ export class PrizeFineMoneyComponent implements OnInit {
   listIDDelete = [];
   checkDelete = false;
   checks = false;
-
+  checkAllList=false;
+  checkAllDelete=false;
   list_prize_fine = [];
   keyword = '';
   loading = false;
 
   ngOnInit(): void {
-    console.log(this.listID);
 
     this.search();
     this.getAllDeletePrize();
   }
   checkValue(e) {
+    this.checkAllList=!this.checkAllList
     if (e.target.checked == true) {
       this.checks = true;
       for (let i = 0; i < this.list_prize_fine.length; i++) {
         this.listID.push(this.list_prize_fine[i].id);
-
-        console.log(this.listID);
       }
     } else {
       this.checks = false;
       this.listID = [];
-      console.log(this.listID);
+ 
     }
+    
   }
   checkResult(event) {
     if (event.target.checked == true) {
-      this.listID.push(parseInt(event.target.value));
-      console.log(this.listID);
+      this.listID.push(Number(event.target.value));
     } else {
-      const x = parseInt(event.target.value);
+      const x = Number(event.target.value);
       const arr = this.listID.filter((data) => data !== x);
-      console.log('kp', arr);
-
       this.listID = arr;
-      console.log(this.listID);
     }
   }
   checkValueDelete(e) {
+    this.checkAllDelete =! this.checkAllDelete
     if (e.target.checked == true) {
       this.checkDelete = true;
       for (let i = 0; i < this.listAllDeletePrize.length; i++) {
         this.listIDDelete.push(this.listAllDeletePrize[i].id);
-        console.log(this.listIDDelete);
       }
     } else {
       this.checkDelete = false;
       this.listIDDelete = [];
     }
+    
   }
   checkResultDelete(e) {
     if (e.target.checked == true) {
-      this.listIDDelete.push(parseInt(e.target.value));
+      this.listIDDelete.push(Number(e.target.value));
     } else {
-      const x = parseInt(e.target.value);
+      const x = Number(e.target.value);
       const arr = this.listIDDelete.filter((data) => data !== x);
       this.listIDDelete = arr;
-      console.log(this.listIDDelete);
     }
   }
   search(): void {
@@ -136,7 +132,7 @@ export class PrizeFineMoneyComponent implements OnInit {
   }
   getAllDeletePrize() {
     this.prizeFineMoneyService.getAllDelete().subscribe((data) => {
-      console.log(data);
+
       this.listAllDeletePrize = data.data;
     });
   }
@@ -162,7 +158,6 @@ export class PrizeFineMoneyComponent implements OnInit {
         if (result.isConfirmed) {
           this.prizeFineMoneyService.destroyPrize(id).subscribe(
             (data) => {
-              console.log(data);
               this.toastService.show(data.message, {
                 classname: 'bg-success text-light',
                 delay: 3000,
@@ -202,7 +197,7 @@ export class PrizeFineMoneyComponent implements OnInit {
         if (result.isConfirmed) {
           this.prizeFineMoneyService.restorePrize(id, object).subscribe(
             (data) => {
-              console.log(data);
+             
               this.toastService.show(data.message, {
                 classname: 'bg-success text-light',
                 delay: 3000,
@@ -246,6 +241,9 @@ export class PrizeFineMoneyComponent implements OnInit {
                 classname: 'bg-success text-light',
                 delay: 3000,
               });
+              this.listID=[];
+              this.checkAllList = false;
+              this.checks=false
             },
             (err: any) => {
               this.toastService.show(err.message, {
@@ -286,6 +284,9 @@ export class PrizeFineMoneyComponent implements OnInit {
                 classname: 'bg-success text-light',
                 delay: 3000,
               });
+              this.checkAllDelete = false;
+              this.checkDelete=false;
+              this.listIDDelete=[]
             },
             (err: any) => {
               this.toastService.show(err.message, {
@@ -325,6 +326,9 @@ export class PrizeFineMoneyComponent implements OnInit {
                 classname: 'bg-success text-light',
                 delay: 3000,
               });
+              this.checkAllDelete = false;
+              this.checkDelete=false;
+              this.listIDDelete=[]
             },
             (err: any) => {
               this.toastService.show(err.message, {
@@ -334,17 +338,16 @@ export class PrizeFineMoneyComponent implements OnInit {
             }
           );
           this.getAllDeletePrize();
+         
         } else if (result.dismiss === Swal.DismissReason.cancel) {
         }
       });
   }
   reloadPage(event) {
-    console.log('reload page');
+   
     this.search();
-    this.checks = false;
   }
   reloadPageTrash(event) {
     this.getAllDeletePrize();
-    this.checkDelete = false;
   }
 }

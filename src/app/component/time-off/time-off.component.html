@@ -88,7 +88,7 @@
           <table *ngIf="listTimeOffDelete.length > 0" class="table">
             <thead>
               <th>
-                <input type="checkbox" [value]="listID" (change)="checkValue($event)" />
+                <input type="checkbox" [value]="listID" (change)="checkValue($event)" [checked]="checkAllDelete"/>
               </th>
               <th>#</th>
               <th>Họ tên</th>

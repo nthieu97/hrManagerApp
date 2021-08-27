@@ -38,7 +38,7 @@
                   type="checkbox"
                   [value]="listID"
                   (change)="checkValue($event)"
-                  
+                  [checked]="checkAllList"
                 />
               </th>
               <th>#</th>
@@ -111,6 +111,7 @@
                   type="checkbox"
                   [value]="listIDDelete"
                   (change)="checkValueDelete($event)"
+                  [checked]="checkAllDelete"
                 />
               </th>
               <th>#</th>

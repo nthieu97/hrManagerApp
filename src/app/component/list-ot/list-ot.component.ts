@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AttendanceService } from 'src/app/service/attendance.service';
 import { OTServiceService } from 'src/app/service/otservice.service';
 import { ToastsService } from 'src/app/service/toasts.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-list-ot',
   templateUrl: './list-ot.component.html',
@@ -28,6 +28,7 @@ export class ListOtComponent implements OnInit {
       this.collectionSize = data.meta.total;
       this.pageSize = data.meta.perPage;
     });
+    this.getAllListOT()
   }
   handlePaginate(event): void {
     this.loading = true;
@@ -36,25 +37,53 @@ export class ListOtComponent implements OnInit {
       this.loading = false;
     });
   }
-  handleDelete(id: string): void {
-    const conf = confirm('you definitely want to delete');
-    if (conf) {
-      this.otService.deleteOT(id).subscribe(
-        (data) => {
-          this.toastService.show(data.message, {
+  getAllListOT() {
+    this.attenService.getListOT().subscribe((data) => {
+      this.listOT = data.data;
+      this.page = data.meta.currentPage;
+      this.collectionSize = data.meta.total;
+      this.pageSize = data.meta.perPage;
+    });
+  }
+  handleChangeStatus(id: string) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    swalWithBootstrapButtons.fire({
+      title: 'Bạn chắc chắn',
+      text: "Cập nhật trạng thái",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Có',
+      cancelButtonText: 'Không',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.attenService.updateStatus(id).subscribe((data) => {
+          this.toastService.show('Cập nhật trạng thái thành công', {
             classname: 'bg-success text-light',
-            delay: 3000,
+            delay: 3000
           }),
-            console.log(data);
+          this.getAllListOT()
         },
-        (err: any) => {
-          this.toastService.show(err.message, {
-            classname: 'bg-danger text-light',
-            delay: 3000,
-          });
-        }
-      );
-    }
+        (err:any)=> {
+          this.toastService.show('Cập nhật trạng thái không thành công',{
+             classname: 'bg-danger text-light',
+            delay: 3000
+          })
+           this.getAllListOT()
+        })
+
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+
+      }
+
+    })
+
   }
   listOtTooltip(tooltip, greeting: string) {
     if (tooltip.isOpen()) {

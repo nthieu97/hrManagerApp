@@ -62,22 +62,25 @@ export class UpdateOtComponent implements OnInit {
   get f(): any {
     return this.formOT.controls;
   }
+  get f2(): any {
+    return this.formOT2.controls;
+  }
 
   onItemSelect(item: any): void {
     this.listItem.push(item.id);
   }
   onDeSelect(item: any): void {
-    console.log(item, 'deselect');
     this.listItem = this.listItem.filter((data) => data !== item.id);
   }
   onSelectAll(items: any): void {
-    // tslint:disable-next-line: prefer-for-of
-    for (let i = 0; i < items.length; i++) {
-      this.listItem.push(items[i]);
-    }
+    const arr = []
+
+    items.forEach((item) => {
+      arr.push(item.id)
+    })
+    this.listItem = arr
   }
   onDeSelectAll(items: any): void {
-    console.log(items);
     this.listItem = [];
   }
   // select 2
@@ -86,16 +89,17 @@ export class UpdateOtComponent implements OnInit {
   }
 
   onDeSelect2(item: any): void {
-    console.log(item, 'deselect');
     this.listID = this.listID.filter((data) => data !== item.id);
   }
   onSelectAll2(items: any): void {
-    for (let i = 0; i < items.length; i++) {
-      this.listID.push(items[i]);
-    }
+    const arr = []
+
+    items.forEach((item) => {
+      arr.push(item.id)
+    })
+    this.listID = arr
   }
   onDeSelectAll2(items: any): void {
-    console.log(items);
     this.listID = [];
   }
   handleSubmit() {

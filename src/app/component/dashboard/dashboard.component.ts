@@ -153,8 +153,6 @@ export class DashboardComponent implements OnInit {
     this.loadAccept = true;
     this.otService.confirmOT(id).subscribe(
       (data) => {
-        console.log(data);
-
         this.loadAccept = false;
         this.toastService.show(data.message, {
           classname: 'bg-success text-light',
@@ -172,14 +170,11 @@ export class DashboardComponent implements OnInit {
   handleNotAccept(id: string) {
     this.loadAccept = true;
     this.otService.notConfirmOT(id).subscribe((data) => {
-      console.log(data);
     });
   }
 
   getAllUserOff() {
     this.timeOffService.getAllTimeOff().subscribe((data) => {
-      console.log(data.data);
-
       for (let i = 0; i < data.data.length; i++) {
         if (data.data[i].status === 1 && data.data[i].date === this.dateOff) {
           this.listUserOff.push(data.data[i]);

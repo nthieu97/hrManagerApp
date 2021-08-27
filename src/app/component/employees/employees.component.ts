@@ -10,7 +10,8 @@ import { AuthService } from 'src/app/service/auth.service';
 import { DepartmentService } from 'src/app/service/department.service';
 import { EmployeeService } from 'src/app/service/employee.service';
 import { PositionService } from 'src/app/service/position.service';
-
+import { ToastsService } from 'src/app/service/toasts.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
@@ -21,7 +22,8 @@ export class EmployeesComponent implements OnInit {
     private employeeService: EmployeeService,
     private authService: AuthService,
     private departmentService: DepartmentService,
-    private positionService: PositionService
+    private positionService: PositionService,
+    private toastService:ToastsService
   ) {}
   noUser;
   loadFilter = false;
@@ -52,6 +54,9 @@ export class EmployeesComponent implements OnInit {
       .subscribe((res: ResponeAllPosition) => {
         this.positions = res.data;
       });
+    this.getAllEmployees()
+  }
+  getAllEmployees(){
     this.employeeService
       .getAllEmployee(this.userParams)
       .subscribe((data: UserResponse) => {
@@ -151,5 +156,47 @@ export class EmployeesComponent implements OnInit {
     this.loadFilter = true;
     this.userParams = new HttpParams();
     this.updateUserList();
+  }
+ 
+  deleteUser(id) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger',
+      },
+      buttonsStyling: false,
+    });
+    swalWithBootstrapButtons
+      .fire({
+        title: 'Bạn chắc chắn chứ ?',
+        text: 'Đồng ý nhân viên thôi việc ?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Có',
+        cancelButtonText: 'Không',
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.employeeService.deleteEmployee(id).subscribe(
+            (data) => {
+              this.toastService.show(data.message, {
+                classname: 'bg-success text-light',
+                delay: 3000,
+              });
+              this.getAllEmployees()
+            },
+            (err: any) => {
+              this.toastService.show(err.message, {
+                classname: 'bg-danger text-light',
+                delay: 3000,
+              });
+            }
+          );
+          this.getAllEmployees();
+         
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+        }
+      });
   }
 }
