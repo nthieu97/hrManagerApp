@@ -48,6 +48,7 @@
     currentPageReportTemplate="Hiển thị từ {first} đến {last} của {totalRecords} bản ghi"
     sortMode="multiple"
     [globalFilterFields]="['name']"
+    [rowsPerPageOptions]="[10, 25, 50]"
   >
     <ng-template pTemplate="header" let-columns>
       <tr>

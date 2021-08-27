@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CalendarOptions } from '@fullcalendar/angular';
 import { map } from 'rxjs/operators';
 import {
   ConfirmListResponse,
@@ -28,7 +29,7 @@ export class DashboardComponent implements OnInit {
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   };
-
+  events: { date: string; display: string; backgroundColor: string }[] = [];
   dataUserByDepartment = [];
   isAdmin: boolean;
   confirmList: ConfirmResponse[] = [];
@@ -43,7 +44,11 @@ export class DashboardComponent implements OnInit {
   isLeader: boolean;
   dateOff = new Date();
   listUserOff = [];
-
+  calendarOptions: CalendarOptions = {
+    initialView: 'dayGridMonth',
+    headerToolbar: false,
+    weekends: true,
+  };
   totalDayWorker: number;
   totalDayOff: number;
   totalSalary: number;
@@ -107,9 +112,38 @@ export class DashboardComponent implements OnInit {
         this.totalDayOff = data.data[0].nhan_vien_nghi_lam;
       });
     }
+    this.dashboardService.showCalendar().subscribe((data) => {
+      console.log(data.data.ngay);
+
+      data.data.ngay.forEach((ngay) => {
+        this.events.push({
+          date: ngay,
+          display: 'background',
+          backgroundColor: '',
+        });
+      });
+      data.data.total_di_lam.forEach((dilam, index) => {
+        console.log(dilam, index);
+
+        if (dilam === '0') {
+          this.events[index].backgroundColor = 'red';
+        } else if (dilam === '1') {
+          this.events[index].backgroundColor = 'green';
+        } else {
+          this.events[index].backgroundColor = 'transparent';
+        }
+      });
+
+      this.calendarOptions = {
+        initialView: 'dayGridMonth',
+        headerToolbar: false,
+        weekends: true,
+        events: this.events,
+      };
+    });
     this.getListOTByUser();
   }
-  getListOTByUser() {
+  getListOTByUser(): void {
     this.otService.getListOTByUser().subscribe((data) => {
       this.acceptOTList = data.data;
     });
@@ -145,12 +179,10 @@ export class DashboardComponent implements OnInit {
       this.confirmList.splice(index, 1);
     });
   }
-  handleAccept(id: string) {
+  handleAccept(id: string): void {
     this.loadAccept = true;
     this.otService.confirmOT(id).subscribe(
       (data) => {
-        console.log(data);
-
         this.loadAccept = false;
         this.toastService.show(data.message, {
           classname: 'bg-success text-light',
@@ -165,10 +197,8 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-  handleNotAccept(id: string) {
+  handleNotAccept(id: string): void {
     this.loadAccept = true;
-    this.otService.notConfirmOT(id).subscribe((data) => {
-      console.log(data);
-    });
+    this.otService.notConfirmOT(id).subscribe((data) => {});
   }
 }

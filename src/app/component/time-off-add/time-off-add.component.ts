@@ -63,7 +63,7 @@ export class TimeOffAddComponent implements OnInit {
 
     this.getTotalDay();
   }
-  disabledNumberDay(event) {
+  disabledNumberDay(event): void {
     const numberDay: any = document.getElementById('numberDay');
     if (event.target.checked) {
       numberDay.removeAttribute('disabled');

@@ -68,4 +68,7 @@ export class DashboardService {
   countNotify(): Observable<any> {
     return this.http.get(this.URL_API + 'count_notyfi');
   }
+  showCalendar(): Observable<any> {
+    return this.http.get(this.URL_API + 'show_calendar');
+  }
 }

@@ -6,7 +6,11 @@
 }
 .filter-control {
   width: 30%;
+  height: 6em;
 }
 .filter-groups {
-  height: 10em;
+  height: 7em;
+}
+button {
+  margin: top 1em;
 }

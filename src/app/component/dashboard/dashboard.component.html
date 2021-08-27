@@ -98,7 +98,6 @@
                       </div>
                     </div>
                   </td>
-                  
                 </tr>
               </tbody>
             </table>
@@ -226,6 +225,16 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col">
+      <div class="calendar p-5">
+        <h3 class="text-center mb-3">
+          Lịch điểm danh của nhân viên trong tháng
+        </h3>
+        <full-calendar [options]="calendarOptions"></full-calendar>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="dashboard__employee" *ngIf="!isAdmin">
   <div class="row sumary__list mb-4">
@@ -269,14 +278,14 @@
           <p class="sumary__count">
             {{ totalSalary | currency: "VND":"symbol":"1.0-0":"vi-VN" }}
           </p>
-          <p class="sumary__desc">Lương tháng</p>
+          <p class="sumary__desc">Lương tháng trước</p>
         </div>
       </div>
     </div>
   </div>
   <div class="row">
     <!-- task-list -->
-    <div class="col-8 col-12-list">
+    <div class="col-12 col-12-list">
       <!-- task-list -->
       <div class="task-list">
         <div class="task-list__header">
@@ -342,13 +351,14 @@
       <!-- end-task-list -->
     </div>
     <!-- end task list -->
-    <div class="col-4 col-12-list">
-      <div class="team-chart">
-        <div class="team-chart__header">
-          <p>Chức vụ trong phòng ban</p>
-        </div>
-
-        <div class="team-chart__body"></div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="calendar p-5">
+        <h3 class="text-center mb-3">
+          Lịch điểm danh của nhân viên trong tháng
+        </h3>
+        <full-calendar [options]="calendarOptions"></full-calendar>
       </div>
     </div>
   </div>

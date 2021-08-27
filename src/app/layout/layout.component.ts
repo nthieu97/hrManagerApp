@@ -38,7 +38,6 @@ export class LayoutComponent implements OnInit {
     this.user = this.authService.getCurrentUser();
     this.employeeService.getUserById(String(this.user.id)).subscribe((data) => {
       this.user = data.data;
-      console.log(data.data);
     });
     this.isLeader = this.authService.isLeader() || this.isAdmin;
     this.getAllNotify();
@@ -81,13 +80,12 @@ export class LayoutComponent implements OnInit {
       console.log(this.listNotify);
     });
   }
-  getListNotify(contentList) {
+  getListNotify(contentList): void {
     this.homeService.listNotify().subscribe((data) => {
-      let x = data.data;
-      console.log('view all', x);
-      for (let i = 0; i < x.length; i++) {
-        this.listNotify.push(x[i]);
-      }
+      const listNotify = data.data;
+      listNotify.forEach((notify) => {
+        this.listNotify.push(notify);
+      });
     });
     this.modalService
       .open(contentList, { ariaLabelledBy: 'modal-basic-title' })
@@ -106,7 +104,7 @@ export class LayoutComponent implements OnInit {
     });
   }
 
-  notifyDetail(contentDetail, id: string) {
+  notifyDetail(contentDetail, id: string): void {
     this.homeService.detailNotify(id).subscribe((data) => {
       console.log(data.data);
       this.getDetailNotify = data.data;

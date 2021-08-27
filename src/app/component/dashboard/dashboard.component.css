@@ -451,3 +451,12 @@ a.calendar__link {
 h5 {
   margin: 1rem 2rem;
 }
+.calendar {
+  background-color: white;
+  box-shadow: var(--box-shadow);
+  padding: 0.5em;
+  border-radius: 10px;
+  min-height: 100%;
+  overflow: auto;
+  padding-right: 1em;
+}
