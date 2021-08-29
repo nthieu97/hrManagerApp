@@ -67,7 +67,7 @@ export class PrizeFineFormComponent implements OnInit {
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
-      textField: 'user_account',
+      textField: 'full_name',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
@@ -87,9 +87,10 @@ export class PrizeFineFormComponent implements OnInit {
     this.employeeService.getAllUser().subscribe((data) => {
       const x = data.data
       for (let i = 0; i < x.length; i++) {
-        this.listUser.push(x[i].userinfo.full_name)
+        this.listUser.push(x[i].userinfo)
       }
       this.dropdownList = this.listUser
+      this.employees = data.data
     });
   }
   get f(): {
@@ -125,9 +126,11 @@ export class PrizeFineFormComponent implements OnInit {
     this.listItem = this.listItem.filter((data) => data !== item.id);
   }
   onSelectAll(items: any): void {
-    for (let i = 0; i < items.length; i++) {
-      this.listItem.push(items[i].id);
-    }
+    const arr = []
+    items.forEach((item) => {
+      arr.push(item.id)
+    })
+    this.listItem = arr
   }
   onDeSelectAll(items: any): void {
     this.listItem = [];

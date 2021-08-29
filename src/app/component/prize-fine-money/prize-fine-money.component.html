@@ -59,7 +59,7 @@
                   />
                 </td>
                 <td data-title="#">{{ i + 1 }}</td>
-                <td data-title="User Name">{{ prize.user_account }}</td>
+                <td data-title="User Name">{{ prize.full_name }}</td>
                 <td data-title="Prize-Fine Name">{{ prize.name }}</td>
                 <td *ngIf="prize.prize_money > 0" data-title="Prize">{{ prize.prize_money | currency: "VND":"symbol":"1.0-0":"vi-VN"}}</td>
                 <td *ngIf="prize.prize_money == null || prize.prize_money == 0">0 đ</td>
@@ -132,7 +132,7 @@
                   />
                 </td>
                 <td>{{ i + 1 }}</td>
-                <td>{{ prize.user_account }}</td>
+                <td>{{ prize.full_name }}</td>
                 <td>{{ prize.name }}</td>
                 <td *ngIf="prize.prize_money > 0">{{ prize.prize_money | currency: "VND":"symbol":"1.0-0":"vi-VN" }}</td>
                 <td *ngIf="prize.prize_money == null || prize.prize_money == 0">0 đ</td>

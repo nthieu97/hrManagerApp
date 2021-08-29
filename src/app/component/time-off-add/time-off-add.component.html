@@ -24,39 +24,27 @@
         type="date"
         formControlName="time_start"
         min="{{ today | date: 'yyyy-MM-dd' }}"
+        equarDateStart($event)
       />
     </div>
-    <div
-      *ngIf="
-        f.time_start.invalid && (f.time_start.dirty || f.time_start.touched)
-      "
-      class="alert alert-danger"
-    >
-      <div *ngIf="f.time_start.errors?.required">Ngày bắt đầu không để trống</div>
-    </div>
+  
     <div>
       <p class="error"></p>
     </div>
 
     <div class="form-group">
       <label for="">Ngày kết thúc </label>
-      <!-- <span class="text-danger" *ngIf="idTimeOff">
-        ( {{ this.TimeOffForm.value.time_end | date: "yyyy/MM/dd" }} )</span
-      > -->
+     
       <input
         class="form-control"
         type="date"
         formControlName="time_end"
         id=""
         min="{{ TimeOffForm.value.time_start | date: 'yyyy-MM-dd' }}"
+        equarDateEnd($event)
       />
     </div>
-    <div
-      *ngIf="f.time_end.invalid && (f.time_end.dirty || f.time_end.touched)"
-      class="alert alert-danger"
-    >
-      <div *ngIf="f.time_end.errors?.required">Ngày kết thúc không để trống</div>
-    </div>
+   
     <div>
       <p class="error2"></p>
     </div>

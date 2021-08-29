@@ -94,20 +94,26 @@ export class TimeOffAddComponent implements OnInit {
     });
   }
   equarDateStart(event) {
-    this.checkTimeStart.map((item) => {
-      if (item == event.target.value) {
-        document.querySelector('.error').innerHTML =
-          'Bạn đã chọn trùng ngày, vui lòng nhập lại';
-      }
-    });
+    let arr = this.checkTimeStart
+    let a = document.querySelector(".error")
+    if (arr.includes(event.target.value)) {
+      a.innerHTML = "Bạn đã chọn trùng ngày, vui lòng chọn lại";
+      (a as HTMLElement).style.display = "block"
+    } else {
+      document.querySelector(".error").innerHTML = "";
+      (a as HTMLElement).style.display = "none"
+    }
   }
   equarDateEnd(event) {
-    this.checkTimeEnd.map((item) => {
-      if (item == event.target.value) {
-        document.querySelector('.error2').innerHTML =
-          'Bạn đã chọn trùng ngày, vui lòng nhập lại';
-      }
-    });
+    let arr = this.checkTimeEnd
+    let a = document.querySelector(".error2")
+    if (arr.includes(event.target.value)) {
+      a.innerHTML = "Bạn đã chọn trùng ngày, vui lòng chọn lại";
+      (a as HTMLElement).style.display = "block"
+    } else {
+      document.querySelector(".error2").innerHTML = "";
+      (a as HTMLElement).style.display = "none"
+    }
   }
   submitForm(): void {
     if (this.TimeOffForm.value.number_day > 0) {

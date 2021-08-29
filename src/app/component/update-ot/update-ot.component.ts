@@ -93,7 +93,6 @@ export class UpdateOtComponent implements OnInit {
   }
   onSelectAll2(items: any): void {
     const arr = []
-
     items.forEach((item) => {
       arr.push(item.id)
     })
