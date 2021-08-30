@@ -191,17 +191,18 @@
                   </button>
                 </td>
               </tr>
-              <tr *ngIf="listID.length > 0">
-                <button
-                  (click)="destroyAll()"
-                  style="margin-top: 10px; min-width: 100px"
-                  class="btn btn-danger"
-                >
-                  Xóa tất cả
-                </button>
-              </tr>
+              
             </tbody>
           </table>
+          <div *ngIf="listID.length > 0">
+            <button
+              (click)="destroyAll()"
+              style="margin-top: 10px; min-width: 100px"
+              class="btn btn-danger"
+            >
+              Xóa tất cả
+            </button>
+          </div>
           <table *ngIf="listTimeOffDelete.length == 0">
             <p style="padding-left: 1rem">Thùng rác rỗng</p>
           </table>

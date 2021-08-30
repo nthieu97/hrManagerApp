@@ -189,6 +189,7 @@ export class DashboardComponent implements OnInit {
           classname: 'bg-success text-light',
           delay: 3000,
         });
+        this.getListOTByUser
       },
       (err: any) => {
         this.toastService.show(err.message, {
@@ -200,7 +201,18 @@ export class DashboardComponent implements OnInit {
   }
   handleNotAccept(id: string): void {
     this.loadAccept = true;
-    this.otService.notConfirmOT(id).subscribe((data) => {});
+    this.otService.notConfirmOT(id).subscribe((data) => {
+      this.toastService.show(data.message, {
+        classname: 'bg-success text-light',
+        delay: 3000,
+      })
+      this.getListOTByUser
+    }, (err: any) => {
+      this.toastService.show(err.message, {
+        classname: 'bg-danger text-light',
+        delay: 3000,
+      })
+    });
   }
 
   getAllUserOff() {

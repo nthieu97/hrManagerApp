@@ -78,6 +78,8 @@ export class PrizeFineMoneyComponent implements OnInit {
   search(): void {
     this.prizeFineMoneyService.getAllPrize(this.keyword).subscribe((data) => {
       this.list_prize_fine = data.data;
+      console.log(this.list_prize_fine);
+      
     });
   }
   handleDelete(id: string, index): void {

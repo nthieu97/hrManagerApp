@@ -64,7 +64,7 @@
                                          <p class="note_notify" *ngIf="item.type =='2'">Bạn có thông báo tăng ca</p>
                                          <p class="note_notify" *ngIf="item.type =='3'">Bạn có thông báo tăng ca theo giờ</p>
                                          <div class="item_bottom">
-                                             <span class="date_notify">{{item.date_notyfi}}</span>
+                                             <span class="date_notify">{{item.date_notyfi | date:'dd-MM-yyyy'}}</span>
                                              <span id="icon_read" class=" material-icons ">
                                              fiber_manual_record
                                              </span>
@@ -140,7 +140,7 @@
                                              <p class="note_notify" *ngIf="item.type =='2'">Bạn có thông báo tăng ca</p>
                                              <p class="note_notify" *ngIf="item.type =='3'">Bạn có thông báo tăng ca theo giờ</p>
                                              <div class="item_bottom">
-                                                 <span class="date_notify">{{item.date_notyfi}}</span>
+                                                 <span class="date_notify">{{item.date_notyfi | date:'dd-MM-yyyy'}}</span>
                                                  <span id="icon_read" class=" material-icons ">
                                              fiber_manual_record
                                              </span>
@@ -346,7 +346,7 @@
 
       <div class="sidebar__item" *ngIf="isLeader">
         <a class="side-bar__link dropdown" (click)="toggleDropdownOT()">
-          <span class="material-icons"> nights_stay </span>Làm OT
+          <span class="material-icons"> nights_stay </span>Tăng ca
           <span class="material-icons">{{
             !dropOT ? "expand_more" : "expand_less"
           }}</span></a

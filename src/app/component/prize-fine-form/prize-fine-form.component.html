@@ -22,27 +22,29 @@
         <option [ngValue]="false">Phạt</option>
       </select>
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="!prizeFineId">
       <label for="">Nhân viên</label>
-      <!-- <select formControlName="user_id" class="form-control">
-        <option value="" selected disabled>--Chọn nhân viên--</option>
-        <option
-          [value]="employee.id"
-          *ngFor="let employee of employees; index as i"
-        >
-          {{ employee.user_account }}
-        </option>
-      </select>
-      <div
-        *ngIf="f.user_id.invalid && (f.user_id.dirty || f.user_id.touched)"
-        class="alert alert-danger"
-      >
-        <div *ngIf="f.user_id.errors?.required">Nhân viên không để trống</div>
-      </div> -->
       <ng-multiselect-dropdown [placeholder]="'--Chooses User--'" [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)" (onDeSelect)="onDeSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)"
-      formControlName="user_id">
-  </ng-multiselect-dropdown>
-    </div>
+          formControlName="user_id">
+      </ng-multiselect-dropdown>
+  </div>
+  <!-- <div *ngIf="f.user_id.invalid && (f.user_id.dirty || f.user_id.touched)" class="alert alert-danger">
+    <div *ngIf="f.user_id.errors?.required">Nhân viên không để trống</div>
+</div> -->
+  <div class="form-group" *ngIf="prizeFineId">
+      <label for="">Nhân viên</label>
+      <select formControlName="user_id" class="form-control">
+      <option value="" selected disabled>--Chọn nhân viên--</option>
+      <option
+        [value]="employee.id"
+        *ngFor="let employee of employees; index as i"
+      >
+        {{ employee.userinfo.full_name }}
+      </option>
+    </select>
+
+  </div>
+ 
 
     <div class="form-group">
       <label for="">Ghi chú</label>
