@@ -24,27 +24,27 @@
         type="date"
         formControlName="time_start"
         min="{{ today | date: 'yyyy-MM-dd' }}"
-        equarDateStart($event)
+        (change)="equarDateStart($event)"
       />
     </div>
-  
+
     <div>
       <p class="error"></p>
     </div>
 
     <div class="form-group">
       <label for="">Ngày kết thúc </label>
-     
+
       <input
         class="form-control"
         type="date"
         formControlName="time_end"
         id=""
         min="{{ TimeOffForm.value.time_start | date: 'yyyy-MM-dd' }}"
-        equarDateEnd($event)
+        (change)="equarDateEnd($event)"
       />
     </div>
-   
+
     <div>
       <p class="error2"></p>
     </div>
@@ -66,8 +66,7 @@
     </div>
     <div class="form-group">
       <label for=""
-        >Số ngày nghỉ có lương (Còn
-        {{ totalDay - totalDayOff }} ngày)</label
+        >Số ngày nghỉ có lương (Còn {{ totalDay - totalDayOff }} ngày)</label
       >
       <input
         class="form-control"
@@ -76,9 +75,16 @@
         id="numberDay"
       />
     </div>
-    <div *ngIf="TimeOffForm.value.number_day > (totalDay - totalDayOff)" class="alert alert-danger">
-      <div>Bạn đã chọn vượt quá số ngày nghỉ có lương còn lại, vui lòng chọn lại !</div>
-  </div>
-    <button [disabled]="TimeOffForm.invalid" class="btn btn-primary">{{ idTimeOff ? "Cập nhật" : "Thêm" }}</button>
+    <div
+      *ngIf="TimeOffForm.value.number_day > totalDay - totalDayOff"
+      class="alert alert-danger"
+    >
+      <div>
+        Bạn đã chọn vượt quá số ngày nghỉ có lương còn lại, vui lòng chọn lại !
+      </div>
+    </div>
+    <button [disabled]="TimeOffForm.invalid" class="btn btn-primary">
+      {{ idTimeOff ? "Cập nhật" : "Thêm" }}
+    </button>
   </form>
 </div>

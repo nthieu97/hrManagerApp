@@ -32,7 +32,7 @@ export class SalariesComponent implements OnInit {
   payment = true;
   status = true;
   closeResult = '';
-
+  filterParam: HttpParams = new HttpParams();
   salaryDetail: any = [];
   totalWork: any = [];
   totalLeave: any = [];
@@ -53,26 +53,42 @@ export class SalariesComponent implements OnInit {
     this.id = this.route.snapshot.params.id;
   }
   getSalaries(): void {
-    const params = new HttpParams();
-    this.salaryService.getAllSalary(params).subscribe((data) => {
+    this.salaryService.getAllSalary(this.filterParam).subscribe((data) => {
       this.salaries = data;
+      this.loading = false;
     });
   }
-  onFileSelect(event) {
+  onFileSelect(event): void {
     const file: File = event.target.files[0];
 
     if (file) {
+      this.loading = true;
       this.fileName = file.name;
 
       const formData = new FormData();
 
       formData.append('file', file, file.name);
-      this.salaryService.importTable(formData).subscribe((data) => {
-        console.log(data);
-      });
+      this.salaryService.importTable(formData).subscribe(
+        (data) => {
+          this.fileName = '';
+          this.toatService.show(data.message, {
+            classname: 'bg-success text-light',
+            delay: 3000,
+          });
+          this.getSalaries();
+        },
+        (error) => {
+          this.fileName = '';
+          this.loading = false;
+          this.toatService.show(error.message, {
+            classname: 'bg-danger text-light',
+            delay: 3000,
+          });
+        }
+      );
     }
   }
-  salariesTooltip(tooltip, greeting: string) {
+  salariesTooltip(tooltip, greeting: string): void {
     if (tooltip.isOpen()) {
       tooltip.close();
     } else {
@@ -88,7 +104,6 @@ export class SalariesComponent implements OnInit {
           delay: 3000,
         });
         const salaryCHange = this.salaries.find((salary) => salary.id === id);
-        console.log(salaryCHange);
       },
       (err: any) => {
         this.toatService.show(err.message, {
@@ -102,10 +117,9 @@ export class SalariesComponent implements OnInit {
     this.excel.exportExcel(this.salaries, 'luong thang ');
   }
   handleFilter(event): void {
-    let param = new HttpParams();
-    param = param.set('date', String(event.month));
-    param = param.set('year', String(event.year));
-    this.salaryService.getAllSalary(param).subscribe((data) => {
+    this.filterParam = this.filterParam.set('date', String(event.month));
+    this.filterParam = this.filterParam.set('year', String(event.year));
+    this.salaryService.getAllSalary(this.filterParam).subscribe((data) => {
       this.salaries = data;
     });
   }

@@ -53,13 +53,10 @@ export class SalaryByUserComponent implements OnInit {
       this.salaUserData = data.data;
       this.loading = false;
     });
-    // console.log(this.salaUser);
   }
 
   openDetail(contentDetail, id): void {
     this.salaryService.getSalaryDetail(id).subscribe((data) => {
-      console.log(id);
-      // console.log(data);
       this.salaryDetail = data.data.luong;
       this.totalWork = data.data.tong_ngay_lam;
       this.totalLeave = data.data.tong_ngay_xin_nghi;

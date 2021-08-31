@@ -18,7 +18,7 @@ export class PositionAddFormComponent implements OnInit {
     private atr: ActivatedRoute,
     private positionService: PositionService,
     private router: Router,
-    private toastService:ToastsService
+    private toastService: ToastsService
   ) {}
 
   idPosition: string;
@@ -30,7 +30,6 @@ export class PositionAddFormComponent implements OnInit {
           .getPosition(this.idPosition)
           .subscribe((data: ResponePosition) => {
             this.model.namePosition = data.data.name;
-            console.log(this.model.namePosition);
           });
       }
     });
@@ -41,35 +40,36 @@ export class PositionAddFormComponent implements OnInit {
       this.positionService
         .updatePosition(this.idPosition, name)
         .subscribe((data) => {
-          this.toastService.show(data.message,{
-            classname:'bg-success text-light',
-            delay:3000
+          this.toastService.show(data.message, {
+            classname: 'bg-success text-light',
+            delay: 3000,
           }),
-          (err:any)=>{
-            this.toastService.show(err.message,{
-              classname:'bg-danger text-light',
-              delay:3000
-            })
-          }
+            (err: any) => {
+              this.toastService.show(err.message, {
+                classname: 'bg-danger text-light',
+                delay: 3000,
+              });
+            };
           this.router.navigate(['/', 'positions']);
         });
       return;
     }
-    this.positionService.createPosition(name).subscribe((data) => {
-      this.toastService.show('Thêm Chức Vụ Thành Công',{
-        classname:'bg-success text-light',
-        delay:3000
-      }),
-      (err:any)=>{
-        this.toastService.show('Không Thể Thêm Chức Vụ',{
-          classname:'bg-danger text-light',
-          delay:3000
-        })
+    this.positionService.createPosition(name).subscribe(
+      (data) => {
+        this.toastService.show('Thêm Chức Vụ Thành Công', {
+          classname: 'bg-success text-light',
+          delay: 3000,
+        });
+        this.router.navigate(['/', 'positions']);
+      },
+      (err: any) => {
+        this.toastService.show('Không Thể Thêm Chức Vụ', {
+          classname: 'bg-danger text-light',
+          delay: 3000,
+        });
       }
-      this.router.navigate(['/', 'positions']);
-    });
+    );
     if (name === '') {
-      console.log('error');
     }
   }
 }

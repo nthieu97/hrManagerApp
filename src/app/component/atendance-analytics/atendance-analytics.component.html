@@ -1,5 +1,19 @@
 <div class="attendance-container">
   <app-filter (filtered)="handleFilter($event)"></app-filter>
+  <div
+    *ngIf="loadingFilter"
+    class="
+      spinner-grow
+      text-success
+      m-3
+      text-center
+      d-flex
+      justify-content-center
+    "
+    role="status"
+  >
+    <span class="sr-only">Loading...</span>
+  </div>
   <div class="list-attendence" *ngIf="atendances">
     <h3 class="text-center">
       Điểm danh của nhân viên<a [routerLink]="['/', 'attendance-form']"
@@ -54,15 +68,22 @@
               placeholder="Tìm theo nhân viên"
             />
           </span>
+          <div
+            *ngIf="loadingImport"
+            class="spinner-grow text-success mx-3"
+            role="status"
+          >
+            <span class="sr-only">Loading...</span>
+          </div>
         </div>
       </ng-template>
       <ng-template pTemplate="header" let-columns>
         <tr>
-          <th pSortableColumn="userID">
-            ID NV <p-sortIcon field="userID"></p-sortIcon>
+          <th pSortableColumn="id">
+            ID NV <p-sortIcon field="id"></p-sortIcon>
             <p-columnFilter
-              type="text"
-              field="userID"
+              type="numeric"
+              field="id"
               display="menu"
             ></p-columnFilter>
           </th>
@@ -104,16 +125,14 @@
           <th pSortableColumn="status">
             Trạng thái <p-sortIcon field="status"></p-sortIcon>
           </th>
-          <th >
-            Hành động 
-          </th>
+          <th>Hành động</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-atendance let-colums="colums">
         <tr>
           <td>
-            <span class="p-column-title">ID NV</span>
-            {{ atendance.userID }}
+            <span class="p-column-title">STT</span>
+            {{ atendance.id }}
           </td>
           <td>
             <span class="p-column-title">Tên NV</span>
@@ -140,14 +159,15 @@
               atendance.status === 1 ? 'text-success' : 'text-danger'
             ]"
           >
-            <span class="p-column-title">Trạng thấi</span>
+            <span class="p-column-title">Trạng thái</span>
             {{ atendance.status === 1 ? "Đi làm" : "nghỉ" }}
           </td>
           <td>
-            <a class="btn btn-primary" [routerLink]="['/','attendance-edit',atendance.userID]">
-              <span title="Chỉnh sửa" class="material-icons">
-                edit_note
-                </span>
+            <a
+              class="btn btn-primary"
+              [routerLink]="['/', 'attendance-edit', atendance.id]"
+            >
+              <span title="Chỉnh sửa" class="material-icons"> edit_note </span>
             </a>
           </td>
         </tr>

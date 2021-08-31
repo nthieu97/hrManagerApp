@@ -80,6 +80,16 @@
             placeholder="Tìm theo nhân viên"
           />
         </span>
+        <div class="d-flex mx-3">
+          <div
+            class="spinner"
+            [ngStyle]="{ display: loading ? 'block' : 'none' }"
+          >
+            <div class="spinner-grow text-success" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
       </div>
     </ng-template>
     <ng-template pTemplate="header" let-columns>
@@ -231,14 +241,6 @@
 
     <!-- --paginate -->
   </p-table>
-
-  <div class="d-flex">
-    <div class="spinner" [ngStyle]="{ display: loading ? 'block' : 'none' }">
-      <div class="spinner-grow text-success" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- modal -->

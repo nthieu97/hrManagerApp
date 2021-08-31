@@ -31,7 +31,6 @@ export class UpdateOtComponent implements OnInit {
 
   ngOnInit(): void {
     this.employeeService.getListUser().subscribe((data) => {
-      console.log(data.data);
       this.dropdownList = data.data;
     });
     this.selectedItems = [];
@@ -73,12 +72,12 @@ export class UpdateOtComponent implements OnInit {
     this.listItem = this.listItem.filter((data) => data !== item.id);
   }
   onSelectAll(items: any): void {
-    const arr = []
+    const arr = [];
 
     items.forEach((item) => {
-      arr.push(item.id)
-    })
-    this.listItem = arr
+      arr.push(item.id);
+    });
+    this.listItem = arr;
   }
   onDeSelectAll(items: any): void {
     this.listItem = [];
@@ -92,11 +91,11 @@ export class UpdateOtComponent implements OnInit {
     this.listID = this.listID.filter((data) => data !== item.id);
   }
   onSelectAll2(items: any): void {
-    const arr = []
+    const arr = [];
     items.forEach((item) => {
-      arr.push(item.id)
-    })
-    this.listID = arr
+      arr.push(item.id);
+    });
+    this.listID = arr;
   }
   onDeSelectAll2(items: any): void {
     this.listID = [];
@@ -119,24 +118,24 @@ export class UpdateOtComponent implements OnInit {
   }
 
   handleSubmit2() {
-    this.otService.createOT(this.formOT2.value).subscribe((data) => {
-      this.toastService.show(data.message, {
-        classname: 'bg-success text-light',
-        delay: 3000
-      }),
-        (err: any) => {
-          this.toastService.show(err.message, {
-            classname: 'bg-danger text-light',
-            delay: 3000
-          })
-        }
-      console.log(data);
-      // console.log(this.formOT2.value);
+    this.otService.createOT(this.formOT2.value).subscribe(
+      (data) => {
+        this.toastService.show(data.message, {
+          classname: 'bg-success text-light',
+          delay: 3000,
+        });
+      },
+      (err: any) => {
+        this.toastService.show(err.message, {
+          classname: 'bg-danger text-light',
+          delay: 3000,
+        });
+      }
+    );
+    this.formOT2.setValue({
+      listUsers2: '',
+      note: '',
+      time_tang_ca: '',
     });
-  this.formOT2.setValue({
-    listUsers2:'',
-    note:'',
-    time_tang_ca:''
-  })
   }
 }

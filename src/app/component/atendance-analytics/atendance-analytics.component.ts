@@ -1,10 +1,11 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { ToastsService } from 'src/app/service/toasts.service';
 import { AttendanceService } from 'src/app/service/attendance.service';
-import { EmployeeService } from 'src/app/service/employee.service';
+
 import { ExportExcelService } from 'src/app/service/export-excel.service';
 export interface AttendanceMap {
+  id: number;
   userID: string;
   name: string;
   OT: number;
@@ -21,13 +22,15 @@ export interface AttendanceMap {
 export class AtendanceAnalyticsComponent implements OnInit {
   atendances: AttendanceMap[];
   fileName = '';
+  loadingFilter = false;
+  loadingImport = false;
+  filterParam: HttpParams = new HttpParams();
   cols: { field: string; header: string }[];
   constructor(
     private attenService: AttendanceService,
-    private excel: ExportExcelService
+    private excel: ExportExcelService,
+    private toastService: ToastsService
   ) {}
-
-  loading = false;
 
   first = 0;
   rows = 10;
@@ -46,13 +49,35 @@ export class AtendanceAnalyticsComponent implements OnInit {
     const file: File = event.target.files[0];
 
     if (file) {
+      this.loadingImport = true;
       this.fileName = file.name;
 
       const formData = new FormData();
 
       formData.append('file', file, file.name);
-      this.attenService.importTable(formData).subscribe((data) => {
-      });
+      this.attenService.importTable(formData).subscribe(
+        (data) => {
+          this.toastService.show(data.message, {
+            classname: 'bg-success text-light',
+            delay: 3000,
+          });
+          this.loadingImport = false;
+          this.attenService
+            .getAllAttendance(this.filterParam)
+            .subscribe((data) => {
+              this.atendances = data;
+            });
+          this.fileName = '';
+        },
+        (err) => {
+          this.loadingImport = false;
+          this.toastService.show(err.message, {
+            classname: 'bg-danger text-light',
+            delay: 3000,
+          });
+          this.fileName = '';
+        }
+      );
     }
   }
   exportExcel(): void {
@@ -62,13 +87,12 @@ export class AtendanceAnalyticsComponent implements OnInit {
   handleDelete(id: string): void {}
 
   handleFilter(event): void {
-    let param = new HttpParams();
-    param = param.set('date', String(event.month));
-    param = param.set('year', String(event.year));
-    this.attenService.getAllAttendance(param).subscribe((data) => {
+    this.loadingFilter = true;
+    this.filterParam = this.filterParam.set('date', String(event.month));
+    this.filterParam = this.filterParam.set('year', String(event.year));
+    this.attenService.getAllAttendance(this.filterParam).subscribe((data) => {
       this.atendances = data;
-      
-      
+      this.loadingFilter = false;
     });
   }
 }

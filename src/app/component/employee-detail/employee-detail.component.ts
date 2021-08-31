@@ -30,8 +30,6 @@ export class EmployeeDetailComponent implements OnInit {
   // private cx: CanvasRenderingContext2D;
   ngOnInit(): void {
     this.atr.params.subscribe((param) => {
-      console.log(param);
-
       if (param.id) {
         const id = param.id;
         this.employeeService.getUserById(id).subscribe((res) => {
@@ -40,7 +38,6 @@ export class EmployeeDetailComponent implements OnInit {
       } else {
         this.employeeService.getDetail().subscribe((data) => {
           this.userInfo = data.data;
-          console.log(data);
         });
       }
     });

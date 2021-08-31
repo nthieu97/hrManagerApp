@@ -5,7 +5,7 @@ import {
   ConfirmListResponse,
   ConfirmResponse,
 } from 'src/app/model/dashboard.model';
-import { User } from 'src/app/model/user.model';
+
 import { AuthService } from 'src/app/service/auth.service';
 import { DashboardService } from 'src/app/service/dashboard.service';
 import { OTServiceService } from 'src/app/service/otservice.service';
@@ -116,8 +116,6 @@ export class DashboardComponent implements OnInit {
       });
     }
     this.dashboardService.showCalendar().subscribe((data) => {
-      console.log(data.data.ngay);
-
       data.data.ngay.forEach((ngay) => {
         this.events.push({
           date: ngay,
@@ -189,7 +187,7 @@ export class DashboardComponent implements OnInit {
           classname: 'bg-success text-light',
           delay: 3000,
         });
-        this.getListOTByUser
+        this.getListOTByUser();
       },
       (err: any) => {
         this.toastService.show(err.message, {
@@ -201,18 +199,21 @@ export class DashboardComponent implements OnInit {
   }
   handleNotAccept(id: string): void {
     this.loadAccept = true;
-    this.otService.notConfirmOT(id).subscribe((data) => {
-      this.toastService.show(data.message, {
-        classname: 'bg-success text-light',
-        delay: 3000,
-      })
-      this.getListOTByUser
-    }, (err: any) => {
-      this.toastService.show(err.message, {
-        classname: 'bg-danger text-light',
-        delay: 3000,
-      })
-    });
+    this.otService.notConfirmOT(id).subscribe(
+      (data) => {
+        this.toastService.show(data.message, {
+          classname: 'bg-success text-light',
+          delay: 3000,
+        });
+        this.getListOTByUser();
+      },
+      (err: any) => {
+        this.toastService.show(err.message, {
+          classname: 'bg-danger text-light',
+          delay: 3000,
+        });
+      }
+    );
   }
 
   getAllUserOff() {

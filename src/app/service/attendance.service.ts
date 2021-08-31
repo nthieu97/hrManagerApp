@@ -27,6 +27,7 @@ export class AttendanceService {
       map((res: ListAtendanceResponse) => {
         return res.data.map((atendance: Atendance) => {
           return {
+            id: atendance.id,
             userID: atendance.user_id,
             name: atendance.full_name,
             OT: atendance.check_ot,
@@ -52,7 +53,7 @@ export class AttendanceService {
     return this.http.get(this.URL_API + '/getdetail/' + id);
   }
   updateOT(object: any): Observable<any> {
-    return this.http.post(this.URL_API + '/update_OT/', object );
+    return this.http.post(this.URL_API + '/update_OT/', object);
   }
   importTable(data: FormData): Observable<any> {
     return this.http.post(this.URL_API + '/import', data);
@@ -60,5 +61,4 @@ export class AttendanceService {
   updateStatus(id: string): Observable<any> {
     return this.http.post(this.URL_API + '/update_status/' + id, {});
   }
-  
 }
