@@ -55,6 +55,8 @@ export class SalariesComponent implements OnInit {
   getSalaries(): void {
     this.salaryService.getAllSalary(this.filterParam).subscribe((data) => {
       this.salaries = data;
+      console.log(data);
+
       this.loading = false;
     });
   }
@@ -114,7 +116,18 @@ export class SalariesComponent implements OnInit {
     );
   }
   exportExcel(): void {
-    this.excel.exportExcel(this.salaries, 'luong thang ');
+    const salaries = this.salaries.map((salary, index) => {
+      return {
+        Stt: index + 1,
+        'Họ và tên': salary.name,
+        'Lương gross': salary.gross,
+        'Lương nghỉ phép': salary.leave,
+        'Lương thực nhận': salary.net,
+        'Ngày tính lương': salary.date,
+        'Trạng thái (1:Đã thanh toán ; 0 : Chưa thanh toán )': salary.status,
+      };
+    });
+    this.excel.exportExcel(salaries, 'luong thang ');
   }
   handleFilter(event): void {
     this.filterParam = this.filterParam.set('date', String(event.month));

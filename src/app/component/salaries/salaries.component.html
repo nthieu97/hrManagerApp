@@ -94,8 +94,8 @@
     </ng-template>
     <ng-template pTemplate="header" let-columns>
       <tr>
-        <th pSortableColumn="userID" style="width: 5em">
-          ID NV <p-sortIcon field="userID"></p-sortIcon>
+        <th pSortableColumn="id" style="width: 5em">
+          STT <p-sortIcon field="id"></p-sortIcon>
         </th>
         <th pSortableColumn="name">
           Tên NV<p-sortIcon field="name"></p-sortIcon>
@@ -145,7 +145,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-salary let-columns="columns">
       <tr>
-        <td><span class="p-column-title">ID NV</span>{{ salary.userID }}</td>
+        <td><span class="p-column-title">ID NV</span>{{ salary.id }}</td>
         <td><span class="p-column-title">Tên NV</span>{{ salary.name }}</td>
         <td>
           <span class="p-column-title">Lương gross</span>
