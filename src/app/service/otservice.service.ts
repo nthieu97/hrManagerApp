@@ -49,5 +49,7 @@ export class OTServiceService {
   deleteAll(array: any): Observable<any> {
     return this.http.post(this.URL_API + '/delete_all/', array)
   }
-
+  paginateOT(page:string):Observable<any>{
+    return this.http.get(this.URL_API, { params: { page } });
+  }
 }

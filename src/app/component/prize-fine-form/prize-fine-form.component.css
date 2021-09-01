@@ -9,3 +9,12 @@
 .prize-fine-money span {
   margin-right: 15px;
 }
+.error{
+  color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    display: none;
+    padding: 12px 20px 12px 20px;
+}

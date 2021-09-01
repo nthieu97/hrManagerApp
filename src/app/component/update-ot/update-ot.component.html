@@ -13,7 +13,8 @@
     <div class="addForm">
       <h3 class="text-center">Cập Nhật Tăng Ca</h3>
       <form [formGroup]="formOT" (ngSubmit)="handleSubmit()">
-        <ng-multiselect-dropdown [placeholder]="'--Chooses User--'" [settings]="dropdownSettings" [data]="dropdownList"
+        <label for="">Chọn nhân viên</label>
+        <ng-multiselect-dropdown [placeholder]="'--Chọn nhân viên--'" [settings]="dropdownSettings" [data]="dropdownList"
           [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)" (onDeSelect)="onDeSelect($event)"
           (onSelectAll)="onSelectAll($event)" (onDeSelectAll)="onDeSelectAll($event)" formControlName="listUsers">
         </ng-multiselect-dropdown>
@@ -30,7 +31,8 @@
       <h3 class="text-center">Cập Nhật Tăng Ca Theo Giờ</h3>
       <form [formGroup]="formOT2" (ngSubmit)="handleSubmit2()">
         <div class="form-group">
-          <ng-multiselect-dropdown [placeholder]="'--Chooses User--'" [settings]="dropdownSettings" [data]="dropdownList"
+          <label for="">Chọn nhân viên</label>
+          <ng-multiselect-dropdown [placeholder]="'--Chọn nhân viên--'" [settings]="dropdownSettings" [data]="dropdownList"
           [(ngModel)]="selectedItems2" (onSelect)="onItemSelect2($event)" (onDeSelect)="onDeSelect2($event)"
           (onSelectAll)="onSelectAll2($event)" (onDeSelectAll)="onDeSelectAll2($event)" formControlName="listUsers2">
         </ng-multiselect-dropdown>
@@ -40,7 +42,7 @@
       </div>
         <div class="form-group">
           <label for="">Nội dung</label>
-          <textarea type="text" class="form-control" formControlName="note" placeholder="Note"></textarea>
+          <textarea type="text" class="form-control" formControlName="note" placeholder="Nội dung tăng ca"></textarea>
         </div>
         <div *ngIf="f2.note.invalid && f2.note.touched" class="alert alert-danger">
           <div *ngIf="f2.note.errors?.required">Không để trống trường này</div>

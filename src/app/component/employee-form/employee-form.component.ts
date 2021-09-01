@@ -71,7 +71,16 @@ export class EmployeeFormComponent implements OnInit {
     this.getDepartment();
     this.getPosition();
   }
-
+  checkMoney(event){
+    let a = document.querySelector('.error')
+    if(this.newEmployeeForm.value.basic_salary < 0){
+      a.innerHTML = "Lương cơ bản phải lớn hơn 0",
+      (a as HTMLElement).style.display="block"
+    }else{
+      a.innerHTML = "",
+      (a as HTMLElement).style.display = "none"
+    }
+  }
   createForm(): FormGroup {
     return new FormGroup({
       user_account: new FormControl('', [Validators.required]),
@@ -85,7 +94,7 @@ export class EmployeeFormComponent implements OnInit {
       department_id: new FormControl('', [Validators.required]),
       date_of_join: new FormControl('', [Validators.required]),
       role_id: new FormControl('', [Validators.required]),
-      basic_salary: new FormControl('', [Validators.required]),
+      basic_salary: new FormControl(0, [Validators.required]),
     });
   }
   getPosition(): void {
@@ -138,18 +147,17 @@ export class EmployeeFormComponent implements OnInit {
         });
       this.router.navigate(['/', 'employee']);
     } else {
-      this.employeeService.createEmployee(formdata).subscribe((data) => {
-        this.toastService.show(data.message, {
-          classname: 'bg-success text-light',
-          delay: 3000,
-        }),
-          (err: any) => {
-            this.toastService.show(err.message, {
-              classname: 'bg-danger text-light',
-              delay: 3000,
-            });
-          };
-      });
+      this.employeeService.createEmployee(formdata).subscribe((data)=>{
+        this.toastService.show(data.message,{
+          classname:'bg-success text-light',
+          delay:3000
+        })
+      },err => {
+        this.toastService.show(err.error.message,{
+          classname:'bg-danger text-light',
+          delay:3000
+        })
+      })
       this.router.navigate(['/', 'employee']);
     }
   }

@@ -16,6 +16,10 @@ export class ListOtByTimeComponent implements OnInit {
   checkAllList = false;
   checkAllDelete=false;
   listOTDelete = [];
+  loading = false;
+  page = 1;
+  pageSize;
+  collectionSize;
   constructor(
     private otService: OTServiceService,
     private toastService: ToastsService
@@ -25,8 +29,28 @@ export class ListOtByTimeComponent implements OnInit {
     this.listOtByLeader();
     this.getAllDeleteOT();
   }
+  handlePaginate(event): void {
+    this.loading = true;
+    this.otService
+      .paginateOT(String(event))
+      .subscribe((data) => {
+        this.listOtByLeader = data.data;
+        this.loading = false;
+      });
+  }
+  handlePaginate2(event): void {
+    this.loading = true;
+    this.otService
+      .paginateOT(String(event))
+      .subscribe((data) => {
+        this.listOTDelete= data.data;
+        this.loading = false;
+      });
+  }
   listOtByLeader() {
     this.otService.listOTByLeader().subscribe((data) => {
+      console.log(data);
+      
       this.listOT = data.data;
     });
   }
@@ -78,6 +102,8 @@ export class ListOtByTimeComponent implements OnInit {
   }
   getAllDeleteOT() {
     this.otService.getAllDeleteOT().subscribe((data) => {
+      console.log(data);
+      
       this.listOTDelete = data.data;
     });
   }

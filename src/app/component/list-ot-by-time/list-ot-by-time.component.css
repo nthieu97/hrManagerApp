@@ -51,10 +51,8 @@ input[type="radio"]:checked+.tab-control {
   justify-content: center;
 }
 .list-ot-by-time {
-  margin-top: 1rem;
   background-color: #ffffff;
   border-radius: 1rem;
-  padding: 30px 20px;
 
 }
 th {
