@@ -11,6 +11,16 @@
   align-items: center;
   margin-right: 2em;
 }
+.link_employee {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.link_employee a {
+  display: block;
+  margin: 0 0.5em;
+  margin-top: 1em;
+}
 .sort_by .custom-select {
   width: 5em;
 }

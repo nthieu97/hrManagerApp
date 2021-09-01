@@ -1,7 +1,9 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb" style="padding: 0; margin: 0">
     <li class="breadcrumb-item"><a [routerLink]="['/']">Trang chủ</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Danh sách nhân viên</li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Danh sách nhân viên
+    </li>
   </ol>
 </nav>
 <div class="employees">
@@ -100,9 +102,11 @@
             alt="employee"
           />
           <div class="card-body">
-            <h5 class="card-title text-center">
+            <h5 class="card-title text-center mb-đ">
               {{ employee.full_name ? employee.full_name : "User Test" }}
             </h5>
+            <p class="card-text text-center mb-2">{{ employee.email }}</p>
+
             <p class="card-text text-center">
               Mã NV: {{ employee.user_account }}
             </p>
@@ -113,19 +117,29 @@
               Team: {{ employee.name_department }}
             </p>
 
-            <a
-              *ngIf="isAdmin"
-              [routerLink]="['/', 'employee', 'detail', employee.id]"
-              class="btn btn-success btn-block"
-              >Chi tiết</a
-            >
-            <a
-              [routerLink]="['/', 'employee-edit', employee.id]"
-              *ngIf="isAdmin"
-              class="btn btn-primary btn-block"
-              >Sửa</a
-            >
-            <button (click)="deleteUser(employee.id)" class="btn btn-danger btn-block">Cho thôi việc</button>
+            <div *ngIf="isAdmin" class="link_employee">
+              <a
+                placement="top"
+                ngbTooltip="Thông tin chi tiết"
+                style="color: var(--primary-color)"
+                [routerLink]="['/', 'employee', 'detail', employee.id]"
+                ><span class="material-icons">info</span></a
+              >
+              <a
+                placement="top"
+                ngbTooltip="Chỉnh sửa thông tin nhân viên"
+                style="color: var(--primary-color)"
+                [routerLink]="['/', 'employee-edit', employee.id]"
+                ><span class="material-icons">manage_accounts</span></a
+              >
+              <a
+                placement="top"
+                ngbTooltip="Đuổi việc"
+                style="color: var(--primary-color)"
+                (click)="deleteUser(employee.id)"
+                ><span class="material-icons">person_remove</span></a
+              >
+            </div>
           </div>
         </div>
       </div>
