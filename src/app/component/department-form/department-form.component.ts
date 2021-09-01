@@ -47,8 +47,8 @@ export class DepartmentFormComponent implements OnInit {
             delay: 3000,
           }),
             // tslint:disable-next-line: no-unused-expression
-            (err) => {
-              this.toastService.show(err.message, {
+            err => {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
@@ -63,8 +63,8 @@ export class DepartmentFormComponent implements OnInit {
         delay: 3000,
       }),
         // tslint:disable-next-line: no-unused-expression
-        (err) => {
-          this.toastService.show(err.message, {
+        err => {
+          this.toastService.show(err.error.message, {
             classname: 'bg-danger text-light',
             delay: 3000,
           });

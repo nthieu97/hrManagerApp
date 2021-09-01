@@ -70,6 +70,7 @@
         class="form-control"
         placeholder="Nhập số tiền"
         formControlName="money"
+        (change)="checkMoney($event)"
       />
     </div>
     <div
@@ -78,7 +79,9 @@
     >
       <div *ngIf="f.money.errors?.required">Số tiền không được bỏ trống</div>
     </div>
-
+    <div>
+      <p class="error"></p>
+    </div>
     <button class="btn btn-primary" type="submit">
       {{ prizeFineId ? "Cập nhật" : "Thêm" }}
     </button>

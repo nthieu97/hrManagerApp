@@ -18,9 +18,7 @@ button {
   min-height: 36em;
 }
 
-textarea {
-  margin: 1em 0;
-}
+
 @media only screen and (max-width: 768px) {
   .col-xs-12 {
     flex: 0 0 100%;

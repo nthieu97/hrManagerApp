@@ -14,6 +14,10 @@ export class TimeOffComponent implements OnInit {
     private router: Router,
     private toastService: ToastsService
   ) {}
+  loading = false;
+  page = 1;
+  pageSize;
+  collectionSize;
   listID = [];
   listTimeOffDelete = [];
   timeOff;
@@ -215,5 +219,25 @@ export class TimeOffComponent implements OnInit {
   }
   reloadPageTrash(event) {
     this.getAllDeleteTimeOff();
+  }
+  handlePaginate(event): void {
+    this.loading = true;
+    this.timeOffService
+    .paginateTime(String(event))
+    .subscribe((data) => {
+      this.timeOff = data.data;
+      this.loading = false;
+    });
+      
+  }
+  handlePaginate2(event): void {
+    this.loading = true;
+    this.timeOffService
+    .paginateTime(String(event))
+    .subscribe((data) => {
+      this.listTimeOffDelete = data.data;
+      this.loading = false;
+    });
+      
   }
 }

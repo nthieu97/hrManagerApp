@@ -44,8 +44,8 @@ export class PositionAddFormComponent implements OnInit {
             classname: 'bg-success text-light',
             delay: 3000,
           }),
-            (err: any) => {
-              this.toastService.show(err.message, {
+            err => {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
@@ -62,8 +62,8 @@ export class PositionAddFormComponent implements OnInit {
         });
         this.router.navigate(['/', 'positions']);
       },
-      (err: any) => {
-        this.toastService.show('Không Thể Thêm Chức Vụ', {
+      err => {
+        this.toastService.show(err.error.message, {
           classname: 'bg-danger text-light',
           delay: 3000,
         });

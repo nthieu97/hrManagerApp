@@ -74,6 +74,16 @@ export class PrizeFineFormComponent implements OnInit {
       allowSearchFilter: true,
     };
   }
+  checkMoney(event){
+    let a = document.querySelector('.error')
+    if(this.prizeFineForm.value.money < 0){
+      a.innerHTML = "Số tiền phải lớn hơn 0",
+      (a as HTMLElement).style.display = "block"
+    }else{
+      a.innerHTML = "",
+      (a as HTMLElement).style.display = "none"
+    }
+  }
   createForm(): void {
     this.prizeFineForm = this.fb.group({
       type: [true],
@@ -147,8 +157,8 @@ export class PrizeFineFormComponent implements OnInit {
             delay: 3000,
           });
         },
-        (err) => {
-          this.toastService.show(err.message, {
+        err => {
+          this.toastService.show(err.error.message, {
             classname: 'bg-danger text-light',
             delay: 3000,
           });
@@ -165,8 +175,8 @@ export class PrizeFineFormComponent implements OnInit {
           }),
             this.router.navigate(['/', 'prize-fine-money']);
         },
-        (err) => {
-          this.toastService.show(err.message, {
+        err => {
+          this.toastService.show(err.error.message, {
             classname: 'bg-danger text-light',
             delay: 3000,
           });
