@@ -15,7 +15,16 @@ h3 {
 }
 .gender {
   display: flex;
+  align-items: center;
 }
+.gender .female{
+  margin-left: 8px;
+}
+.gender input{
+  margin-left: 4px;
+  margin-bottom: 8px;
+}
+
 .form-check {
   margin-right: 10px;
 }
@@ -25,6 +34,15 @@ form {
 }
 input.ng-invalid.ng-touched {
   border: 1px solid red;
+}
+.error{
+  color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    display: none;
+    padding: 12px 20px 12px 20px;
 }
 @media only screen and (max-width: 480px) {
   form {

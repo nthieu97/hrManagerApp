@@ -102,13 +102,17 @@
                   <a
                     [routerLink]="['/', 'time-off-edit', time.id]"
                     class="btn btn-primary mr-2"
-                    >Edit</a
+                    ><span class="material-icons">
+                      edit_note
+                      </span></a
                   >
                   <button
                     class="btn btn-danger"
                     (click)="handleDelete(time.id, i)"
                   >
-                    Xóa
+                  <span class="material-icons">
+                    delete_forever
+                    </span>
                   </button>
                 </td>
                 <td *ngIf="time.status == 1">
@@ -121,6 +125,9 @@
               </tr>
             </tbody>
           </table>
+          <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5"
+          [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
+          (pageChange)="handlePaginate($event)"></ngb-pagination>
         </div>
       </div>
       <div id="tab-panel-2" class="tab-panel">
@@ -206,6 +213,9 @@
           <table *ngIf="listTimeOffDelete.length == 0">
             <p style="padding-left: 1rem">Thùng rác rỗng</p>
           </table>
+          <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5"
+          [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
+          (pageChange)="handlePaginate2($event)"></ngb-pagination>
         </div>
       </div>
     </div>

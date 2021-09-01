@@ -108,8 +108,8 @@ export class UpdateOtComponent implements OnInit {
           delay: 3000,
         });
       },
-      (err: any) => {
-        this.toastService.show(err.message, {
+      err => {
+        this.toastService.show(err.error.message, {
           classname: 'bg-danger text-light',
           delay: 3000,
         });
@@ -125,8 +125,8 @@ export class UpdateOtComponent implements OnInit {
           delay: 3000,
         });
       },
-      (err: any) => {
-        this.toastService.show(err.message, {
+      err => {
+        this.toastService.show(err.error.message, {
           classname: 'bg-danger text-light',
           delay: 3000,
         });

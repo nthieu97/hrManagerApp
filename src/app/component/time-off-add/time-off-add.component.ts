@@ -132,8 +132,8 @@ export class TimeOffAddComponent implements OnInit {
             }),
               this.router.navigate(['/', 'my-time-off']);
           },
-          (err: any) => {
-            this.toastService.show(err.message, {
+          err => {
+            this.toastService.show(err.error.message, {
               classname: 'bg-danger text-light',
               delay: 3000,
             });
@@ -148,8 +148,8 @@ export class TimeOffAddComponent implements OnInit {
         }),
           this.router.navigate(['/', 'my-time-off']);
       },
-      (err: any) => {
-        this.toastService.show(err.message, {
+      err => {
+        this.toastService.show(err.error.message, {
           classname: 'bg-danger text-light',
           delay: 3000,
         });

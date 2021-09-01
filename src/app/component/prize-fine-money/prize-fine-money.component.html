@@ -44,6 +44,7 @@
               <th>#</th>
               <th>Họ tên</th>
               <th>Nội dung thưởng phạt</th>
+              <!-- <th>Ngày</th> -->
               <th>Tiền thưởng</th>
               <th>Tiền phạt</th>
               <th>Hành động</th>
@@ -61,19 +62,20 @@
                 <td data-title="#">{{ i + 1 }}</td>
                 <td data-title="User Name">{{ prize.full_name }}</td>
                 <td data-title="Prize-Fine Name">{{ prize.name }}</td>
+                <!-- <td data-title="Date"></td> -->
                 <td *ngIf="prize.prize_money > 0" data-title="Prize">{{ prize.prize_money | currency: "VND":"symbol":"1.0-0":"vi-VN"}}</td>
                 <td *ngIf="prize.prize_money == null || prize.prize_money == 0">0 đ</td>
                 <td *ngIf="prize.fine_money >0" data-title="Fine">{{prize.fine_money | currency: "VND":"symbol":"1.0-0":"vi-VN" }}</td>
                 <td *ngIf="prize.fine_money == null || prize.fine_money == 0">0 đ</td>
                 <td data-title="Action">
-                  <a
+                  <a 
                     [routerLink]="['/', 'prize-fine-edit', prize.id]"
                     class="btn btn-primary"
                     ><span title="Chỉnh sửa" class="material-icons">
                       edit_note
                     </span></a
                   >
-                  <button
+                  <button [disabled]="checks"
                     class="btn btn-danger"
                     (click)="handleDelete(prize.id, i)"
                   >
@@ -96,8 +98,11 @@
             </button>
           </div>
           <table *ngIf="list_prize_fine.length == 0">
-            <p>Danh sách rỗng</p>
+            <p style="padding-left: 1rem">Danh sách rỗng</p>
           </table>
+          <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5"
+          [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
+          (pageChange)="handlePaginate($event)"></ngb-pagination>
         </div>
       </div>
       <div id="tab-panel-2" class="tab-panel">
@@ -160,6 +165,7 @@
              
             </tbody>
           </table>
+         
           <div *ngIf="listIDDelete.length > 0">
             <button
               (click)="destroyAll()"
@@ -179,6 +185,9 @@
           <table *ngIf="listAllDeletePrize.length == 0">
             <p style="padding-left: 1rem">Thùng rác rỗng</p>
           </table>
+          <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5"
+          [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
+          (pageChange)="handlePaginate2($event)"></ngb-pagination>
         </div>
       </div>
     </div>

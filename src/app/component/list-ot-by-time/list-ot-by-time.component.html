@@ -128,6 +128,7 @@
               </tr>
             </tbody>
           </table>
+        
           <div *ngIf="listID.length > 0">
             <button
               (click)="deleteAll()"
@@ -138,8 +139,11 @@
             </button>
           </div>
           <table *ngIf="listOT.length == 0">
-            <p>Danh sách rỗng</p>
+            <p style="padding-left: 1rem">Danh sách rỗng</p>
           </table>
+          <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5"
+          [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
+          (pageChange)="handlePaginate($event)"></ngb-pagination>
           <!-- <ngb-pagination
           class="d-flex justify-content-end"
           [collectionSize]="collectionSize"
@@ -224,6 +228,7 @@
               </tr>
             </tbody>
           </table>
+          
           <div *ngIf="listIDDelete.length > 0">
             <button
               (click)="destroyAll()"
@@ -246,6 +251,9 @@
           >
             <p style="padding-left: 1rem">Thùng rác rỗng</p>
           </table>
+          <ngb-pagination class="d-flex justify-content-end" [collectionSize]="collectionSize" [(page)]="page" [maxSize]="5"
+          [rotate]="true" [ellipses]="false" [boundaryLinks]="true" [pageSize]="pageSize"
+          (pageChange)="handlePaginate2($event)"></ngb-pagination>
         </div>
       </div>
     </div>
