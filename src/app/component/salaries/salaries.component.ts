@@ -55,7 +55,6 @@ export class SalariesComponent implements OnInit {
   getSalaries(): void {
     this.salaryService.getAllSalary(this.filterParam).subscribe((data) => {
       this.salaries = data;
-      console.log(data);
 
       this.loading = false;
     });
@@ -108,7 +107,7 @@ export class SalariesComponent implements OnInit {
         const salaryCHange = this.salaries.find((salary) => salary.id === id);
       },
       (err: any) => {
-        this.toatService.show(err.message, {
+        this.toatService.show(err.error.message, {
           classname: 'bg-danger text-light',
           delay: 3000,
         });
@@ -120,6 +119,7 @@ export class SalariesComponent implements OnInit {
       return {
         Stt: index + 1,
         'Họ và tên': salary.name,
+        'Id nhân viên': salary.id,
         'Lương gross': salary.gross,
         'Lương nghỉ phép': salary.leave,
         'Lương thực nhận': salary.net,

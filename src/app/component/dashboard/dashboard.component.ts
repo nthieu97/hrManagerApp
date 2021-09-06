@@ -160,7 +160,7 @@ export class DashboardComponent implements OnInit {
       },
       (err) => {
         this.loadConfirm = false;
-        this.toastService.show(err.message, {
+        this.toastService.show(err.error.message, {
           classname: 'bg-danger text-light',
           delay: 3000,
         });
@@ -190,7 +190,7 @@ export class DashboardComponent implements OnInit {
         this.getListOTByUser();
       },
       (err: any) => {
-        this.toastService.show(err.message, {
+        this.toastService.show(err.error.message, {
           classname: 'bg-danger text-light',
           delay: 3000,
         });
@@ -208,7 +208,7 @@ export class DashboardComponent implements OnInit {
         this.getListOTByUser();
       },
       (err: any) => {
-        this.toastService.show(err.message, {
+        this.toastService.show(err.error.message, {
           classname: 'bg-danger text-light',
           delay: 3000,
         });

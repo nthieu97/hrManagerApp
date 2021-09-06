@@ -50,7 +50,7 @@ export class TrashOtComponent implements OnInit {
               });
             },
             (err: any) => {
-              this.toastService.show(err.message, {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
@@ -95,7 +95,7 @@ export class TrashOtComponent implements OnInit {
           }
         },
         (err: any) => {
-          this.toastService.show(err.message, {
+          this.toastService.show(err.error.message, {
             classname: 'bg-danger text-light',
             delay: 3000,
           });

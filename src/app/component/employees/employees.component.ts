@@ -23,7 +23,7 @@ export class EmployeesComponent implements OnInit {
     private authService: AuthService,
     private departmentService: DepartmentService,
     private positionService: PositionService,
-    private toastService:ToastsService
+    private toastService: ToastsService
   ) {}
   noUser;
   loadFilter = false;
@@ -54,9 +54,9 @@ export class EmployeesComponent implements OnInit {
       .subscribe((res: ResponeAllPosition) => {
         this.positions = res.data;
       });
-    this.getAllEmployees()
+    this.getAllEmployees();
   }
-  getAllEmployees(){
+  getAllEmployees() {
     this.employeeService
       .getAllEmployee(this.userParams)
       .subscribe((data: UserResponse) => {
@@ -157,7 +157,7 @@ export class EmployeesComponent implements OnInit {
     this.userParams = new HttpParams();
     this.updateUserList();
   }
- 
+
   deleteUser(id) {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -184,17 +184,16 @@ export class EmployeesComponent implements OnInit {
                 classname: 'bg-success text-light',
                 delay: 3000,
               });
-              this.getAllEmployees()
+              this.getAllEmployees();
             },
             (err: any) => {
-              this.toastService.show(err.message, {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
             }
           );
           this.getAllEmployees();
-         
         } else if (result.dismiss === Swal.DismissReason.cancel) {
         }
       });

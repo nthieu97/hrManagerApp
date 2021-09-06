@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AttendanceService } from 'src/app/service/attendance.service';
 import { ToastsService } from 'src/app/service/toasts.service';
 import { OTServiceService } from 'src/app/service/otservice.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-update-ot',
   templateUrl: './update-ot.component.html',
@@ -23,7 +24,8 @@ export class UpdateOtComponent implements OnInit {
     private employeeService: EmployeeService,
     private attenService: AttendanceService,
     private toastService: ToastsService,
-    private otService: OTServiceService
+    private otService: OTServiceService,
+    private router: Router
   ) {
     this.formOT = this.createForm();
     this.formOT2 = this.createForm2();
@@ -107,8 +109,9 @@ export class UpdateOtComponent implements OnInit {
           classname: 'bg-success text-light',
           delay: 3000,
         });
+        this.router.navigate(['/', 'list_ot']);
       },
-      err => {
+      (err) => {
         this.toastService.show(err.error.message, {
           classname: 'bg-danger text-light',
           delay: 3000,
@@ -124,8 +127,9 @@ export class UpdateOtComponent implements OnInit {
           classname: 'bg-success text-light',
           delay: 3000,
         });
+        this.router.navigate(['/', 'list_ot_by_time']);
       },
-      err => {
+      (err) => {
         this.toastService.show(err.error.message, {
           classname: 'bg-danger text-light',
           delay: 3000,

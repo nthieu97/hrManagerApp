@@ -77,7 +77,7 @@ export class PrizeFineMoneyComponent implements OnInit {
     this.prizeFineMoneyService.getAllPrize(this.keyword).subscribe((data) => {
       this.list_prize_fine = data.data;
       console.log(this.list_prize_fine);
-      
+
       this.page = data.meta.currentPage;
       this.collectionSize = data.meta.total;
       this.pageSize = data.meta.perPage;
@@ -111,7 +111,7 @@ export class PrizeFineMoneyComponent implements OnInit {
                 });
               },
               (err: any) => {
-                this.toastService.show(err.message, {
+                this.toastService.show(err.error.message, {
                   classname: 'bg-danger text-light',
                   delay: 3000,
                 });
@@ -138,7 +138,7 @@ export class PrizeFineMoneyComponent implements OnInit {
     this.prizeFineMoneyService
       .paginatePrize(String(event))
       .subscribe((data) => {
-        this.listAllDeletePrize= data.data;
+        this.listAllDeletePrize = data.data;
         this.loading = false;
       });
   }
@@ -175,7 +175,7 @@ export class PrizeFineMoneyComponent implements OnInit {
               });
             },
             (err: any) => {
-              this.toastService.show(err.message, {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
@@ -214,7 +214,7 @@ export class PrizeFineMoneyComponent implements OnInit {
               });
             },
             (err: any) => {
-              this.toastService.show(err.message, {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
@@ -256,7 +256,7 @@ export class PrizeFineMoneyComponent implements OnInit {
               this.checks = false;
             },
             (err: any) => {
-              this.toastService.show(err.message, {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
@@ -299,7 +299,7 @@ export class PrizeFineMoneyComponent implements OnInit {
               this.listIDDelete = [];
             },
             (err: any) => {
-              this.toastService.show(err.message, {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
@@ -341,7 +341,7 @@ export class PrizeFineMoneyComponent implements OnInit {
               this.listIDDelete = [];
             },
             (err: any) => {
-              this.toastService.show(err.message, {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });

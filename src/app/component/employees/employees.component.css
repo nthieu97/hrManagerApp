@@ -32,6 +32,7 @@ img.employee__img {
   border-radius: 50%;
   width: 85%;
   min-height: 15em;
+  max-height: 15em;
   border: 3px solid;
   margin: 1em auto;
   padding: 0.1em;
@@ -118,10 +119,6 @@ p.card-text.text-center {
   }
 }
 @media only screen and (max-width: 480px) {
-  img.employee__img {
-    width: 60%;
-    height: auto;
-  }
   .employees-col-6 {
     flex: 0 0 100%;
     max-width: 100%;

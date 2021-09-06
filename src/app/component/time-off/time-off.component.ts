@@ -87,7 +87,7 @@ export class TimeOffComponent implements OnInit {
               });
             },
             (err: any) => {
-              this.toastService.show(err.message, {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
@@ -129,7 +129,7 @@ export class TimeOffComponent implements OnInit {
               delay: 3000,
             }),
               (err: any) => {
-                this.toastService.show(err.message, {
+                this.toastService.show(err.error.message, {
                   classname: 'bg-danger text-light',
                   delay: 3000,
                 });
@@ -202,7 +202,7 @@ export class TimeOffComponent implements OnInit {
               this.listTimeOffDelete = [];
             },
             (err: any) => {
-              this.toastService.show(err.message, {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
@@ -222,22 +222,16 @@ export class TimeOffComponent implements OnInit {
   }
   handlePaginate(event): void {
     this.loading = true;
-    this.timeOffService
-    .paginateTime(String(event))
-    .subscribe((data) => {
+    this.timeOffService.paginateTime(String(event)).subscribe((data) => {
       this.timeOff = data.data;
       this.loading = false;
     });
-      
   }
   handlePaginate2(event): void {
     this.loading = true;
-    this.timeOffService
-    .paginateTime(String(event))
-    .subscribe((data) => {
+    this.timeOffService.paginateTime(String(event)).subscribe((data) => {
       this.listTimeOffDelete = data.data;
       this.loading = false;
     });
-      
   }
 }

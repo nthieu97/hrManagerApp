@@ -4,7 +4,7 @@ import { AttendanceService } from 'src/app/service/attendance.service';
 import { EmployeeService } from 'src/app/service/employee.service';
 import { ToastsService } from 'src/app/service/toasts.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpParams } from '@angular/common/http';
+
 @Component({
   selector: 'app-attendance-form',
   templateUrl: './attendance-form.component.html',
@@ -72,7 +72,7 @@ export class AttendanceFormComponent implements OnInit {
             this.router.navigate(['/', 'attendanceAnalytics']);
           },
           (err: any) => {
-            this.toastService.show(err.message, {
+            this.toastService.show(err.error.message, {
               classname: 'bg-danger text-light',
               delay: 3000,
             });
@@ -90,7 +90,7 @@ export class AttendanceFormComponent implements OnInit {
           });
         },
         (err: any) => {
-          this.toastService.show(err.message, {
+          this.toastService.show(err.error.message, {
             classname: 'bg-danger text-light',
             delay: 3000,
           });

@@ -18,14 +18,14 @@ export class DepartmentComponent implements OnInit {
   constructor(
     private departmentService: DepartmentService,
     private router: Router,
-    private toatsService:ToastsService
+    private toatsService: ToastsService
   ) {}
   departments: Department[] = [];
 
   ngOnInit(): void {
-      this.getAllDepartment()
+    this.getAllDepartment();
   }
-  getAllDepartment(){
+  getAllDepartment() {
     this.departmentService
       .getAllDepartment()
       .subscribe((data: ResponseAllDepartment) => {
@@ -36,37 +36,37 @@ export class DepartmentComponent implements OnInit {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
+        cancelButton: 'btn btn-danger',
       },
-      buttonsStyling: false
-    })
-    swalWithBootstrapButtons.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.departmentService.deleteDepartment(id).subscribe((data) => {
-          this.toatsService.show(data.message, {
-            classname: 'bg-success text-light',
-            delay: 3000
-          }),
-            (err: any) => {
-              this.toatsService.show(err.message, {
-                classname: 'bg-danger text-light',
-                delay: 3000
-              })
-            }
-        })
-        this.getAllDepartment()
-      } else if (
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-      }
-    })
+      buttonsStyling: false,
+    });
+    swalWithBootstrapButtons
+      .fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.departmentService.deleteDepartment(id).subscribe((data) => {
+            this.toatsService.show(data.message, {
+              classname: 'bg-success text-light',
+              delay: 3000,
+            }),
+              (err: any) => {
+                this.toatsService.show(err.error.message, {
+                  classname: 'bg-danger text-light',
+                  delay: 3000,
+                });
+              };
+          });
+          this.getAllDepartment();
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+        }
+      });
   }
 }

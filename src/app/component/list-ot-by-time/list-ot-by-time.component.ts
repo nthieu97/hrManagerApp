@@ -14,7 +14,7 @@ export class ListOtByTimeComponent implements OnInit {
   checks = false;
   checkDelete = false;
   checkAllList = false;
-  checkAllDelete=false;
+  checkAllDelete = false;
   listOTDelete = [];
   loading = false;
   page = 1;
@@ -31,26 +31,22 @@ export class ListOtByTimeComponent implements OnInit {
   }
   handlePaginate(event): void {
     this.loading = true;
-    this.otService
-      .paginateOT(String(event))
-      .subscribe((data) => {
-        this.listOtByLeader = data.data;
-        this.loading = false;
-      });
+    this.otService.paginateOT(String(event)).subscribe((data) => {
+      this.listOtByLeader = data.data;
+      this.loading = false;
+    });
   }
   handlePaginate2(event): void {
     this.loading = true;
-    this.otService
-      .paginateOT(String(event))
-      .subscribe((data) => {
-        this.listOTDelete= data.data;
-        this.loading = false;
-      });
+    this.otService.paginateOT(String(event)).subscribe((data) => {
+      this.listOTDelete = data.data;
+      this.loading = false;
+    });
   }
   listOtByLeader() {
     this.otService.listOTByLeader().subscribe((data) => {
       console.log(data);
-      
+
       this.listOT = data.data;
     });
   }
@@ -81,7 +77,7 @@ export class ListOtByTimeComponent implements OnInit {
               });
             },
             (err: any) => {
-              this.toastService.show(err.message, {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
@@ -103,7 +99,7 @@ export class ListOtByTimeComponent implements OnInit {
   getAllDeleteOT() {
     this.otService.getAllDeleteOT().subscribe((data) => {
       console.log(data);
-      
+
       this.listOTDelete = data.data;
     });
   }
@@ -135,7 +131,7 @@ export class ListOtByTimeComponent implements OnInit {
               });
             },
             (err: any) => {
-              this.toastService.show(err.message, {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
@@ -175,7 +171,7 @@ export class ListOtByTimeComponent implements OnInit {
               });
             },
             (err: any) => {
-              this.toastService.show(err.message, {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
@@ -187,7 +183,7 @@ export class ListOtByTimeComponent implements OnInit {
       });
   }
   checkValue(e) {
-    this.checkAllList = !this.checkAllList
+    this.checkAllList = !this.checkAllList;
     if (e.target.checked == true) {
       this.checks = true;
       // tslint:disable-next-line: prefer-for-of
@@ -209,7 +205,7 @@ export class ListOtByTimeComponent implements OnInit {
     }
   }
   checkValueDelete(e) {
-    this.checkAllDelete =!this.checkAllDelete
+    this.checkAllDelete = !this.checkAllDelete;
     if (e.target.checked == true) {
       this.checkDelete = true;
       // tslint:disable-next-line: prefer-for-of
@@ -256,13 +252,13 @@ export class ListOtByTimeComponent implements OnInit {
                 classname: 'bg-success text-light',
                 delay: 3000,
               }),
-              this.getAllDeleteOT()
-               this.checkAllDelete=false;
-               this.checkDelete=false;
-               this.listIDDelete=[]
+                this.getAllDeleteOT();
+              this.checkAllDelete = false;
+              this.checkDelete = false;
+              this.listIDDelete = [];
             },
             (err: any) => {
-              this.toastService.show(err.message, {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
@@ -298,13 +294,13 @@ export class ListOtByTimeComponent implements OnInit {
                 classname: 'bg-success text-light',
                 delay: 3000,
               });
-              this.getAllDeleteOT()
-              this.listIDDelete=[];
+              this.getAllDeleteOT();
+              this.listIDDelete = [];
               this.checkAllDelete = false;
-              this.checkDelete = false
+              this.checkDelete = false;
             },
             (err: any) => {
-              this.toastService.show(err.message, {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
@@ -344,10 +340,10 @@ export class ListOtByTimeComponent implements OnInit {
               this.listOtByLeader();
               this.checks = false;
               this.checkAllList = false;
-              this.listID = []
+              this.listID = [];
             },
             (err: any) => {
-              this.toastService.show(err.message, {
+              this.toastService.show(err.error.message, {
                 classname: 'bg-danger text-light',
                 delay: 3000,
               });
@@ -359,11 +355,10 @@ export class ListOtByTimeComponent implements OnInit {
         }
       });
   }
-  reloadPage(event){
-   this.listOT
+  reloadPage(event) {
+    this.listOT;
   }
-  reloadPageTrash(event){
-   this.getAllDeleteOT()
-    
+  reloadPageTrash(event) {
+    this.getAllDeleteOT();
   }
 }

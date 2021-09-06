@@ -29,37 +29,37 @@ export class PositionsComponent implements OnInit {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
+        cancelButton: 'btn btn-danger',
       },
-      buttonsStyling: false
-    })
-    swalWithBootstrapButtons.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.positionService.deletePosition(id).subscribe((data) => {
-          this.toastService.show(data.message, {
-            classname: 'bg-success text-light',
-            delay: 3000
-          }),
-            (err: any) => {
-              this.toastService.show(err.message, {
-                classname: 'bg-danger text-light',
-                delay: 3000
-              })
-            }
-        })
-        this.getAllPosition()
-      } else if (
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-      }
-    })
+      buttonsStyling: false,
+    });
+    swalWithBootstrapButtons
+      .fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.positionService.deletePosition(id).subscribe((data) => {
+            this.toastService.show(data.message, {
+              classname: 'bg-success text-light',
+              delay: 3000,
+            }),
+              (err: any) => {
+                this.toastService.show(err.error.message, {
+                  classname: 'bg-danger text-light',
+                  delay: 3000,
+                });
+              };
+          });
+          this.getAllPosition();
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+        }
+      });
   }
 }
