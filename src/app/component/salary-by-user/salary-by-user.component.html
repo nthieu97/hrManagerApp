@@ -163,9 +163,8 @@
             <th>Tiền phạt:</th>
             <td>
               {{
-                moneyFine.total_money_fine
-                  ? moneyFine.total_money_fine
-                  : (0 | currency: "VND":"symbol":"1.0-0":"vi-VN")
+                (moneyFine.total_money_fine ? moneyFine.total_money_fine : 0)
+                  | currency: "VND":"symbol":"1.0-0":"vi-VN"
               }}
             </td>
           </tr>
@@ -173,9 +172,10 @@
             <th>Tiền thưởng:</th>
             <td>
               {{
-                moneyPrize.total_money_prize
+                (moneyPrize.total_money_prize
                   ? moneyPrize.total_money_prize
-                  : (0 | currency: "VND":"symbol":"1.0-0":"vi-VN")
+                  : 0
+                ) | currency: "VND":"symbol":"1.0-0":"vi-VN"
               }}
             </td>
           </tr>

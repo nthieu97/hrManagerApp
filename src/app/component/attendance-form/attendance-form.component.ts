@@ -20,10 +20,9 @@ export class AttendanceFormComponent implements OnInit {
     private toastService: ToastsService,
     private atr: ActivatedRoute,
     private router: Router
-  ) {
-    this.formAttendance = this.createForm();
-  }
+  ) {}
   ngOnInit(): void {
+    this.formAttendance = this.createForm();
     this.atr.params.subscribe((params) => {
       this.idAtten = params.id;
       if (this.idAtten) {
@@ -79,23 +78,24 @@ export class AttendanceFormComponent implements OnInit {
           }
         );
       this.router.navigate(['/', 'attendanceAnalytics']);
+    } else {
+      this.attendanceService
+        .createAttendance(this.formAttendance.value)
+        .subscribe(
+          (data) => {
+            this.toastService.show(data.message, {
+              classname: 'bg-success text-light',
+              delay: 3000,
+            });
+          },
+          (err: any) => {
+            this.toastService.show(err.error.message, {
+              classname: 'bg-danger text-light',
+              delay: 3000,
+            });
+          }
+        );
+      this.router.navigate(['/', 'attendanceAnalytics']);
     }
-    this.attendanceService
-      .createAttendance(this.formAttendance.value)
-      .subscribe(
-        (data) => {
-          this.toastService.show(data.message, {
-            classname: 'bg-success text-light',
-            delay: 3000,
-          });
-        },
-        (err: any) => {
-          this.toastService.show(err.error.message, {
-            classname: 'bg-danger text-light',
-            delay: 3000,
-          });
-        }
-      );
-    this.router.navigate(['/', 'attendanceAnalytics']);
   }
 }

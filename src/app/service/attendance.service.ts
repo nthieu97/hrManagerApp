@@ -47,7 +47,7 @@ export class AttendanceService {
     return this.http.post(this.URL_API + '/create/', object);
   }
   updateAttendance(id: string, object: any): Observable<any> {
-    return this.http.post(this.URL_API + '/update/' + id, { object });
+    return this.http.post(this.URL_API + '/update/' + id, object);
   }
   getDetailOT(id: string): Observable<any> {
     return this.http.get(this.URL_API + '/getdetail/' + id);
@@ -61,7 +61,7 @@ export class AttendanceService {
   updateStatus(id: string): Observable<any> {
     return this.http.post(this.URL_API + '/update_status/' + id, {});
   }
-  paginateatten(page:string):Observable<any>{
+  paginateatten(page: string): Observable<any> {
     return this.http.get(this.URL_API, { params: { page } });
   }
 }

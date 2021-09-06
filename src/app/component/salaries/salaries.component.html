@@ -274,14 +274,15 @@
             <th>Tổng lương nghỉ có phép:</th>
             <td>
               {{
-                salaryDetail.total_salary_leave
+                (salaryDetail.total_salary_leave
                   ? salaryDetail.total_salary_leave
-                  : (0 | currency: "VND":"symbol":"1.0-0":"vi-VN")
+                  : 0
+                ) | currency: "VND":"symbol":"1.0-0":"vi-VN"
               }}
             </td>
           </tr>
           <tr>
-            <th>Tổng lương ròng:</th>
+            <th>Tổng lương thực nhận:</th>
             <td>
               {{
                 salaryDetail.total_net_salary
@@ -319,9 +320,8 @@
             <th>Tiền phạt:</th>
             <td>
               {{
-                moneyFine.total_money_fine
-                  ? moneyFine.total_money_fine
-                  : (0 | currency: "VND":"symbol":"1.0-0":"vi-VN")
+                (moneyFine.total_money_fine ? moneyFine.total_money_fine : 0)
+                  | currency: "VND":"symbol":"1.0-0":"vi-VN"
               }}
             </td>
           </tr>
@@ -329,9 +329,10 @@
             <th>Tiền thưởng:</th>
             <td>
               {{
-                moneyPrize.total_money_prize
+                (moneyPrize.total_money_prize
                   ? moneyPrize.total_money_prize
-                  : (0 | currency: "VND":"symbol":"1.0-0":"vi-VN")
+                  : 0
+                ) | currency: "VND":"symbol":"1.0-0":"vi-VN"
               }}
             </td>
           </tr>
